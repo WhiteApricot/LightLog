@@ -1,113 +1,229 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:light_log/app/light_log_app.dart';
 import 'package:light_log/app/providers.dart';
+import 'package:light_log/core/occurrence_time.dart';
 import 'package:light_log/data/database/database.dart';
 import 'package:light_log/features/ledger/data/ledger_repository.dart';
 import 'package:light_log/features/ledger/domain/ledger_models.dart';
 
 void main() {
-  testWidgets('single entry action offers manual and text modes', (
-    tester,
-  ) async {
-    await tester.pumpWidget(
-      ProviderScope(
-        overrides: [
-          ledgerRepositoryProvider.overrideWithValue(_FakeLedgerRepository()),
-        ],
-        child: const LightLogApp(),
-      ),
-    );
-    await tester.pump();
-
-    expect(find.text('还没有账目'), findsOneWidget);
-    expect(find.text('记一笔'), findsOneWidget);
-
-    await tester.tap(find.text('记一笔'));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 500));
-
-    expect(find.text('选择录入方式'), findsOneWidget);
-    expect(find.text('手动记账'), findsOneWidget);
-    expect(find.text('智能文字记账'), findsOneWidget);
-
-    await tester.tap(find.text('手动记账'));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
-
-    expect(find.text('新增账目'), findsOneWidget);
-    expect(find.text('金额（元）'), findsOneWidget);
-    expect(find.text('一级分类'), findsOneWidget);
-    await tester.drag(find.byType(ListView).last, const Offset(0, -600));
-    await tester.pump();
-    expect(find.text('账户 / 支付方式'), findsOneWidget);
-    expect(
-      find.byKey(const ValueKey('transaction-save-button')),
-      findsAtLeastNWidgets(1),
-    );
-  });
-
-  testWidgets('text candidate must be confirmed before repository write', (
+  testWidgets('entry page combines smart input and manual form', (
     tester,
   ) async {
     final repository = _FakeLedgerRepository();
-    await tester.pumpWidget(
-      ProviderScope(
-        overrides: [ledgerRepositoryProvider.overrideWithValue(repository)],
-        child: const LightLogApp(),
-      ),
-    );
-    await tester.pump();
+    await _pumpApp(tester, repository);
 
-    await tester.tap(find.text('记一笔'));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
-    await tester.tap(find.text('智能文字记账'));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
+    await tester.tap(find.byType(FloatingActionButton));
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const ValueKey('unified-smart-input')), findsOneWidget);
+    expect(find.text('手动记账'), findsOneWidget);
+    expect(find.text('金额（元）'), findsOneWidget);
+    expect(find.text('选择录入方式'), findsNothing);
+
     await tester.enterText(
-      find.byKey(const ValueKey('text-entry-input')),
+      find.byKey(const ValueKey('unified-smart-input')),
       '12:30 二食堂 15',
     );
-    await tester.tap(find.byKey(const ValueKey('text-entry-parse-button')));
-    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+    await tester.pumpAndSettle();
 
-    expect(find.text('候选结果'), findsOneWidget);
-    expect(find.text('金额：¥15.00'), findsOneWidget);
-    expect(find.text('分类：餐饮 · 午餐'), findsOneWidget);
-    expect(repository.createdDraft, isNull);
+    expect(find.byKey(const ValueKey('unified-smart-success')), findsOneWidget);
+    expect(
+      find.byKey(
+        const ValueKey('child-category-icon-image-expense-food-lunch'),
+      ),
+      findsOneWidget,
+    );
 
-    final confirm = find.byKey(const ValueKey('text-entry-confirm-button'));
-    await tester.drag(find.byType(ListView).last, const Offset(0, -250));
-    await tester.pump();
-    await tester.tap(confirm);
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
-
-    expect(find.text('确认文字账目'), findsOneWidget);
-    expect(find.text('请确认或修改识别结果后保存'), findsOneWidget);
-    final save = find.byKey(const ValueKey('transaction-save-button'));
-    await tester.drag(find.byType(ListView).last, const Offset(0, -900));
-    await tester.pump();
-    await tester.tap(save);
+    await tester.drag(find.byType(ListView).last, const Offset(0, -1400));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('transaction-save-button')));
     await tester.pumpAndSettle();
 
     expect(repository.createdDraft?.source, 'text');
     expect(repository.createdDraft?.amountMinor, 1500);
-    expect(repository.createdDraft?.content, '二食堂');
-    expect(repository.createdDraft?.categoryId, 'expense-food');
     expect(repository.createdDraft?.subcategoryId, 'expense-food-lunch');
     expect(find.text('轻记'), findsOneWidget);
-    expect(find.text('文字记账'), findsNothing);
+  });
+
+  testWidgets(
+    'category groups are vertical, collapsible, and use child icons',
+    (tester) async {
+      await _pumpApp(tester, _FakeLedgerRepository());
+      await tester.tap(find.byType(FloatingActionButton));
+      await tester.pumpAndSettle();
+
+      expect(
+        find.byKey(
+          const ValueKey('child-category-icon-image-expense-food-lunch'),
+        ),
+        findsNothing,
+      );
+      final parentTile = find.byKey(
+        const ValueKey('category-icon-expense-food'),
+      );
+      await tester.ensureVisible(parentTile);
+      await tester.pumpAndSettle();
+      await tester.tap(parentTile);
+      await tester.pumpAndSettle();
+
+      final childIcon = find.byKey(
+        const ValueKey('child-category-icon-image-expense-food-lunch'),
+      );
+      expect(childIcon, findsOneWidget);
+      final picture = tester.widget<SvgPicture>(childIcon);
+      expect(
+        (picture.bytesLoader as SvgAssetLoader).assetName,
+        'assets/icons/categories/meal.svg',
+      );
+
+      await tester.tap(parentTile);
+      await tester.pumpAndSettle();
+      expect(childIcon, findsNothing);
+      expect(find.byType(GridView), findsOneWidget);
+    },
+  );
+
+  testWidgets('time picker uses looping 24-hour wheels', (tester) async {
+    await _pumpApp(tester, _FakeLedgerRepository());
+    await tester.tap(find.byType(FloatingActionButton));
+    await tester.pumpAndSettle();
+
+    await tester.drag(find.byType(ListView).last, const Offset(0, -1200));
+    await tester.pumpAndSettle();
+    final occurredTime = find.text('发生时间');
+    await tester.tap(occurredTime);
+    await tester.pumpAndSettle();
+
+    final pickers = tester.widgetList<CupertinoPicker>(
+      find.byType(CupertinoPicker),
+    );
+    expect(pickers, hasLength(2));
+    for (final picker in pickers) {
+      expect(picker.childDelegate, isA<ListWheelChildLoopingListDelegate>());
+    }
+    expect(find.text('选择时间（24 小时制）'), findsOneWidget);
+  });
+
+  testWidgets('ledger groups by date and supports long-press bulk delete', (
+    tester,
+  ) async {
+    final repository = _FakeLedgerRepository(
+      entries: [
+        _entry(
+          id: 'today-expense',
+          content: '午餐',
+          type: 'expense',
+          amountMinor: 2500,
+          wallTime: DateTime(2026, 10, 4, 12, 30),
+        ),
+        _entry(
+          id: 'today-income',
+          content: '报销',
+          type: 'income',
+          amountMinor: 1000,
+          wallTime: DateTime(2026, 10, 4, 10),
+        ),
+        _entry(
+          id: 'yesterday-expense',
+          content: '早餐',
+          type: 'expense',
+          amountMinor: 800,
+          wallTime: DateTime(2026, 10, 3, 8),
+        ),
+      ],
+    );
+    await _pumpApp(tester, repository);
+
+    expect(find.text('10月4日 星期日'), findsOneWidget);
+    expect(find.text('收入 ¥10.00  支出 ¥25.00'), findsOneWidget);
+    expect(find.text('10月3日 星期六'), findsOneWidget);
+    final ledgerIcon = find.byKey(
+      const ValueKey('ledger-subcategory-icon-today-expense'),
+    );
+    final picture = tester.widget<SvgPicture>(ledgerIcon);
+    expect(
+      (picture.bytesLoader as SvgAssetLoader).assetName,
+      'assets/icons/categories/meal.svg',
+    );
+
+    await tester.longPress(
+      find.byKey(const ValueKey('ledger-entry-today-expense')),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('已选择 1 项'), findsOneWidget);
+    await tester.tap(find.byKey(const ValueKey('ledger-entry-today-income')));
+    await tester.pump();
+    expect(find.text('已选择 2 项'), findsOneWidget);
+
+    await tester.tap(
+      find.byKey(const ValueKey('delete-selected-transactions')),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(
+      find.byKey(const ValueKey('confirm-delete-selected-transactions')),
+    );
+    await tester.pumpAndSettle();
+
+    expect(repository.deletedMany, {'today-expense', 'today-income'});
+  });
+
+  testWidgets('existing transaction is deleted from editor action', (
+    tester,
+  ) async {
+    final repository = _FakeLedgerRepository(
+      entries: [
+        _entry(
+          id: 'editable',
+          content: '待删除账目',
+          type: 'expense',
+          amountMinor: 1200,
+          wallTime: DateTime(2026, 10, 4, 9),
+        ),
+      ],
+    );
+    await _pumpApp(tester, repository);
+
+    await tester.tap(find.byKey(const ValueKey('ledger-entry-editable')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('transaction-delete-button')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('confirm-transaction-delete')));
+    await tester.pumpAndSettle();
+
+    expect(repository.deletedMany, {'editable'});
+    expect(find.text('轻记'), findsOneWidget);
   });
 }
 
+Future<void> _pumpApp(
+  WidgetTester tester,
+  _FakeLedgerRepository repository,
+) async {
+  await tester.pumpWidget(
+    ProviderScope(
+      overrides: [ledgerRepositoryProvider.overrideWithValue(repository)],
+      child: const LightLogApp(),
+    ),
+  );
+  await tester.pump();
+}
+
 class _FakeLedgerRepository implements LedgerRepository {
+  _FakeLedgerRepository({this.entries = const []});
+
+  final List<LedgerEntry> entries;
   TransactionDraft? createdDraft;
+  Set<String>? deletedMany;
+  Set<String>? restoredMany;
 
   @override
-  Stream<List<LedgerEntry>> watchEntries() => Stream.value(const []);
+  Stream<List<LedgerEntry>> watchEntries() => Stream.value(entries);
 
   @override
   Stream<List<Category>> watchCategories() => Stream.value(const [
@@ -127,6 +243,27 @@ class _FakeLedgerRepository implements LedgerRepository {
       name: '午餐',
       type: 'expense',
       iconAsset: 'assets/icons/categories/meal.svg',
+      sortOrder: 10,
+      isActive: true,
+      createdAt: 0,
+      updatedAt: 0,
+    ),
+    Category(
+      id: 'income-other',
+      name: '其他收入',
+      type: 'income',
+      iconAsset: 'assets/icons/categories/other-income.svg',
+      sortOrder: 10,
+      isActive: true,
+      createdAt: 0,
+      updatedAt: 0,
+    ),
+    Category(
+      id: 'income-other-general',
+      parentId: 'income-other',
+      name: '未分类收入',
+      type: 'income',
+      iconAsset: 'assets/icons/categories/coins.svg',
       sortOrder: 10,
       isActive: true,
       createdAt: 0,
@@ -154,12 +291,113 @@ class _FakeLedgerRepository implements LedgerRepository {
   }
 
   @override
-  Future<void> update(String id, TransactionDraft draft) =>
-      throw UnimplementedError();
+  Future<void> update(String id, TransactionDraft draft) async {}
 
   @override
-  Future<void> softDelete(String id) => throw UnimplementedError();
+  Future<void> softDelete(String id) => softDeleteMany({id});
 
   @override
-  Future<void> restore(String id) => throw UnimplementedError();
+  Future<void> softDeleteMany(Set<String> ids) async {
+    deletedMany = Set.of(ids);
+  }
+
+  @override
+  Future<void> restore(String id) => restoreMany({id});
+
+  @override
+  Future<void> restoreMany(Set<String> ids) async {
+    restoredMany = Set.of(ids);
+  }
 }
+
+LedgerEntry _entry({
+  required String id,
+  required String content,
+  required String type,
+  required int amountMinor,
+  required DateTime wallTime,
+}) {
+  final isIncome = type == 'income';
+  final category = isIncome ? _incomeCategory : _expenseCategory;
+  final subcategory = isIncome ? _incomeSubcategory : _expenseSubcategory;
+  return LedgerEntry(
+    transaction: Transaction(
+      id: id,
+      type: type,
+      categoryId: category.id,
+      subcategoryId: subcategory.id,
+      content: content,
+      amountMinor: amountMinor,
+      currency: 'CNY',
+      occurredAt: OccurrenceTime.toUtcMilliseconds(
+        wallTime: wallTime,
+        timezoneOffsetMinutes: 480,
+      ),
+      timezoneOffsetMinutes: 480,
+      accountId: _account.id,
+      source: 'manual',
+      createdAt: 0,
+      updatedAt: 0,
+      syncVersion: 1,
+    ),
+    category: category,
+    subcategory: subcategory,
+    account: _account,
+  );
+}
+
+const _expenseCategory = Category(
+  id: 'expense-food',
+  name: '餐饮',
+  type: 'expense',
+  iconAsset: 'assets/icons/categories/food.svg',
+  sortOrder: 10,
+  isActive: true,
+  createdAt: 0,
+  updatedAt: 0,
+);
+
+const _expenseSubcategory = Category(
+  id: 'expense-food-lunch',
+  parentId: 'expense-food',
+  name: '午餐',
+  type: 'expense',
+  iconAsset: 'assets/icons/categories/meal.svg',
+  sortOrder: 10,
+  isActive: true,
+  createdAt: 0,
+  updatedAt: 0,
+);
+
+const _incomeCategory = Category(
+  id: 'income-other',
+  name: '其他收入',
+  type: 'income',
+  iconAsset: 'assets/icons/categories/other-income.svg',
+  sortOrder: 10,
+  isActive: true,
+  createdAt: 0,
+  updatedAt: 0,
+);
+
+const _incomeSubcategory = Category(
+  id: 'income-other-general',
+  parentId: 'income-other',
+  name: '未分类收入',
+  type: 'income',
+  iconAsset: 'assets/icons/categories/coins.svg',
+  sortOrder: 10,
+  isActive: true,
+  createdAt: 0,
+  updatedAt: 0,
+);
+
+const _account = Account(
+  id: 'account-cash',
+  name: '现金',
+  type: 'cash',
+  isActive: true,
+  sortOrder: 10,
+  createdAt: 0,
+  updatedAt: 0,
+);

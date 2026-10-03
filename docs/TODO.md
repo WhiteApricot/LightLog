@@ -32,6 +32,10 @@
 - [x] Expand default income/expense categories and add database-backed SVG icons
 - [x] Replace category dropdowns with parent/child icon pickers
 - [x] Add and link the recognition algorithm working document
+- [x] Combine smart text input and manual editing in one entry form
+- [x] Group ledger entries by wall-clock date with daily totals
+- [x] Add editor deletion and long-press bulk soft deletion
+- [x] Use compact vertical collapsible category grids and looping time wheels
 - [ ] Define duplicate fingerprint thresholds and add duplicate-detection tests
 
 ## Phase 3 - OCR entry

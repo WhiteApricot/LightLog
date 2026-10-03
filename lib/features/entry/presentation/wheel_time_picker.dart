@@ -48,29 +48,35 @@ Future<TimeOfDay?> showWheelTimePicker({
                 children: [
                   SizedBox(
                     width: 88,
-                    child: CupertinoPicker.builder(
+                    child: CupertinoPicker(
                       scrollController: hourController,
+                      looping: true,
                       itemExtent: 44,
                       useMagnifier: true,
                       magnification: 1.12,
-                      childCount: 24,
                       onSelectedItemChanged: (value) => hour = value,
-                      itemBuilder: (_, index) =>
-                          Center(child: Text(index.toString().padLeft(2, '0'))),
+                      children: [
+                        for (var hour = 0; hour < 24; hour++)
+                          Center(child: Text(hour.toString().padLeft(2, '0'))),
+                      ],
                     ),
                   ),
                   Text(':', style: Theme.of(context).textTheme.headlineMedium),
                   SizedBox(
                     width: 88,
-                    child: CupertinoPicker.builder(
+                    child: CupertinoPicker(
                       scrollController: minuteController,
+                      looping: true,
                       itemExtent: 44,
                       useMagnifier: true,
                       magnification: 1.12,
-                      childCount: 60,
                       onSelectedItemChanged: (value) => minute = value,
-                      itemBuilder: (_, index) =>
-                          Center(child: Text(index.toString().padLeft(2, '0'))),
+                      children: [
+                        for (var minute = 0; minute < 60; minute++)
+                          Center(
+                            child: Text(minute.toString().padLeft(2, '0')),
+                          ),
+                      ],
                     ),
                   ),
                 ],

@@ -90,7 +90,7 @@ confidence 目前只随 Candidate 保存，不触发自动入账。Phase 2 所�
 
 `RecognitionCandidate` 汇总 `EntryDraft`、分类 ID/名称、证据和 issues。只有金额、类型、内容、时间、时区偏移、一级分类、二级分类都存在且无 issue 时，才能转换为 `TransactionDraft`。
 
-用户在统一“记一笔”入口选择智能文字记账，查看候选后进入共用编辑器，可修改金额、分类、内容、日期、时间和账户。保存成功后由 `LedgerRepository` 写入 `Transaction`，标记 `source = text` 并保存 confidence，然后直接返回主界面。Parser 本身始终不能写库。
+用户进入统一“记一笔”页面后，可在顶部输入文字；完整 Candidate 自动填入同页下方的共用编辑表单，用户可继续修改金额、分类、内容、日期、时间和账户。保存成功后由 `LedgerRepository` 写入 `Transaction`，标记 `source = text` 并保存 confidence，然后直接返回主界面。Parser 本身始终不能写库。
 
 ## 当前主要缺陷
 

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,6 +9,7 @@ import '../../../core/money.dart';
 import '../../../core/occurrence_time.dart';
 import '../../../data/database/database.dart';
 import '../../ledger/domain/ledger_models.dart';
+import '../../recognition/domain/recognition_models.dart';
 import 'category_picker.dart';
 import 'wheel_time_picker.dart';
 
@@ -17,12 +20,14 @@ class TransactionEditorPage extends ConsumerStatefulWidget {
     this.initialDraft,
     this.contextMessage,
     this.evidence = const [],
+    this.showSmartInput = false,
   }) : assert(entry == null || initialDraft == null);
 
   final LedgerEntry? entry;
   final TransactionDraft? initialDraft;
   final String? contextMessage;
   final List<String> evidence;
+  final bool showSmartInput;
 
   @override
   ConsumerState<TransactionEditorPage> createState() =>
@@ -34,6 +39,7 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
   late final TextEditingController _amountController;
   late final TextEditingController _contentController;
   late final TextEditingController _noteController;
+  late final TextEditingController _smartInputController;
   late LedgerTransactionType _type;
   late DateTime _occurredAtLocal;
   late int _timezoneOffsetMinutes;
@@ -44,6 +50,8 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
   double? _confidence;
   bool _saving = false;
   bool _categoryValidationRequested = false;
+  RecognitionCandidate? _smartCandidate;
+  Timer? _smartParseDebounce;
 
   @override
   void initState() {
@@ -66,6 +74,7 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
     _noteController = TextEditingController(
       text: transaction?.note ?? initialDraft?.note,
     );
+    _smartInputController = TextEditingController();
     if (transaction != null) {
       _occurredAtLocal = OccurrenceTime.restoreWallTime(
         utcMilliseconds: transaction.occurredAt,
@@ -98,6 +107,8 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
     _amountController.dispose();
     _contentController.dispose();
     _noteController.dispose();
+    _smartInputController.dispose();
+    _smartParseDebounce?.cancel();
     super.dispose();
   }
 
@@ -106,7 +117,18 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
     final categories = ref.watch(categoriesProvider);
     final accounts = ref.watch(accountsProvider);
     return Scaffold(
-      appBar: AppBar(title: Text(_title)),
+      appBar: AppBar(
+        title: Text(_title),
+        actions: [
+          if (widget.entry != null)
+            IconButton(
+              key: const ValueKey('transaction-delete-button'),
+              tooltip: '删除账目',
+              onPressed: _saving ? null : _delete,
+              icon: const Icon(Icons.delete_outline),
+            ),
+        ],
+      ),
       body: categories.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, _) => _LoadError(message: '分类加载失败：$error'),
@@ -120,18 +142,18 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
   }
 
   Widget _buildForm(List<Category> categories, List<Account> accounts) {
-    final parentCategories = categories
-        .where((item) => item.parentId == null && item.type == _type.value)
+    final typedCategories = categories
+        .where((item) => item.type == _type.value)
+        .toList(growable: false);
+    final parentCategories = typedCategories
+        .where((item) => item.parentId == null)
         .toList(growable: false);
     if (!parentCategories.any((item) => item.id == _categoryId)) {
       _categoryId = parentCategories.firstOrNull?.id;
     }
-    final childCategories = categories
-        .where(
-          (item) => item.parentId == _categoryId && item.type == _type.value,
-        )
-        .toList(growable: false);
-    if (!childCategories.any((item) => item.id == _subcategoryId)) {
+    if (!typedCategories.any(
+      (item) => item.id == _subcategoryId && item.parentId == _categoryId,
+    )) {
       _subcategoryId = null;
     }
     if (!accounts.any((item) => item.id == _accountId)) {
@@ -164,6 +186,14 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
             ),
             const SizedBox(height: 12),
           ],
+          if (widget.showSmartInput && widget.entry == null) ...[
+            _buildSmartInput(categories),
+            const SizedBox(height: 16),
+            const Divider(),
+            const SizedBox(height: 12),
+            Text('手动记账', style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(height: 12),
+          ],
           SegmentedButton<LedgerTransactionType>(
             segments: const [
               ButtonSegment(
@@ -187,7 +217,10 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
           const SizedBox(height: 20),
           TextFormField(
             controller: _amountController,
-            autofocus: widget.entry == null && widget.initialDraft == null,
+            autofocus:
+                widget.entry == null &&
+                widget.initialDraft == null &&
+                !widget.showSmartInput,
             decoration: const InputDecoration(
               labelText: '金额（元）',
               prefixText: '¥ ',
@@ -214,35 +247,22 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
           ),
           const SizedBox(height: 4),
           CategoryPicker(
-            title: '一级分类',
-            categories: parentCategories,
-            selectedId: _categoryId,
+            categories: typedCategories,
+            selectedParentId: _categoryId,
+            selectedChildId: _subcategoryId,
             errorText: _categoryValidationRequested && _categoryId == null
                 ? '请选择一级分类'
+                : _categoryValidationRequested && _subcategoryId == null
+                ? '请选择二级分类'
                 : null,
-            onSelected: (category) => setState(() {
+            onParentSelected: (category) => setState(() {
               if (_categoryId != category.id) {
                 _categoryId = category.id;
                 _subcategoryId = null;
               }
             }),
-          ),
-          const SizedBox(height: 12),
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 180),
-            child: CategoryPicker(
-              key: ValueKey('subcategory-$_categoryId'),
-              title: '二级分类',
-              categories: childCategories,
-              selectedId: _subcategoryId,
-              rows: 1,
-              errorText: _categoryValidationRequested && _subcategoryId == null
-                  ? '请选择二级分类'
-                  : null,
-              onSelected: (category) => setState(() {
-                _subcategoryId = category.id;
-              }),
-            ),
+            onChildSelected: (category) =>
+                setState(() => _subcategoryId = category.id),
           ),
           const SizedBox(height: 12),
           DropdownButtonFormField<String>(
@@ -299,6 +319,105 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
         ],
       ),
     );
+  }
+
+  Widget _buildSmartInput(List<Category> categories) {
+    final candidate = _smartCandidate;
+    return Card(
+      margin: EdgeInsets.zero,
+      child: Padding(
+        padding: const EdgeInsets.all(14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('智能文字记账', style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(height: 8),
+            TextField(
+              key: const ValueKey('unified-smart-input'),
+              controller: _smartInputController,
+              autofocus: true,
+              minLines: 1,
+              maxLines: 2,
+              textInputAction: TextInputAction.done,
+              decoration: const InputDecoration(
+                hintText: '例如：二食堂 15',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.auto_awesome),
+              ),
+              onChanged: (_) => _scheduleSmartParse(categories),
+              onSubmitted: (_) => _parseSmartInput(categories),
+            ),
+            const SizedBox(height: 8),
+            Align(
+              alignment: Alignment.centerRight,
+              child: FilledButton.tonalIcon(
+                key: const ValueKey('unified-smart-parse-button'),
+                onPressed: () => _parseSmartInput(categories),
+                icon: const Icon(Icons.auto_fix_high),
+                label: const Text('识别并填入'),
+              ),
+            ),
+            if (candidate != null) ...[
+              const SizedBox(height: 8),
+              if (candidate.isComplete)
+                Text(
+                  '已识别并填入：${candidate.categoryName} · '
+                  '${candidate.subcategoryName}，可继续修改后保存',
+                  key: const ValueKey('unified-smart-success'),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                )
+              else
+                for (final issue in candidate.issues)
+                  Text(
+                    '• $issue',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                  ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _parseSmartInput(List<Category> categories) {
+    _smartParseDebounce?.cancel();
+    if (_smartInputController.text.trim().isEmpty) {
+      setState(() => _smartCandidate = null);
+      return;
+    }
+    final candidate = ref
+        .read(textEntryParserProvider)
+        .parse(
+          rawText: _smartInputController.text,
+          categories: categories,
+          now: DateTime.now(),
+        );
+    setState(() {
+      _smartCandidate = candidate;
+      if (!candidate.isComplete) return;
+      final draft = candidate.draft;
+      _type = draft.type!;
+      _amountController.text = MoneyParser.editableCny(draft.amountMinor!);
+      _contentController.text = draft.content!;
+      _occurredAtLocal = draft.occurredAtLocal!;
+      _timezoneOffsetMinutes = draft.timezoneOffsetMinutes!;
+      _categoryId = candidate.categoryId;
+      _subcategoryId = candidate.subcategoryId;
+      _source = 'text';
+      _confidence = candidate.confidence;
+      _categoryValidationRequested = false;
+    });
+  }
+
+  void _scheduleSmartParse(List<Category> categories) {
+    _smartParseDebounce?.cancel();
+    _smartParseDebounce = Timer(const Duration(milliseconds: 450), () {
+      if (mounted) _parseSmartInput(categories);
+    });
   }
 
   Future<void> _pickDate() async {
@@ -386,12 +505,68 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
     }
   }
 
+  Future<void> _delete() async {
+    final entry = widget.entry;
+    if (entry == null) return;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('删除这笔账目？'),
+        content: Text('“${entry.transaction.content}”将移入已删除状态，可立即撤销。'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('取消'),
+          ),
+          FilledButton(
+            key: const ValueKey('confirm-transaction-delete'),
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('删除'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+    setState(() => _saving = true);
+    final repository = ref.read(ledgerRepositoryProvider);
+    try {
+      await repository.softDelete(entry.transaction.id);
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('已删除“${entry.transaction.content}”'),
+          action: SnackBarAction(
+            label: '撤销',
+            onPressed: () async {
+              try {
+                await repository.restore(entry.transaction.id);
+              } catch (error) {
+                if (mounted) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text('撤销失败：$error')));
+                }
+              }
+            },
+          ),
+        ),
+      );
+      Navigator.of(context).pop(true);
+    } catch (error) {
+      if (mounted) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('删除失败：$error')));
+        setState(() => _saving = false);
+      }
+    }
+  }
+
   static String _formatDate(DateTime value) =>
       '${value.year}年${value.month}月${value.day}日';
 
   String get _title {
     if (widget.entry != null) return '编辑账目';
     if (widget.initialDraft != null) return '确认文字账目';
+    if (widget.showSmartInput) return '记一笔';
     return '新增账目';
   }
 

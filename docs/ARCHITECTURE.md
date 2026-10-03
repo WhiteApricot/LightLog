@@ -29,11 +29,13 @@ data/
 
 Phase 1 的实际实现保持该边界：`data/database` 保存 Drift schema、连接和 seed，`features/ledger` 保存账本模型、Repository 与列表，`features/entry` 保存手动录入 UI，`app/providers.dart` 负责数据库和 Repository 的 Riverpod 装配。Widget 不直接执行 Drift query。发生时间的 UTC instant 与固定 offset 墙上时间转换集中在 `core/occurrence_time.dart`，避免 UI 使用当前设备时区解释历史账目。
 
-Phase 2 在 `features/recognition/domain` 中实现无 UI、无数据库写入能力的确定性解析器和 Candidate 模型，在 `features/recognition/presentation` 中展示解析证据。主界面唯一的“记一笔”入口由 `EntryPage` 汇集手动与智能文字录入；完整 Candidate 转成带 `source = text` 和 confidence 的 `TransactionDraft`，复用 `TransactionEditorPage` 完成最终修改与确认，再由既有 `LedgerRepository` 写库。智能账目保存后清理录入路由并回到主界面。解析器接收 Repository 暴露的数据库分类列表，不在 UI 中硬编码分类 ID。
+Phase 2 在 `features/recognition/domain` 中实现无 UI、无数据库写入能力的确定性解析器和 Candidate 模型。主界面唯一的“记一笔”入口由 `EntryPage` 直接打开共用 `TransactionEditorPage`：顶部文字输入生成 Candidate，完整结果填入同页下方表单供用户确认和修改，最后生成带 `source = text` 和 confidence 的 `TransactionDraft` 并由既有 `LedgerRepository` 写库。解析器接收 Repository 暴露的数据库分类列表，不在 UI 中硬编码分类 ID。
 
-分类选择 UI 从数据库 `Category.iconAsset` 读取 SVG，一级分类使用双行横向网格，二级分类按当前父级动态展示。日期选择和 24 小时时间滚轮只修改本地墙上时间；UTC instant 与发生时 offset 的转换仍由 `OccurrenceTime` 和 Repository 负责。
+分类选择 UI 从数据库 `Category.iconAsset` 读取 SVG，使用嵌入表单滚动区的紧凑纵向网格，不创建内部横向滚动区。一级分类默认展示，点击后展开或收起其二级分类；二级选中状态决定初始展开组，每个子项直接使用自身的 `iconAsset`。日期选择和可循环的 24 小时时间滚轮只修改本地墙上时间；UTC instant 与发生时 offset 的转换仍由 `OccurrenceTime` 和 Repository 负责。
 
 首页本月概览由纯领域计算 `MonthlyOverview.fromEntries` 从当前账本流派生，按每笔账保存的 offset 还原所属本地月份，合计普通 `income` / `expense`、排除转账，并依据关联原账类型冲减退款。它不引入统计模块、图表或预算持久化；预算区域当前仅是“未设置”占位。
+
+账目列表由 `LedgerDayGroup` 按每笔账的固定 offset 墙上日期分组并计算每日收支。列表行显示二级分类 SVG。单条删除由编辑器调用 Repository；长按多选使用 `softDeleteMany` / `restoreMany` 批量处理，二者均为 soft delete 并提供撤销。
 
 ## 数据流
 

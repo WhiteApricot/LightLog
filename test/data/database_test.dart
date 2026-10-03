@@ -154,6 +154,27 @@ void main() {
     },
   );
 
+  test('repository bulk soft deletes and restores atomically', () async {
+    final first = await repository.create(
+      transactionDraft(content: '第一笔', amountMinor: 100),
+    );
+    final second = await repository.create(
+      transactionDraft(content: '第二笔', amountMinor: 200),
+    );
+
+    await repository.softDeleteMany({first, second});
+    expect(await repository.watchEntries().first, isEmpty);
+
+    await repository.restoreMany({first, second});
+    expect(await repository.watchEntries().first, hasLength(2));
+
+    await expectLater(
+      repository.softDeleteMany({first, 'missing'}),
+      throwsA(isA<LedgerValidationException>()),
+    );
+    expect(await repository.watchEntries().first, hasLength(2));
+  });
+
   test('repository rejects mismatched category hierarchy', () async {
     final invalid = TransactionDraft(
       type: LedgerTransactionType.expense,

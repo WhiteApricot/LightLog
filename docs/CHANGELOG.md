@@ -27,9 +27,14 @@
 - Unified manual and intelligent text bookkeeping under the single “记一笔” entry and return successful smart entries directly to the ledger.
 - Replaced category dropdowns with compact parent/child icon pickers and replaced the time dialog with a 24-hour wheel picker.
 - Migrated the database to schema v2 with stable category SVG asset associations and backward-compatible default-category cleanup.
+- Combined smart text input and manual fields on one entry page without a mode-selection step.
+- Grouped ledger rows by occurrence wall date with weekday and daily income/expense totals.
+- Replaced swipe-to-delete with editor deletion and long-press multi-select soft deletion, both with undo support.
+- Changed category selection to a compact vertical, collapsible hierarchy and made the 24-hour time wheels loop.
 
 ### Fixed
 
 - Preserved historical transaction wall-clock time across device timezone changes by restoring it from the saved occurrence offset.
 - Added minute-level manual occurrence-time editing and retained the original offset when editing existing transactions.
 - Verified transaction persistence across closing and reopening a real SQLite file.
+- Ensured ledger rows and expanded child-category tiles render the selected second-level category SVG rather than the parent icon.

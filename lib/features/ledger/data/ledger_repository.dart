@@ -12,7 +12,9 @@ abstract interface class LedgerRepository {
   Future<String> create(TransactionDraft draft);
   Future<void> update(String id, TransactionDraft draft);
   Future<void> softDelete(String id);
+  Future<void> softDeleteMany(Set<String> ids);
   Future<void> restore(String id);
+  Future<void> restoreMany(Set<String> ids);
 }
 
 class LocalLedgerRepository implements LedgerRepository {
@@ -113,33 +115,55 @@ class LocalLedgerRepository implements LedgerRepository {
 
   @override
   Future<void> softDelete(String id) async {
-    final now = DateTime.now().toUtc().millisecondsSinceEpoch;
-    final changed =
-        await (_database.update(
-              _database.transactions,
-            )..where((table) => table.id.equals(id) & table.deletedAt.isNull()))
-            .write(
-              TransactionsCompanion(
-                deletedAt: Value(now),
-                updatedAt: Value(now),
-              ),
-            );
-    if (changed != 1) throw const LedgerValidationException('账目不存在或已删除');
+    await softDeleteMany({id});
+  }
+
+  @override
+  Future<void> softDeleteMany(Set<String> ids) async {
+    if (ids.isEmpty) return;
+    await _database.transaction(() async {
+      final now = DateTime.now().toUtc().millisecondsSinceEpoch;
+      final changed =
+          await (_database.update(_database.transactions)..where(
+                (table) => table.id.isIn(ids) & table.deletedAt.isNull(),
+              ))
+              .write(
+                TransactionsCompanion(
+                  deletedAt: Value(now),
+                  updatedAt: Value(now),
+                ),
+              );
+      if (changed != ids.length) {
+        throw const LedgerValidationException('部分账目不存在或已删除');
+      }
+    });
   }
 
   @override
   Future<void> restore(String id) async {
-    final changed =
-        await (_database.update(_database.transactions)..where(
-              (table) => table.id.equals(id) & table.deletedAt.isNotNull(),
-            ))
-            .write(
-              TransactionsCompanion(
-                deletedAt: const Value(null),
-                updatedAt: Value(DateTime.now().toUtc().millisecondsSinceEpoch),
-              ),
-            );
-    if (changed != 1) throw const LedgerValidationException('已删除账目不存在');
+    await restoreMany({id});
+  }
+
+  @override
+  Future<void> restoreMany(Set<String> ids) async {
+    if (ids.isEmpty) return;
+    await _database.transaction(() async {
+      final changed =
+          await (_database.update(_database.transactions)..where(
+                (table) => table.id.isIn(ids) & table.deletedAt.isNotNull(),
+              ))
+              .write(
+                TransactionsCompanion(
+                  deletedAt: const Value(null),
+                  updatedAt: Value(
+                    DateTime.now().toUtc().millisecondsSinceEpoch,
+                  ),
+                ),
+              );
+      if (changed != ids.length) {
+        throw const LedgerValidationException('部分已删除账目不存在');
+      }
+    });
   }
 
   TransactionsCompanion _companion({

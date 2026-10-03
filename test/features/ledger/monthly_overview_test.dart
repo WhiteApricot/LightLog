@@ -53,6 +53,44 @@ void main() {
     expect(overview.expenseMinor, 12000);
     expect(overview.balanceMinor, 488000);
   });
+
+  test('ledger day groups use wall dates and calculate daily totals', () {
+    final entries = [
+      _entry(
+        id: 'late-expense',
+        type: 'expense',
+        amountMinor: 2500,
+        wallTime: DateTime(2026, 10, 4, 23, 50),
+        offsetMinutes: -300,
+      ),
+      _entry(
+        id: 'income',
+        type: 'income',
+        amountMinor: 1000,
+        wallTime: DateTime(2026, 10, 4, 9),
+        offsetMinutes: 480,
+      ),
+      _entry(
+        id: 'previous',
+        type: 'expense',
+        amountMinor: 800,
+        wallTime: DateTime(2026, 10, 3, 8),
+        offsetMinutes: 480,
+      ),
+    ];
+
+    final groups = LedgerDayGroup.group(entries);
+
+    expect(groups, hasLength(2));
+    expect(groups.first.date, DateTime(2026, 10, 4));
+    expect(groups.first.entries.map((entry) => entry.transaction.id), [
+      'late-expense',
+      'income',
+    ]);
+    expect(groups.first.totals.incomeMinor, 1000);
+    expect(groups.first.totals.expenseMinor, 2500);
+    expect(groups.last.date, DateTime(2026, 10, 3));
+  });
 }
 
 LedgerEntry _entry({

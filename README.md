@@ -7,7 +7,7 @@
 - 平台：Android 优先；保留 iOS 工程结构，但当前 Windows 环境不构建 iOS。
 - 技术栈：Flutter 3.47.6、Dart 3.13.5、Material 3、Riverpod、Drift + SQLite、Google ML Kit Text Recognition、fl_chart。
 - Phase 1 手动记账基础闭环已实现：本地 Drift 数据库、默认分类/账户、响应式账本、手动新增/编辑以及软删除撤销。
-- Phase 2 已实现统一手动/文字入口、确定性文字记账候选、可解释 confidence、分类图标选择、本月概览和确认后入账；重复检测仍待定义阈值。
+- Phase 2 已实现同页文字/手动录入、确定性文字记账候选、可解释 confidence、折叠分类图标选择、按日分组账本、本月概览和确认后入账；重复检测仍待定义阈值。
 - OCR、规则学习、统计和导入导出仍按后续阶段推进。
 
 ## 文档
