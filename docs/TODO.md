@@ -12,15 +12,15 @@
 
 ## Phase 1 - Manual bookkeeping foundation
 
-- [ ] Add core dependencies
-- [ ] Implement Drift database and migrations
-- [ ] Seed default categories/accounts
-- [ ] Implement transaction repository
-- [ ] Implement ledger list
-- [ ] Implement manual add transaction
-- [ ] Implement edit transaction
-- [ ] Implement soft delete + undo
-- [ ] Add basic tests
+- [x] Add core dependencies
+- [x] Implement Drift database and migrations
+- [x] Seed default categories/accounts
+- [x] Implement transaction repository
+- [x] Implement ledger list
+- [x] Implement manual add transaction
+- [x] Implement edit transaction
+- [x] Implement soft delete + undo
+- [x] Add basic tests
 
 ## Phase 2 - Text smart entry
 

@@ -16,12 +16,13 @@ VS Code
 
 项目 Android 优先，最低支持 Android API 26。保留 iOS 工程结构，但当前 Windows 环境不构建 iOS。不得在文档、脚本或受版本控制配置中写入用户电脑的绝对 SDK 路径。
 
-Riverpod、Drift、Google ML Kit Text Recognition 和 fl_chart 是锁定的规划业务依赖，但当前尚未安装；按阶段确认后再添加，不得在无对应功能时提前引入。
+Phase 1 已安装 Riverpod、Drift/SQLite 与 UUID 依赖，以及 Drift 代码生成开发依赖。Google ML Kit Text Recognition 和 fl_chart 仍按对应阶段确认后再添加，不得在无对应功能时提前引入。
 
 ## 常用命令
 
 ```bash
 flutter pub get
+dart run build_runner build
 dart format .
 flutter analyze
 flutter test
@@ -40,6 +41,7 @@ flutter run
 - 平台能力通过接口隔离，业务层不依赖 Android Context、插件对象或本机路径。
 - 持久化金额使用正整数 `amountMinor`，方向由账务类型决定；展示层才负责格式化为元。
 - 交易发生时间使用 UTC epoch milliseconds，并同时保存发生时设备 UTC offset；审计时间统一使用 UTC epoch milliseconds。
+- 历史账目展示和编辑必须使用持久化的 UTC offset 还原发生时墙上时间，编辑时保留原 offset；不得用当前设备 `.toLocal()` 重新解释。
 - 转账与退款统计规则必须通过领域逻辑实现并覆盖测试，不得依赖金额正负号推断。
 - Parser、OCR 和 RuleEngine 只能产出 `RecognitionCandidate`，不能直接写正式账目。
 - 分类为可维护的一级/二级数据，不硬编码到 UI。
@@ -57,6 +59,7 @@ unit test 优先覆盖：
 - 统计计算
 - 转账排除与退款冲减语义
 - UTC 时间、设备 offset 与本地日期边界
+- 真实临时 SQLite 文件关闭、重开后的持久化
 - JSON/CSV 导入导出
 
 OCR 使用 Mock 测试字段提取之后的业务逻辑，少量真实设备/模拟器测试用于验证插件集成。Repository 和 migration 应使用隔离数据库测试。Widget test 只覆盖关键交互，不替代业务 unit test。

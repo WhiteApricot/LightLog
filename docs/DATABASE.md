@@ -1,14 +1,14 @@
 # 数据模型
 
-本文定义 V0.1 的概念 schema，不要求当前阶段生成 Drift 表代码。SQLite + Drift 是锁定方案；字段类型、索引和约束在实现前按最小需求最终确认。
+本文定义 V0.1 的概念 schema 和已经落地的数据库约束。SQLite + Drift 是锁定方案；当前实现的 schema version 为 `1`。
 
 ## 通用约定
 
-- 主键建议使用 UUID；具体 UUID 生成实现为 TBD。
+- 账目主键使用 UUID v4；默认分类和账户使用稳定、可读的固定 ID，以支持幂等 seed。
 - 金额统一使用整数最小货币单位。CNY 的 `amountMinor` 单位为“分”，必须始终为正整数；账务方向由 `type` 决定，禁止用正负金额表达方向，也禁止用浮点数持久化金额。
 - V0.1 默认 `currency = CNY`。
-- 时间输入与展示使用设备本地时区。
-- `occurredAt` 使用 UTC epoch milliseconds；同时保存 `timezoneOffsetMinutes`，记录交易发生时设备相对 UTC 的分钟偏移，用于还原发生地本地时间语义。
+- 新建账目的时间输入使用设备本地时区，并支持到分钟。
+- `occurredAt` 使用 UTC epoch milliseconds；同时保存 `timezoneOffsetMinutes`，记录交易发生时设备相对 UTC 的分钟偏移。展示和编辑历史账目时必须以 `occurredAt + timezoneOffsetMinutes` 还原发生时当地墙上时间，不得调用当前设备 `.toLocal()`；编辑已有账目时保留原始 offset。
 - `createdAt`、`updatedAt`、`deletedAt` 使用 UTC epoch milliseconds；`deletedAt = null` 表示未删除。
 - 类型枚举值在写入后应保持稳定；重命名必须考虑迁移和导入兼容。
 
@@ -113,7 +113,7 @@ V0.1 只表示支付方式，不管理余额。被历史账目引用的账户优
 - 分类父子关系、账务类型、原账目和账户引用的完整性约束。
 - `amountMinor > 0`、`timezoneOffsetMinutes` 位于 `-840..840`、转账账户不相同，以及 `transfer`/`refund` 所需关联字段的条件约束。
 
-具体索引组合根据实际查询确定，当前为 **TBD**，不提前做复杂优化。
+schema v1 已为 `transactions.occurredAt`、`deletedAt`、`(type, occurredAt)` 和 `fingerprint` 建立索引。其他关联索引在相应查询落地并确认瓶颈后再增加，不提前做复杂优化。
 
 ## Migration 规范
 
@@ -122,3 +122,5 @@ V0.1 只表示支付方式，不管理余额。被历史账目引用的账户优
 - 禁止无 migration 的破坏式 schema 修改。
 - migration 必须测试既有数据升级，不得以清库作为正式升级方案。
 - 尚未决定的细节使用 `TBD`，在编码前完成最小必要决策。
+
+schema v1 通过 Drift `MigrationStrategy` 显式创建全部表，并在数据库打开且建表完成后执行默认分类与账户 seed。seed 使用稳定 ID 和 `insertOrIgnore`，可重复执行且不覆盖用户后续维护的数据。后续 schema version 增长时必须增加从既有版本升级的 migration 测试。

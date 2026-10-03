@@ -6,7 +6,8 @@
 
 - 平台：Android 优先；保留 iOS 工程结构，但当前 Windows 环境不构建 iOS。
 - 技术栈：Flutter 3.47.6、Dart 3.13.5、Material 3、Riverpod、Drift + SQLite、Google ML Kit Text Recognition、fl_chart。
-- 当前仓库仍是 Flutter 默认工程；业务依赖与业务功能尚未实现。
+- Phase 1 手动记账基础闭环已实现：本地 Drift 数据库、默认分类/账户、响应式账本、手动新增/编辑以及软删除撤销。
+- 文字识别、OCR、规则学习、统计和导入导出仍按后续阶段推进。
 
 ## 文档
 
