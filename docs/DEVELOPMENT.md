@@ -16,12 +16,13 @@ VS Code
 
 项目 Android 优先，最低支持 Android API 26。保留 iOS 工程结构，但当前 Windows 环境不构建 iOS。不得在文档、脚本或受版本控制配置中写入用户电脑的绝对 SDK 路径。
 
-Riverpod、Drift、Google ML Kit Text Recognition 和 fl_chart 是锁定的规划业务依赖，但当前尚未安装；按阶段确认后再添加，不得在无对应功能时提前引入。
+Phase 1 已安装 Riverpod、Drift/SQLite 与 UUID 依赖，以及 Drift 代码生成开发依赖。Google ML Kit Text Recognition 和 fl_chart 仍按对应阶段确认后再添加，不得在无对应功能时提前引入。
 
 ## 常用命令
 
 ```bash
 flutter pub get
+dart run build_runner build
 dart format .
 flutter analyze
 flutter test
