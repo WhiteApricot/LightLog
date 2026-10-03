@@ -7,8 +7,8 @@
 - 账目主键使用 UUID v4；默认分类和账户使用稳定、可读的固定 ID，以支持幂等 seed。
 - 金额统一使用整数最小货币单位。CNY 的 `amountMinor` 单位为“分”，必须始终为正整数；账务方向由 `type` 决定，禁止用正负金额表达方向，也禁止用浮点数持久化金额。
 - V0.1 默认 `currency = CNY`。
-- 时间输入与展示使用设备本地时区。
-- `occurredAt` 使用 UTC epoch milliseconds；同时保存 `timezoneOffsetMinutes`，记录交易发生时设备相对 UTC 的分钟偏移，用于还原发生地本地时间语义。
+- 新建账目的时间输入使用设备本地时区，并支持到分钟。
+- `occurredAt` 使用 UTC epoch milliseconds；同时保存 `timezoneOffsetMinutes`，记录交易发生时设备相对 UTC 的分钟偏移。展示和编辑历史账目时必须以 `occurredAt + timezoneOffsetMinutes` 还原发生时当地墙上时间，不得调用当前设备 `.toLocal()`；编辑已有账目时保留原始 offset。
 - `createdAt`、`updatedAt`、`deletedAt` 使用 UTC epoch milliseconds；`deletedAt = null` 表示未删除。
 - 类型枚举值在写入后应保持稳定；重命名必须考虑迁移和导入兼容。
 

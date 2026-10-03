@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/providers.dart';
 import '../../../core/money.dart';
+import '../../../core/occurrence_time.dart';
 import '../../entry/presentation/transaction_editor_page.dart';
 import '../domain/ledger_models.dart';
 
@@ -101,10 +102,10 @@ class _LedgerTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final transaction = entry.transaction;
     final isExpense = transaction.type == LedgerTransactionType.expense.value;
-    final localTime = DateTime.fromMillisecondsSinceEpoch(
-      transaction.occurredAt,
-      isUtc: true,
-    ).toLocal();
+    final localTime = OccurrenceTime.restoreWallTime(
+      utcMilliseconds: transaction.occurredAt,
+      timezoneOffsetMinutes: transaction.timezoneOffsetMinutes,
+    );
     return Dismissible(
       key: ValueKey(transaction.id),
       direction: DismissDirection.endToStart,

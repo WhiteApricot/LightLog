@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../../core/occurrence_time.dart';
 import '../../../data/database/database.dart';
 import '../domain/ledger_models.dart';
 
@@ -147,7 +148,10 @@ class LocalLedgerRepository implements LedgerRepository {
     required int createdAt,
     required int updatedAt,
   }) {
-    final occurredAt = draft.occurredAtLocal.toUtc().millisecondsSinceEpoch;
+    final occurredAt = OccurrenceTime.toUtcMilliseconds(
+      wallTime: draft.occurredAtLocal,
+      timezoneOffsetMinutes: draft.timezoneOffsetMinutes,
+    );
     return TransactionsCompanion.insert(
       id: id,
       type: draft.type.value,
@@ -157,7 +161,7 @@ class LocalLedgerRepository implements LedgerRepository {
       note: Value(_nullableTrimmed(draft.note)),
       amountMinor: draft.amountMinor,
       occurredAt: occurredAt,
-      timezoneOffsetMinutes: draft.occurredAtLocal.timeZoneOffset.inMinutes,
+      timezoneOffsetMinutes: draft.timezoneOffsetMinutes,
       accountId: draft.accountId,
       destinationAccountId: Value(draft.destinationAccountId),
       relatedTransactionId: Value(draft.relatedTransactionId),
@@ -172,6 +176,10 @@ class LocalLedgerRepository implements LedgerRepository {
     }
     if (draft.amountMinor <= 0) {
       throw const LedgerValidationException('金额必须大于零');
+    }
+    if (draft.timezoneOffsetMinutes < -840 ||
+        draft.timezoneOffsetMinutes > 840) {
+      throw const LedgerValidationException('时区偏移无效');
     }
     final category =
         await (_database.select(_database.categories)..where(

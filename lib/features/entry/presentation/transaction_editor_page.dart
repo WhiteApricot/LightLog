@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/providers.dart';
 import '../../../core/money.dart';
+import '../../../core/occurrence_time.dart';
 import '../../../data/database/database.dart';
 import '../../ledger/domain/ledger_models.dart';
 
@@ -24,6 +25,7 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
   late final TextEditingController _noteController;
   late LedgerTransactionType _type;
   late DateTime _occurredAtLocal;
+  late int _timezoneOffsetMinutes;
   String? _categoryId;
   String? _subcategoryId;
   String? _accountId;
@@ -43,12 +45,23 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
     );
     _contentController = TextEditingController(text: transaction?.content);
     _noteController = TextEditingController(text: transaction?.note);
-    _occurredAtLocal = transaction == null
-        ? DateTime.now()
-        : DateTime.fromMillisecondsSinceEpoch(
-            transaction.occurredAt,
-            isUtc: true,
-          ).toLocal();
+    if (transaction == null) {
+      final now = DateTime.now();
+      _occurredAtLocal = DateTime(
+        now.year,
+        now.month,
+        now.day,
+        now.hour,
+        now.minute,
+      );
+      _timezoneOffsetMinutes = _occurredAtLocal.timeZoneOffset.inMinutes;
+    } else {
+      _occurredAtLocal = OccurrenceTime.restoreWallTime(
+        utcMilliseconds: transaction.occurredAt,
+        timezoneOffsetMinutes: transaction.timezoneOffsetMinutes,
+      );
+      _timezoneOffsetMinutes = transaction.timezoneOffsetMinutes;
+    }
     _categoryId = transaction?.categoryId;
     _subcategoryId = transaction?.subcategoryId;
     _accountId = transaction?.accountId;
@@ -208,6 +221,14 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
             trailing: const Icon(Icons.chevron_right),
             onTap: _pickDate,
           ),
+          ListTile(
+            contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+            leading: const Icon(Icons.schedule_outlined),
+            title: const Text('发生时间'),
+            subtitle: Text(_formatTime(_occurredAtLocal)),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: _pickTime,
+          ),
           const SizedBox(height: 4),
           TextFormField(
             controller: _noteController,
@@ -252,7 +273,32 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
         _occurredAtLocal.second,
         _occurredAtLocal.millisecond,
       );
+      _updateOffsetForNewEntry();
     });
+  }
+
+  Future<void> _pickTime() async {
+    final selected = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.fromDateTime(_occurredAtLocal),
+    );
+    if (selected == null) return;
+    setState(() {
+      _occurredAtLocal = DateTime(
+        _occurredAtLocal.year,
+        _occurredAtLocal.month,
+        _occurredAtLocal.day,
+        selected.hour,
+        selected.minute,
+      );
+      _updateOffsetForNewEntry();
+    });
+  }
+
+  void _updateOffsetForNewEntry() {
+    if (widget.entry == null) {
+      _timezoneOffsetMinutes = _occurredAtLocal.timeZoneOffset.inMinutes;
+    }
   }
 
   Future<void> _save() async {
@@ -267,6 +313,7 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
         note: _noteController.text,
         amountMinor: MoneyParser.parseCnyMinor(_amountController.text)!,
         occurredAtLocal: _occurredAtLocal,
+        timezoneOffsetMinutes: _timezoneOffsetMinutes,
         accountId: _accountId!,
       );
       final repository = ref.read(ledgerRepositoryProvider);
@@ -288,6 +335,11 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
 
   static String _formatDate(DateTime value) =>
       '${value.year}年${value.month}月${value.day}日';
+
+  static String _formatTime(DateTime value) =>
+      '${_twoDigits(value.hour)}:${_twoDigits(value.minute)}';
+
+  static String _twoDigits(int value) => value.toString().padLeft(2, '0');
 }
 
 class _LoadError extends StatelessWidget {

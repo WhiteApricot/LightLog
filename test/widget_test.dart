@@ -32,6 +32,7 @@ void main() {
     expect(find.text('金额（元）'), findsOneWidget);
     expect(find.text('一级分类'), findsOneWidget);
     expect(find.text('账户 / 支付方式'), findsOneWidget);
+    expect(find.text('发生时间'), findsOneWidget);
     await tester.drag(find.byType(ListView), const Offset(0, -500));
     await tester.pump();
     expect(

@@ -27,7 +27,7 @@ data/
 
 禁止为追求目录形式创建大量空 interface、单实现 wrapper 或无业务价值的转发层。
 
-Phase 1 的实际实现保持该边界：`data/database` 保存 Drift schema、连接和 seed，`features/ledger` 保存账本模型、Repository 与列表，`features/entry` 保存手动录入 UI，`app/providers.dart` 负责数据库和 Repository 的 Riverpod 装配。Widget 不直接执行 Drift query。
+Phase 1 的实际实现保持该边界：`data/database` 保存 Drift schema、连接和 seed，`features/ledger` 保存账本模型、Repository 与列表，`features/entry` 保存手动录入 UI，`app/providers.dart` 负责数据库和 Repository 的 Riverpod 装配。Widget 不直接执行 Drift query。发生时间的 UTC instant 与固定 offset 墙上时间转换集中在 `core/occurrence_time.dart`，避免 UI 使用当前设备时区解释历史账目。
 
 ## 数据流
 

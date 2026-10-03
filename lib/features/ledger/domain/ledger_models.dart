@@ -24,6 +24,7 @@ class TransactionDraft {
     required this.content,
     required this.amountMinor,
     required this.occurredAtLocal,
+    required this.timezoneOffsetMinutes,
     required this.accountId,
     this.note,
     this.destinationAccountId,
@@ -37,6 +38,7 @@ class TransactionDraft {
   final String? note;
   final int amountMinor;
   final DateTime occurredAtLocal;
+  final int timezoneOffsetMinutes;
   final String accountId;
   final String? destinationAccountId;
   final String? relatedTransactionId;
