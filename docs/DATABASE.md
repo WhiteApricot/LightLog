@@ -5,10 +5,11 @@
 ## 通用约定
 
 - 主键建议使用 UUID；具体 UUID 生成实现为 TBD。
-- 金额统一使用整数最小货币单位。CNY 的 `amountMinor` 单位为“分”，禁止用浮点数持久化金额。
+- 金额统一使用整数最小货币单位。CNY 的 `amountMinor` 单位为“分”，必须始终为正整数；账务方向由 `type` 决定，禁止用正负金额表达方向，也禁止用浮点数持久化金额。
 - V0.1 默认 `currency = CNY`。
 - 时间输入与展示使用设备本地时区。
-- 时间持久化策略为 **TBD**：编码前在“UTC 持久化 + 本地展示”或明确时区约定的 epoch 方案中确定一种，并全库统一。
+- `occurredAt` 使用 UTC epoch milliseconds；同时保存 `timezoneOffsetMinutes`，记录交易发生时设备相对 UTC 的分钟偏移，用于还原发生地本地时间语义。
+- `createdAt`、`updatedAt`、`deletedAt` 使用 UTC epoch milliseconds；`deletedAt = null` 表示未删除。
 - 类型枚举值在写入后应保持稳定；重命名必须考虑迁移和导入兼容。
 
 ## transactions
@@ -23,19 +24,26 @@
 | `subcategoryId` | 二级分类 ID |
 | `content` | 内容或规范化商户名 |
 | `note` | 可选备注 |
-| `amountMinor` | 整数最小货币单位；CNY 为分 |
+| `amountMinor` | 正整数最小货币单位；CNY 为分，方向由 `type` 决定 |
 | `currency` | V0.1 默认 `CNY` |
-| `occurredAt` | 账目发生时间 |
-| `accountId` | 账户/支付方式 ID |
+| `occurredAt` | 账目发生时间，UTC epoch milliseconds |
+| `timezoneOffsetMinutes` | 发生时设备相对 UTC 的分钟偏移 |
+| `accountId` | 账户/支付方式 ID；转账时为转出账户 |
+| `destinationAccountId` | 可空；转账时为转入账户 ID |
+| `relatedTransactionId` | 可空；退款或其他关联场景指向原账目 ID |
 | `source` | `manual` / `text` / `image` / `import` |
 | `confidence` | 自动识别置信度；手动录入可为空或使用明确约定 |
 | `fingerprint` | 重复检测指纹 |
-| `createdAt` | 创建时间 |
-| `updatedAt` | 最后更新时间 |
-| `deletedAt` | 非空表示软删除 |
+| `createdAt` | 创建时间，UTC epoch milliseconds |
+| `updatedAt` | 最后更新时间，UTC epoch milliseconds |
+| `deletedAt` | 可空；删除时间，UTC epoch milliseconds，非空表示软删除 |
 | `syncVersion` | 未来同步兼容字段；V0.1 不实现同步 |
 
 `categoryId` 与 `subcategoryId` 应保持一级/二级关系一致。删除账目只设置 `deletedAt`，查询默认排除软删除数据，并支持撤销。
+
+- `transfer` 必须通过 `accountId` 和 `destinationAccountId` 表达转出/转入账户，两个账户不得相同；转账不计入收入、支出或净收支统计。
+- `refund` 必须通过 `relatedTransactionId` 保留与原账目的关联。退款金额仍保存为正整数，后续统计依据退款类型及原账目语义冲减对应收入或支出，不把退款机械当作普通收入或支出。
+- `destinationAccountId` 和 `relatedTransactionId` 在表结构上可空，因为非转账、非关联账目不需要它们；对应类型的必填关系由数据库约束或 Repository 写入校验保证。
 
 订单号/交易号需要支持重复检测，但其最终存储方式（独立字段或受控的来源元数据）为 **TBD**，实现 OCR 前确定，避免将不透明 JSON 变成核心查询依赖。
 
@@ -99,9 +107,11 @@ V0.1 只表示支付方式，不管理余额。被历史账目引用的账户优
 
 实现阶段至少评估：
 
-- `transactions.occurredAt`、`deletedAt`、`type`、分类字段的查询索引。
+- `transactions.occurredAt`、`deletedAt`、`type`、分类字段的查询索引；统计查询优先评估 `(type, occurredAt)` 组合索引。
+- `accountId`、`destinationAccountId` 与 `relatedTransactionId` 的关联查询索引。
 - 订单号/交易号及 `fingerprint` 的重复检测索引。
-- 分类父子关系、账务类型和账户引用的完整性约束。
+- 分类父子关系、账务类型、原账目和账户引用的完整性约束。
+- `amountMinor > 0`、`timezoneOffsetMinutes` 位于 `-840..840`、转账账户不相同，以及 `transfer`/`refund` 所需关联字段的条件约束。
 
 具体索引组合根据实际查询确定，当前为 **TBD**，不提前做复杂优化。
 

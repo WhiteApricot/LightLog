@@ -6,8 +6,9 @@
 
 - [x] Freeze V0.1 requirements
 - [x] Define architecture
-- [x] Define preliminary database schema
+- [x] Finalize V0.1 core transaction schema and time strategy
 - [x] Define recognition pipeline
+- [x] Finalize Android application ID, API 26, and V0.1 package metadata
 
 ## Phase 1 - Manual bookkeeping foundation
 

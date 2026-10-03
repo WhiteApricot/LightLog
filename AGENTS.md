@@ -13,7 +13,7 @@
 - 时间输入与展示：设备本地时区；持久化策略以 `docs/DATABASE.md` 为准
 - Android 目标适配下限：API 26
 
-API 26 是业务开发和测试的兼容性下限。当前无需仅为此修改 Flutter 提供的 `minSdkVersion` 默认值；新增实现只保证 API 26 及以上行为正确，不依赖 API 26 以上能力时必须提供适当兼容处理。
+API 26 是业务开发和测试的兼容性下限，Android 工程固定 `minSdk = 26`。新增实现只保证 API 26 及以上行为正确；使用更高 API 能力时必须提供适当兼容处理。
 
 ## 2. 文档是需求与设计的事实来源
 
@@ -85,7 +85,8 @@ API 26 是业务开发和测试的兼容性下限。当前无需仅为此修改 
 
 ## 6. 核心数据与识别安全规则
 
-- 持久化金额禁止使用 `double`，统一使用整数最小货币单位；人民币使用“分”。
+- 持久化金额禁止使用 `double`，统一使用正整数最小货币单位；人民币使用“分”，账务方向由 `type` 决定。
+- 交易发生时间保存为 UTC epoch milliseconds，并记录发生时设备 UTC offset；审计时间保存为 UTC epoch milliseconds。完整约定以 `docs/DATABASE.md` 为准。
 - 分类是可维护的一级/二级数据，不得硬编码到 UI 逻辑。
 - 账目删除采用 soft delete；不得无迁移地破坏历史数据。
 - OCR、Parser、规则引擎及未来识别能力只能生成 `RecognitionCandidate`，不得直接构造并静默写入正式 `Transaction`。

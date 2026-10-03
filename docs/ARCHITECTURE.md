@@ -71,6 +71,8 @@ Parser != Transaction
 
 模型字段以 [DATABASE.md](DATABASE.md) 为准；识别语义以 [RECOGNITION.md](RECOGNITION.md) 为准。
 
+`Transaction.amountMinor` 始终为正整数，方向由 `type` 决定。转账通过来源/目标账户表达且不计入收支统计；退款保留原账目关联，由领域统计逻辑按退款语义处理。时间持久化统一遵循 `DATABASE.md` 的 UTC epoch milliseconds 与发生时 UTC offset 约定。
+
 ## Repository 边界
 
 业务层不得散落 Drift query。账目、分类、账户和识别规则的读写通过职责明确的 Repository 进入持久化层。

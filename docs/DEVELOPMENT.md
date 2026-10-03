@@ -38,7 +38,9 @@ flutter run
 - 状态管理统一使用 Riverpod，不混入其他体系。
 - 数据访问通过 Repository，业务层不散落 Drift query。
 - 平台能力通过接口隔离，业务层不依赖 Android Context、插件对象或本机路径。
-- 持久化金额使用整数 `amountMinor`；展示层才负责格式化为元。
+- 持久化金额使用正整数 `amountMinor`，方向由账务类型决定；展示层才负责格式化为元。
+- 交易发生时间使用 UTC epoch milliseconds，并同时保存发生时设备 UTC offset；审计时间统一使用 UTC epoch milliseconds。
+- 转账与退款统计规则必须通过领域逻辑实现并覆盖测试，不得依赖金额正负号推断。
 - Parser、OCR 和 RuleEngine 只能产出 `RecognitionCandidate`，不能直接写正式账目。
 - 分类为可维护的一级/二级数据，不硬编码到 UI。
 
@@ -53,6 +55,8 @@ unit test 优先覆盖：
 - Confidence
 - DuplicateDetector
 - 统计计算
+- 转账排除与退款冲减语义
+- UTC 时间、设备 offset 与本地日期边界
 - JSON/CSV 导入导出
 
 OCR 使用 Mock 测试字段提取之后的业务逻辑，少量真实设备/模拟器测试用于验证插件集成。Repository 和 migration 应使用隔离数据库测试。Widget test 只覆盖关键交互，不替代业务 unit test。
