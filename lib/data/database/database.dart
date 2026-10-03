@@ -11,12 +11,38 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
     onCreate: (migrator) async {
       await migrator.createAll();
+    },
+    onUpgrade: (migrator, from, to) async {
+      if (from < 2) {
+        await migrator.addColumn(categories, categories.iconAsset);
+        await customStatement(
+          "UPDATE categories SET name = '饮品' WHERE id = 'expense-food-drink'",
+        );
+        await customStatement(
+          "UPDATE categories SET name = '公交地铁' WHERE id = 'expense-transport-public'",
+        );
+        await customStatement(
+          "UPDATE categories SET is_active = 0 WHERE id = 'expense-shopping-daily'",
+        );
+        await customStatement(
+          "UPDATE categories SET name = '未分类支出' WHERE id = 'expense-other-general'",
+        );
+        await customStatement(
+          "UPDATE categories SET name = '工资奖金' WHERE id = 'income-salary'",
+        );
+        await customStatement(
+          "UPDATE categories SET name = '基本工资' WHERE id = 'income-salary-monthly'",
+        );
+        await customStatement(
+          "UPDATE categories SET name = '未分类收入' WHERE id = 'income-other-general'",
+        );
+      }
     },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');
@@ -33,12 +59,19 @@ class AppDatabase extends _$AppDatabase {
           parentId: Value(category.parentId),
           name: category.name,
           type: category.type,
+          iconAsset: Value(category.iconAsset),
           sortOrder: category.sortOrder,
           createdAt: now,
           updatedAt: now,
         ),
         mode: InsertMode.insertOrIgnore,
       );
+      await (update(categories)..where(
+            (table) =>
+                table.id.equals(category.id) &
+                table.iconAsset.equals('assets/icons/categories/other.svg'),
+          ))
+          .write(CategoriesCompanion(iconAsset: Value(category.iconAsset)));
     }
     for (final account in defaultAccounts) {
       await into(accounts).insert(

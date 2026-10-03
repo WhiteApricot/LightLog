@@ -165,6 +165,8 @@ class LocalLedgerRepository implements LedgerRepository {
       accountId: draft.accountId,
       destinationAccountId: Value(draft.destinationAccountId),
       relatedTransactionId: Value(draft.relatedTransactionId),
+      source: Value(draft.source),
+      confidence: Value(draft.confidence),
       createdAt: createdAt,
       updatedAt: updatedAt,
     );
@@ -180,6 +182,13 @@ class LocalLedgerRepository implements LedgerRepository {
     if (draft.timezoneOffsetMinutes < -840 ||
         draft.timezoneOffsetMinutes > 840) {
       throw const LedgerValidationException('时区偏移无效');
+    }
+    if (!const {'manual', 'text', 'image', 'import'}.contains(draft.source)) {
+      throw const LedgerValidationException('账目来源无效');
+    }
+    if (draft.confidence != null &&
+        (draft.confidence! < 0 || draft.confidence! > 1)) {
+      throw const LedgerValidationException('识别置信度无效');
     }
     final category =
         await (_database.select(_database.categories)..where(

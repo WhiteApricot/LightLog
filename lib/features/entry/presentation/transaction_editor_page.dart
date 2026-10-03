@@ -7,11 +7,22 @@ import '../../../core/money.dart';
 import '../../../core/occurrence_time.dart';
 import '../../../data/database/database.dart';
 import '../../ledger/domain/ledger_models.dart';
+import 'category_picker.dart';
+import 'wheel_time_picker.dart';
 
 class TransactionEditorPage extends ConsumerStatefulWidget {
-  const TransactionEditorPage({super.key, this.entry});
+  const TransactionEditorPage({
+    super.key,
+    this.entry,
+    this.initialDraft,
+    this.contextMessage,
+    this.evidence = const [],
+  }) : assert(entry == null || initialDraft == null);
 
   final LedgerEntry? entry;
+  final TransactionDraft? initialDraft;
+  final String? contextMessage;
+  final List<String> evidence;
 
   @override
   ConsumerState<TransactionEditorPage> createState() =>
@@ -29,23 +40,42 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
   String? _categoryId;
   String? _subcategoryId;
   String? _accountId;
+  late String _source;
+  double? _confidence;
   bool _saving = false;
+  bool _categoryValidationRequested = false;
 
   @override
   void initState() {
     super.initState();
     final transaction = widget.entry?.transaction;
-    _type = transaction == null
-        ? LedgerTransactionType.expense
-        : LedgerTransactionType.fromValue(transaction.type);
+    final initialDraft = widget.initialDraft;
+    _type = transaction != null
+        ? LedgerTransactionType.fromValue(transaction.type)
+        : initialDraft?.type ?? LedgerTransactionType.expense;
     _amountController = TextEditingController(
-      text: transaction == null
+      text: transaction != null
+          ? MoneyParser.editableCny(transaction.amountMinor)
+          : initialDraft == null
           ? ''
-          : MoneyParser.editableCny(transaction.amountMinor),
+          : MoneyParser.editableCny(initialDraft.amountMinor),
     );
-    _contentController = TextEditingController(text: transaction?.content);
-    _noteController = TextEditingController(text: transaction?.note);
-    if (transaction == null) {
+    _contentController = TextEditingController(
+      text: transaction?.content ?? initialDraft?.content,
+    );
+    _noteController = TextEditingController(
+      text: transaction?.note ?? initialDraft?.note,
+    );
+    if (transaction != null) {
+      _occurredAtLocal = OccurrenceTime.restoreWallTime(
+        utcMilliseconds: transaction.occurredAt,
+        timezoneOffsetMinutes: transaction.timezoneOffsetMinutes,
+      );
+      _timezoneOffsetMinutes = transaction.timezoneOffsetMinutes;
+    } else if (initialDraft != null) {
+      _occurredAtLocal = initialDraft.occurredAtLocal;
+      _timezoneOffsetMinutes = initialDraft.timezoneOffsetMinutes;
+    } else {
       final now = DateTime.now();
       _occurredAtLocal = DateTime(
         now.year,
@@ -55,16 +85,12 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
         now.minute,
       );
       _timezoneOffsetMinutes = _occurredAtLocal.timeZoneOffset.inMinutes;
-    } else {
-      _occurredAtLocal = OccurrenceTime.restoreWallTime(
-        utcMilliseconds: transaction.occurredAt,
-        timezoneOffsetMinutes: transaction.timezoneOffsetMinutes,
-      );
-      _timezoneOffsetMinutes = transaction.timezoneOffsetMinutes;
     }
-    _categoryId = transaction?.categoryId;
-    _subcategoryId = transaction?.subcategoryId;
-    _accountId = transaction?.accountId;
+    _categoryId = transaction?.categoryId ?? initialDraft?.categoryId;
+    _subcategoryId = transaction?.subcategoryId ?? initialDraft?.subcategoryId;
+    _accountId = transaction?.accountId ?? initialDraft?.accountId;
+    _source = transaction?.source ?? initialDraft?.source ?? 'manual';
+    _confidence = transaction?.confidence ?? initialDraft?.confidence;
   }
 
   @override
@@ -80,7 +106,7 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
     final categories = ref.watch(categoriesProvider);
     final accounts = ref.watch(accountsProvider);
     return Scaffold(
-      appBar: AppBar(title: Text(widget.entry == null ? '新增账目' : '编辑账目')),
+      appBar: AppBar(title: Text(_title)),
       body: categories.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, _) => _LoadError(message: '分类加载失败：$error'),
@@ -106,7 +132,7 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
         )
         .toList(growable: false);
     if (!childCategories.any((item) => item.id == _subcategoryId)) {
-      _subcategoryId = childCategories.firstOrNull?.id;
+      _subcategoryId = null;
     }
     if (!accounts.any((item) => item.id == _accountId)) {
       _accountId = accounts.firstOrNull?.id;
@@ -117,6 +143,27 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
       child: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          if (widget.contextMessage != null) ...[
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.contextMessage!,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    for (final item in widget.evidence) ...[
+                      const SizedBox(height: 6),
+                      Text('• $item'),
+                    ],
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+          ],
           SegmentedButton<LedgerTransactionType>(
             segments: const [
               ButtonSegment(
@@ -140,7 +187,7 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
           const SizedBox(height: 20),
           TextFormField(
             controller: _amountController,
-            autofocus: widget.entry == null,
+            autofocus: widget.entry == null && widget.initialDraft == null,
             decoration: const InputDecoration(
               labelText: '金额（元）',
               prefixText: '¥ ',
@@ -166,37 +213,36 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
                 value == null || value.trim().isEmpty ? '请输入内容或商户' : null,
           ),
           const SizedBox(height: 4),
-          DropdownButtonFormField<String>(
-            key: ValueKey('category-$_type-$_categoryId'),
-            initialValue: _categoryId,
-            decoration: const InputDecoration(
-              labelText: '一级分类',
-              border: OutlineInputBorder(),
-            ),
-            items: [
-              for (final item in parentCategories)
-                DropdownMenuItem(value: item.id, child: Text(item.name)),
-            ],
-            onChanged: (value) => setState(() {
-              _categoryId = value;
-              _subcategoryId = null;
+          CategoryPicker(
+            title: '一级分类',
+            categories: parentCategories,
+            selectedId: _categoryId,
+            errorText: _categoryValidationRequested && _categoryId == null
+                ? '请选择一级分类'
+                : null,
+            onSelected: (category) => setState(() {
+              if (_categoryId != category.id) {
+                _categoryId = category.id;
+                _subcategoryId = null;
+              }
             }),
-            validator: (value) => value == null ? '请选择一级分类' : null,
           ),
           const SizedBox(height: 12),
-          DropdownButtonFormField<String>(
-            key: ValueKey('subcategory-$_categoryId-$_subcategoryId'),
-            initialValue: _subcategoryId,
-            decoration: const InputDecoration(
-              labelText: '二级分类',
-              border: OutlineInputBorder(),
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 180),
+            child: CategoryPicker(
+              key: ValueKey('subcategory-$_categoryId'),
+              title: '二级分类',
+              categories: childCategories,
+              selectedId: _subcategoryId,
+              rows: 1,
+              errorText: _categoryValidationRequested && _subcategoryId == null
+                  ? '请选择二级分类'
+                  : null,
+              onSelected: (category) => setState(() {
+                _subcategoryId = category.id;
+              }),
             ),
-            items: [
-              for (final item in childCategories)
-                DropdownMenuItem(value: item.id, child: Text(item.name)),
-            ],
-            onChanged: (value) => setState(() => _subcategoryId = value),
-            validator: (value) => value == null ? '请选择二级分类' : null,
           ),
           const SizedBox(height: 12),
           DropdownButtonFormField<String>(
@@ -278,7 +324,7 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
   }
 
   Future<void> _pickTime() async {
-    final selected = await showTimePicker(
+    final selected = await showWheelTimePicker(
       context: context,
       initialTime: TimeOfDay.fromDateTime(_occurredAtLocal),
     );
@@ -302,7 +348,12 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
   }
 
   Future<void> _save() async {
-    if (!_formKey.currentState!.validate()) return;
+    final fieldsValid = _formKey.currentState!.validate();
+    if (_categoryId == null || _subcategoryId == null) {
+      setState(() => _categoryValidationRequested = true);
+      return;
+    }
+    if (!fieldsValid) return;
     setState(() => _saving = true);
     try {
       final draft = TransactionDraft(
@@ -315,6 +366,8 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
         occurredAtLocal: _occurredAtLocal,
         timezoneOffsetMinutes: _timezoneOffsetMinutes,
         accountId: _accountId!,
+        source: _source,
+        confidence: _confidence,
       );
       final repository = ref.read(ledgerRepositoryProvider);
       if (widget.entry == null) {
@@ -335,6 +388,12 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
 
   static String _formatDate(DateTime value) =>
       '${value.year}年${value.month}月${value.day}日';
+
+  String get _title {
+    if (widget.entry != null) return '编辑账目';
+    if (widget.initialDraft != null) return '确认文字账目';
+    return '新增账目';
+  }
 
   static String _formatTime(DateTime value) =>
       '${_twoDigits(value.hour)}:${_twoDigits(value.minute)}';

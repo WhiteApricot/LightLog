@@ -24,6 +24,11 @@ class MoneyParser {
     return '¥$whole.$fraction';
   }
 
+  static String formatSignedCnyMinor(int amountMinor) {
+    final sign = amountMinor < 0 ? '-' : '';
+    return '$sign${formatCnyMinor(amountMinor.abs())}';
+  }
+
   static String editableCny(int amountMinor) {
     final whole = amountMinor ~/ 100;
     final fraction = amountMinor % 100;

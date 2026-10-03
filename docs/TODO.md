@@ -24,9 +24,15 @@
 
 ## Phase 2 - Text smart entry
 
-- [ ] Implement deterministic text parsing pipeline
-- [ ] Produce reviewable RecognitionCandidate results
-- [ ] Add parser, confidence, and duplicate-detection tests
+- [x] Implement deterministic text parsing pipeline
+- [x] Produce reviewable RecognitionCandidate results and confirm through the existing editor/repository
+- [x] Add parser, confidence, and confirmation-flow tests
+- [x] Unify manual/text entry UX and return successful smart entries to the ledger
+- [x] Add the lightweight monthly overview and 24-hour wheel time picker
+- [x] Expand default income/expense categories and add database-backed SVG icons
+- [x] Replace category dropdowns with parent/child icon pickers
+- [x] Add and link the recognition algorithm working document
+- [ ] Define duplicate fingerprint thresholds and add duplicate-detection tests
 
 ## Phase 3 - OCR entry
 

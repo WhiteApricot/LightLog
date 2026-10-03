@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../app/providers.dart';
 import '../../../core/money.dart';
 import '../../../core/occurrence_time.dart';
+import '../../entry/presentation/entry_page.dart';
 import '../../entry/presentation/transaction_editor_page.dart';
 import '../domain/ledger_models.dart';
 
@@ -21,21 +23,15 @@ class LedgerPage extends ConsumerWidget {
           message: '账本加载失败：$error',
           onRetry: () => ref.invalidate(ledgerEntriesProvider),
         ),
-        data: (items) => items.isEmpty
-            ? const _EmptyLedger()
-            : ListView.separated(
-                padding: const EdgeInsets.only(bottom: 88),
-                itemCount: items.length,
-                separatorBuilder: (_, _) => const Divider(height: 1),
-                itemBuilder: (context, index) => _LedgerTile(
-                  entry: items[index],
-                  onEdit: () => _openEditor(context, items[index]),
-                  onDelete: () => _delete(context, ref, items[index]),
-                ),
-              ),
+        data: (items) => _LedgerBody(
+          items: items,
+          onEdit: (entry) => _openEditor(context, entry),
+          onDelete: (entry) => _delete(context, ref, entry),
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => _openEditor(context, null),
+        onPressed: () => Navigator.of(context)
+            .push<void>(MaterialPageRoute(builder: (_) => const EntryPage())),
         icon: const Icon(Icons.add),
         label: const Text('记一笔'),
       ),
@@ -87,6 +83,120 @@ class LedgerPage extends ConsumerWidget {
   }
 }
 
+class _LedgerBody extends StatelessWidget {
+  const _LedgerBody({
+    required this.items,
+    required this.onEdit,
+    required this.onDelete,
+  });
+
+  final List<LedgerEntry> items;
+  final ValueChanged<LedgerEntry> onEdit;
+  final Future<bool> Function(LedgerEntry) onDelete;
+
+  @override
+  Widget build(BuildContext context) {
+    final overview = MonthlyOverview.fromEntries(items);
+    return ListView(
+      padding: const EdgeInsets.only(bottom: 88),
+      children: [
+        _MonthlyOverviewCard(overview: overview),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 6),
+          child: Text('账目明细', style: Theme.of(context).textTheme.titleMedium),
+        ),
+        if (items.isEmpty)
+          const _EmptyLedger()
+        else
+          for (final entry in items) ...[
+            _LedgerTile(
+              entry: entry,
+              onEdit: () => onEdit(entry),
+              onDelete: () => onDelete(entry),
+            ),
+            const Divider(height: 1),
+          ],
+      ],
+    );
+  }
+}
+
+class _MonthlyOverviewCard extends StatelessWidget {
+  const _MonthlyOverviewCard({required this.overview});
+
+  final MonthlyOverview overview;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    return Card(
+      margin: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+      color: colors.primaryContainer,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('本月概览', style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(height: 14),
+            Row(
+              children: [
+                _OverviewValue(label: '收入', valueMinor: overview.incomeMinor),
+                _OverviewValue(label: '支出', valueMinor: overview.expenseMinor),
+                _OverviewValue(label: '结余', valueMinor: overview.balanceMinor),
+              ],
+            ),
+            const SizedBox(height: 14),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+              decoration: BoxDecoration(
+                color: colors.surface.withValues(alpha: 0.72),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Row(
+                children: [
+                  Icon(Icons.savings_outlined, size: 20),
+                  SizedBox(width: 8),
+                  Text('本月预算'),
+                  Spacer(),
+                  Text('未设置'),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _OverviewValue extends StatelessWidget {
+  const _OverviewValue({required this.label, required this.valueMinor});
+
+  final String label;
+  final int valueMinor;
+
+  @override
+  Widget build(BuildContext context) => Expanded(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: Theme.of(context).textTheme.labelMedium),
+        const SizedBox(height: 4),
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.centerLeft,
+          child: Text(
+            MoneyParser.formatSignedCnyMinor(valueMinor),
+            style: Theme.of(context).textTheme.titleMedium
+                ?.copyWith(fontWeight: FontWeight.w700),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
 class _LedgerTile extends StatelessWidget {
   const _LedgerTile({
     required this.entry,
@@ -122,7 +232,15 @@ class _LedgerTile extends StatelessWidget {
       child: ListTile(
         onTap: onEdit,
         leading: CircleAvatar(
-          child: Icon(isExpense ? Icons.arrow_upward : Icons.arrow_downward),
+          child: SvgPicture.asset(
+            entry.subcategory.iconAsset,
+            width: 24,
+            height: 24,
+            colorFilter: ColorFilter.mode(
+              Theme.of(context).colorScheme.primary,
+              BlendMode.srcIn,
+            ),
+          ),
         ),
         title: Text(transaction.content),
         subtitle: Text(

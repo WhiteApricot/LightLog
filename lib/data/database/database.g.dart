@@ -54,6 +54,18 @@ class $CategoriesTable extends Categories
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _iconAssetMeta = const VerificationMeta(
+    'iconAsset',
+  );
+  @override
+  late final GeneratedColumn<String> iconAsset = GeneratedColumn<String>(
+    'icon_asset',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('assets/icons/categories/other.svg'),
+  );
   static const VerificationMeta _sortOrderMeta = const VerificationMeta(
     'sortOrder',
   );
@@ -108,6 +120,7 @@ class $CategoriesTable extends Categories
     parentId,
     name,
     type,
+    iconAsset,
     sortOrder,
     isActive,
     createdAt,
@@ -151,6 +164,12 @@ class $CategoriesTable extends Categories
       );
     } else if (isInserting) {
       context.missing(_typeMeta);
+    }
+    if (data.containsKey('icon_asset')) {
+      context.handle(
+        _iconAssetMeta,
+        iconAsset.isAcceptableOrUnknown(data['icon_asset']!, _iconAssetMeta),
+      );
     }
     if (data.containsKey('sort_order')) {
       context.handle(
@@ -207,6 +226,10 @@ class $CategoriesTable extends Categories
         DriftSqlType.string,
         data['${effectivePrefix}type'],
       )!,
+      iconAsset: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}icon_asset'],
+      )!,
       sortOrder: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}sort_order'],
@@ -237,6 +260,7 @@ class Category extends DataClass implements Insertable<Category> {
   final String? parentId;
   final String name;
   final String type;
+  final String iconAsset;
   final int sortOrder;
   final bool isActive;
   final int createdAt;
@@ -246,6 +270,7 @@ class Category extends DataClass implements Insertable<Category> {
     this.parentId,
     required this.name,
     required this.type,
+    required this.iconAsset,
     required this.sortOrder,
     required this.isActive,
     required this.createdAt,
@@ -260,6 +285,7 @@ class Category extends DataClass implements Insertable<Category> {
     }
     map['name'] = Variable<String>(name);
     map['type'] = Variable<String>(type);
+    map['icon_asset'] = Variable<String>(iconAsset);
     map['sort_order'] = Variable<int>(sortOrder);
     map['is_active'] = Variable<bool>(isActive);
     map['created_at'] = Variable<int>(createdAt);
@@ -275,6 +301,7 @@ class Category extends DataClass implements Insertable<Category> {
           : Value(parentId),
       name: Value(name),
       type: Value(type),
+      iconAsset: Value(iconAsset),
       sortOrder: Value(sortOrder),
       isActive: Value(isActive),
       createdAt: Value(createdAt),
@@ -292,6 +319,7 @@ class Category extends DataClass implements Insertable<Category> {
       parentId: serializer.fromJson<String?>(json['parentId']),
       name: serializer.fromJson<String>(json['name']),
       type: serializer.fromJson<String>(json['type']),
+      iconAsset: serializer.fromJson<String>(json['iconAsset']),
       sortOrder: serializer.fromJson<int>(json['sortOrder']),
       isActive: serializer.fromJson<bool>(json['isActive']),
       createdAt: serializer.fromJson<int>(json['createdAt']),
@@ -306,6 +334,7 @@ class Category extends DataClass implements Insertable<Category> {
       'parentId': serializer.toJson<String?>(parentId),
       'name': serializer.toJson<String>(name),
       'type': serializer.toJson<String>(type),
+      'iconAsset': serializer.toJson<String>(iconAsset),
       'sortOrder': serializer.toJson<int>(sortOrder),
       'isActive': serializer.toJson<bool>(isActive),
       'createdAt': serializer.toJson<int>(createdAt),
@@ -318,6 +347,7 @@ class Category extends DataClass implements Insertable<Category> {
     Value<String?> parentId = const Value.absent(),
     String? name,
     String? type,
+    String? iconAsset,
     int? sortOrder,
     bool? isActive,
     int? createdAt,
@@ -327,6 +357,7 @@ class Category extends DataClass implements Insertable<Category> {
     parentId: parentId.present ? parentId.value : this.parentId,
     name: name ?? this.name,
     type: type ?? this.type,
+    iconAsset: iconAsset ?? this.iconAsset,
     sortOrder: sortOrder ?? this.sortOrder,
     isActive: isActive ?? this.isActive,
     createdAt: createdAt ?? this.createdAt,
@@ -338,6 +369,7 @@ class Category extends DataClass implements Insertable<Category> {
       parentId: data.parentId.present ? data.parentId.value : this.parentId,
       name: data.name.present ? data.name.value : this.name,
       type: data.type.present ? data.type.value : this.type,
+      iconAsset: data.iconAsset.present ? data.iconAsset.value : this.iconAsset,
       sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
       isActive: data.isActive.present ? data.isActive.value : this.isActive,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
@@ -352,6 +384,7 @@ class Category extends DataClass implements Insertable<Category> {
           ..write('parentId: $parentId, ')
           ..write('name: $name, ')
           ..write('type: $type, ')
+          ..write('iconAsset: $iconAsset, ')
           ..write('sortOrder: $sortOrder, ')
           ..write('isActive: $isActive, ')
           ..write('createdAt: $createdAt, ')
@@ -366,6 +399,7 @@ class Category extends DataClass implements Insertable<Category> {
     parentId,
     name,
     type,
+    iconAsset,
     sortOrder,
     isActive,
     createdAt,
@@ -379,6 +413,7 @@ class Category extends DataClass implements Insertable<Category> {
           other.parentId == this.parentId &&
           other.name == this.name &&
           other.type == this.type &&
+          other.iconAsset == this.iconAsset &&
           other.sortOrder == this.sortOrder &&
           other.isActive == this.isActive &&
           other.createdAt == this.createdAt &&
@@ -390,6 +425,7 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
   final Value<String?> parentId;
   final Value<String> name;
   final Value<String> type;
+  final Value<String> iconAsset;
   final Value<int> sortOrder;
   final Value<bool> isActive;
   final Value<int> createdAt;
@@ -400,6 +436,7 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
     this.parentId = const Value.absent(),
     this.name = const Value.absent(),
     this.type = const Value.absent(),
+    this.iconAsset = const Value.absent(),
     this.sortOrder = const Value.absent(),
     this.isActive = const Value.absent(),
     this.createdAt = const Value.absent(),
@@ -411,6 +448,7 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
     this.parentId = const Value.absent(),
     required String name,
     required String type,
+    this.iconAsset = const Value.absent(),
     required int sortOrder,
     this.isActive = const Value.absent(),
     required int createdAt,
@@ -427,6 +465,7 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
     Expression<String>? parentId,
     Expression<String>? name,
     Expression<String>? type,
+    Expression<String>? iconAsset,
     Expression<int>? sortOrder,
     Expression<bool>? isActive,
     Expression<int>? createdAt,
@@ -438,6 +477,7 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
       if (parentId != null) 'parent_id': parentId,
       if (name != null) 'name': name,
       if (type != null) 'type': type,
+      if (iconAsset != null) 'icon_asset': iconAsset,
       if (sortOrder != null) 'sort_order': sortOrder,
       if (isActive != null) 'is_active': isActive,
       if (createdAt != null) 'created_at': createdAt,
@@ -451,6 +491,7 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
     Value<String?>? parentId,
     Value<String>? name,
     Value<String>? type,
+    Value<String>? iconAsset,
     Value<int>? sortOrder,
     Value<bool>? isActive,
     Value<int>? createdAt,
@@ -462,6 +503,7 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
       parentId: parentId ?? this.parentId,
       name: name ?? this.name,
       type: type ?? this.type,
+      iconAsset: iconAsset ?? this.iconAsset,
       sortOrder: sortOrder ?? this.sortOrder,
       isActive: isActive ?? this.isActive,
       createdAt: createdAt ?? this.createdAt,
@@ -484,6 +526,9 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
     }
     if (type.present) {
       map['type'] = Variable<String>(type.value);
+    }
+    if (iconAsset.present) {
+      map['icon_asset'] = Variable<String>(iconAsset.value);
     }
     if (sortOrder.present) {
       map['sort_order'] = Variable<int>(sortOrder.value);
@@ -510,6 +555,7 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
           ..write('parentId: $parentId, ')
           ..write('name: $name, ')
           ..write('type: $type, ')
+          ..write('iconAsset: $iconAsset, ')
           ..write('sortOrder: $sortOrder, ')
           ..write('isActive: $isActive, ')
           ..write('createdAt: $createdAt, ')
@@ -2178,6 +2224,7 @@ typedef $$CategoriesTableCreateCompanionBuilder = CategoriesCompanion Function({
   Value<String?> parentId,
   required String name,
   required String type,
+  Value<String> iconAsset,
   required int sortOrder,
   Value<bool> isActive,
   required int createdAt,
@@ -2189,6 +2236,7 @@ typedef $$CategoriesTableUpdateCompanionBuilder = CategoriesCompanion Function({
   Value<String?> parentId,
   Value<String> name,
   Value<String> type,
+  Value<String> iconAsset,
   Value<int> sortOrder,
   Value<bool> isActive,
   Value<int> createdAt,
@@ -2239,6 +2287,11 @@ class $$CategoriesTableFilterComposer
 
   ColumnFilters<String> get type => $composableBuilder(
     column: $table.type,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get iconAsset => $composableBuilder(
+    column: $table.iconAsset,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -2310,6 +2363,11 @@ class $$CategoriesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get iconAsset => $composableBuilder(
+    column: $table.iconAsset,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<int> get sortOrder => $composableBuilder(
     column: $table.sortOrder,
     builder: (column) => ColumnOrderings(column),
@@ -2371,6 +2429,9 @@ class $$CategoriesTableAnnotationComposer
 
   GeneratedColumn<String> get type =>
       $composableBuilder(column: $table.type, builder: (column) => column);
+
+  GeneratedColumn<String> get iconAsset =>
+      $composableBuilder(column: $table.iconAsset, builder: (column) => column);
 
   GeneratedColumn<int> get sortOrder =>
       $composableBuilder(column: $table.sortOrder, builder: (column) => column);
@@ -2440,6 +2501,7 @@ class $$CategoriesTableTableManager
                 Value<String?> parentId = const Value.absent(),
                 Value<String> name = const Value.absent(),
                 Value<String> type = const Value.absent(),
+                Value<String> iconAsset = const Value.absent(),
                 Value<int> sortOrder = const Value.absent(),
                 Value<bool> isActive = const Value.absent(),
                 Value<int> createdAt = const Value.absent(),
@@ -2450,6 +2512,7 @@ class $$CategoriesTableTableManager
                 parentId: parentId,
                 name: name,
                 type: type,
+                iconAsset: iconAsset,
                 sortOrder: sortOrder,
                 isActive: isActive,
                 createdAt: createdAt,
@@ -2462,6 +2525,7 @@ class $$CategoriesTableTableManager
                 Value<String?> parentId = const Value.absent(),
                 required String name,
                 required String type,
+                Value<String> iconAsset = const Value.absent(),
                 required int sortOrder,
                 Value<bool> isActive = const Value.absent(),
                 required int createdAt,
@@ -2472,6 +2536,7 @@ class $$CategoriesTableTableManager
                 parentId: parentId,
                 name: name,
                 type: type,
+                iconAsset: iconAsset,
                 sortOrder: sortOrder,
                 isActive: isActive,
                 createdAt: createdAt,

@@ -1,4 +1,5 @@
 import '../../../data/database/database.dart';
+import '../../../core/occurrence_time.dart';
 
 enum LedgerTransactionType {
   expense('expense', '支出'),
@@ -29,6 +30,8 @@ class TransactionDraft {
     this.note,
     this.destinationAccountId,
     this.relatedTransactionId,
+    this.source = 'manual',
+    this.confidence,
   });
 
   final LedgerTransactionType type;
@@ -42,6 +45,8 @@ class TransactionDraft {
   final String accountId;
   final String? destinationAccountId;
   final String? relatedTransactionId;
+  final String source;
+  final double? confidence;
 }
 
 class LedgerEntry {
@@ -56,6 +61,54 @@ class LedgerEntry {
   final Category category;
   final Category subcategory;
   final Account account;
+}
+
+class MonthlyOverview {
+  const MonthlyOverview({
+    required this.incomeMinor,
+    required this.expenseMinor,
+  });
+
+  final int incomeMinor;
+  final int expenseMinor;
+  int get balanceMinor => incomeMinor - expenseMinor;
+
+  factory MonthlyOverview.fromEntries(
+    Iterable<LedgerEntry> entries, {
+    DateTime? now,
+  }) {
+    final current = now ?? DateTime.now();
+    final entryList = entries.toList(growable: false);
+    final entriesById = {
+      for (final entry in entryList) entry.transaction.id: entry,
+    };
+    var income = 0;
+    var expense = 0;
+    for (final entry in entryList) {
+      final transaction = entry.transaction;
+      final wallTime = OccurrenceTime.restoreWallTime(
+        utcMilliseconds: transaction.occurredAt,
+        timezoneOffsetMinutes: transaction.timezoneOffsetMinutes,
+      );
+      if (wallTime.year != current.year || wallTime.month != current.month) {
+        continue;
+      }
+      if (transaction.type == LedgerTransactionType.income.value) {
+        income += transaction.amountMinor;
+      } else if (transaction.type == LedgerTransactionType.expense.value) {
+        expense += transaction.amountMinor;
+      } else if (transaction.type == LedgerTransactionType.refund.value) {
+        final original =
+            entriesById[transaction.relatedTransactionId]?.transaction;
+        if (original?.type == LedgerTransactionType.expense.value) {
+          expense -= transaction.amountMinor;
+        } else if (original?.type == LedgerTransactionType.income.value) {
+          income -= transaction.amountMinor;
+        }
+      }
+    }
+    return MonthlyOverview(incomeMinor: income, expenseMinor: expense);
+  }
 }
 
 class LedgerValidationException implements Exception {

@@ -12,12 +12,21 @@
 - Added Drift schema version 1 for transactions, two-level categories, and accounts, including idempotent default seeds.
 - Added manual expense/income creation and editing with integer minor-unit amounts and database-backed category/account selection.
 - Added soft delete with Snackbar undo and unit, isolated database, repository, and widget tests.
+- Added deterministic text bookkeeping for amount, relative/basic time, content, transaction type, and database-backed keyword category recognition.
+- Added reviewable `RecognitionCandidate` evidence and confidence, with mandatory user confirmation through the existing transaction editor and repository.
+- Added 141 default income/expense categories (23 parent and 118 child categories) backed by 103 compact SVG icon assets.
+- Added a lightweight monthly income, expense, balance, and unset-budget overview above the ledger.
+- Added a maintained recognition algorithm working document covering the implemented pipeline, limitations, and local future directions.
 
 ### Changed
 
 - Finalized the V0.1 transaction schema for transfers, refunds, positive minor-unit amounts, and UTC timestamp persistence with occurrence-time offsets.
 - Updated Android namespace/application ID, minimum API level, and package metadata for the V0.1 project baseline.
 - Completed the Phase 1 manual bookkeeping foundation.
+- Documented the repository's branch, pull request, diff review, squash merge, and post-merge cleanup workflow.
+- Unified manual and intelligent text bookkeeping under the single “记一笔” entry and return successful smart entries directly to the ledger.
+- Replaced category dropdowns with compact parent/child icon pickers and replaced the time dialog with a 24-hour wheel picker.
+- Migrated the database to schema v2 with stable category SVG asset associations and backward-compatible default-category cleanup.
 
 ### Fixed
 
