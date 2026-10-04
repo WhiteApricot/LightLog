@@ -29,20 +29,24 @@ void main() {
       find.byKey(const ValueKey('unified-smart-input')),
       '12:30 二食堂 15',
     );
-    await tester.pump(const Duration(milliseconds: 500));
+    await tester.pump(const Duration(milliseconds: 600));
+    expect(find.byKey(const ValueKey('unified-smart-success')), findsNothing);
+    expect(repository.createdDraft, isNull);
+
+    await tester.tap(find.byKey(const ValueKey('unified-smart-parse-button')));
     await tester.pumpAndSettle();
 
     expect(find.byKey(const ValueKey('unified-smart-success')), findsOneWidget);
-    expect(
-      find.byKey(
-        const ValueKey('child-category-icon-image-expense-food-lunch'),
-      ),
-      findsOneWidget,
+    expect(find.text('自动分类'), findsOneWidget);
+    expect(find.text('时间'), findsOneWidget);
+    expect(find.text('金额'), findsOneWidget);
+    expect(find.text('内容 / 商户'), findsOneWidget);
+    expect(find.text('餐饮 · 午餐'), findsOneWidget);
+    expect(find.text('¥15.00'), findsOneWidget);
+    expect(find.text('二食堂'), findsWidgets);
+    await tester.tap(
+      find.byKey(const ValueKey('smart-confirm-transaction-button')),
     );
-
-    await tester.drag(find.byType(ListView).last, const Offset(0, -1400));
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const ValueKey('transaction-save-button')));
     await tester.pumpAndSettle();
 
     expect(repository.createdDraft?.source, 'text');
@@ -79,15 +83,45 @@ void main() {
       final picture = tester.widget<SvgPicture>(childIcon);
       expect(
         (picture.bytesLoader as SvgAssetLoader).assetName,
-        'assets/icons/categories/meal.svg',
+        'assets/icons/categories/expense-food-lunch.svg',
       );
 
       await tester.tap(parentTile);
       await tester.pumpAndSettle();
       expect(childIcon, findsNothing);
-      expect(find.byType(GridView), findsOneWidget);
+      expect(find.byType(GridView), findsNWidgets(2));
     },
   );
+
+  testWidgets('accounts use database-backed icon choices', (tester) async {
+    await _pumpApp(tester, _FakeLedgerRepository());
+    await tester.tap(find.byType(FloatingActionButton));
+    await tester.pumpAndSettle();
+
+    await tester.drag(find.byType(ListView).last, const Offset(0, -1200));
+    await tester.pumpAndSettle();
+    final alipay = find.byKey(const ValueKey('account-icon-account-alipay'));
+    expect(alipay, findsOneWidget);
+    expect(find.byType(DropdownButtonFormField<String>), findsNothing);
+    final picture = tester.widget<SvgPicture>(
+      find.byKey(const ValueKey('account-icon-image-account-alipay')),
+    );
+    expect(
+      (picture.bytesLoader as SvgAssetLoader).assetName,
+      'assets/icons/accounts/account-alipay.svg',
+    );
+    await tester.tap(alipay);
+    await tester.pump();
+    expect(
+      tester
+          .widget<Semantics>(
+            find.ancestor(of: alipay, matching: find.byType(Semantics)).first,
+          )
+          .properties
+          .selected,
+      isTrue,
+    );
+  });
 
   testWidgets('time picker uses looping 24-hour wheels', (tester) async {
     await _pumpApp(tester, _FakeLedgerRepository());
@@ -149,7 +183,7 @@ void main() {
     final picture = tester.widget<SvgPicture>(ledgerIcon);
     expect(
       (picture.bytesLoader as SvgAssetLoader).assetName,
-      'assets/icons/categories/meal.svg',
+      'assets/icons/categories/expense-food-lunch.svg',
     );
 
     await tester.longPress(
@@ -231,7 +265,7 @@ class _FakeLedgerRepository implements LedgerRepository {
       id: 'expense-food',
       name: '餐饮',
       type: 'expense',
-      iconAsset: 'assets/icons/categories/food.svg',
+      iconAsset: 'assets/icons/categories/expense-food.svg',
       sortOrder: 10,
       isActive: true,
       createdAt: 0,
@@ -242,7 +276,7 @@ class _FakeLedgerRepository implements LedgerRepository {
       parentId: 'expense-food',
       name: '午餐',
       type: 'expense',
-      iconAsset: 'assets/icons/categories/meal.svg',
+      iconAsset: 'assets/icons/categories/expense-food-lunch.svg',
       sortOrder: 10,
       isActive: true,
       createdAt: 0,
@@ -252,7 +286,7 @@ class _FakeLedgerRepository implements LedgerRepository {
       id: 'income-other',
       name: '其他收入',
       type: 'income',
-      iconAsset: 'assets/icons/categories/other-income.svg',
+      iconAsset: 'assets/icons/categories/income-other.svg',
       sortOrder: 10,
       isActive: true,
       createdAt: 0,
@@ -263,7 +297,7 @@ class _FakeLedgerRepository implements LedgerRepository {
       parentId: 'income-other',
       name: '未分类收入',
       type: 'income',
-      iconAsset: 'assets/icons/categories/coins.svg',
+      iconAsset: 'assets/icons/categories/income-other-general.svg',
       sortOrder: 10,
       isActive: true,
       createdAt: 0,
@@ -277,8 +311,19 @@ class _FakeLedgerRepository implements LedgerRepository {
       id: 'account-cash',
       name: '现金',
       type: 'cash',
+      iconAsset: 'assets/icons/accounts/account-cash.svg',
       isActive: true,
       sortOrder: 10,
+      createdAt: 0,
+      updatedAt: 0,
+    ),
+    Account(
+      id: 'account-alipay',
+      name: '支付宝',
+      type: 'alipay',
+      iconAsset: 'assets/icons/accounts/account-alipay.svg',
+      isActive: true,
+      sortOrder: 20,
       createdAt: 0,
       updatedAt: 0,
     ),
@@ -350,7 +395,7 @@ const _expenseCategory = Category(
   id: 'expense-food',
   name: '餐饮',
   type: 'expense',
-  iconAsset: 'assets/icons/categories/food.svg',
+  iconAsset: 'assets/icons/categories/expense-food.svg',
   sortOrder: 10,
   isActive: true,
   createdAt: 0,
@@ -362,7 +407,7 @@ const _expenseSubcategory = Category(
   parentId: 'expense-food',
   name: '午餐',
   type: 'expense',
-  iconAsset: 'assets/icons/categories/meal.svg',
+  iconAsset: 'assets/icons/categories/expense-food-lunch.svg',
   sortOrder: 10,
   isActive: true,
   createdAt: 0,
@@ -373,7 +418,7 @@ const _incomeCategory = Category(
   id: 'income-other',
   name: '其他收入',
   type: 'income',
-  iconAsset: 'assets/icons/categories/other-income.svg',
+  iconAsset: 'assets/icons/categories/income-other.svg',
   sortOrder: 10,
   isActive: true,
   createdAt: 0,
@@ -385,7 +430,7 @@ const _incomeSubcategory = Category(
   parentId: 'income-other',
   name: '未分类收入',
   type: 'income',
-  iconAsset: 'assets/icons/categories/coins.svg',
+  iconAsset: 'assets/icons/categories/income-other-general.svg',
   sortOrder: 10,
   isActive: true,
   createdAt: 0,
@@ -396,6 +441,7 @@ const _account = Account(
   id: 'account-cash',
   name: '现金',
   type: 'cash',
+  iconAsset: 'assets/icons/accounts/account-cash.svg',
   isActive: true,
   sortOrder: 10,
   createdAt: 0,

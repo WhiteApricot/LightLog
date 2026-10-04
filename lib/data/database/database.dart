@@ -11,7 +11,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -43,6 +43,29 @@ class AppDatabase extends _$AppDatabase {
           "UPDATE categories SET name = '未分类收入' WHERE id = 'income-other-general'",
         );
       }
+      if (from < 3) {
+        await migrator.addColumn(accounts, accounts.iconAsset);
+        for (final category in defaultCategories) {
+          await (update(
+            categories,
+          )..where((table) => table.id.equals(category.id))).write(
+            CategoriesCompanion(
+              iconAsset: Value(category.iconAsset),
+              updatedAt: Value(DateTime.now().toUtc().millisecondsSinceEpoch),
+            ),
+          );
+        }
+        for (final account in defaultAccounts) {
+          await (update(
+            accounts,
+          )..where((table) => table.id.equals(account.id))).write(
+            AccountsCompanion(
+              iconAsset: Value(account.iconAsset),
+              updatedAt: Value(DateTime.now().toUtc().millisecondsSinceEpoch),
+            ),
+          );
+        }
+      }
     },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');
@@ -69,7 +92,10 @@ class AppDatabase extends _$AppDatabase {
       await (update(categories)..where(
             (table) =>
                 table.id.equals(category.id) &
-                table.iconAsset.equals('assets/icons/categories/other.svg'),
+                (table.iconAsset.equals('assets/icons/categories/other.svg') |
+                    table.iconAsset.equals(
+                      'assets/icons/categories/category-default.svg',
+                    )),
           ))
           .write(CategoriesCompanion(iconAsset: Value(category.iconAsset)));
     }
@@ -79,12 +105,21 @@ class AppDatabase extends _$AppDatabase {
           id: account.id,
           name: account.name,
           type: account.type,
+          iconAsset: Value(account.iconAsset),
           sortOrder: account.sortOrder,
           createdAt: now,
           updatedAt: now,
         ),
         mode: InsertMode.insertOrIgnore,
       );
+      await (update(accounts)..where(
+            (table) =>
+                table.id.equals(account.id) &
+                table.iconAsset.equals(
+                  'assets/icons/accounts/account-other.svg',
+                ),
+          ))
+          .write(AccountsCompanion(iconAsset: Value(account.iconAsset)));
     }
   });
 

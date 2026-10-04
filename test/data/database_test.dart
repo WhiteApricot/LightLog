@@ -23,7 +23,7 @@ void main() {
   });
 
   test(
-    'schema v2 seeds icon-backed categories and accounts idempotently',
+    'schema v3 seeds icon-backed categories and accounts idempotently',
     () async {
       expect(
         await database.select(database.categories).get(),
@@ -49,6 +49,20 @@ void main() {
           reason: '${category.name} 缺少图标 ${category.iconAsset}',
         );
       }
+      final accounts = await database.select(database.accounts).get();
+      expect(
+        accounts.every(
+          (account) => account.iconAsset.startsWith('assets/icons/accounts/'),
+        ),
+        isTrue,
+      );
+      for (final account in accounts) {
+        expect(
+          File(account.iconAsset).existsSync(),
+          isTrue,
+          reason: '${account.name} 缺少图标 ${account.iconAsset}',
+        );
+      }
 
       await database.seedDefaults();
 
@@ -63,7 +77,7 @@ void main() {
     },
   );
 
-  test('migrates schema v1 category icons and renamed defaults', () async {
+  test('migrates schema v1 category and account icons', () async {
     await database.close();
     databaseClosed = true;
     final executor = NativeDatabase.memory(
@@ -95,6 +109,10 @@ void main() {
           "INSERT INTO categories VALUES "
           "('expense-food-drink', 'expense-food', '饮料', 'expense', 40, 1, 0, 0)",
         );
+        rawDatabase.execute(
+          "INSERT INTO accounts VALUES "
+          "('account-cash', '现金', 'cash', 1, 40, 0, 0)",
+        );
         rawDatabase.execute('PRAGMA user_version = 1');
       },
     );
@@ -104,7 +122,14 @@ void main() {
         migrated.categories,
       )..where((table) => table.id.equals('expense-food-drink'))).getSingle();
       expect(category.name, '饮品');
-      expect(category.iconAsset, 'assets/icons/categories/drink.svg');
+      expect(
+        category.iconAsset,
+        'assets/icons/categories/expense-food-drink.svg',
+      );
+      final account = await (migrated.select(
+        migrated.accounts,
+      )..where((table) => table.id.equals('account-cash'))).getSingle();
+      expect(account.iconAsset, 'assets/icons/accounts/account-cash.svg');
     } finally {
       await migrated.close();
     }

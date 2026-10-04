@@ -1,6 +1,6 @@
 # 数据模型
 
-本文定义 V0.1 的概念 schema 和已经落地的数据库约束。SQLite + Drift 是锁定方案；当前实现的 schema version 为 `2`。
+本文定义 V0.1 的概念 schema 和已经落地的数据库约束。SQLite + Drift 是锁定方案；当前实现的 schema version 为 `3`。
 
 ## 通用约定
 
@@ -61,7 +61,7 @@
 | `createdAt` | 创建时间 |
 | `updatedAt` | 最后更新时间 |
 
-V0.1 仅支持一级与二级分类，不创建更深层级。分类必须是可维护数据，不得硬编码到 UI。`iconAsset` 作为分类数据随 seed/migration 维护，Widget 不按分类名称推断图标。schema v2 默认包含 23 个一级分类和 118 个二级分类，覆盖 17 个支出一级分类与 6 个收入一级分类。已有历史账目引用的分类不得物理删除，优先设置 `isActive = false`。
+V0.1 仅支持一级与二级分类，不创建更深层级。分类必须是可维护数据，不得硬编码到 UI。`iconAsset` 作为分类数据随 seed/migration 维护，Widget 不按分类名称推断图标。schema v3 默认包含 23 个一级分类和 118 个二级分类，覆盖 17 个支出一级分类与 6 个收入一级分类；每个默认分类使用按稳定 ID 命名且图形签名不同的 24×24 SVG。已有历史账目引用的分类不得物理删除，优先设置 `isActive = false`。
 
 ## accounts
 
@@ -70,12 +70,13 @@ V0.1 仅支持一级与二级分类，不创建更深层级。分类必须是可
 | `id` | 主键 |
 | `name` | 展示名称 |
 | `type` | 微信、支付宝、银行卡、现金、其他等稳定类型 |
+| `iconAsset` | 稳定关联的账户 SVG 资源路径 |
 | `isActive` | 是否可用于新账目 |
 | `sortOrder` | 展示顺序 |
 | `createdAt` | 创建时间 |
 | `updatedAt` | 最后更新时间 |
 
-V0.1 只表示支付方式，不管理余额。被历史账目引用的账户优先停用而非删除。
+V0.1 只表示支付方式，不管理余额。账户图标随 seed/migration 维护，UI 直接读取 `iconAsset`，不按账户名称推断资源。被历史账目引用的账户优先停用而非删除。
 
 ## recognition_rules
 
@@ -124,4 +125,4 @@ schema v1 已为 `transactions.occurredAt`、`deletedAt`、`(type, occurredAt)` 
 - migration 必须测试既有数据升级，不得以清库作为正式升级方案。
 - 尚未决定的细节使用 `TBD`，在编码前完成最小必要决策。
 
-schema v1 通过 Drift `MigrationStrategy` 显式创建全部表。schema v2 为分类增加带安全默认值的 `iconAsset`，补写默认分类图标，迁移少量默认分类名称，并停用与新“日用”体系重复的旧 `expense-shopping-daily`；历史引用仍保留。数据库打开且建表/迁移完成后执行默认分类与账户 seed。seed 使用稳定 ID 和 `insertOrIgnore`，仅为仍使用兜底图标的默认分类补写图标，不覆盖其他用户维护字段。v1→v2 migration 由隔离数据库测试覆盖。
+schema v1 通过 Drift `MigrationStrategy` 显式创建全部表。schema v2 为分类增加带安全默认值的 `iconAsset`，迁移分类名称并停用重复旧分类。schema v3 为账户增加 `iconAsset`，并将全部默认分类与账户迁移到按稳定 ID 命名的新 SVG；历史账目和默认数据 ID 不变。数据库打开且建表/迁移完成后继续执行幂等 seed。v1→v3 migration 由隔离数据库测试覆盖；未来 JSON 备份实现必须以 schema version 3 为当前写出版本，并为旧版本定义显式兼容路径。

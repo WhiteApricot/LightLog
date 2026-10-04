@@ -22,7 +22,7 @@
 - [x] Implement soft delete + undo
 - [x] Add basic tests
 
-## Phase 2 - Text smart entry
+## Phase 2 - Deterministic text entry and UX foundation
 
 - [x] Implement deterministic text parsing pipeline
 - [x] Produce reviewable RecognitionCandidate results and confirm through the existing editor/repository
@@ -36,19 +36,28 @@
 - [x] Group ledger entries by wall-clock date with daily totals
 - [x] Add editor deletion and long-press bulk soft deletion
 - [x] Use compact vertical collapsible category grids and looping time wheels
+- [x] Replace duplicate category artwork with distinct database-backed SVGs
+- [x] Replace the account dropdown with database-backed icon choices
+- [x] Require explicit recognition and add an above-the-fold result/confirm card
 - [ ] Define duplicate fingerprint thresholds and add duplicate-detection tests
 
-## Phase 3 - OCR entry
+## Phase 3 - Five-layer local hybrid recognizer
+
+- [ ] Layer 1: strengthen normalization without losing raw input
+- [ ] Layer 2: use personal confirmation/correction history as local evidence
+- [ ] Layer 3: add a local Merchant Knowledge Base
+- [ ] Layer 4: extract and maintain a Category Lexicon
+- [ ] Layer 5: add a local character n-gram classifier
+- [ ] Add fuzzy matching with explicit thresholds and conflict handling
+- [ ] Fuse layer evidence into calibrated, explainable confidence
+- [ ] Persist the minimum local rules/events needed for evaluation and learning
+- [ ] Add offline evaluation sets and regression metrics
+
+## Phase 4 - OCR entry
 
 - [ ] Add isolated ML Kit OcrService and mock
 - [ ] Extract candidate fields from payment screenshots
 - [ ] Add confirmation flow without retaining source images
-
-## Phase 4 - Recognition learning
-
-- [ ] Persist local recognition rules and events
-- [ ] Learn from confirmations, corrections, and undo feedback
-- [ ] Enable evidence-based auto-confirm with notice and undo
 
 ## Phase 5 - Statistics
 
@@ -66,4 +75,5 @@
 
 - [ ] Complete critical unit, widget, migration, and Android integration tests
 - [ ] Review privacy, accessibility, performance, and failure recovery
+- [ ] Harden advanced local rule governance and correction/undo feedback
 - [ ] Resolve release-blocking TBD items and prepare V0.1 checklist

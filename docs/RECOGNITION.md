@@ -4,23 +4,18 @@
 
 ## 总原则
 
-自动识别的优先级为：
+Phase 3 本地识别器按五层证据组织：
 
 ```text
-个人历史规则
->
-确定性解析
->
-上下文规则
->
-未来商户知识库
->
-未来 Web Search
->
-未来 LLM
+1. Normalization
+2. Personal History
+3. Merchant Knowledge Base
+4. Category Lexicon
+5. Character n-gram classifier
+→ Evidence Fusion / Confidence
 ```
 
-V0.1 只实现前三项，全部在本机运行。商户知识库、Web Search 和 LLM 仅属于 Future。
+Phase 2 只实现简单确定性解析和 UX 基础；五层混合识别器属于 Phase 3，全部在本机运行。Web Search 和 LLM 不属于 V0.1。
 
 任何识别来源都只能生成 `RecognitionCandidate`：
 
@@ -53,7 +48,7 @@ Raw Text
 - Keyword Matching：用确定性关键词推断账务类型和分类。
 - Candidate：汇总字段、每项证据、冲突、缺失项和 confidence。
 
-Phase 2 只实现到确定性 Candidate；`History Rules` 留到 Phase 4，不参与当前评分。
+Phase 2 只实现到确定性 Candidate；Personal History、商户知识库、分类词表、字符 n-gram 与证据融合留到 Phase 3，不参与当前评分。
 
 示例输入：
 
@@ -91,7 +86,7 @@ Image
 - 商品或订单详情
 - 支付平台
 
-OCR 文本和坐标可用于当次字段提取，但不得直接写账。默认不保存原始支付截图；识别失败或退出流程时也不应留下持久副本。临时文件清理策略在 OCR 实现阶段确定。
+OCR 文本和坐标可用于当次字段提取，但不得直接写账。默认不保存原始支付截图；识别失败或退出流程时也不应留下持久副本。临时文件清理策略在 Phase 4 OCR 实现阶段确定。
 
 ## Confidence
 
@@ -103,11 +98,11 @@ Phase 2 采用相加后限制在 `0..1` 的简单可解释评分：
 - 分类关键词命中：`0.25`；回退到“其他支出/其他收入”：`0.05`。
 - 明确日期或时间表达：`0.10`。
 
-评分结果同时携带逐项证据说明。缺少金额/内容、出现多个金额或数据库分类缺失会使 Candidate 不完整。Phase 2 不设置自动确认门槛：所有文字候选都必须进入编辑页，由用户确认或修改后再通过现有 Repository 写入正式 `Transaction`。
+评分结果同时携带逐项证据说明。缺少金额/内容、出现多个金额或数据库分类缺失会使 Candidate 不完整。Phase 2 不设置自动确认门槛：用户必须主动点击“识别”，再从结果卡直接确认入账，或在同页完整表单修改后保存；两条路径复用相同验证与 Repository。
 
 ## 用户反馈学习
 
-首次或不确定识别：
+Phase 3 的 Personal History 层将处理确认、修改和撤销反馈。目标流程为：
 
 ```text
 Candidate
@@ -124,7 +119,7 @@ Candidate
 → 高置信自动写入并提供撤销 / 低置信要求确认
 ```
 
-不得把“第一次确认、第二次自动”机械写死为次数规则。用户纠正必须降低或修正规则权重；自动入账后的撤销也应作为负反馈信号，具体更新策略为 **TBD**。
+不得把“第一次确认、第二次自动”机械写死为次数规则。用户纠正必须降低或修正规则权重；自动入账后的撤销也应作为负反馈信号。基础历史证据和学习属于 Phase 3；更高级的规则治理可在该阶段后段或 Phase 7 hardening 完成，具体更新策略仍为 **TBD**。
 
 ## 重复检测
 

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,6 +8,7 @@ import '../../../core/occurrence_time.dart';
 import '../../../data/database/database.dart';
 import '../../ledger/domain/ledger_models.dart';
 import '../../recognition/domain/recognition_models.dart';
+import 'account_picker.dart';
 import 'category_picker.dart';
 import 'wheel_time_picker.dart';
 
@@ -51,7 +50,6 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
   bool _saving = false;
   bool _categoryValidationRequested = false;
   RecognitionCandidate? _smartCandidate;
-  Timer? _smartParseDebounce;
 
   @override
   void initState() {
@@ -108,7 +106,6 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
     _contentController.dispose();
     _noteController.dispose();
     _smartInputController.dispose();
-    _smartParseDebounce?.cancel();
     super.dispose();
   }
 
@@ -265,18 +262,10 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
                 setState(() => _subcategoryId = category.id),
           ),
           const SizedBox(height: 12),
-          DropdownButtonFormField<String>(
-            initialValue: _accountId,
-            decoration: const InputDecoration(
-              labelText: '账户 / 支付方式',
-              border: OutlineInputBorder(),
-            ),
-            items: [
-              for (final item in accounts)
-                DropdownMenuItem(value: item.id, child: Text(item.name)),
-            ],
-            onChanged: (value) => setState(() => _accountId = value),
-            validator: (value) => value == null ? '请选择账户' : null,
+          AccountPicker(
+            accounts: accounts,
+            selectedId: _accountId,
+            onSelected: (account) => setState(() => _accountId = account.id),
           ),
           const SizedBox(height: 12),
           ListTile(
@@ -344,8 +333,12 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.auto_awesome),
               ),
-              onChanged: (_) => _scheduleSmartParse(categories),
-              onSubmitted: (_) => _parseSmartInput(categories),
+              onChanged: (_) {
+                if (_smartCandidate != null) {
+                  setState(() => _smartCandidate = null);
+                }
+              },
+              onSubmitted: (_) => FocusScope.of(context).unfocus(),
             ),
             const SizedBox(height: 8),
             Align(
@@ -354,19 +347,16 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
                 key: const ValueKey('unified-smart-parse-button'),
                 onPressed: () => _parseSmartInput(categories),
                 icon: const Icon(Icons.auto_fix_high),
-                label: const Text('识别并填入'),
+                label: const Text('识别'),
               ),
             ),
             if (candidate != null) ...[
               const SizedBox(height: 8),
               if (candidate.isComplete)
-                Text(
-                  '已识别并填入：${candidate.categoryName} · '
-                  '${candidate.subcategoryName}，可继续修改后保存',
-                  key: const ValueKey('unified-smart-success'),
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
+                _SmartCandidateResult(
+                  candidate: candidate,
+                  saving: _saving,
+                  onConfirm: _save,
                 )
               else
                 for (final issue in candidate.issues)
@@ -384,7 +374,6 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
   }
 
   void _parseSmartInput(List<Category> categories) {
-    _smartParseDebounce?.cancel();
     if (_smartInputController.text.trim().isEmpty) {
       setState(() => _smartCandidate = null);
       return;
@@ -410,13 +399,6 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
       _source = 'text';
       _confidence = candidate.confidence;
       _categoryValidationRequested = false;
-    });
-  }
-
-  void _scheduleSmartParse(List<Category> categories) {
-    _smartParseDebounce?.cancel();
-    _smartParseDebounce = Timer(const Duration(milliseconds: 450), () {
-      if (mounted) _parseSmartInput(categories);
     });
   }
 
@@ -574,6 +556,107 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
       '${_twoDigits(value.hour)}:${_twoDigits(value.minute)}';
 
   static String _twoDigits(int value) => value.toString().padLeft(2, '0');
+}
+
+class _SmartCandidateResult extends StatelessWidget {
+  const _SmartCandidateResult({
+    required this.candidate,
+    required this.saving,
+    required this.onConfirm,
+  });
+
+  final RecognitionCandidate candidate;
+  final bool saving;
+  final Future<void> Function() onConfirm;
+
+  @override
+  Widget build(BuildContext context) {
+    final draft = candidate.draft;
+    final occurredAt = draft.occurredAtLocal!;
+    return Container(
+      key: const ValueKey('unified-smart-success'),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.primaryContainer,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('识别结果', style: Theme.of(context).textTheme.titleSmall),
+          const SizedBox(height: 8),
+          _CandidateLine(
+            icon: Icons.category_outlined,
+            label: '自动分类',
+            value: '${candidate.categoryName} · ${candidate.subcategoryName}',
+          ),
+          _CandidateLine(
+            icon: Icons.schedule_outlined,
+            label: '时间',
+            value:
+                '${occurredAt.month}月${occurredAt.day}日 '
+                '${_two(occurredAt.hour)}:${_two(occurredAt.minute)}',
+          ),
+          _CandidateLine(
+            icon: Icons.payments_outlined,
+            label: '金额',
+            value: MoneyParser.formatCnyMinor(draft.amountMinor!),
+          ),
+          _CandidateLine(
+            icon: Icons.storefront_outlined,
+            label: '内容 / 商户',
+            value: draft.content!,
+          ),
+          const SizedBox(height: 8),
+          SizedBox(
+            width: double.infinity,
+            child: FilledButton.icon(
+              key: const ValueKey('smart-confirm-transaction-button'),
+              onPressed: saving ? null : onConfirm,
+              icon: saving
+                  ? const SizedBox.square(
+                      dimension: 18,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : const Icon(Icons.check),
+              label: Text(saving ? '入账中…' : '确认入账'),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  static String _two(int value) => value.toString().padLeft(2, '0');
+}
+
+class _CandidateLine extends StatelessWidget {
+  const _CandidateLine({
+    required this.icon,
+    required this.label,
+    required this.value,
+  });
+
+  final IconData icon;
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.symmetric(vertical: 2),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Icon(icon, size: 17),
+        const SizedBox(width: 7),
+        SizedBox(
+          width: 70,
+          child: Text(label, style: Theme.of(context).textTheme.labelMedium),
+        ),
+        Expanded(child: Text(value)),
+      ],
+    ),
+  );
 }
 
 class _LoadError extends StatelessWidget {

@@ -90,7 +90,7 @@ confidence 目前只随 Candidate 保存，不触发自动入账。Phase 2 所�
 
 `RecognitionCandidate` 汇总 `EntryDraft`、分类 ID/名称、证据和 issues。只有金额、类型、内容、时间、时区偏移、一级分类、二级分类都存在且无 issue 时，才能转换为 `TransactionDraft`。
 
-用户进入统一“记一笔”页面后，可在顶部输入文字；完整 Candidate 自动填入同页下方的共用编辑表单，用户可继续修改金额、分类、内容、日期、时间和账户。保存成功后由 `LedgerRepository` 写入 `Transaction`，标记 `source = text` 并保存 confidence，然后直接返回主界面。Parser 本身始终不能写库。
+用户进入统一“记一笔”页面后，在顶部输入文字并主动点击“识别”，此时才调用 Parser；输入过程不做 debounce 或实时识别。完整 Candidate 在输入框下方展示分类、时间、金额和内容/商户，同时填入下方共用编辑表单。用户可直接点击结果卡的“确认入账”，也可继续修改金额、分类、内容、日期、时间和账户后使用表单保存；两条路径复用同一验证、`TransactionDraft` 构造和 `LedgerRepository` 写入逻辑。成功后标记 `source = text` 并保存 confidence，然后直接返回主界面。Parser 本身始终不能写库。
 
 ## 当前主要缺陷
 
@@ -101,13 +101,16 @@ confidence 目前只随 Candidate 保存，不触发自动入账。Phase 2 所�
 - 没有本地历史学习、冲突消解、重复检测联动或自动确认策略。
 - 内容/商户仍是单一字符串，无法稳定拆分商品、门店和备注。
 
-## 后续计划
+## Phase 3：五层本地混合识别器
 
-以下方向只记录为后续工作，本轮不实现：
+以下方向属于 Phase 3，本轮只重排计划，不提前实现：
 
-1. **本地 Merchant Knowledge Base**：维护商户规范名、别名、常见分类和本地确认统计，不联网查询。
-2. **Category Lexicon**：将分类关键词、同义词、排除词和优先级从 Parser 代码中分离为可测试、可维护的本地词表。
-3. **Fuzzy matching**：在明确阈值和冲突策略下处理简称、轻微错字与别名；低置信结果继续要求确认。
-4. **Character n-gram classifier**：以本地确认样本训练轻量字符 n-gram 分类器，与确定性规则并行提供可解释候选，不上传消费数据。
+1. **Normalization**：在保留原文的前提下统一字符、空白和常见表达。
+2. **Personal History**：使用本地确认、修改和撤销反馈形成个人证据。
+3. **Merchant Knowledge Base**：维护商户规范名、别名、常见分类和本地确认统计，不联网查询；fuzzy matching 在明确阈值与冲突策略下处理简称和轻微错字。
+4. **Category Lexicon**：将分类关键词、同义词、排除词和优先级分离为可测试、可维护的本地词表。
+5. **Character n-gram classifier**：以本地样本训练轻量字符 n-gram 分类器，与确定性证据并行提供候选，不上传消费数据。
+
+五层输出通过 **Evidence Fusion / Confidence** 合并，必须保留来源、冲突和可解释权重。原先独立规划的 Recognition Learning 不再单列阶段：基础学习并入 Personal History，更高级规则治理放入 Phase 3 后段或 hardening。
 
 引入这些能力前必须先定义离线评估集、准确率/召回率指标、confidence 校准方法，以及用户纠正数据的保存和撤销语义。
