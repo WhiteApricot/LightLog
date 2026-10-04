@@ -22,26 +22,117 @@ void main() {
     if (!databaseClosed) await database.close();
   });
 
-  test('schema v1 seeds categories and accounts idempotently', () async {
-    expect(
-      await database.select(database.categories).get(),
-      hasLength(defaultCategories.length),
-    );
-    expect(
-      await database.select(database.accounts).get(),
-      hasLength(defaultAccounts.length),
-    );
+  test(
+    'schema v3 seeds icon-backed categories and accounts idempotently',
+    () async {
+      expect(
+        await database.select(database.categories).get(),
+        hasLength(defaultCategories.length),
+      );
+      expect(
+        await database.select(database.accounts).get(),
+        hasLength(defaultAccounts.length),
+      );
+      final categories = await database.select(database.categories).get();
+      expect(categories, hasLength(141));
+      expect(
+        categories.every(
+          (category) =>
+              category.iconAsset.startsWith('assets/icons/categories/'),
+        ),
+        isTrue,
+      );
+      for (final category in categories) {
+        expect(
+          File(category.iconAsset).existsSync(),
+          isTrue,
+          reason: '${category.name} 缺少图标 ${category.iconAsset}',
+        );
+      }
+      final accounts = await database.select(database.accounts).get();
+      expect(
+        accounts.every(
+          (account) => account.iconAsset.startsWith('assets/icons/accounts/'),
+        ),
+        isTrue,
+      );
+      for (final account in accounts) {
+        expect(
+          File(account.iconAsset).existsSync(),
+          isTrue,
+          reason: '${account.name} 缺少图标 ${account.iconAsset}',
+        );
+      }
 
-    await database.seedDefaults();
+      await database.seedDefaults();
 
-    expect(
-      await database.select(database.categories).get(),
-      hasLength(defaultCategories.length),
+      expect(
+        await database.select(database.categories).get(),
+        hasLength(defaultCategories.length),
+      );
+      expect(
+        await database.select(database.accounts).get(),
+        hasLength(defaultAccounts.length),
+      );
+    },
+  );
+
+  test('migrates schema v1 category and account icons', () async {
+    await database.close();
+    databaseClosed = true;
+    final executor = NativeDatabase.memory(
+      setup: (rawDatabase) {
+        rawDatabase.execute('''
+          CREATE TABLE categories (
+            id TEXT NOT NULL PRIMARY KEY,
+            parent_id TEXT,
+            name TEXT NOT NULL,
+            type TEXT NOT NULL,
+            sort_order INTEGER NOT NULL,
+            is_active INTEGER NOT NULL DEFAULT 1,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL
+          )
+        ''');
+        rawDatabase.execute('''
+          CREATE TABLE accounts (
+            id TEXT NOT NULL PRIMARY KEY,
+            name TEXT NOT NULL,
+            type TEXT NOT NULL,
+            is_active INTEGER NOT NULL DEFAULT 1,
+            sort_order INTEGER NOT NULL,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL
+          )
+        ''');
+        rawDatabase.execute(
+          "INSERT INTO categories VALUES "
+          "('expense-food-drink', 'expense-food', '饮料', 'expense', 40, 1, 0, 0)",
+        );
+        rawDatabase.execute(
+          "INSERT INTO accounts VALUES "
+          "('account-cash', '现金', 'cash', 1, 40, 0, 0)",
+        );
+        rawDatabase.execute('PRAGMA user_version = 1');
+      },
     );
-    expect(
-      await database.select(database.accounts).get(),
-      hasLength(defaultAccounts.length),
-    );
+    final migrated = AppDatabase(executor);
+    try {
+      final category = await (migrated.select(
+        migrated.categories,
+      )..where((table) => table.id.equals('expense-food-drink'))).getSingle();
+      expect(category.name, '饮品');
+      expect(
+        category.iconAsset,
+        'assets/icons/categories/expense-food-drink.svg',
+      );
+      final account = await (migrated.select(
+        migrated.accounts,
+      )..where((table) => table.id.equals('account-cash'))).getSingle();
+      expect(account.iconAsset, 'assets/icons/accounts/account-cash.svg');
+    } finally {
+      await migrated.close();
+    }
   });
 
   test('initial database streams can be subscribed concurrently', () async {
@@ -88,6 +179,27 @@ void main() {
     },
   );
 
+  test('repository bulk soft deletes and restores atomically', () async {
+    final first = await repository.create(
+      transactionDraft(content: '第一笔', amountMinor: 100),
+    );
+    final second = await repository.create(
+      transactionDraft(content: '第二笔', amountMinor: 200),
+    );
+
+    await repository.softDeleteMany({first, second});
+    expect(await repository.watchEntries().first, isEmpty);
+
+    await repository.restoreMany({first, second});
+    expect(await repository.watchEntries().first, hasLength(2));
+
+    await expectLater(
+      repository.softDeleteMany({first, 'missing'}),
+      throwsA(isA<LedgerValidationException>()),
+    );
+    expect(await repository.watchEntries().first, hasLength(2));
+  });
+
   test('repository rejects mismatched category hierarchy', () async {
     final invalid = TransactionDraft(
       type: LedgerTransactionType.expense,
@@ -102,6 +214,33 @@ void main() {
 
     await expectLater(
       repository.create(invalid),
+      throwsA(isA<LedgerValidationException>()),
+    );
+  });
+
+  test('repository persists and validates recognition metadata', () async {
+    await repository.create(
+      transactionDraft(
+        content: '文字账目',
+        amountMinor: 1500,
+        source: 'text',
+        confidence: 0.8,
+      ),
+    );
+
+    final saved = await database.select(database.transactions).getSingle();
+    expect(saved.source, 'text');
+    expect(saved.confidence, 0.8);
+
+    await expectLater(
+      repository.create(
+        transactionDraft(
+          content: '无效置信度',
+          amountMinor: 1500,
+          source: 'text',
+          confidence: 1.1,
+        ),
+      ),
       throwsA(isA<LedgerValidationException>()),
     );
   });
@@ -175,6 +314,8 @@ TransactionDraft transactionDraft({
   required int amountMinor,
   DateTime? occurredAtLocal,
   int timezoneOffsetMinutes = 480,
+  String source = 'manual',
+  double? confidence,
 }) {
   return TransactionDraft(
     type: LedgerTransactionType.expense,
@@ -185,5 +326,7 @@ TransactionDraft transactionDraft({
     occurredAtLocal: occurredAtLocal ?? DateTime.utc(2026, 10, 3, 12, 30),
     timezoneOffsetMinutes: timezoneOffsetMinutes,
     accountId: 'account-wechat',
+    source: source,
+    confidence: confidence,
   );
 }

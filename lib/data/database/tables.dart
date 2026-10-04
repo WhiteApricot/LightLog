@@ -5,6 +5,9 @@ class Categories extends Table {
   TextColumn get parentId => text().nullable().references(Categories, #id)();
   TextColumn get name => text().withLength(min: 1, max: 40)();
   TextColumn get type => text()();
+  TextColumn get iconAsset => text().withDefault(
+    const Constant('assets/icons/categories/category-default.svg'),
+  )();
   IntColumn get sortOrder => integer()();
   BoolColumn get isActive => boolean().withDefault(const Constant(true))();
   IntColumn get createdAt => integer()();
@@ -23,6 +26,9 @@ class Accounts extends Table {
   TextColumn get id => text()();
   TextColumn get name => text().withLength(min: 1, max: 40)();
   TextColumn get type => text()();
+  TextColumn get iconAsset => text().withDefault(
+    const Constant('assets/icons/accounts/account-other.svg'),
+  )();
   BoolColumn get isActive => boolean().withDefault(const Constant(true))();
   IntColumn get sortOrder => integer()();
   IntColumn get createdAt => integer()();

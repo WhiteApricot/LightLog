@@ -29,6 +29,16 @@ data/
 
 Phase 1 的实际实现保持该边界：`data/database` 保存 Drift schema、连接和 seed，`features/ledger` 保存账本模型、Repository 与列表，`features/entry` 保存手动录入 UI，`app/providers.dart` 负责数据库和 Repository 的 Riverpod 装配。Widget 不直接执行 Drift query。发生时间的 UTC instant 与固定 offset 墙上时间转换集中在 `core/occurrence_time.dart`，避免 UI 使用当前设备时区解释历史账目。
 
+Phase 2 在 `features/recognition/domain` 中实现无 UI、无数据库写入能力的确定性解析器和 Candidate 模型。主界面唯一的“记一笔”入口由 `EntryPage` 直接打开共用 `TransactionEditorPage`：用户点击“识别”后才生成 Candidate；完整结果显示在输入框下方并同步填入手动表单。结果卡的“确认入账”和表单底部“保存”都调用同一个验证/保存方法，生成带 `source = text` 和 confidence 的 `TransactionDraft`，再由既有 `LedgerRepository` 写库。解析器接收 Repository 暴露的数据库分类列表，不在 UI 中硬编码分类 ID。
+
+分类与账户选择 UI 分别从数据库 `Category.iconAsset`、`Account.iconAsset` 读取 SVG，不按名称维护 Widget 映射。分类使用嵌入表单滚动区的紧凑纵向网格，不创建内部横向滚动区；一级分类默认展示，点击后展开或收起其二级分类。账户使用五项图标网格点选。日期选择和可循环的 24 小时时间滚轮只修改本地墙上时间；UTC instant 与发生时 offset 的转换仍由 `OccurrenceTime` 和 Repository 负责。
+
+Phase 3 将在 `features/recognition` 内实现五层本地混合识别器：Normalization、Personal History、Merchant Knowledge Base、Category Lexicon、Character n-gram classifier，并通过 Evidence Fusion 生成可解释 confidence。该阶段吸收基础历史学习能力；OCR 作为独立平台输入顺延到 Phase 4，不与本地文本识别器耦合。
+
+首页本月概览由纯领域计算 `MonthlyOverview.fromEntries` 从当前账本流派生，按每笔账保存的 offset 还原所属本地月份，合计普通 `income` / `expense`、排除转账，并依据关联原账类型冲减退款。它不引入统计模块、图表或预算持久化；预算区域当前仅是“未设置”占位。
+
+账目列表由 `LedgerDayGroup` 按每笔账的固定 offset 墙上日期分组并计算每日收支。列表行显示二级分类 SVG。单条删除由编辑器调用 Repository；长按多选使用 `softDeleteMany` / `restoreMany` 批量处理，二者均为 soft delete 并提供撤销。
+
 ## 数据流
 
 正常手动记账：
@@ -49,7 +59,7 @@ Raw Input
 → RuleEngine
 → RecognitionCandidate
 → Confidence
-→ Confirm/Auto-confirm
+→ Confirm
 → Repository
 → Transaction
 ```
@@ -62,7 +72,7 @@ LLM != Transaction
 Parser != Transaction
 ```
 
-任何识别系统都只能提出 Candidate。低置信度必须确认；高置信度可按策略自动确认并写入，但必须提示且可撤销。
+任何识别系统都只能提出 Candidate。Phase 2 全部要求用户确认；高置信自动确认及其提示、撤销策略留到 Phase 3 本地混合识别器完成证据校准后评估。
 
 ## 核心模型职责
 

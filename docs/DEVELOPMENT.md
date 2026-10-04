@@ -16,7 +16,7 @@ VS Code
 
 项目 Android 优先，最低支持 Android API 26。保留 iOS 工程结构，但当前 Windows 环境不构建 iOS。不得在文档、脚本或受版本控制配置中写入用户电脑的绝对 SDK 路径。
 
-Phase 1 已安装 Riverpod、Drift/SQLite 与 UUID 依赖，以及 Drift 代码生成开发依赖。Google ML Kit Text Recognition 和 fl_chart 仍按对应阶段确认后再添加，不得在无对应功能时提前引入。
+Phase 1 已安装 Riverpod、Drift/SQLite 与 UUID 依赖，以及 Drift 代码生成开发依赖。分类图标使用 `flutter_svg` 渲染轻量矢量资源；Flutter SDK 本身不提供 SVG 解码，因此采用该单一、维护活跃的专用依赖，不引入图片缓存、网络或遥测能力。Google ML Kit Text Recognition 和 fl_chart 仍按对应阶段确认后再添加，不得在无对应功能时提前引入。
 
 ## 常用命令
 
@@ -68,13 +68,71 @@ OCR 使用 Mock 测试字段提取之后的业务逻辑，少量真实设备/模
 
 ## Git 工作流
 
-```text
-main
-+
-短生命周期 feature branches
+`main` 必须尽量始终保持可运行。完整 feature、Phase 或跨多个模块的变更使用短生命周期分支并通过 PR 合并；范围明确、风险低的小修或纯文档修订可在获得授权后直接提交到 `main`。一次提交聚焦一个逻辑变更，不夹带格式化无关文件、生成物或本机配置。
+
+### 开工检查
+
+每次任务开始先获取远端引用并确认工作区、当前分支以及相对 `main` 的 ahead/behind：
+
+```bash
+git status --short --branch
+git branch --show-current
+git fetch origin --prune
+git rev-list --left-right --count origin/main...HEAD
 ```
 
-`main` 尽量保持可运行。一次提交聚焦一个逻辑变更，不夹带格式化无关文件、生成物或本机配置。
+`git rev-list` 输出依次为当前分支相对 `origin/main` 的 behind 和 ahead。发现未提交修改时先确认归属，不得覆盖或混入无关改动。
+
+开始新 Phase 前必须从最新 `main` 创建新分支：
+
+```bash
+git switch main
+git pull --ff-only origin main
+git switch -c feat/phase-N-short-name
+```
+
+只使用 `--ff-only` 同步 `main`，避免拉取时隐式生成 merge commit。不得使用 force push；未经明确授权不得 rebase、reset、强制覆盖或改写共享历史。
+
+### Feature branch 与 PR
+
+完成实现、测试和文档后：
+
+```bash
+git diff --check
+git status --short
+git add <本任务文件>
+git diff --cached --check
+git diff --cached --stat
+git commit -m "feat: concise description"
+git push -u origin feat/phase-N-short-name
+```
+
+随后通过 GitHub UI、GitHub CLI、已连接的 GitHub 工具或官方 GitHub API 创建 `feature branch -> main` 的 PR。PR 正文应概述行为变化和验证命令；不得在脚本、日志或仓库中暴露访问令牌。
+
+合并前必须 review PR diff，而不能只看提交信息：
+
+```bash
+git fetch origin --prune
+git diff --stat origin/main...HEAD
+git diff --name-status origin/main...HEAD
+git rev-list --left-right --count origin/main...HEAD
+```
+
+确认变更文件均在任务范围内、没有敏感信息或构建产物、分支不落后于 `main`，并在 GitHub 上确认 PR 可合并且无冲突。完整 feature 默认使用 squash merge，使 `main` 保留一个聚焦提交；不得绕过失败的检查。
+
+### 合并后清理
+
+PR 合并后验证远端 `main` 指向 merge commit，再删除已经完成且不再使用的开发分支：
+
+```bash
+git switch main
+git pull --ff-only origin main
+git branch -d feat/phase-N-short-name
+git push origin --delete feat/phase-N-short-name
+git status --short --branch
+```
+
+只删除已经确认合并且不再使用的分支；不得删除 `main`。若分支未被 Git 识别为已合并（例如 squash merge），应先通过 PR 状态和远端提交确认，不得用 `-D` 绕过检查，除非另有明确授权。
 
 ## Commit
 
@@ -95,12 +153,14 @@ chore:
 
 ```text
 1. 阅读 AGENTS.md、需求/架构文档
-2. 检查相关现有代码和 Git 状态
-3. 给出符合当前范围的最小实现方案
-4. 编码，保留无关已有改动
-5. 执行 format/analyze/test；原生改动再运行应用
-6. 更新必要文档和 CHANGELOG 的 Unreleased
-7. 总结改动、验证结果、TBD 和剩余问题
+2. fetch 并检查工作区、当前分支及相对 main 的 ahead/behind
+3. 新 Phase 从最新 main 创建 feature branch
+4. 给出符合当前范围的最小实现方案
+5. 编码，保留无关已有改动
+6. 更新 TODO、必要设计文档和 CHANGELOG 的 Unreleased
+7. 执行 dart format、flutter analyze、flutter test；原生改动再运行应用
+8. review diff 后按授权 commit/push/PR；合并后清理完成分支
+9. 总结改动、验证结果、TBD 和剩余问题
 ```
 
 ## 依赖与构建配置

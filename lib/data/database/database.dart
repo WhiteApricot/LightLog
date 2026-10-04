@@ -11,12 +11,61 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
     onCreate: (migrator) async {
       await migrator.createAll();
+    },
+    onUpgrade: (migrator, from, to) async {
+      if (from < 2) {
+        await migrator.addColumn(categories, categories.iconAsset);
+        await customStatement(
+          "UPDATE categories SET name = '饮品' WHERE id = 'expense-food-drink'",
+        );
+        await customStatement(
+          "UPDATE categories SET name = '公交地铁' WHERE id = 'expense-transport-public'",
+        );
+        await customStatement(
+          "UPDATE categories SET is_active = 0 WHERE id = 'expense-shopping-daily'",
+        );
+        await customStatement(
+          "UPDATE categories SET name = '未分类支出' WHERE id = 'expense-other-general'",
+        );
+        await customStatement(
+          "UPDATE categories SET name = '工资奖金' WHERE id = 'income-salary'",
+        );
+        await customStatement(
+          "UPDATE categories SET name = '基本工资' WHERE id = 'income-salary-monthly'",
+        );
+        await customStatement(
+          "UPDATE categories SET name = '未分类收入' WHERE id = 'income-other-general'",
+        );
+      }
+      if (from < 3) {
+        await migrator.addColumn(accounts, accounts.iconAsset);
+        for (final category in defaultCategories) {
+          await (update(
+            categories,
+          )..where((table) => table.id.equals(category.id))).write(
+            CategoriesCompanion(
+              iconAsset: Value(category.iconAsset),
+              updatedAt: Value(DateTime.now().toUtc().millisecondsSinceEpoch),
+            ),
+          );
+        }
+        for (final account in defaultAccounts) {
+          await (update(
+            accounts,
+          )..where((table) => table.id.equals(account.id))).write(
+            AccountsCompanion(
+              iconAsset: Value(account.iconAsset),
+              updatedAt: Value(DateTime.now().toUtc().millisecondsSinceEpoch),
+            ),
+          );
+        }
+      }
     },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');
@@ -33,12 +82,22 @@ class AppDatabase extends _$AppDatabase {
           parentId: Value(category.parentId),
           name: category.name,
           type: category.type,
+          iconAsset: Value(category.iconAsset),
           sortOrder: category.sortOrder,
           createdAt: now,
           updatedAt: now,
         ),
         mode: InsertMode.insertOrIgnore,
       );
+      await (update(categories)..where(
+            (table) =>
+                table.id.equals(category.id) &
+                (table.iconAsset.equals('assets/icons/categories/other.svg') |
+                    table.iconAsset.equals(
+                      'assets/icons/categories/category-default.svg',
+                    )),
+          ))
+          .write(CategoriesCompanion(iconAsset: Value(category.iconAsset)));
     }
     for (final account in defaultAccounts) {
       await into(accounts).insert(
@@ -46,12 +105,21 @@ class AppDatabase extends _$AppDatabase {
           id: account.id,
           name: account.name,
           type: account.type,
+          iconAsset: Value(account.iconAsset),
           sortOrder: account.sortOrder,
           createdAt: now,
           updatedAt: now,
         ),
         mode: InsertMode.insertOrIgnore,
       );
+      await (update(accounts)..where(
+            (table) =>
+                table.id.equals(account.id) &
+                table.iconAsset.equals(
+                  'assets/icons/accounts/account-other.svg',
+                ),
+          ))
+          .write(AccountsCompanion(iconAsset: Value(account.iconAsset)));
     }
   });
 
