@@ -26,9 +26,11 @@ void main() {
   test('parses current and previous weekdays across month and year', () {
     final now = DateTime(2026, 1, 1, 10, 20); // Thursday
 
-    expect(parser.parse('本周一午餐', now).value, DateTime(2025, 12, 29, 10, 20));
-    expect(parser.parse('本周日午餐', now).value, DateTime(2026, 1, 4, 10, 20));
+    expect(parser.parse('本周一午餐', now).value, DateTime(2025, 12, 29, 12));
+    expect(parser.parse('本周日午餐', now).value, DateTime(2026, 1, 4, 12));
     expect(parser.parse('上周五中午麦当劳', now).value, DateTime(2025, 12, 26, 12));
+    expect(parser.parse('今天午饭', now).value, DateTime(2026, 1, 1, 12));
+    expect(parser.parse('昨天晚饭', now).value, DateTime(2025, 12, 31, 20));
   });
 
   test('month start and end have stable documented defaults', () {
@@ -52,5 +54,30 @@ void main() {
       DateTime(2026, 10, 4, 20, 30),
     );
     expect(parser.parse('上午十点咖啡', now).value, DateTime(2026, 10, 4, 10));
+  });
+
+  test('parses supported absolute date forms', () {
+    final now = DateTime(2026, 10, 4, 12, 30);
+    final cases = {
+      '10月1日 午餐': DateTime(2026, 10, 1, 12),
+      '10月1号 午餐': DateTime(2026, 10, 1, 12),
+      '2026年9月30日 午餐': DateTime(2026, 9, 30, 12),
+      '2026-10-03 午餐': DateTime(2026, 10, 3, 12),
+      '2026/10/03 午餐': DateTime(2026, 10, 3, 12),
+      '2026.10.03 午餐': DateTime(2026, 10, 3, 12),
+    };
+    for (final entry in cases.entries) {
+      expect(
+        parser.parse(entry.key, now).value,
+        entry.value,
+        reason: entry.key,
+      );
+    }
+  });
+
+  test('transaction time wins over lower-priority business dates', () {
+    final now = DateTime(2026, 10, 4, 12, 30);
+    final result = parser.parse('乘车日期 2026-10-03 支付时间 2026-10-01 18:20', now);
+    expect(result.value, DateTime(2026, 10, 1, 18, 20));
   });
 }

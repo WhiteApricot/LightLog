@@ -7,15 +7,16 @@
 Phase 3 本地识别器按五层证据组织：
 
 ```text
+0. Field-aware Extraction
 1. Normalization
 2. Personal History
-3. Merchant Knowledge Base
+3. Local Entity Knowledge Base
 4. Category Lexicon
-5. Character n-gram classifier
+5. Character n-gram classifier（尚未实现，当前也不保留空接口）
 → Evidence Fusion / Confidence
 ```
 
-当前已实现 Normalization、Personal History、Merchant Knowledge Base、Category Lexicon 和 Evidence Fusion；Character n-gram 只保留接口。全部在本机运行，App 运行时不联网。Web Search 和 LLM 不属于 V0.1。
+当前已实现字段/span、Normalization、Personal History、审核制 Entity Knowledge Base、Category Lexicon、独立 TypeInference 和 Evidence Fusion。Character n-gram 尚未实现；只有当结构性重构后的正式 P1 明显低于 75% 且失败分析证明规则收益耗尽时，才单独决策。全部在本机运行，App 运行时不联网。Web Search 和 LLM 不属于 V0.1。
 
 任何识别来源都只能生成 `RecognitionCandidate`：
 
@@ -31,9 +32,10 @@ Candidate 经用户确认或高置信自动确认策略后，才可由 Repositor
 
 ```text
 Raw Text
-→ Amount / Type / Natural Time Parser
-→ Normalize
-→ History / Merchant KB / Category Lexicon
+→ raw/display/matching 双轨 Normalize
+→ Transaction status / Natural Time / protected numeric spans
+→ Amount candidates / Content span / Type evidence
+→ indexed History / Local Entity KB / role-aware Category Lexicon
 → Evidence Fusion
 → semanticKey / CategoryResolver
 → Candidate
@@ -41,12 +43,13 @@ Raw Text
 
 各阶段职责：
 
-- Normalize：统一大小写、全半角、空白和标点，谨慎清理支付/订单、门店和公司噪声，不丢失原始输入。
-- Amount Parser：识别整数、小数、正负号和货币提示，输出整数 `amountMinor`；金额冲突必须标记。
+- Normalize：保留 raw/display，另建 matching/index 视图；大小写、全半角、空白和标点处理不得破坏展示内容或 span。
+- Field Extractor：区分金额、日期、订单号、数量、型号、标题数字等角色；金额按字段上下文评分，冲突必须标记。
+- Transaction Status：失败、取消、非交易页阻断普通候选；退款与多交易显式报告。
 - Time Parser：识别显式时间和“昨晚”等相对时间；未给出时使用当前设备本地时间。
 - Content Parser：提取内容/商户候选，不凭空补全具体商户。
-- Evidence Layers：个人历史、精确商户 alias 和数据驱动类别词典统一输出结构化 evidence。
-- Fusion / Resolver：先输出稳定消费语义，再映射当前活动分类；冲突降分，无证据可保持不确定。
+- Evidence Layers：按 key 查询的个人历史、实体 exact/substring/fuzzy 和带 role/negative 的词典统一输出结构化 evidence。
+- Fusion / Resolver：specific product/action/service 高于 platform/broad entity，merchant 默认语义只作 fallback；个人历史需满足净支持门禁；先输出稳定消费语义，再映射当前活动分类。
 - Candidate：汇总字段、语义、当前分类映射、每项证据、冲突、缺失项和 confidence。
 
 具体实现、数据规模、阈值和生成命令见 [RECOGNITION_ALGORITHM.md](RECOGNITION_ALGORITHM.md)。
@@ -91,7 +94,7 @@ OCR 文本和坐标可用于当次字段提取，但不得直接写账。默认�
 
 ## Confidence
 
-Phase 3 分类 confidence 由优先级融合产生，不再把所有字段权重简单累加。个人历史可覆盖通用知识；精确 Merchant 高于普通关键词；同向独立来源只小幅增分；强冲突降至复核区；低于最低分类证据阈值时返回不确定。金额、内容、类型和时间证据仍随 Candidate 保留，但不能把无分类证据“加成”为高置信分类。
+Phase 3 分别计算 amount/type/category/time/content confidence，再由 gating 得到 overall confidence。个人历史可覆盖通用知识；具体商品、行为和服务高于平台与宽泛实体；同向独立来源只小幅增分；fuzzy、platform、broad-only 和强冲突均有上限；低于最低分类证据阈值时返回不确定。金额、内容、类型和时间证据仍随 Candidate 保留，但不能把无分类证据“加成”为高置信分类。当前回归失败子集的 high-confidence wrong 为 0。
 
 当前不启用自动入账：用户必须主动识别并确认或修改。低置信冲突可以展示当前最优分类供复核；缺少金额、内容、分类语义或当前分类映射会阻止直接保存。
 

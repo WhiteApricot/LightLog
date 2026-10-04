@@ -22,6 +22,12 @@
 - Added priority-based explainable evidence fusion, stable semantic category resolution, and an inert Character n-gram classifier interface for future work.
 - Added natural Chinese time parsing for relative days, weekdays, month boundaries, dayparts, 24-hour clocks, and spoken Chinese clock expressions.
 - Added reproducible knowledge generation/validation and a 10,000-parse performance benchmark.
+- Added field-aware amount/status extraction, absolute transaction-time parsing, numeric-role classification, multiple-transaction detection, and refund safety blocking.
+- Added a 1666-entity Local Entity Knowledge Base, 1070 positive terms, 167 conflict terms, provenance-preserving source snapshots, and hard generation quality gates.
+- Added exact, longest-substring and bounded fuzzy entity matching plus role-aware lexicon evidence.
+- Added an independent 190-case blind-evaluation runner and documented the first unacceptable baseline without applying corpus-specific patches.
+- Added a pure Dart production `LocalRecognizer`, structured field/span candidates, independent type evidence, confidence calibration, failure analysis, and a standalone benchmark shared by App and tools.
+- Added reviewed knowledge roles/kinds/breadth, per-alias match policies, deterministic review samples, scene coverage gates, and runtime distribution reports.
 
 ### Changed
 
@@ -41,6 +47,13 @@
 - Replanned Phase 3 as the five-layer local hybrid recognizer and moved OCR to Phase 4; local history learning is no longer a separate phase.
 - Migrated the database to schema v4 with category `semanticKey` / `isSystem` fields and minimal local `recognition_rules` hit/correction history.
 - Changed text classification from hard-coded category-name rules and additive scoring to packaged indexes, stable semantics, `CategoryResolver`, and conflict-aware confidence.
+- Moved recognition/history/feedback orchestration from `TransactionEditorPage` into a reusable `RecognitionCoordinator` and changed Personal History to indexed per-key queries.
+- Made default category semantic keys an explicit stable mapping and removed the unused `primarySemanticKey` field.
+- Changed type inference to fuse expense and income evidence before deriving type when no explicit sign or strong type signal exists.
+- Unified development utilities under `tools/` and changed the benchmark to warm average/p95/max reporting with a p95 < 5 ms gate.
+- Replaced `TextEntryParser`, the monolithic field extractor, and the inert n-gram interface with one production recognition pipeline used by App, evaluation, benchmark, and tests.
+- Reduced runtime entity knowledge from an unreviewed quantity-driven snapshot to 81 approved consumer entities and 84 reviewed lexicon groups; the 1600 media/game snapshot records remain provenance-only and are excluded from runtime.
+- Changed evaluation to report P0/P1/P2 safe rejection, per-field and complete accuracy, display-vs-span content errors, confidence buckets, high-confidence wrong predictions, and average/p50/p95/p99/max latency.
 
 ### Fixed
 

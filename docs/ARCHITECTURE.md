@@ -31,9 +31,11 @@ Phase 1 的实际实现保持该边界：`data/database` 保存 Drift schema、�
 
 Phase 2 在 `features/recognition/domain` 中实现无 UI、无数据库写入能力的确定性解析器和 Candidate 模型。主界面唯一的“记一笔”入口由 `EntryPage` 直接打开共用 `TransactionEditorPage`：用户点击“识别”后才生成 Candidate；完整结果显示在输入框下方并同步填入手动表单。结果卡的“确认入账”和表单底部“保存”都调用同一个验证/保存方法，生成带 `source = text` 和 confidence 的 `TransactionDraft`，再由既有 `LedgerRepository` 写库。解析器接收 Repository 暴露的数据库分类列表，不在 UI 中硬编码分类 ID。
 
+Phase 3 大修新增轻量 `RecognitionCoordinator`：文字录入和未来 OCR 都通过它按规范化 key 查询 `RecognitionRepository`、构造纯 Dart `RecognitionInput`、调用唯一生产 `LocalRecognizer`，并在最终保存后记录反馈。`TransactionEditorPage` 不再负责全量历史加载或识别编排，只把可靠的 partial 字段回填到可编辑表单。`domain/` 的字段/span、Normalization、实体/词典匹配、TypeInference、Fusion、CategoryResolver 和结果模型不依赖 Flutter、Riverpod、Drift、AssetBundle 或 `dart:io`；外围 `data/application` 负责资产、持久化和 ledger 映射。
+
 分类与账户选择 UI 分别从数据库 `Category.iconAsset`、`Account.iconAsset` 读取 SVG，不按名称维护 Widget 映射。分类使用嵌入表单滚动区的紧凑纵向网格，不创建内部横向滚动区；一级分类默认展示，点击后展开或收起其二级分类。账户使用五项图标网格点选。日期选择和可循环的 24 小时时间滚轮只修改本地墙上时间；UTC instant 与发生时 offset 的转换仍由 `OccurrenceTime` 和 Repository 负责。
 
-Phase 3 在 `features/recognition` 内实现本地混合识别器。`domain` 保存 Normalization、自然时间、Personal History 匹配、知识索引、Evidence Fusion、`CategoryResolver` 与 Candidate；`data` 只负责一次性加载打包 JSON 和通过独立 Repository 读写本地历史规则。当前前四层已实现，Character n-gram 只保留输入/输出接口和空实现，不包含模型或 runtime。OCR 作为独立平台输入顺延到 Phase 4，不与本地文本识别器耦合。
+Phase 3 在 `features/recognition` 内实现本地混合识别器。`domain` 保存唯一 `Recognizer` 接口和 `LocalRecognizer`、字段/span、自然时间、Personal History、知识模型、Evidence Fusion、`CategoryResolver` 与 Candidate；`data` 负责共用 JSON decoder、AssetBundle adapter 和历史 Repository；`application` 负责 Coordinator 与 ledger 映射。空 n-gram 接口和旧 Parser 已删除，是否进入 n-gram 必须由失败分布另行决策。OCR 作为独立平台输入顺延到 Phase 4，识别文字后仍进入同一个 `LocalRecognizer`。
 
 首页本月概览由纯领域计算 `MonthlyOverview.fromEntries` 从当前账本流派生，按每笔账保存的 offset 还原所属本地月份，合计普通 `income` / `expense`、排除转账，并依据关联原账类型冲减退款。它不引入统计模块、图表或预算持久化；预算区域当前仅是“未设置”占位。
 
@@ -53,10 +55,11 @@ UI
 智能记账：
 
 ```text
-Raw Input
-→ amount/type/time parsing + Normalization
+Raw Input / OCR Text
+→ raw/display/matching normalization
+→ status/time/protected numeric spans/amount/content
 → Personal History / Merchant KB / Category Lexicon / future n-gram
-→ Evidence Fusion
+→ independent TypeInference + Evidence Fusion
 → semanticKey
 → CategoryResolver
 → RecognitionCandidate

@@ -264,14 +264,16 @@ void main() {
       normalizedContent: '星巴克',
       predictedSemanticKey: 'expense.food.drink',
       finalCategoryId: 'expense-food-drink',
+      recordedAtUtcMilliseconds: 1,
     );
     await recognitionRepository.recordFeedback(
       normalizedContent: '星巴克',
       predictedSemanticKey: 'expense.food.drink',
       finalCategoryId: 'expense-food-dinner',
+      recordedAtUtcMilliseconds: 2,
     );
 
-    final records = await recognitionRepository.loadHistory();
+    final records = await recognitionRepository.loadHistoryForKey('星巴克');
     final drink = records.singleWhere(
       (item) => item.semanticKey == 'expense.food.drink',
     );

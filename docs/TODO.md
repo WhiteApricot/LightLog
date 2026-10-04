@@ -47,12 +47,16 @@
 - [x] Layer 2: use personal confirmation/correction history as local evidence
 - [x] Layer 3: add a local Merchant Knowledge Base
 - [x] Layer 4: extract and maintain a Category Lexicon
-- [ ] Layer 5: add a local character n-gram classifier (input/output interface reserved; no model/runtime yet)
-- [ ] Add fuzzy matching with explicit thresholds and conflict handling
+- [ ] Layer 5: only consider a local character n-gram classifier after a separate failure-distribution decision; no interface/model/runtime exists now
+- [x] Add fuzzy matching with explicit thresholds and conflict handling
 - [x] Fuse implemented layer evidence into priority-based, explainable confidence
 - [x] Persist the minimum local rules needed for confirmation/correction learning
 - [x] Add deterministic regression cases and a repeatable local performance benchmark
-- [ ] Add offline evaluation sets and regression metrics
+- [x] Add an offline blind-evaluation runner and record first metrics
+- [x] Replace the old Parser with one pure-Dart production `LocalRecognizer` shared by App/evaluation/benchmark/tests
+- [x] Resolve the first structural Phase 3 blockers with span extraction, numeric protection, independent type evidence, specificity-aware fusion and confidence gating
+- [x] Replace quantity gates with reviewed knowledge distribution, alias policy, conflict and deterministic sample gates
+- [ ] Preserve and rerun the complete 190-case corpus when the missing 74 original passing inputs are restored; the repository currently contains only the initial report and its 116 failures
 
 ## Future - Category management
 

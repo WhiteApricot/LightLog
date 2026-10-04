@@ -1,26 +1,34 @@
+import 'recognition_models.dart';
+
 class ParsedNaturalTime {
   const ParsedNaturalTime({
     required this.value,
     required this.remaining,
     required this.isExplicit,
     required this.description,
+    this.spans = const [],
   });
 
   final DateTime value;
   final String remaining;
   final bool isExplicit;
   final String? description;
+  final List<RecognizedSpan> spans;
 }
 
 class NaturalTimeParser {
   const NaturalTimeParser();
 
   static final RegExp _weekPattern = RegExp(r'(本周|上周)([一二三四五六日天])');
+  static final RegExp _ambiguousWeekPattern = RegExp(r'(?<!本|上)周[一二三四五六日天]');
   static final RegExp _clockPattern = RegExp(
-    r'(?<!\d)([01]?\d|2[0-3]):([0-5]\d)(?!\d)',
+    r'(?<!\d)([01]?\d|2[0-3]):([0-5]\d)(?::([0-5]\d))?(?!\d)',
   );
   static final RegExp _hourPattern = RegExp(
     r'(?<!\d)([零〇一二两三四五六七八九十\d]{1,3})点(?:(半)|([零〇一二两三四五六七八九十\d]{1,3})分?)?',
+  );
+  static final RegExp _absoluteDatePattern = RegExp(
+    r'(?:(\d{4})\s*年\s*)?(\d{1,2})\s*月\s*(\d{1,2})\s*[日号]|(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})',
   );
 
   ParsedNaturalTime parse(String input, DateTime now) {
@@ -31,13 +39,44 @@ class NaturalTimeParser {
     var explicit = false;
     String? description;
 
+    final absoluteDates = <({RegExpMatch match, DateTime value, int score})>[];
+    for (final match in _absoluteDatePattern.allMatches(remaining)) {
+      final year =
+          int.tryParse(match.group(1) ?? match.group(4) ?? '') ?? now.year;
+      final month = int.parse(match.group(2) ?? match.group(5)!);
+      final day = int.parse(match.group(3) ?? match.group(6)!);
+      final candidate = DateTime(year, month, day);
+      if (candidate.year != year ||
+          candidate.month != month ||
+          candidate.day != day) {
+        continue;
+      }
+      final start = match.start > 12 ? match.start - 12 : 0;
+      final label = remaining.substring(start, match.start);
+      final score = RegExp(r'支付时间|交易时间|付款时间').hasMatch(label)
+          ? 30
+          : RegExp(r'下单时间|订单时间').hasMatch(label)
+          ? 15
+          : RegExp(r'乘车日期|场次时间|有效期|入住日期').hasMatch(label)
+          ? -20
+          : 0;
+      absoluteDates.add((match: match, value: candidate, score: score));
+    }
+    if (absoluteDates.isNotEmpty) {
+      absoluteDates.sort((a, b) => b.score.compareTo(a.score));
+      date = absoluteDates.first.value;
+      explicit = true;
+      description = '绝对日期';
+      remaining = remaining.replaceAll(_absoluteDatePattern, ' ');
+    }
+
     final monthToken = [
       '这个月初',
       '本月初',
       '这个月底',
       '本月底',
     ].where(remaining.contains).firstOrNull;
-    if (monthToken != null) {
+    if (!explicit && monthToken != null) {
       explicit = true;
       final isEnd = monthToken.contains('底');
       date = isEnd
@@ -47,7 +86,7 @@ class NaturalTimeParser {
       minute = 0;
       description = isEnd ? '月底按本月最后一天 20:00 解析' : '月初按本月 1 日 09:00 解析';
       remaining = remaining.replaceFirst(monthToken, ' ');
-    } else {
+    } else if (!explicit) {
       final week = _weekPattern.firstMatch(remaining);
       if (week != null) {
         explicit = true;
@@ -113,6 +152,30 @@ class NaturalTimeParser {
       minute = 0;
       description = description == null ? daypart : '$description$daypart';
       remaining = remaining.replaceFirst(daypart, ' ');
+    } else {
+      final mealDaypart = [
+        '早餐',
+        '早点',
+        '早饭',
+        '午餐',
+        '午饭',
+        '晚餐',
+        '晚饭',
+        '夜宵',
+      ].where(remaining.contains).firstOrNull;
+      if (mealDaypart != null) {
+        explicit = true;
+        hour = switch (mealDaypart) {
+          '早餐' || '早点' || '早饭' => 8,
+          '午餐' || '午饭' => 12,
+          '晚餐' || '晚饭' => 20,
+          _ => 22,
+        };
+        minute = 0;
+        description = description == null
+            ? mealDaypart
+            : '$description$mealDaypart';
+      }
     }
 
     final clock = _clockPattern.firstMatch(remaining);
@@ -146,7 +209,37 @@ class NaturalTimeParser {
       remaining: remaining.replaceAll(RegExp(r'\s+'), ' ').trim(),
       isExplicit: explicit,
       description: description,
+      spans: _timeSpans(input),
     );
+  }
+
+  static List<RecognizedSpan> _timeSpans(String input) {
+    final spans = <RecognizedSpan>[];
+    void addMatches(RegExp pattern, String kind) {
+      for (final match in pattern.allMatches(input)) {
+        spans.add(
+          RecognizedSpan(
+            range: TextSpanRange(start: match.start, end: match.end),
+            kind: kind,
+            text: match.group(0)!,
+            protected: true,
+          ),
+        );
+      }
+    }
+
+    addMatches(_absoluteDatePattern, 'date');
+    addMatches(_clockPattern, 'clock');
+    addMatches(_hourPattern, 'clock');
+    addMatches(_weekPattern, 'relativeDate');
+    addMatches(_ambiguousWeekPattern, 'ambiguousWeekday');
+    addMatches(
+      RegExp(r'这个月初|本月初|这个月底|本月底|前天|昨晚|昨天|今早|今晚|今天|明天'),
+      'relativeDate',
+    );
+    addMatches(RegExp(r'凌晨|今天早上|早上|上午|中午|下午|晚上'), 'daypart');
+    spans.sort((a, b) => a.range.start.compareTo(b.range.start));
+    return List.unmodifiable(spans);
   }
 
   static int _weekday(String value) => switch (value) {

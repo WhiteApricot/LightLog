@@ -599,7 +599,30 @@ git diff --check
 
 只有人工确认进入 n-gram 后才重新创建真实 classifier 接口、训练/验证 split、模型资产格式、包体/延迟门禁和 fusion ceiling。不得恢复当前空接口作为“已支持”。n-gram 也必须作为同一个 `LocalRecognizer` 内部 evidence source，不能成为第二套识别器。
 
-## 9. 最终顺序 Checklist
+## 9. 执行结果（2026-10-04）
+
+本计划的 WP1–WP10 已连续执行完成，详细实现与当前指标以
+[`RECOGNITION_ALGORITHM.md`](RECOGNITION_ALGORITHM.md) 为准。原始 190-case corpus 没有随首次报告提交；
+仓库只保存了 116 条失败项，因此本轮保留初始报告不覆盖，并生成
+`phase3_refactor_failure_subset.json` 与 `phase3_refactor_failure_analysis.md`。失败子集 P1 为 66/89，
+与旧报告中 45 个原本正确的 P1 合并重建为 111/134（82.84%），未触发 `<75%` 的 n-gram 停止点；
+该重建值不能替代完整 corpus 复验。
+
+执行总览：
+
+- [x] WP1：纯 Dart 边界、唯一 `Recognizer`、共用 decoder 和边界测试。
+- [x] WP2：raw/display/matching/index 文本视图与 span-based content extraction。
+- [x] WP3：protected numeric spans、AmountCandidate、status 与自然时间。
+- [x] WP4：独立 TypeEvidence / TypeInference。
+- [x] WP5：实体/词典 role、specificity 与结构化 Fusion。
+- [x] WP6：字段 confidence、ceiling 与安全 gating；high-confidence wrong = 0。
+- [x] WP7：审核制知识资产、alias policy、冲突/分布/抽样质量门禁。
+- [x] WP8：同一 production Recognizer 的 evaluation、failure analysis 与指标体系。
+- [x] WP9：App Coordinator 接入、partial 回填、旧 Parser/空 n-gram/重复 mapper 清理。
+- [x] WP10：回归子集、benchmark、文档与最终验证。
+- [ ] 恢复缺失的 74 条原始输入后，正式重跑完整 190-case corpus 并确认重建指标无回退。
+
+## 10. 原始最终顺序 Checklist（执行审计基线）
 
 ### 基线与边界
 
@@ -699,4 +722,4 @@ git diff --check
 - [ ] 运行 `dart format .`、`flutter analyze`、`flutter test` 和最终 `git diff --check`。
 - [ ] 检查 diff 无无关文件、密钥、机器绝对路径或未说明 TBD。
 
-后续执行入口：**阅读本文，从 WP1 的第一项开始；每完成一个 WP，先满足该 WP 的测试与验收，再勾选 Checklist，禁止跳到知识调参或 n-gram。**
+后续执行入口：**先恢复完整 190-case corpus，按本节唯一未完成项正式复验；在该结果出来前不进入 n-gram。**

@@ -7,9 +7,8 @@ import '../../../core/money.dart';
 import '../../../core/occurrence_time.dart';
 import '../../../data/database/database.dart';
 import '../../ledger/domain/ledger_models.dart';
+import '../../recognition/application/recognition_result_mapper.dart';
 import '../../recognition/domain/recognition_models.dart';
-import '../../recognition/domain/personal_history.dart';
-import '../../recognition/domain/text_entry_parser.dart';
 import 'account_picker.dart';
 import 'category_picker.dart';
 import 'wheel_time_picker.dart';
@@ -388,28 +387,33 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
     }
     setState(() => _parsing = true);
     try {
-      final values = await Future.wait([
-        ref.read(textEntryParserProvider.future),
-        ref.read(recognitionRepositoryProvider).loadHistory(),
-      ]);
+      final coordinator = await ref.read(recognitionCoordinatorProvider.future);
       if (!mounted) return;
-      final candidate = (values[0] as TextEntryParser).parse(
+      final candidate = await coordinator.recognize(
         rawText: _smartInputController.text,
         categories: categories,
         now: DateTime.now(),
-        history: values[1] as List<PersonalHistoryRecord>,
       );
       setState(() {
         _smartCandidate = candidate;
-        if (!candidate.isComplete) return;
         final draft = candidate.draft;
-        _type = draft.type!;
-        _amountController.text = MoneyParser.editableCny(draft.amountMinor!);
-        _contentController.text = draft.content!;
-        _occurredAtLocal = draft.occurredAtLocal!;
-        _timezoneOffsetMinutes = draft.timezoneOffsetMinutes!;
-        _categoryId = candidate.categoryId;
-        _subcategoryId = candidate.subcategoryId;
+        if (draft.type != null) {
+          _type = RecognitionResultMapper.ledgerType(draft.type!);
+        }
+        if (draft.amountMinor != null) {
+          _amountController.text = MoneyParser.editableCny(draft.amountMinor!);
+        }
+        if (draft.content != null) _contentController.text = draft.content!;
+        if (draft.occurredAtLocal != null) {
+          _occurredAtLocal = draft.occurredAtLocal!;
+        }
+        if (draft.timezoneOffsetMinutes != null) {
+          _timezoneOffsetMinutes = draft.timezoneOffsetMinutes!;
+        }
+        if (candidate.categoryId != null && candidate.subcategoryId != null) {
+          _categoryId = candidate.categoryId;
+          _subcategoryId = candidate.subcategoryId;
+        }
         _source = 'text';
         _confidence = candidate.confidence;
         _categoryValidationRequested = false;
@@ -501,14 +505,13 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
       final candidate = _smartCandidate;
       if (widget.entry == null && candidate != null && _source == 'text') {
         try {
-          await ref
-              .read(recognitionRepositoryProvider)
-              .recordFeedback(
-                normalizedContent:
-                    candidate.draft.normalizedMerchant ?? draft.content,
-                predictedSemanticKey: candidate.semanticKey,
-                finalCategoryId: draft.subcategoryId,
-              );
+          final coordinator = await ref.read(
+            recognitionCoordinatorProvider.future,
+          );
+          await coordinator.recordFeedback(
+            candidate: candidate,
+            finalCategoryId: draft.subcategoryId,
+          );
         } catch (error) {
           if (mounted) {
             ScaffoldMessenger.of(

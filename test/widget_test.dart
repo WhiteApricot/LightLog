@@ -10,8 +10,9 @@ import 'package:light_log/data/database/database.dart';
 import 'package:light_log/features/ledger/data/ledger_repository.dart';
 import 'package:light_log/features/ledger/domain/ledger_models.dart';
 import 'package:light_log/features/recognition/data/recognition_repository.dart';
-import 'package:light_log/features/recognition/domain/personal_history.dart';
-import 'package:light_log/features/recognition/domain/text_entry_parser.dart';
+import 'package:light_log/features/recognition/domain/knowledge_models.dart';
+import 'package:light_log/features/recognition/domain/recognition_models.dart';
+import 'package:light_log/features/recognition/domain/recognizer.dart';
 
 void main() {
   testWidgets('entry page combines smart input and manual form', (
@@ -249,7 +250,9 @@ Future<void> _pumpApp(
         recognitionRepositoryProvider.overrideWithValue(
           _FakeRecognitionRepository(),
         ),
-        textEntryParserProvider.overrideWithValue(AsyncData(TextEntryParser())),
+        localRecognizerProvider.overrideWithValue(
+          AsyncData(LocalRecognizer(knowledge: KnowledgeCatalog.empty())),
+        ),
       ],
       child: const LightLogApp(),
     ),
@@ -259,13 +262,16 @@ Future<void> _pumpApp(
 
 class _FakeRecognitionRepository implements RecognitionRepository {
   @override
-  Future<List<PersonalHistoryRecord>> loadHistory() async => const [];
+  Future<List<PersonalHistoryRecord>> loadHistoryForKey(
+    String normalizedKey,
+  ) async => const [];
 
   @override
   Future<void> recordFeedback({
     required String normalizedContent,
     required String? predictedSemanticKey,
     required String finalCategoryId,
+    required int recordedAtUtcMilliseconds,
   }) async {}
 }
 

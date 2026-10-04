@@ -3,15 +3,16 @@ import 'package:uuid/uuid.dart';
 
 import '../../../data/database/database.dart';
 import '../domain/normalization.dart';
-import '../domain/personal_history.dart';
+import '../domain/recognition_models.dart';
 
 abstract interface class RecognitionRepository {
-  Future<List<PersonalHistoryRecord>> loadHistory();
+  Future<List<PersonalHistoryRecord>> loadHistoryForKey(String normalizedKey);
 
   Future<void> recordFeedback({
     required String normalizedContent,
     required String? predictedSemanticKey,
     required String finalCategoryId,
+    required int recordedAtUtcMilliseconds,
   });
 }
 
@@ -23,10 +24,15 @@ class LocalRecognitionRepository implements RecognitionRepository {
   final Uuid _uuid;
 
   @override
-  Future<List<PersonalHistoryRecord>> loadHistory() async {
-    final rows = await (_database.select(
-      _database.recognitionRules,
-    )..orderBy([(table) => OrderingTerm.desc(table.lastUsedAt)])).get();
+  Future<List<PersonalHistoryRecord>> loadHistoryForKey(
+    String normalizedKey,
+  ) async {
+    if (normalizedKey.isEmpty) return const [];
+    final rows =
+        await (_database.select(_database.recognitionRules)
+              ..where((table) => table.normalizedContent.equals(normalizedKey))
+              ..orderBy([(table) => OrderingTerm.desc(table.lastUsedAt)]))
+            .get();
     return [
       for (final row in rows)
         PersonalHistoryRecord(
@@ -44,6 +50,7 @@ class LocalRecognitionRepository implements RecognitionRepository {
     required String normalizedContent,
     required String? predictedSemanticKey,
     required String finalCategoryId,
+    required int recordedAtUtcMilliseconds,
   }) async {
     final key = RecognitionNormalizer.indexKey(normalizedContent);
     if (key.isEmpty) return;
@@ -53,7 +60,7 @@ class LocalRecognitionRepository implements RecognitionRepository {
     final finalSemanticKey = category?.semanticKey;
     if (finalSemanticKey == null || finalSemanticKey.isEmpty) return;
     await _database.transaction(() async {
-      final now = DateTime.now().toUtc().millisecondsSinceEpoch;
+      final now = recordedAtUtcMilliseconds;
       if (predictedSemanticKey != null &&
           predictedSemanticKey != finalSemanticKey) {
         await _increment(

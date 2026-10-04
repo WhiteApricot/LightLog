@@ -1,42 +1,47 @@
 class NormalizedRecognitionText {
   const NormalizedRecognitionText({
     required this.rawText,
-    required this.normalizedText,
+    required this.displayText,
+    required this.matchingText,
     required this.normalizedContent,
     required this.normalizedMerchant,
   });
 
   final String rawText;
-  final String normalizedText;
+  final String displayText;
+  final String matchingText;
   final String normalizedContent;
   final String normalizedMerchant;
+
+  String get normalizedText => matchingText;
 }
 
 class RecognitionNormalizer {
   const RecognitionNormalizer();
 
-  static final RegExp _platformNoise = RegExp(
+  static final _platformLabels = RegExp(
     r'(?:微信支付|支付宝|财付通|银联商务|云闪付|付款成功|支付成功|收款方|商户名)\s*[:：]?',
     caseSensitive: false,
   );
-  static final RegExp _orderNoise = RegExp(
-    r'(?:订单号|交易号|商户单号)\s*[:：]?\s*[a-z0-9_-]{6,}',
+  static final _orderField = RegExp(
+    r'(?:订单号|交易号|商户单号|流水号)\s*[:：]?\s*[a-z0-9_-]{6,}',
     caseSensitive: false,
   );
-  static final RegExp _addressParentheses = RegExp(
+  static final _addressParentheses = RegExp(
     r'[（(][^（）()]{0,30}(?:路|街|区|县|市|店|层|广场|中心)[^（）()]{0,20}[）)]',
   );
-  static final RegExp _storeSuffix = RegExp(
+  static final _storeSuffix = RegExp(
     r'(?:[-—·\s]*(?:#?\d{2,6}号?店|[（(][^（）()]{0,20}店[）)]))$',
     caseSensitive: false,
   );
-  static final RegExp _companySuffix = RegExp(r'(?:有限责任公司|股份有限公司|有限公司)$');
+  static final _companySuffix = RegExp(r'(?:有限责任公司|股份有限公司|有限公司)$');
 
   NormalizedRecognitionText normalize(String input) {
-    final normalized = normalizeCharacters(input);
-    var content = normalized
-        .replaceAll(_orderNoise, ' ')
-        .replaceAll(_platformNoise, ' ')
+    final display = normalizeDisplay(input);
+    final matching = display.toLowerCase();
+    var content = matching
+        .replaceAll(_orderField, ' ')
+        .replaceAll(_platformLabels, ' ')
         .replaceAll(RegExp(r'\s+'), ' ')
         .trim();
     var merchant = content
@@ -48,13 +53,14 @@ class RecognitionNormalizer {
     if (merchant.isEmpty) merchant = content;
     return NormalizedRecognitionText(
       rawText: input,
-      normalizedText: normalized,
+      displayText: display,
+      matchingText: matching,
       normalizedContent: content,
       normalizedMerchant: merchant,
     );
   }
 
-  static String normalizeCharacters(String input) {
+  static String normalizeDisplay(String input) {
     final buffer = StringBuffer();
     for (final rune in input.runes) {
       if (rune == 0x3000) {
@@ -69,15 +75,17 @@ class RecognitionNormalizer {
     }
     return buffer
         .toString()
-        .toLowerCase()
         .replaceAll(RegExp(r'[，、；]'), ',')
         .replaceAll(RegExp(r'[。！]'), ' ')
         .replaceAll(RegExp(r'\s+'), ' ')
         .trim();
   }
 
+  static String normalizeCharacters(String input) =>
+      normalizeDisplay(input).toLowerCase();
+
   static String indexKey(String value) =>
       normalizeCharacters(value)
-          .replaceAll(RegExp(r'[\s,.:：·_\-/\\]'), '')
+          .replaceAll(RegExp(r"[\s,.:：·_\-/\\'’]"), '')
           .trim();
 }

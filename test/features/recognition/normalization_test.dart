@@ -9,6 +9,7 @@ void main() {
     final result = normalizer.normalize(raw);
 
     expect(result.rawText, raw);
+    expect(result.displayText, '微信支付 星巴克(国贸店) 订单号:ABC123456 28.5');
     expect(result.normalizedText, '微信支付 星巴克(国贸店) 订单号:abc123456 28.5');
     expect(result.normalizedContent, '星巴克(国贸店) 28.5');
     expect(result.normalizedMerchant, '星巴克 28.5');

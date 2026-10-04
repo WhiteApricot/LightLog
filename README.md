@@ -8,7 +8,7 @@
 - 技术栈：Flutter 3.47.6、Dart 3.13.5、Material 3、Riverpod、Drift + SQLite、Google ML Kit Text Recognition、fl_chart。
 - Phase 1 手动记账基础闭环已实现：本地 Drift 数据库、默认分类/账户、响应式账本、手动新增/编辑以及软删除撤销。
 - Phase 2 已实现手动触发的确定性文字识别、同页结果确认/完整编辑、独立分类 SVG、账户图标点选、按日分组账本和本月概览；重复检测仍待定义阈值。
-- Phase 3 已实现本地混合识别器的前四层：规范化、个人历史、打包商户知识库、类别词典，以及稳定语义映射、冲突感知 Evidence Fusion 和增强中文自然时间；Character n-gram 目前只保留接口。OCR 顺延至 Phase 4。
+- Phase 3 已完成单一生产识别内核重构：App、评测、benchmark 和测试共用纯 Dart `LocalRecognizer`；字段/span、金额/状态/时间、个人历史、已审核实体、角色化词典及冲突感知 Fusion 均在同一流水线中。Character n-gram 暂不实现，OCR 顺延至 Phase 4。
 
 分类与账户 SVG 使用项目内按需收录的 Lucide 图形，许可证见 [`assets/icons/LUCIDE_LICENSE.txt`](assets/icons/LUCIDE_LICENSE.txt)。
 
@@ -19,6 +19,7 @@
 - [数据模型](docs/DATABASE.md)
 - [智能识别设计](docs/RECOGNITION.md)
 - [文字识别算法工作文档](docs/RECOGNITION_ALGORITHM.md)
+- [Phase 3 Blind Evaluation](docs/PHASE3_BLIND_EVALUATION.md)
 - [开发规范](docs/DEVELOPMENT.md)
 - [变更记录](docs/CHANGELOG.md)
 - [任务队列](docs/TODO.md)

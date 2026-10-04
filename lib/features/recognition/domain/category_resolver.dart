@@ -1,11 +1,10 @@
-import '../../../data/database/database.dart';
-import '../../ledger/domain/ledger_models.dart';
+import 'recognition_models.dart';
 
 class ResolvedCategory {
   const ResolvedCategory({required this.parent, required this.child});
 
-  final Category parent;
-  final Category child;
+  final RecognitionCategory parent;
+  final RecognitionCategory child;
 }
 
 class CategoryResolver {
@@ -13,15 +12,15 @@ class CategoryResolver {
 
   ResolvedCategory? resolve({
     required String semanticKey,
-    required LedgerTransactionType type,
-    required List<Category> categories,
+    required RecognitionTransactionType type,
+    required List<RecognitionCategory> categories,
   }) {
     final candidates =
         categories
             .where(
               (item) =>
                   item.isActive &&
-                  item.type == type.value &&
+                  item.type == type &&
                   item.parentId != null &&
                   item.semanticKey == semanticKey,
             )
@@ -35,9 +34,7 @@ class CategoryResolver {
     final parent = categories
         .where(
           (item) =>
-              item.id == child.parentId &&
-              item.isActive &&
-              item.type == type.value,
+              item.id == child.parentId && item.isActive && item.type == type,
         )
         .firstOrNull;
     return parent == null

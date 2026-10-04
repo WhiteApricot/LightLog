@@ -4,7 +4,7 @@ import 'package:light_log/data/database/seed_data.dart';
 
 /// Imports the small, fixed Lucide subset used by LightLog.
 ///
-/// Usage: `dart run tool/import_lucide_icons.dart <lucide-repository-root>`
+/// Usage: `dart run tools/icons/import_lucide_icons.dart <lucide-repository-root>`
 void main(List<String> arguments) {
   if (arguments.length != 1) {
     stderr.writeln('Expected the Lucide repository root as the only argument.');

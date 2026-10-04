@@ -4,9 +4,10 @@ import 'package:flutter/services.dart';
 import '../data/database/database.dart';
 import '../features/ledger/data/ledger_repository.dart';
 import '../features/ledger/domain/ledger_models.dart';
-import '../features/recognition/domain/text_entry_parser.dart';
+import '../features/recognition/application/recognition_coordinator.dart';
 import '../features/recognition/data/knowledge_loader.dart';
 import '../features/recognition/data/recognition_repository.dart';
+import '../features/recognition/domain/recognizer.dart';
 
 final databaseProvider = Provider<AppDatabase>((ref) {
   final database = AppDatabase();
@@ -22,9 +23,18 @@ final recognitionRepositoryProvider = Provider<RecognitionRepository>((ref) {
   return LocalRecognitionRepository(ref.watch(databaseProvider));
 });
 
-final textEntryParserProvider = FutureProvider<TextEntryParser>((ref) async {
+final localRecognizerProvider = FutureProvider<LocalRecognizer>((ref) async {
   final knowledge = await KnowledgeLoader(rootBundle).load();
-  return TextEntryParser(knowledge: knowledge);
+  return LocalRecognizer(knowledge: knowledge);
+});
+
+final recognitionCoordinatorProvider = FutureProvider<RecognitionCoordinator>((
+  ref,
+) async {
+  return RecognitionCoordinator(
+    await ref.watch(localRecognizerProvider.future),
+    ref.watch(recognitionRepositoryProvider),
+  );
 });
 
 final ledgerEntriesProvider = StreamProvider<List<LedgerEntry>>((ref) {
