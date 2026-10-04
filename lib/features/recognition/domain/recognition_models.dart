@@ -14,7 +14,6 @@ enum RecognitionEvidenceSource {
   entityKnowledge,
   categoryLexicon,
   context,
-  ngram,
 }
 
 enum EvidenceRole {

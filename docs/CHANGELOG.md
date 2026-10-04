@@ -19,13 +19,12 @@
 - Added a maintained recognition algorithm working document covering the implemented pipeline, limitations, and local future directions.
 - Added five lightweight database-backed SVGs for the default payment methods and automated SVG uniqueness/shape checks.
 - Added the first four layers of the offline hybrid recognizer: safe normalization, personal history, a packaged Merchant Knowledge Base, and a data-driven Category Lexicon.
-- Added priority-based explainable evidence fusion, stable semantic category resolution, and an inert Character n-gram classifier interface for future work.
+- Added priority-based explainable evidence fusion and stable semantic category resolution.
 - Added natural Chinese time parsing for relative days, weekdays, month boundaries, dayparts, 24-hour clocks, and spoken Chinese clock expressions.
 - Added reproducible knowledge generation/validation and a 10,000-parse performance benchmark.
 - Added field-aware amount/status extraction, absolute transaction-time parsing, numeric-role classification, multiple-transaction detection, and refund safety blocking.
-- Added a 1666-entity Local Entity Knowledge Base, 1070 positive terms, 167 conflict terms, provenance-preserving source snapshots, and hard generation quality gates.
 - Added exact, longest-substring and bounded fuzzy entity matching plus role-aware lexicon evidence.
-- Added an independent 190-case blind-evaluation runner and documented the first unacceptable baseline without applying corpus-specific patches.
+- Added an independent 190-case evaluation runner and immutable archived baseline reports.
 - Added a pure Dart production `LocalRecognizer`, structured field/span candidates, independent type evidence, confidence calibration, failure analysis, and a standalone benchmark shared by App and tools.
 - Added reviewed knowledge roles/kinds/breadth, per-alias match policies, deterministic review samples, scene coverage gates, and runtime distribution reports.
 - Added 447 reviewed mainland consumer entities, 1307 normalized aliases, 2411 real-language positive terms, 355 negative/conflict terms, 106 production-path review samples, and 50-entity/100-term audit gates.
@@ -54,10 +53,11 @@
 - Changed type inference to fuse expense and income evidence before deriving type when no explicit sign or strong type signal exists.
 - Unified development utilities under `tools/` and changed the benchmark to warm average/p95/max reporting with a p95 < 5 ms gate.
 - Replaced `TextEntryParser`, the monolithic field extractor, and the inert n-gram interface with one production recognition pipeline used by App, evaluation, benchmark, and tests.
-- Reduced runtime entity knowledge from an unreviewed quantity-driven snapshot to 81 approved consumer entities and 84 reviewed lexicon groups; the 1600 media/game snapshot records remain provenance-only and are excluded from runtime.
+- Archived the unused 1600-record media/game snapshot and fetch script after removing them from the active knowledge-generation pipeline; neither had entered runtime.
 - Changed evaluation to report P0/P1/P2 safe rejection, per-field and complete accuracy, display-vs-span content errors, confidence buckets, high-confidence wrong predictions, and average/p50/p95/p99/max latency.
 - Changed recognition confirmation into explicit `confident`, `warning`, and `blocked` levels: warning retains top-1 prefill and permits reviewed confirmation, while only dangerous transaction states or missing legal amounts block quick entry.
 - Indexed entity aliases and lexicon terms by first character, preserving Personal History priority while preventing broad/platform evidence from outranking specific products, actions, or services.
+- Archived superseded Phase 3 planning/evaluation artifacts and documented the selective candidate-lexicon absorption workflow.
 
 ### Fixed
 

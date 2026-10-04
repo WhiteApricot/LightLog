@@ -1,14 +1,8 @@
 # 本地知识资产维护
 
-`merchants_source.json`、`mainland_entities_source.json`、`category_lexicon_source.json`、`lexicon_expansion_source.json` 与 `source_data/wikidata_entities.json` 是可审查源清单；`assets/knowledge/*.json` 是应用打包使用的 compact 生成物，`quality_report.json` 是每次生成的质量报告。
+`merchants_source.json`、`mainland_entities_source.json`、`category_lexicon_source.json` 与 `lexicon_expansion_source.json` 是 active 可审查源清单；`assets/knowledge/*.json` 是应用打包使用的 compact 生成物，`quality_report.json` 是每次生成的质量报告。
 
-人工清单覆盖经审核的大陆日常 merchant/platform/service/product brand。Wikidata 影视/游戏结构化快照保留 source URL、source type、license 和 verifiedAt，但其 1600 条记录当前均为 `snapshotOnly`，不经人工审核不进入 runtime。数据不包含地图 POI、用户评论、地址全集或受限平台批量数据。不得批量抓取地图、点评平台或公共 Nominatim。
-
-需要显式刷新公开快照时执行（普通算法构建不联网）：
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/knowledge/fetch_wikimedia_entities.ps1
-```
+人工清单覆盖经审核的大陆日常 merchant/platform/service/product brand。Phase 3 曾使用的 Wikidata 影视/游戏快照与抓取脚本已移入 `archive/phase3/`，不再参与 active pipeline；其中 1600 条记录从未进入 runtime。数据不包含地图 POI、用户评论、地址全集或受限平台批量数据。不得批量抓取地图、点评平台或公共 Nominatim。
 
 从仓库根目录执行：
 

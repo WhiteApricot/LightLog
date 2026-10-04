@@ -41,7 +41,7 @@
 - [x] Require explicit recognition and add an above-the-fold result/confirm card
 - [ ] Define duplicate fingerprint thresholds and add duplicate-detection tests
 
-## Phase 3 - Five-layer local hybrid recognizer ([refactor plan](PHASE3_RECOGNITION_REFACTOR_PLAN.md))
+## Phase 3 - Five-layer local hybrid recognizer
 
 - [x] Layer 1: strengthen normalization without losing raw input
 - [x] Layer 2: use personal confirmation/correction history as local evidence
@@ -59,6 +59,8 @@
 - [x] Add confident/warning/blocked prefill semantics while retaining warning top-1 fields and blocking only dangerous cases
 - [x] Expand reviewed mainland daily knowledge to 447 entities/1307 aliases and 2411 positive/355 negative terms with 106 production review samples
 - [x] Preserve and rerun the complete 190-case corpus; final P0 is 97.56%, P1 is 88.06%, P2 safe rejection is 100%, and high-confidence wrong is 0
+- [x] Archive superseded Phase 3 plans/reports and remove the inactive n-gram/snapshot pipeline placeholders
+- [ ] Selectively absorb the reviewed candidate vocabulary pool according to [the execution plan](PHASE3_LEXICON_ABSORPTION_PLAN.md)
 - [ ] Resolve remaining non-blocking content-span families and taxonomy-oracle differences without weakening the zero/high-risk amount and refund safety policy
 
 ## Future - Category management
@@ -70,8 +72,15 @@
 ## Phase 4 - OCR entry
 
 - [ ] Add isolated ML Kit OcrService and mock
-- [ ] Extract candidate fields from payment screenshots
+- [ ] Preserve `OcrDocument` block/line/boundingBox structure and classify each line with `LineRoleClassifier`
+- [ ] Extract label-value fields by spatial proximity; separate `MerchantCandidate` and `ProductCandidate`
+- [ ] Rank `ContentCandidate` values and forbid receipt-like full OCR text from becoming content
+- [ ] Include OCR line distance in amount/time scoring and provide a multi-product fallback
+- [ ] Expose field-level confidence and warning UI
+- [ ] Keep OCR as structured preprocessing only; reuse `EntityMatcher → LexiconMatcher → TypeInference → EvidenceFusion → CategoryResolver → LocalRecognizer` instead of building a second classifier
 - [ ] Add confirmation flow without retaining source images
+
+Phase 3 and the next recognition evaluation do not require strong OCR cases to have correct content/core-text extraction. For the OCR stress subset, evaluate amount, type, category (especially category), and safety; content span and merchant/product extraction remain Phase 4 work.
 
 ## Phase 5 - Statistics
 

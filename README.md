@@ -19,7 +19,7 @@
 - [数据模型](docs/DATABASE.md)
 - [智能识别设计](docs/RECOGNITION.md)
 - [文字识别算法工作文档](docs/RECOGNITION_ALGORITHM.md)
-- [Phase 3 Blind Evaluation](docs/PHASE3_BLIND_EVALUATION.md)
+- [Phase 3 候选词库吸收计划](docs/PHASE3_LEXICON_ABSORPTION_PLAN.md)
 - [开发规范](docs/DEVELOPMENT.md)
 - [变更记录](docs/CHANGELOG.md)
 - [任务队列](docs/TODO.md)

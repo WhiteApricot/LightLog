@@ -98,7 +98,6 @@ void main() {
       .toSet();
   final curated = _read('tools/knowledge/merchants_source.json');
   final mainland = _read('tools/knowledge/mainland_entities_source.json');
-  final snapshot = _read('tools/knowledge/source_data/wikidata_entities.json');
   final lexiconSource = _read('tools/knowledge/category_lexicon_source.json');
   final lexiconExpansion = _read(
     'tools/knowledge/lexicon_expansion_source.json',
@@ -113,12 +112,7 @@ void main() {
         'market': raw['market'] ?? 'CN-mainland',
       },
     ..._expandGroupedEntities(mainland),
-    for (final raw in (snapshot['records']! as List))
-      {...(raw as Map).cast<String, Object?>(), '_source': 'snapshot'},
   ];
-  final excludedSnapshot = rawEntities.where((item) {
-    return item['_source'] == 'snapshot' && item['reviewStatus'] != 'approved';
-  }).length;
   final candidates = <Map<String, Object?>>[];
   final canonicalSeen = <String>{};
   final duplicateCanonicals = <String>[];
@@ -367,7 +361,6 @@ void main() {
     'negativeTermCount': negativeTerms.length,
     'sceneSemanticCoverage': sceneCoverage,
     'requiredSceneSemanticCount': _requiredSceneSemantics.length,
-    'excludedUnreviewedSnapshotEntities': excludedSnapshot,
     'entityKindDistribution': _counts(
       runtimeEntities.map((item) => item['kind']! as String),
     ),

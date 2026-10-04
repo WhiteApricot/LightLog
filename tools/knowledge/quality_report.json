@@ -6,7 +6,6 @@
   "negativeTermCount": 355,
   "sceneSemanticCoverage": 1.0,
   "requiredSceneSemanticCount": 63,
-  "excludedUnreviewedSnapshotEntities": 1600,
   "entityKindDistribution": {
     "merchant": 229,
     "platform": 30,

@@ -100,7 +100,7 @@ Personal History 只按索引化 normalized content 查询。命中次数必须�
 - 分层人工清单核对 50 个实体和 100 个 lexicon term，均存在于最终 runtime；
 - runtime entity kind 分布：merchant 229、service 187、platform 30、productBrand 1；大陆场景占比 100%，
   media/game title runtime 占比 0%；
-- 1600 个未审核 media/game snapshot records 保留 provenance，但全部排除出 runtime；
+- Phase 3 的 1600 个未审核 media/game snapshot records 从未进入 runtime，现已连同抓取脚本归档并退出 active generation pipeline；
 - runtime assets 185705 bytes，远低于 2 MiB。
 
 生成命令：
@@ -130,8 +130,8 @@ recognizer version 与 knowledge hash。benchmark 分开统计 cold knowledge de
 2026-10-05 当前 benchmark（Windows、10,000 次 warm parse）：average 172 µs、p50 151 µs、p95 313 µs、
 p99 479 µs、max 11168 µs，p95 < 5 ms 门禁通过；cold decode 18565 µs。
 
-完整 190-case corpus 已恢复为 `tools/evaluation/phase3_regression_corpus.json`。本轮盲测前先冻结算法与
-知识门禁，初测报告为 `phase3_usability_initial.json`；仅做泛化修复后的最终报告为
+完整 190-case corpus 已恢复为 `tools/evaluation/phase3_regression_corpus.json`。该轮盲测先冻结算法与
+知识门禁，初测报告归档于 `tools/evaluation/archive/phase3/phase3_usability_initial.json`；仅做泛化修复后的最终报告为
 `phase3_usability_final.json`，失败摘要为 `phase3_usability_final_analysis.md`。最终实测：P0 40/41
 （97.56%）、P1 118/134（88.06%）、P2 safe rejection 100%、amount 100%、type 98.95%、category
 96.84%、time 100%、content 93.16%、content span 94.21%、high-confidence wrong 0、p95 1.076 ms。
