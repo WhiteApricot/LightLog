@@ -1,4 +1,5 @@
 import 'knowledge_models.dart';
+import 'normalization.dart';
 import 'recognition_models.dart';
 
 class EntityMatcher {
@@ -11,7 +12,13 @@ class EntityMatcher {
     if (compact.value.isEmpty) return const [];
     final matches = <EntityMatch>[];
     final seen = <String>{};
-    for (final alias in catalog.aliases) {
+    final candidateAliases = <EntityAlias>{};
+    for (final rune in compact.value.runes.toSet()) {
+      candidateAliases.addAll(
+        catalog.aliasesByFirstCharacter[String.fromCharCode(rune)] ?? const [],
+      );
+    }
+    for (final alias in candidateAliases) {
       final needle = alias.normalizedAlias;
       if (needle.isEmpty) continue;
       var start = compact.value.indexOf(needle);
@@ -21,6 +28,7 @@ class EntityMatcher {
         final exactToken = _hasTokenBoundaries(matchingText, sourceRange);
         if (exact ||
             exactToken ||
+            _hasAllowedAttachedSuffix(matchingText, sourceRange) ||
             alias.matchPolicy != AliasMatchPolicy.exactOnly) {
           final key =
               '${alias.entity.canonicalName}:$start:${start + needle.length}';
@@ -48,7 +56,8 @@ class EntityMatcher {
     }
     if (matches.isEmpty && compact.value.runes.length >= 4) {
       EntityAlias? fuzzy;
-      for (final alias in catalog.aliases) {
+      final first = String.fromCharCode(compact.value.runes.first);
+      for (final alias in catalog.aliasesByFirstCharacter[first] ?? const []) {
         if (alias.matchPolicy != AliasMatchPolicy.fuzzy ||
             alias.normalizedAlias.runes.length < 4 ||
             alias.normalizedAlias.runes.first != compact.value.runes.first) {
@@ -157,6 +166,18 @@ class EntityMatcher {
     final left = range.start == 0 || boundary(text[range.start - 1]);
     final right = range.end == text.length || boundary(text[range.end]);
     return left && right;
+  }
+
+  static bool _hasAllowedAttachedSuffix(String text, TextSpanRange range) {
+    if (range.start != 0 || range.end >= text.length) return false;
+    final suffix = RecognitionNormalizer.indexKey(text.substring(range.end));
+    if (RegExp(r'^[￥¥]?\d+(?:\.\d{1,2})?(?:元|块)?$').hasMatch(suffix)) {
+      return true;
+    }
+    return RegExp(
+      r'^(?:会员|套餐|订单)(?:号)?(?:[:：#_-]?[a-z0-9_-]+)?(?:[￥¥]?\d+(?:\.\d{1,2})?(?:元|块)?)?$',
+      caseSensitive: false,
+    ).hasMatch(suffix);
   }
 }
 

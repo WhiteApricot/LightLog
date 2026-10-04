@@ -2,10 +2,30 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:light_log/data/database/seed_data.dart';
+import 'package:light_log/features/recognition/data/knowledge_decoder.dart';
+import 'package:light_log/features/recognition/domain/entity_matcher.dart';
+import 'package:light_log/features/recognition/domain/evidence_fusion.dart';
+import 'package:light_log/features/recognition/domain/knowledge_models.dart';
+import 'package:light_log/features/recognition/domain/lexicon_matcher.dart';
 import 'package:light_log/features/recognition/domain/normalization.dart';
 
 const _runtimeHardLimit = 2 * 1024 * 1024;
-const _minimumSceneCoverage = 0.90;
+const _minimumEntities = 300;
+const _minimumAliases = 800;
+const _minimumPositiveTerms = 1800;
+const _minimumNegativeTerms = 250;
+const _minimumSceneCoverage = 1.0;
+const _minimumMainlandShare = 0.80;
+const _minimumReviewSamples = 100;
+const _minimumTermsPerFrequentSemantic = 10;
+const _minimumNegativesPerFrequentSemantic = 2;
+const _conflictTermOwners = {
+  '护手霜': 'expense.daily.personal',
+  '洗手液': 'expense.daily.personal',
+  '身体乳': 'expense.daily.personal',
+  '皮具护理': 'expense.daily.cleaning',
+  '车位管理费': 'expense.transport.parking',
+};
 const _requiredSceneSemantics = {
   'expense.food.breakfast',
   'expense.food.lunch',
@@ -21,35 +41,54 @@ const _requiredSceneSemantics = {
   'expense.transport.flight',
   'expense.transport.fuel',
   'expense.transport.parking',
+  'expense.transport.maintenance',
   'expense.shopping.clothing',
   'expense.shopping.beauty',
   'expense.shopping.home',
   'expense.shopping.appliance',
   'expense.housing.rent',
   'expense.housing.utilities',
+  'expense.housing.property',
   'expense.daily.household',
+  'expense.daily.personal',
+  'expense.daily.cleaning',
   'expense.daily.haircut',
   'expense.daily.service',
   'expense.entertainment.movie',
   'expense.entertainment.game',
   'expense.entertainment.subscription',
   'expense.education.book',
+  'expense.education.course',
+  'expense.education.exam',
+  'expense.education.stationery',
   'expense.medical.clinic',
   'expense.medical.medicine',
   'expense.communication.mobile',
   'expense.communication.internet',
+  'expense.communication.post',
   'expense.travel.hotel',
+  'expense.travel.ticket',
+  'expense.travel.attraction',
   'expense.sports.fitness',
   'expense.pets.food',
   'expense.pets.medical',
+  'expense.pets.grooming',
+  'expense.pets.service',
   'expense.digital.accessory',
   'expense.digital.software',
   'expense.digital.repair',
+  'expense.finance.insurance',
+  'expense.finance.fee',
   'income.salary.monthly',
   'income.salary.bonus',
+  'income.salary.allowance',
   'income.reimbursement.work',
   'income.parttime.freelance',
+  'income.parttime.project',
   'income.investment.interest',
+  'income.investment.dividend',
+  'income.investment.rent',
+  'income.other.red.packet',
   'income.other.secondhand',
 };
 
@@ -58,13 +97,22 @@ void main() {
       .map((item) => item.semanticKey)
       .toSet();
   final curated = _read('tools/knowledge/merchants_source.json');
+  final mainland = _read('tools/knowledge/mainland_entities_source.json');
   final snapshot = _read('tools/knowledge/source_data/wikidata_entities.json');
   final lexiconSource = _read('tools/knowledge/category_lexicon_source.json');
+  final lexiconExpansion = _read(
+    'tools/knowledge/lexicon_expansion_source.json',
+  );
   final reviewSamples = _read('tools/knowledge/review_samples.json');
 
   final rawEntities = <Map<String, Object?>>[
     for (final raw in (curated['records']! as List))
-      {...(raw as Map).cast<String, Object?>(), '_source': 'curated'},
+      {
+        ...(raw as Map).cast<String, Object?>(),
+        '_source': 'curated',
+        'market': raw['market'] ?? 'CN-mainland',
+      },
+    ..._expandGroupedEntities(mainland),
     for (final raw in (snapshot['records']! as List))
       {...(raw as Map).cast<String, Object?>(), '_source': 'snapshot'},
   ];
@@ -111,14 +159,17 @@ void main() {
       'reviewStatus': reviewStatus,
       'semanticKey': semantic,
       'confidence': confidence,
+      'market': item['market'] ?? 'unknown',
     });
   }
 
-  final aliasOwners = <String, Set<int>>{};
+  final aliasOwners = <String, Set<String?>>{};
   for (var index = 0; index < candidates.length; index++) {
     for (final alias
         in (candidates[index]['aliases']! as List).cast<String>()) {
-      aliasOwners.putIfAbsent(_normalize(alias), () => <int>{}).add(index);
+      aliasOwners
+          .putIfAbsent(_normalize(alias), () => <String?>{})
+          .add(candidates[index]['semanticKey'] as String?);
     }
   }
   final conflictingAliases = aliasOwners.entries
@@ -126,7 +177,6 @@ void main() {
       .map((entry) => entry.key)
       .toSet();
   final runtimeEntities = <Map<String, Object?>>[];
-  var aliasCount = 0;
   for (final item in candidates) {
     final canonical = item['canonicalName']! as String;
     if (conflictingAliases.contains(_normalize(canonical))) continue;
@@ -138,7 +188,6 @@ void main() {
               !conflictingAliases.contains(_normalize(alias)),
         )
         .toList();
-    aliasCount += aliases.length + 1;
     runtimeEntities.add({
       'canonicalName': canonical,
       'aliases': aliases,
@@ -155,11 +204,23 @@ void main() {
       'reviewStatus': item['reviewStatus'],
       if (item['semanticKey'] != null) 'semanticKey': item['semanticKey'],
       'confidence': item['confidence'],
+      'market': item['market'],
     });
   }
+  final normalizedRuntimeAliases = <String>{
+    for (final item in runtimeEntities)
+      for (final alias in <String>[
+        item['canonicalName']! as String,
+        ...(item['aliases']! as List).cast<String>(),
+      ])
+        _normalize(alias),
+  };
 
   final runtimeLexicon = <Map<String, Object?>>[];
-  for (final raw in (lexiconSource['entries']! as List)) {
+  for (final raw in <Object?>[
+    ...(lexiconSource['entries']! as List),
+    ...(lexiconExpansion['entries']! as List),
+  ]) {
     final item = (raw as Map).cast<String, Object?>();
     final semantic = item['semanticKey']! as String;
     if (!validSemantics.contains(semantic)) {
@@ -181,7 +242,6 @@ void main() {
 
   final termOwners = <String, Set<String>>{};
   final negativeTerms = <String>{};
-  final termsBySemantic = <String, Set<String>>{};
   for (final item in runtimeLexicon) {
     final semantic = item['semanticKey']! as String;
     final score = (item['score']! as num).toDouble();
@@ -194,41 +254,61 @@ void main() {
     ]) {
       final key = _normalize(term);
       termOwners.putIfAbsent(key, () => <String>{}).add(semantic);
-      termsBySemantic.putIfAbsent(semantic, () => <String>{}).add(key);
     }
     for (final term in (item['negative']! as List).cast<String>()) {
       negativeTerms.add(_normalize(term));
     }
   }
-  final conflictingTerms = termOwners.entries
+  final detectedConflictingTerms = termOwners.entries
       .where((entry) => entry.value.length > 1)
       .map((entry) => entry.key)
       .toSet();
+  final unresolvedConflictingTerms = detectedConflictingTerms
+      .where((term) => !_conflictTermOwners.containsKey(term))
+      .toSet();
   for (final item in runtimeLexicon) {
-    item['keywords'] = (item['keywords']! as List)
-        .cast<String>()
-        .where((term) => !conflictingTerms.contains(_normalize(term)))
-        .toList();
-    item['aliases'] = (item['aliases']! as List)
-        .cast<String>()
-        .where((term) => !conflictingTerms.contains(_normalize(term)))
-        .toList();
+    final semantic = item['semanticKey']! as String;
+    item['keywords'] = (item['keywords']! as List).cast<String>().where((term) {
+      final key = _normalize(term);
+      return !detectedConflictingTerms.contains(key) ||
+          _conflictTermOwners[key] == semantic;
+    }).toList();
+    item['aliases'] = (item['aliases']! as List).cast<String>().where((term) {
+      final key = _normalize(term);
+      return !detectedConflictingTerms.contains(key) ||
+          _conflictTermOwners[key] == semantic;
+    }).toList();
   }
-  final positiveTerms = termOwners.keys.toSet()..removeAll(conflictingTerms);
+  final finalTermsBySemantic = <String, Set<String>>{};
+  final negativesBySemantic = <String, Set<String>>{};
+  for (final item in runtimeLexicon) {
+    final semantic = item['semanticKey']! as String;
+    finalTermsBySemantic.putIfAbsent(semantic, () => <String>{}).addAll([
+      ...(item['keywords']! as List).cast<String>().map(_normalize),
+      ...(item['aliases']! as List).cast<String>().map(_normalize),
+    ]);
+    negativesBySemantic
+        .putIfAbsent(semantic, () => <String>{})
+        .addAll((item['negative']! as List).cast<String>().map(_normalize));
+  }
+  final positiveTerms = <String>{
+    for (final terms in finalTermsBySemantic.values) ...terms,
+  };
   final coveredScenes = _requiredSceneSemantics.where(
-    (key) => (termsBySemantic[key] ?? const <String>{}).any(
-      (term) => !conflictingTerms.contains(term),
+    (key) => (finalTermsBySemantic[key] ?? const <String>{}).any(
+      (term) => !unresolvedConflictingTerms.contains(term),
     ),
   );
   final sceneCoverage = coveredScenes.length / _requiredSceneSemantics.length;
-  final sampleResult = _validateSamples(
-    reviewSamples: reviewSamples,
-    entities: runtimeEntities,
-    lexicon: runtimeLexicon,
-  );
-
   final merchantRuntime = {'version': 3, 'records': runtimeEntities};
   final lexiconRuntime = {'version': 3, 'entries': runtimeLexicon};
+  final sampleResult = _validateSamples(
+    reviewSamples: reviewSamples,
+    catalog: const KnowledgeDecoder().decode(
+      entitiesJson: jsonEncode(merchantRuntime),
+      lexiconJson: jsonEncode(lexiconRuntime),
+    ),
+  );
   Directory('assets/knowledge').createSync(recursive: true);
   _writeCompact('assets/knowledge/merchants.json', merchantRuntime);
   _writeCompact('assets/knowledge/category_lexicon.json', lexiconRuntime);
@@ -237,9 +317,51 @@ void main() {
       File('assets/knowledge/category_lexicon.json').lengthSync();
   final highRiskAliases = aliasOwners.keys.where(_isHighRiskAlias).toList()
     ..sort();
+  final mainlandEntities = runtimeEntities
+      .where((item) => item['market'] == 'CN-mainland')
+      .length;
+  final lowValueEntities = runtimeEntities
+      .where(
+        (item) => item['kind'] == 'mediaTitle' || item['kind'] == 'gameTitle',
+      )
+      .length;
+  final insufficientFrequentSemantics = <String, Map<String, int>>{
+    for (final semantic in _requiredSceneSemantics)
+      if ((finalTermsBySemantic[semantic]?.length ?? 0) <
+              _minimumTermsPerFrequentSemantic ||
+          (negativesBySemantic[semantic]?.length ?? 0) <
+              _minimumNegativesPerFrequentSemantic)
+        semantic: {
+          'positive': finalTermsBySemantic[semantic]?.length ?? 0,
+          'negative': negativesBySemantic[semantic]?.length ?? 0,
+        },
+  };
+  final narrowExceptions =
+      ((lexiconExpansion['narrowExceptions'] as Map?) ??
+              const <String, Object?>{})
+          .cast<String, Object?>();
+  insufficientFrequentSemantics.removeWhere(
+    (semantic, _) => narrowExceptions.containsKey(semantic),
+  );
+  final uncoveredSemantics =
+      _requiredSceneSemantics
+          .where(
+            (semantic) => (finalTermsBySemantic[semantic] ?? const {}).isEmpty,
+          )
+          .toList()
+        ..sort();
+  final entityAudit = _validateAuditList(
+    values: (reviewSamples['entityAudit'] as List? ?? const []).cast<String>(),
+    available: runtimeEntities.map((item) => item['canonicalName']! as String),
+  );
+  final lexiconAudit = _validateAuditList(
+    values: (reviewSamples['lexiconAudit'] as List? ?? const []).cast<String>(),
+    available: positiveTerms,
+    normalizeValues: true,
+  );
   final report = <String, Object?>{
     'canonicalEntityCount': runtimeEntities.length,
-    'aliasCount': aliasCount,
+    'aliasCount': normalizedRuntimeAliases.length,
     'lexiconEntryCount': runtimeLexicon.length,
     'positiveTermCount': positiveTerms.length,
     'negativeTermCount': negativeTerms.length,
@@ -249,6 +371,13 @@ void main() {
     'entityKindDistribution': _counts(
       runtimeEntities.map((item) => item['kind']! as String),
     ),
+    'entitySemanticDistribution': _counts(
+      runtimeEntities.map((item) => item['semanticKey'] as String? ?? '(none)'),
+    ),
+    'mainlandEntityCount': mainlandEntities,
+    'mainlandEntityShare': mainlandEntities / runtimeEntities.length,
+    'lowValueMediaGameCount': lowValueEntities,
+    'lowValueMediaGameShare': lowValueEntities / runtimeEntities.length,
     'entityBreadthDistribution': _counts(
       runtimeEntities.map((item) => item['breadth']! as String),
     ),
@@ -258,30 +387,89 @@ void main() {
     'lexiconRoleDistribution': _counts(
       runtimeLexicon.map((item) => item['role']! as String),
     ),
+    'termsBySemantic': {
+      for (final key in finalTermsBySemantic.keys.toList()..sort())
+        key: finalTermsBySemantic[key]!.length,
+    },
+    'negativeTermsBySemantic': {
+      for (final key in negativesBySemantic.keys.toList()..sort())
+        key: negativesBySemantic[key]!.length,
+    },
+    'insufficientFrequentSemantics': insufficientFrequentSemantics,
+    'narrowSemanticExceptions': narrowExceptions,
+    'uncoveredFrequentSemantics': uncoveredSemantics,
     'duplicateCanonicalNames': duplicateCanonicals,
     'detectedConflictingAliases': conflictingAliases.toList()..sort(),
     'unresolvedConflictingAliases': const <String>[],
-    'detectedConflictingTerms': conflictingTerms.toList()..sort(),
-    'unresolvedConflictingTerms': const <String>[],
+    'detectedConflictingTerms': detectedConflictingTerms.toList()..sort(),
+    'resolvedConflictingTermOwners': _conflictTermOwners,
+    'unresolvedConflictingTerms': unresolvedConflictingTerms.toList()..sort(),
     'highRiskAliases': highRiskAliases,
+    'shortHighRiskTerms':
+        positiveTerms.where((term) => term.runes.length <= 2).toList()..sort(),
     'unresolvedHighRiskAliases': const <String>[],
     'reviewSampleCount': sampleResult.total,
     'reviewSampleCorrect': sampleResult.correct,
     'reviewSampleAccuracy': sampleResult.accuracy,
     'reviewSampleFailures': sampleResult.failures,
+    'reviewSampleKindDistribution': _counts(
+      (reviewSamples['samples']! as List).map(
+        (item) => (item as Map)['kind']! as String,
+      ),
+    ),
+    'entityAuditRequested': entityAudit.requested,
+    'entityAuditMatched': entityAudit.matched,
+    'entityAuditMissing': entityAudit.missing,
+    'lexiconAuditRequested': lexiconAudit.requested,
+    'lexiconAuditMatched': lexiconAudit.matched,
+    'lexiconAuditMissing': lexiconAudit.missing,
     'runtimeAssetBytes': runtimeSize,
   };
   _writePretty('tools/knowledge/quality_report.json', report);
   stdout.writeln(const JsonEncoder.withIndent('  ').convert(report));
 
   final failures = <String>[];
-  if (runtimeEntities.isEmpty) failures.add('no reviewed runtime entities');
-  if (positiveTerms.isEmpty) failures.add('no reviewed positive terms');
+  if (runtimeEntities.length < _minimumEntities) {
+    failures.add('approved runtime entities < $_minimumEntities');
+  }
+  if (normalizedRuntimeAliases.length < _minimumAliases) {
+    failures.add('normalized aliases < $_minimumAliases');
+  }
+  if (positiveTerms.length < _minimumPositiveTerms) {
+    failures.add('positive terms < $_minimumPositiveTerms');
+  }
+  if (negativeTerms.length < _minimumNegativeTerms) {
+    failures.add('negative/conflict terms < $_minimumNegativeTerms');
+  }
+  if (mainlandEntities / runtimeEntities.length < _minimumMainlandShare) {
+    failures.add('mainland merchant/service/platform share < 80%');
+  }
+  if (lowValueEntities / runtimeEntities.length > 0.10) {
+    failures.add('media/game title share > 10%');
+  }
   if (sceneCoverage < _minimumSceneCoverage) {
     failures.add('real-scene semantic coverage < $_minimumSceneCoverage');
   }
   if (sampleResult.accuracy < 0.98) {
     failures.add('review sample accuracy < 0.98');
+  }
+  if (sampleResult.total < _minimumReviewSamples) {
+    failures.add('review samples < $_minimumReviewSamples');
+  }
+  if (entityAudit.requested < 50 || entityAudit.missing.isNotEmpty) {
+    failures.add('entity audit < 50 or contains missing values');
+  }
+  if (lexiconAudit.requested < 100 || lexiconAudit.missing.isNotEmpty) {
+    failures.add('lexicon audit < 100 or contains missing values');
+  }
+  if (insufficientFrequentSemantics.isNotEmpty) {
+    failures.add('frequent semantic term/negative coverage insufficient');
+  }
+  if (conflictingAliases.isNotEmpty) {
+    failures.add('unresolved alias conflicts');
+  }
+  if (unresolvedConflictingTerms.isNotEmpty) {
+    failures.add('unresolved lexicon term conflicts');
   }
   if (runtimeSize >= _runtimeHardLimit) {
     failures.add('runtime assets >= 2 MiB');
@@ -294,33 +482,24 @@ void main() {
 ({int total, int correct, double accuracy, List<String> failures})
 _validateSamples({
   required Map<String, Object?> reviewSamples,
-  required List<Map<String, Object?>> entities,
-  required List<Map<String, Object?>> lexicon,
+  required KnowledgeCatalog catalog,
 }) {
   final failures = <String>[];
   var correct = 0;
+  final entityMatcher = EntityMatcher(catalog);
+  final lexiconMatcher = LexiconMatcher(catalog);
+  const fusion = EvidenceFusion();
   final samples = (reviewSamples['samples']! as List).cast<Map>();
   for (final raw in samples) {
     final sample = raw.cast<String, Object?>();
-    final text = _normalize(sample['text']! as String);
+    final text = RecognitionNormalizer.normalizeCharacters(
+      sample['text']! as String,
+    );
     final expected = sample['semanticKey']! as String;
-    final matched = sample['kind'] == 'entity'
-        ? entities.any((item) {
-            final aliases = <String>[
-              item['canonicalName']! as String,
-              ...(item['aliases']! as List).cast<String>(),
-            ];
-            return item['semanticKey'] == expected &&
-                aliases.any((alias) => _normalize(alias) == text);
-          })
-        : lexicon.any((item) {
-            final terms = <String>[
-              ...(item['keywords']! as List).cast<String>(),
-              ...(item['aliases']! as List).cast<String>(),
-            ];
-            return item['semanticKey'] == expected &&
-                terms.any((term) => _normalize(term) == text);
-          });
+    final entityEvidence = entityMatcher.evidence(entityMatcher.match(text));
+    final lexiconEvidence = lexiconMatcher.match(text);
+    final fused = fusion.fuse([...entityEvidence, ...lexiconEvidence]);
+    final matched = fused.semanticKey == expected;
     if (matched) {
       correct++;
     } else {
@@ -343,6 +522,45 @@ String _entityKind(String? value) => switch (value) {
   'productBrand' || 'product brand' => 'productBrand',
   _ => 'merchant',
 };
+
+List<Map<String, Object?>> _expandGroupedEntities(
+  Map<String, Object?> source,
+) => [
+  for (final rawGroup in (source['groups']! as List))
+    for (final rawRecord in ((rawGroup as Map)['records']! as List))
+      {
+        'canonicalName': (rawRecord as List)[0] as String,
+        'aliases': rawRecord.skip(1).cast<String>().toList(),
+        'semanticKey': rawGroup['semanticKey'],
+        'kind': rawGroup['kind'] ?? 'merchant',
+        'breadth': rawGroup['breadth'] ?? 'specific',
+        'confidence': rawGroup['confidence'] ?? 0.90,
+        'reviewStatus': 'approved',
+        'market': source['market'] ?? 'CN-mainland',
+        '_source': 'curated',
+      },
+];
+
+({int requested, int matched, List<String> missing}) _validateAuditList({
+  required Iterable<String> values,
+  required Iterable<String> available,
+  bool normalizeValues = false,
+}) {
+  final expected = values.toList();
+  final haystack = available
+      .map((value) => normalizeValues ? _normalize(value) : value)
+      .toSet();
+  final missing = [
+    for (final value in expected)
+      if (!haystack.contains(normalizeValues ? _normalize(value) : value))
+        value,
+  ];
+  return (
+    requested: expected.length,
+    matched: expected.length - missing.length,
+    missing: missing,
+  );
+}
 
 String _defaultRole(String semantic) {
   if (semantic.contains('.clinic') ||

@@ -12,7 +12,7 @@ class RecognitionResultMapper {
     required String accountId,
     String? note,
   }) {
-    if (!result.isComplete) {
+    if (!result.canQuickConfirm) {
       throw StateError('识别候选不完整，不能写入账本');
     }
     final draft = result.draft;

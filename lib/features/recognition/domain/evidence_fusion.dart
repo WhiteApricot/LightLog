@@ -61,7 +61,7 @@ class EvidenceFusion {
             (top.role == EvidenceRole.service &&
                 top.source == RecognitionEvidenceSource.categoryLexicon))) {
       return EvidenceFusionResult(
-        semanticKey: null,
+        semanticKey: winner.key,
         confidence: top.score.clamp(0, 0.57),
         issueCodes: const {RecognitionIssueCode.categoryAmbiguous},
         winningEvidence: List.unmodifiable(winner.evidence),
@@ -112,7 +112,7 @@ class EvidenceFusion {
     if (confidence < 0.58) {
       issues.add(RecognitionIssueCode.categoryLowConfidence);
       return EvidenceFusionResult(
-        semanticKey: null,
+        semanticKey: winner.key,
         confidence: confidence,
         issueCodes: Set.unmodifiable(issues),
         winningEvidence: List.unmodifiable(winner.evidence),

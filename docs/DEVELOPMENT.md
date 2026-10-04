@@ -33,7 +33,7 @@ Phase 3 本地知识资产在修改源清单后执行：
 
 ```bash
 dart tools/knowledge/generate_knowledge.dart
-dart tools/evaluation/evaluate_recognition.dart --corpus <corpus.json> --report <report.json>
+dart tools/evaluation/evaluate_recognition.dart --corpus tools/evaluation/phase3_regression_corpus.json --report <report.json>
 dart tools/evaluation/analyze_failures.dart <report.json> <summary.md>
 dart tools/benchmark/benchmark_recognition.dart
 ```

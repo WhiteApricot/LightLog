@@ -33,15 +33,19 @@ class ContextEvidenceBuilder {
         ];
       }
     }
-    final hasFoodMerchant = entityEvidence.any(
+    final hasMealEligibleMerchant = entityEvidence.any(
       (item) =>
           item.role == EvidenceRole.merchantType &&
-          (item.semanticKey?.startsWith('expense.food.') ?? false),
+          (item.semanticKey == 'expense.food.other' ||
+              item.semanticKey == 'expense.food.takeout'),
     );
-    final hasMealScene = RegExp(r'食堂|餐厅|吃饭|用餐').hasMatch(matchingText);
+    final hasMealScene = RegExp(r'食堂|餐厅|吃饭|用餐|套餐|吃了|吃的').hasMatch(matchingText);
     final hasDaypart = RegExp(r'今早|早上|上午|中午|下午|昨晚|今晚|晚上')
         .hasMatch(matchingText);
-    if (!hasMealScene && !(hasFoodMerchant && (hasDaypart || timeIsExplicit))) {
+    final hasExplicitClock = RegExp(r'(?<!\d)(?:[01]?\d|2[0-3]):[0-5]\d')
+        .hasMatch(matchingText);
+    final hasMealTime = hasDaypart || (timeIsExplicit && hasExplicitClock);
+    if (!hasMealScene && !(hasMealEligibleMerchant && hasMealTime)) {
       return const [];
     }
     final semanticKey = switch (occurredHour) {
@@ -50,17 +54,17 @@ class ContextEvidenceBuilder {
       >= 17 && < 24 => 'expense.food.dinner',
       _ => 'expense.food.other',
     };
+    final strongMealContext =
+        hasMealTime && (hasMealScene || hasMealEligibleMerchant);
     return [
       RecognitionEvidence(
         field: 'category',
         source: RecognitionEvidenceSource.context,
         semanticKey: semanticKey,
         description: '餐食场景结合发生时段',
-        score: hasFoodMerchant && (hasDaypart || timeIsExplicit) ? 0.84 : 0.70,
-        role: hasFoodMerchant && (hasDaypart || timeIsExplicit)
-            ? EvidenceRole.action
-            : EvidenceRole.context,
-        specificity: hasFoodMerchant && (hasDaypart || timeIsExplicit)
+        score: strongMealContext ? 0.94 : 0.70,
+        role: strongMealContext ? EvidenceRole.action : EvidenceRole.context,
+        specificity: strongMealContext
             ? EvidenceSpecificity.specific
             : EvidenceSpecificity.general,
         family: 'mealDaypart',

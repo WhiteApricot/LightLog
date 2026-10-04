@@ -22,7 +22,7 @@ class TransactionStatusDetector {
       (TransactionStatus.refund, RegExp(r'退款成功|已退款|退款到账')),
       (
         TransactionStatus.nonTransaction,
-        RegExp(r'银行卡余额|账户余额|优惠券页面|卡券中心|验证码|账单首页'),
+        RegExp(r'银行卡余额|账户余额|优惠券页面|卡券中心|验证码|账单首页|优惠券.{0,20}(?:有效期|满\d+可用|立减)'),
       ),
       (TransactionStatus.success, RegExp(r'支付成功|交易成功|付款成功|收款成功')),
     ];
@@ -46,10 +46,17 @@ class TransactionStatusDetector {
     final strongAmountCount = RegExp(r'实付\s*[:：]?\s*[￥¥]?\s*\d+(?:\.\d{1,2})?')
         .allMatches(text)
         .length;
+    final partyCount = RegExp(r'收款方\s*[:：]?').allMatches(text).length;
+    final labeledAmountCount = RegExp(
+      r'(?:金额|支付金额|付款金额)\s*[:：]?\s*[￥¥]?\s*\d+(?:\.\d{1,2})?',
+    ).allMatches(text).length;
     return TransactionStatusDecision(
       status: status,
       spans: List.unmodifiable(spans),
-      multipleTransactionsDetected: successCount >= 2 || strongAmountCount >= 2,
+      multipleTransactionsDetected:
+          successCount >= 2 ||
+          strongAmountCount >= 2 ||
+          (partyCount >= 2 && labeledAmountCount >= 2),
     );
   }
 }

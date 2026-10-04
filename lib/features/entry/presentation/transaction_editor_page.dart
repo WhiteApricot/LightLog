@@ -359,20 +359,11 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
             ),
             if (candidate != null) ...[
               const SizedBox(height: 8),
-              if (candidate.isComplete)
-                _SmartCandidateResult(
-                  candidate: candidate,
-                  saving: _saving,
-                  onConfirm: _save,
-                )
-              else
-                for (final issue in candidate.issues)
-                  Text(
-                    '• $issue',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.error,
-                    ),
-                  ),
+              _SmartCandidateResult(
+                candidate: candidate,
+                saving: _saving,
+                onConfirm: _save,
+              ),
             ],
           ],
         ),
@@ -616,40 +607,67 @@ class _SmartCandidateResult extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final draft = candidate.draft;
-    final occurredAt = draft.occurredAtLocal!;
+    final occurredAt = draft.occurredAtLocal;
+    final level = candidate.confirmationLevel;
+    final colorScheme = Theme.of(context).colorScheme;
+    final background = switch (level) {
+      ConfirmationLevel.confident => colorScheme.primaryContainer,
+      ConfirmationLevel.warning => colorScheme.tertiaryContainer,
+      ConfirmationLevel.blocked => colorScheme.errorContainer,
+    };
+    final levelLabel = switch (level) {
+      ConfirmationLevel.confident => '可信结果',
+      ConfirmationLevel.warning => '请检查后确认',
+      ConfirmationLevel.blocked => '存在安全阻断',
+    };
     return Container(
       key: const ValueKey('unified-smart-success'),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primaryContainer,
+        color: background,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('识别结果', style: Theme.of(context).textTheme.titleSmall),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  '识别结果',
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+              ),
+              Text(levelLabel, style: Theme.of(context).textTheme.labelMedium),
+            ],
+          ),
           const SizedBox(height: 8),
           _CandidateLine(
             icon: Icons.category_outlined,
             label: '自动分类',
-            value: '${candidate.categoryName} · ${candidate.subcategoryName}',
+            value: candidate.categoryName == null
+                ? '待手动选择'
+                : '${candidate.categoryName} · ${candidate.subcategoryName}',
           ),
           _CandidateLine(
             icon: Icons.schedule_outlined,
             label: '时间',
-            value:
-                '${occurredAt.month}月${occurredAt.day}日 '
-                '${_two(occurredAt.hour)}:${_two(occurredAt.minute)}',
+            value: occurredAt == null
+                ? '未识别'
+                : '${occurredAt.month}月${occurredAt.day}日 '
+                      '${_two(occurredAt.hour)}:${_two(occurredAt.minute)}',
           ),
           _CandidateLine(
             icon: Icons.payments_outlined,
             label: '金额',
-            value: MoneyParser.formatCnyMinor(draft.amountMinor!),
+            value: draft.amountMinor == null
+                ? '未识别'
+                : MoneyParser.formatCnyMinor(draft.amountMinor!),
           ),
           _CandidateLine(
             icon: Icons.storefront_outlined,
             label: '内容 / 商户',
-            value: draft.content!,
+            value: draft.content ?? '未识别',
           ),
           for (final issue in candidate.issues) ...[
             const SizedBox(height: 4),
@@ -666,14 +684,22 @@ class _SmartCandidateResult extends StatelessWidget {
             width: double.infinity,
             child: FilledButton.icon(
               key: const ValueKey('smart-confirm-transaction-button'),
-              onPressed: saving ? null : onConfirm,
+              onPressed: saving || !candidate.canQuickConfirm
+                  ? null
+                  : onConfirm,
               icon: saving
                   ? const SizedBox.square(
                       dimension: 18,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
                   : const Icon(Icons.check),
-              label: Text(saving ? '入账中…' : '确认入账'),
+              label: Text(
+                saving
+                    ? '入账中…'
+                    : level == ConfirmationLevel.blocked
+                    ? '请先修正阻断项'
+                    : '确认入账',
+              ),
             ),
           ),
         ],

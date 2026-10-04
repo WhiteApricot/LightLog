@@ -36,6 +36,7 @@ class NaturalTimeParser {
     var date = DateTime(now.year, now.month, now.day);
     var hour = now.hour;
     var minute = now.minute;
+    var second = 0;
     var explicit = false;
     String? description;
 
@@ -178,11 +179,24 @@ class NaturalTimeParser {
       }
     }
 
-    final clock = _clockPattern.firstMatch(remaining);
+    final clocks = _clockPattern.allMatches(remaining).map((match) {
+      final start = match.start > 16 ? match.start - 16 : 0;
+      final label = remaining.substring(start, match.start);
+      final score = RegExp(r'支付时间|交易时间|付款时间|退款时间').hasMatch(label)
+          ? 30
+          : RegExp(r'下单时间|订单时间').hasMatch(label)
+          ? 15
+          : RegExp(r'乘车时间|场次|有效期|入住时间').hasMatch(label)
+          ? -20
+          : 0;
+      return (match: match, score: score);
+    }).toList()..sort((a, b) => b.score.compareTo(a.score));
+    final clock = clocks.firstOrNull?.match;
     if (clock != null) {
       explicit = true;
       hour = int.parse(clock.group(1)!);
       minute = int.parse(clock.group(2)!);
+      second = int.tryParse(clock.group(3) ?? '') ?? 0;
       hour = _adjustHourForPeriod(hour, input);
       remaining = remaining.replaceRange(clock.start, clock.end, ' ');
     } else {
@@ -205,7 +219,7 @@ class NaturalTimeParser {
     }
 
     return ParsedNaturalTime(
-      value: DateTime(date.year, date.month, date.day, hour, minute),
+      value: DateTime(date.year, date.month, date.day, hour, minute, second),
       remaining: remaining.replaceAll(RegExp(r'\s+'), ' ').trim(),
       isExplicit: explicit,
       description: description,

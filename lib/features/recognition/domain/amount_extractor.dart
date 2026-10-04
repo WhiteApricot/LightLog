@@ -78,6 +78,8 @@ class AmountExtractor {
     for (var index = 0; index < matches.length; index++) {
       final match = matches[index];
       final range = TextSpanRange(start: match.start, end: match.end);
+      final numericStart =
+          match.start + match.group(0)!.indexOf(RegExp(r'[+-]?\d'));
       if (occupied.any(range.overlaps)) continue;
       final token = match.group(1)!.replaceAll(RegExp(r'[￥¥\s]'), '');
       final unsigned = token.replaceFirst(RegExp(r'^[+-]'), '');
@@ -161,8 +163,8 @@ class AmountExtractor {
         features.add('modelPrefix');
       } else if (!hasPositiveLabel &&
           index < matches.length - 1 &&
-          match.start > 0 &&
-          !RegExp(r'[\s:：￥¥]').hasMatch(text[match.start - 1])) {
+          numericStart > 0 &&
+          !RegExp(r'[\s:：￥¥]').hasMatch(text[numericStart - 1])) {
         score -= 60;
         role = NumericRole.titleNumber;
         reason = '标题内数字';
@@ -206,7 +208,7 @@ class AmountExtractor {
         viable.first.score - viable[1].score < 24;
     return AmountExtractionResult(
       candidates: List.unmodifiable(candidates),
-      selected: viable.isEmpty || ambiguous ? null : viable.first,
+      selected: viable.firstOrNull,
       ambiguous: ambiguous,
     );
   }

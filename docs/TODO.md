@@ -56,7 +56,10 @@
 - [x] Replace the old Parser with one pure-Dart production `LocalRecognizer` shared by App/evaluation/benchmark/tests
 - [x] Resolve the first structural Phase 3 blockers with span extraction, numeric protection, independent type evidence, specificity-aware fusion and confidence gating
 - [x] Replace quantity gates with reviewed knowledge distribution, alias policy, conflict and deterministic sample gates
-- [ ] Preserve and rerun the complete 190-case corpus when the missing 74 original passing inputs are restored; the repository currently contains only the initial report and its 116 failures
+- [x] Add confident/warning/blocked prefill semantics while retaining warning top-1 fields and blocking only dangerous cases
+- [x] Expand reviewed mainland daily knowledge to 447 entities/1307 aliases and 2411 positive/355 negative terms with 106 production review samples
+- [x] Preserve and rerun the complete 190-case corpus; final P0 is 97.56%, P1 is 88.06%, P2 safe rejection is 100%, and high-confidence wrong is 0
+- [ ] Resolve remaining non-blocking content-span families and taxonomy-oracle differences without weakening the zero/high-risk amount and refund safety policy
 
 ## Future - Category management
 

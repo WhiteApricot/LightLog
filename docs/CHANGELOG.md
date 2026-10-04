@@ -28,6 +28,8 @@
 - Added an independent 190-case blind-evaluation runner and documented the first unacceptable baseline without applying corpus-specific patches.
 - Added a pure Dart production `LocalRecognizer`, structured field/span candidates, independent type evidence, confidence calibration, failure analysis, and a standalone benchmark shared by App and tools.
 - Added reviewed knowledge roles/kinds/breadth, per-alias match policies, deterministic review samples, scene coverage gates, and runtime distribution reports.
+- Added 447 reviewed mainland consumer entities, 1307 normalized aliases, 2411 real-language positive terms, 355 negative/conflict terms, 106 production-path review samples, and 50-entity/100-term audit gates.
+- Added the restored 190-case regression corpus plus immutable initial and final usability reports and failure summaries.
 
 ### Changed
 
@@ -54,6 +56,8 @@
 - Replaced `TextEntryParser`, the monolithic field extractor, and the inert n-gram interface with one production recognition pipeline used by App, evaluation, benchmark, and tests.
 - Reduced runtime entity knowledge from an unreviewed quantity-driven snapshot to 81 approved consumer entities and 84 reviewed lexicon groups; the 1600 media/game snapshot records remain provenance-only and are excluded from runtime.
 - Changed evaluation to report P0/P1/P2 safe rejection, per-field and complete accuracy, display-vs-span content errors, confidence buckets, high-confidence wrong predictions, and average/p50/p95/p99/max latency.
+- Changed recognition confirmation into explicit `confident`, `warning`, and `blocked` levels: warning retains top-1 prefill and permits reviewed confirmation, while only dangerous transaction states or missing legal amounts block quick entry.
+- Indexed entity aliases and lexicon terms by first character, preserving Personal History priority while preventing broad/platform evidence from outranking specific products, actions, or services.
 
 ### Fixed
 
@@ -62,3 +66,4 @@
 - Verified transaction persistence across closing and reopening a real SQLite file.
 - Ensured ledger rows and expanded child-category tiles render the selected second-level category SVG rather than the parent icon.
 - Replaced title-only SVG variants with genuinely distinct category geometry and added regression coverage against duplicate shapes.
+- Fixed attached-amount entity matching, common entity suffixes, amount-token boundaries, modifier/action composition, OCR clock selection, repeated transaction-block detection, and content-span removal for quantities and model numbers.

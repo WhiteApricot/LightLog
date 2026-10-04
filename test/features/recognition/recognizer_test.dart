@@ -53,12 +53,92 @@ void main() {
     expect(result.semanticKey, 'expense.food.dinner');
   });
 
+  test('meal scenes use daypart without reclassifying beverage merchants', () {
+    expect(recognizeForTest('中午在园区食堂吃饭 16').semanticKey, 'expense.food.lunch');
+    expect(recognizeForTest('今早星巴克 28').semanticKey, 'expense.food.drink');
+  });
+
+  test('attached amount does not prevent latin or Chinese entity matching', () {
+    final latin = recognizeForTest('kfc15');
+    final chinese = recognizeForTest('麦当劳25');
+
+    expect(latin.draft.amountMinor, 1500);
+    expect(latin.semanticKey, 'expense.food.other');
+    expect(chinese.draft.amountMinor, 2500);
+    expect(chinese.semanticKey, 'expense.food.other');
+  });
+
+  test(
+    'short exact aliases remain matchable before common attached labels',
+    () {
+      final member = recognizeForTest('KFC会员 15');
+      final package = recognizeForTest('KFC套餐 25');
+      final order = recognizeForTest('KFC订单A123 35');
+
+      for (final result in [member, package, order]) {
+        expect(
+          result.evidence.where(
+            (item) =>
+                item.source == RecognitionEvidenceSource.entityKnowledge &&
+                item.description.contains('肯德基'),
+          ),
+          isNotEmpty,
+        );
+      }
+    },
+  );
+
   test('platform is removed when a specific product remains', () {
     final result = recognizeForTest('淘宝 iPhone手机壳 49.9');
 
     expect(result.draft.content, 'iPhone手机壳');
     expect(result.semanticKey, 'expense.digital.accessory');
   });
+
+  test('modifier plus action produces specific pet and vehicle semantics', () {
+    expect(recognizeForTest('宠物美容 80').semanticKey, 'expense.pets.grooming');
+    expect(
+      recognizeForTest('车辆保养 600').semanticKey,
+      'expense.transport.maintenance',
+    );
+  });
+
+  test('warning retains top prediction and remains manually confirmable', () {
+    final result = recognizeForTest('淘宝 49');
+
+    expect(result.semanticKey, 'expense.shopping.other');
+    expect(result.subcategoryId, isNotNull);
+    expect(result.confirmationLevel, ConfirmationLevel.warning);
+    expect(result.canQuickConfirm, isTrue);
+  });
+
+  test('recoverable amount ambiguity retains the top amount', () {
+    final result = recognizeForTest('麦当劳 26元 30元');
+
+    expect(result.draft.amountMinor, 3000);
+    expect(
+      result.issueCodes,
+      contains(RecognitionIssueCode.ambiguousAmount),
+      reason: result.amountCandidates
+          .map((item) => '${item.raw}:${item.role.name}:${item.score}')
+          .join(', '),
+    );
+    expect(result.confirmationLevel, ConfirmationLevel.warning);
+    expect(result.canQuickConfirm, isTrue);
+  });
+
+  test(
+    'failed transaction is blocked while extracted fields remain visible',
+    () {
+      final result = recognizeForTest('支付失败 麦当劳 25');
+
+      expect(result.draft.amountMinor, 2500);
+      expect(result.draft.content, isNotNull);
+      expect(result.semanticKey, 'expense.food.other');
+      expect(result.confirmationLevel, ConfirmationLevel.blocked);
+      expect(result.canQuickConfirm, isFalse);
+    },
+  );
 
   test('personal history wins only after repeated net-positive feedback', () {
     final now = DateTime(2026, 10, 4, 12, 30);

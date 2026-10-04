@@ -71,6 +71,7 @@ void main() {
   test('two transaction blocks are never merged', () {
     final result = recognizeForTest('支付成功 麦当劳 实付26 支付成功 星巴克 实付20');
     expect(result.multipleTransactionsDetected, isTrue);
-    expect(result.isComplete, isFalse);
+    expect(result.confirmationLevel, ConfirmationLevel.blocked);
+    expect(result.canQuickConfirm, isFalse);
   });
 }

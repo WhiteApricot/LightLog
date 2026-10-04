@@ -40,6 +40,8 @@ enum TransactionStatus {
 
 enum RecognitionResultStatus { complete, partial, rejected }
 
+enum ConfirmationLevel { confident, warning, blocked }
+
 enum RecognitionIssueCode {
   emptyInput,
   amountUnrecognized,
@@ -297,44 +299,50 @@ class RecognitionResult {
       if (_blockingIssueCodes.contains(code)) issueMessage(code),
   ];
 
-  RecognitionResultStatus get resultStatus {
-    if (draft.rawText.trim().isEmpty ||
-        status == TransactionStatus.failed ||
-        status == TransactionStatus.cancelled ||
-        status == TransactionStatus.nonTransaction) {
-      return RecognitionResultStatus.rejected;
+  ConfirmationLevel get confirmationLevel {
+    if (issueCodes.any(_dangerousIssueCodes.contains)) {
+      return ConfirmationLevel.blocked;
     }
-    return isComplete
-        ? RecognitionResultStatus.complete
-        : RecognitionResultStatus.partial;
+    if (issueCodes.isNotEmpty || confidence < 0.80 || !hasRequiredFields) {
+      return ConfirmationLevel.warning;
+    }
+    return ConfirmationLevel.confident;
   }
 
-  bool get isComplete =>
+  bool get hasRequiredFields =>
       draft.type != null &&
       draft.amountMinor != null &&
       draft.content != null &&
       draft.occurredAtLocal != null &&
       draft.timezoneOffsetMinutes != null &&
       categoryId != null &&
-      subcategoryId != null &&
-      !_blockingIssueCodes.any(issueCodes.contains);
+      subcategoryId != null;
 
-  static const _blockingIssueCodes = {
+  bool get canQuickConfirm =>
+      confirmationLevel != ConfirmationLevel.blocked && hasRequiredFields;
+
+  RecognitionResultStatus get resultStatus {
+    if (confirmationLevel == ConfirmationLevel.blocked) {
+      return RecognitionResultStatus.rejected;
+    }
+    return hasRequiredFields
+        ? RecognitionResultStatus.complete
+        : RecognitionResultStatus.partial;
+  }
+
+  bool get isComplete => hasRequiredFields;
+
+  static const _dangerousIssueCodes = {
     RecognitionIssueCode.emptyInput,
     RecognitionIssueCode.amountUnrecognized,
-    RecognitionIssueCode.ambiguousAmount,
-    RecognitionIssueCode.contentUnrecognized,
-    RecognitionIssueCode.typeLowConfidence,
-    RecognitionIssueCode.typeConflict,
-    RecognitionIssueCode.categoryLowConfidence,
-    RecognitionIssueCode.categoryMappingMissing,
-    RecognitionIssueCode.ambiguousWeekday,
     RecognitionIssueCode.transactionNotCompleted,
     RecognitionIssueCode.transactionCancelled,
     RecognitionIssueCode.noTransactionEvidence,
     RecognitionIssueCode.relatedTransactionRequired,
     RecognitionIssueCode.multipleTransactionsDetected,
   };
+
+  static const _blockingIssueCodes = {..._dangerousIssueCodes};
 
   static String issueMessage(RecognitionIssueCode code) => switch (code) {
     RecognitionIssueCode.emptyInput => '请输入要识别的账目内容',

@@ -76,9 +76,7 @@ class ContentExtractor {
     for (final candidate in amountCandidates) {
       if (candidate == selectedAmount) continue;
       if (candidate.role == NumericRole.orderId ||
-          candidate.role == NumericRole.quantity ||
-          candidate.role == NumericRole.phoneNumber ||
-          candidate.role == NumericRole.distanceDuration) {
+          candidate.role == NumericRole.phoneNumber) {
         erase(candidate.range);
       }
     }
@@ -114,38 +112,47 @@ class ContentExtractor {
               match.alias.entity.breadth == EntityBreadth.specific,
         )
         .firstOrNull;
+    final contentEntity = entityMatches.firstOrNull;
     final concreteEntity = entityMatches
         .where((match) => match.alias.entity.kind != EntityKind.platform)
         .firstOrNull;
+    if (contentEntity != null &&
+        RegExp(r'^(?:早餐|早饭|午餐|午饭|晚餐|晚饭|夜宵)').hasMatch(content)) {
+      return _entityCandidate(contentEntity);
+    }
     final onlyBroadServiceAfterEntity =
-        concreteEntity != null &&
+        contentEntity != null &&
         RegExp(r'^(?:会员|订阅|套餐)$').hasMatch(
           content
               .replaceFirst(
                 displayText.substring(
-                  concreteEntity.range.start,
-                  concreteEntity.range.end,
+                  contentEntity.range.start,
+                  contentEntity.range.end,
                 ),
                 '',
               )
               .trim(),
         );
     if (onlyBroadServiceAfterEntity) {
-      return _entityCandidate(concreteEntity);
+      return _entityCandidate(contentEntity);
     }
     if (!specificLexicon &&
         merchant != null &&
         content.length > merchant.range.length + 8) {
       return _entityCandidate(merchant);
     }
-    if (content.length > 12 && concreteEntity != null) {
+    if (content.runes.length > 12 &&
+        concreteEntity != null &&
+        concreteEntity.alias.entity.breadth == EntityBreadth.specific) {
       return _entityCandidate(concreteEntity);
     }
     final narrativeMerchant = RegExp(
       r'(?:去|在)([\u4e00-\u9fffA-Za-z0-9·]{2,20}?)(?:买|吃|消费|看|住)',
     ).firstMatch(content);
     if (narrativeMerchant != null) {
-      final value = narrativeMerchant.group(1)!;
+      final value = narrativeMerchant
+          .group(1)!
+          .replaceFirst(RegExp(r'^(?:学校|公司|单位|小区|商场)'), '');
       return ContentCandidate(
         displayText: value,
         matchingText: value.toLowerCase(),
@@ -166,7 +173,9 @@ class ContentExtractor {
             )
             .toList()
           ..sort((a, b) => b.span!.length.compareTo(a.span!.length));
-    if (content.length > 12 && narrativeLexicon.isNotEmpty) {
+    if (content.runes.length > 12 &&
+        RegExp(r'买|吃|花|给|一共|消费|支付').hasMatch(content) &&
+        narrativeLexicon.isNotEmpty) {
       final evidence = narrativeLexicon.first;
       final value = displayText.substring(
         evidence.span!.start,
@@ -201,20 +210,20 @@ class ContentExtractor {
         ),
         ' ',
       )
+      .replaceAll(RegExp(r'(?:订单号|交易号|商户单号|流水号)\s*[:：]?'), ' ')
       .replaceAll(RegExp(r'实付|支付金额|付款金额|实际支付|应付|订单金额|商品金额|总金额|合计'), ' ')
       .replaceAll(
-        RegExp(
-          r'^\s*(?:(?:今天|昨天|前天|昨晚|今早|今晚|明天)|(?:早上|上午|中午|下午|晚上)|(?:早餐|早饭|午餐|午饭|晚餐|晚饭|夜宵))+\s*',
-        ),
+        RegExp(r'^\s*(?:(?:今天|昨天|前天|昨晚|今早|今晚|明天)|(?:早上|上午|中午|下午|晚上))+\s*'),
         ' ',
       )
       .replaceAll(RegExp(r'(?:\d+\s*)?(?:个|件|张|份|杯|瓶|盒)(?=\s|$)'), ' ')
       .replaceAll(
         RegExp(
-          r'(?:[零一二两三四五六七八九十\d]+\s*)?(?:个|件|张|份|杯|瓶|盒|袋)(?=[\u4e00-\u9fffA-Za-z])',
+          r'(?:[零一二两三四五六七八九十\d]+\s*)(?:个|件|张|份|杯|瓶|盒|袋)(?=[\u4e00-\u9fffA-Za-z])',
         ),
         ' ',
       )
+      .replaceAll(RegExp(r'(?:^|\s)支付(?=\s|$)'), ' ')
       .replaceAll(RegExp(r'[￥¥]'), ' ')
       .replaceAll(RegExp(r'^[\s,，。;；:：]+|[\s,，。;；:：]+$'), '')
       .replaceAll(RegExp(r'\s+'), ' ')

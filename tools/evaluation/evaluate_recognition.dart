@@ -111,6 +111,9 @@ void main(List<String> args) {
     'highConfidenceWrongPredictionCount': results
         .where((item) => item['highConfidenceWrong'] == true)
         .length,
+    'confirmationLevelDistribution': _counts(
+      results.map((item) => item['confirmationLevel']! as String),
+    ),
     'confidenceBuckets': _confidenceBuckets(results),
     'latencyMicroseconds': {
       'average':
@@ -147,7 +150,13 @@ Map<String, Object?> _evaluate(
       RecognitionNormalizer.indexKey(actualContent ?? '') ==
           RecognitionNormalizer.indexKey(expectedContent);
   final displayMismatch = !contentCorrect && contentSpanCorrect;
-  final statusCorrect = actual.resultStatus.name == expected['status'];
+  final statusCorrect = switch (expected['status']) {
+    'complete' => actual.resultStatus == RecognitionResultStatus.complete,
+    'partial' => actual.confirmationLevel != ConfirmationLevel.confident,
+    'reject' ||
+    'rejected' => actual.confirmationLevel == ConfirmationLevel.blocked,
+    _ => actual.resultStatus.name == expected['status'],
+  };
   final amountCorrect =
       expected['amountMinor'] == null ||
       actual.draft.amountMinor == expected['amountMinor'];
@@ -186,7 +195,7 @@ Map<String, Object?> _evaluate(
   ];
   final wrongCore = !amountCorrect || !typeCorrect || !categoryCorrect;
   final highConfidenceWrong =
-      actual.resultStatus == RecognitionResultStatus.complete &&
+      actual.confirmationLevel == ConfirmationLevel.confident &&
       actual.confidence >= 0.80 &&
       wrongCore;
   return {
@@ -201,6 +210,8 @@ Map<String, Object?> _evaluate(
         !highConfidenceWrong,
     'expectedStatus': expected['status'],
     'actualStatus': actual.resultStatus.name,
+    'confirmationLevel': actual.confirmationLevel.name,
+    'canQuickConfirm': actual.canQuickConfirm,
     'amountCorrect': amountCorrect,
     'typeCorrect': typeCorrect,
     'categoryCorrect': categoryCorrect,
@@ -219,6 +230,8 @@ Map<String, Object?> _evaluate(
       'subcategoryId': actual.subcategoryId,
       'occurredAtLocal': actual.draft.occurredAtLocal?.toIso8601String(),
       'confidence': actual.confidence,
+      'confirmationLevel': actual.confirmationLevel.name,
+      'canQuickConfirm': actual.canQuickConfirm,
       'fieldConfidence': {
         'amount': actual.fieldConfidence.amount,
         'type': actual.fieldConfidence.type,
@@ -277,6 +290,14 @@ Map<String, int> _failureCounts(List<Map<String, Object?>> failures) {
     for (final reason in (failure['failureReasons']! as List).cast<String>()) {
       result.update(reason, (count) => count + 1, ifAbsent: () => 1);
     }
+  }
+  return result;
+}
+
+Map<String, int> _counts(Iterable<String> values) {
+  final result = <String, int>{};
+  for (final value in values) {
+    result.update(value, (count) => count + 1, ifAbsent: () => 1);
   }
   return result;
 }

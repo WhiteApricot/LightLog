@@ -75,7 +75,10 @@ numeric role。`AmountExtractor` 对全部剩余数字生成带 feature/reason/s
 
 同 family 证据先去相关；跨来源同向证据仅小幅加分。fuzzy、platform、broad-only、merchant-only 和强
 冲突有 confidence ceiling。amount/type/category/time/content 各有独立 confidence，overall 取安全门禁
-后的结果。Phase 3 始终要求用户确认，当前结构性回归的 high-confidence wrong 为 0。
+后的结果。预测字段与确认安全级别分离：`confident` 预填并正常确认；`warning` 仍保留金额、类型、内容、
+时间和分类 top-1，同时展示低置信/冲突并允许用户修改或人工确认；`blocked` 尽量展示已提取字段，但禁用
+快捷入账。只有支付失败/取消、非交易页、明显多笔、未关联退款、空输入或无合法金额属于 blocked；分类
+低置信、分类冲突、一般时间歧义和可恢复金额歧义只属于 warning。
 
 Personal History 只按索引化 normalized content 查询。命中次数必须形成正净支持；纠正、冲突和最近使用
 共同限制分数，单次确认不会机械触发最高优先级。
@@ -87,14 +90,18 @@ Personal History 只按索引化 normalized content 查询。命中次数必须�
 实体默认语义只是 fallback；platform 可不带 semantic。词典使用受控 evidence role
 （product/action/service/merchantType/venue/platform）、specificity 和 negative/conflict terms。
 
-数量不再是质量门禁。当前生成结果为：
+数量与质量同时是硬门禁。当前生成结果为：
 
-- 81 个 approved runtime entities、216 aliases；
-- 84 个 lexicon groups、365 positive terms、54 negative/conflict terms；
-- 44 个必需大陆日常场景语义覆盖率 100%；
-- 固定 30 条 review samples 为 30/30；
+- 447 个 approved runtime entities、1307 个 normalized aliases；
+- 149 个 lexicon groups、2411 个 positive terms、355 个 negative/conflict terms；
+- 63 个高频大陆日常 semanticKey 覆盖率 100%，每项至少 10 个真实表达和 2 个有意义冲突词；
+- 106 条覆盖实体、alias、product/action/service、组合语义、platform、broad、conflict 和 income 的
+  production matcher/fusion review samples 为 106/106；
+- 分层人工清单核对 50 个实体和 100 个 lexicon term，均存在于最终 runtime；
+- runtime entity kind 分布：merchant 229、service 187、platform 30、productBrand 1；大陆场景占比 100%，
+  media/game title runtime 占比 0%；
 - 1600 个未审核 media/game snapshot records 保留 provenance，但全部排除出 runtime；
-- runtime assets 约 38 KiB，远低于 2 MiB。
+- runtime assets 185705 bytes，远低于 2 MiB。
 
 生成命令：
 
@@ -102,8 +109,9 @@ Personal History 只按索引化 normalized content 查询。命中次数必须�
 dart tools/knowledge/generate_knowledge.dart
 ```
 
-生成器验证 schema、kind/role/breadth、alias policy、重复与未解决冲突、场景覆盖、固定抽样和体积，并写出
-`tools/knowledge/quality_report.json`。公开快照仅作为显式开发输入，App 运行时从不联网。
+生成器验证 schema、kind/role/breadth、alias policy、规模、实体分布、每 semanticKey 词族、重复与未解决
+冲突、短/高风险词、固定抽样、人工抽查清单和体积，并写出 `tools/knowledge/quality_report.json`。公开快照
+仅作为显式开发输入，App 运行时从不联网。
 
 ## Evaluation、失败分析与性能
 
@@ -119,16 +127,18 @@ evaluation 输出 P0/P1/P2 exact、P2 safe rejection、amount/type/category/time
 真实 span 错误、confidence buckets、high-confidence wrong，以及 average/p50/p95/p99/max。报告带 corpus、
 recognizer version 与 knowledge hash。benchmark 分开统计 cold knowledge decode 和 warm recognize。
 
-2026-10-04 当前 benchmark（Windows、10,000 次 warm parse）：average 536 µs、p50 510 µs、p95 751 µs、
-p99 959 µs、max 1675 µs，p95 < 5 ms 门禁通过；cold decode 4360 µs。
+2026-10-05 当前 benchmark（Windows、10,000 次 warm parse）：average 172 µs、p50 151 µs、p95 313 µs、
+p99 479 µs、max 11168 µs，p95 < 5 ms 门禁通过；cold decode 18565 µs。
 
-仓库保留首次 190-case 报告，但没有保留其中 74 条原本通过的输入，只能重跑报告中的 116 条失败子集。
-当前失败子集实测：P0 12/14、P1 66/89、P2 safe rejection 100%、amount 100%、type 93.10%、category
-89.66%、time 96.55%、content span 87.93%、high-confidence wrong 0、p95 约 1.27 ms。若假设旧报告的
-74 条全字段通过项未回退，可重建 P0 39/41（95.12%）、P1 111/134（82.84%）、type 182/190
-（95.79%）、category 178/190（93.68%）、time 186/190（97.89%）；这些是重建值，不冒充完整 190 条
-重跑。完整 corpus 恢复后必须正式复验。
+完整 190-case corpus 已恢复为 `tools/evaluation/phase3_regression_corpus.json`。本轮盲测前先冻结算法与
+知识门禁，初测报告为 `phase3_usability_initial.json`；仅做泛化修复后的最终报告为
+`phase3_usability_final.json`，失败摘要为 `phase3_usability_final_analysis.md`。最终实测：P0 40/41
+（97.56%）、P1 118/134（88.06%）、P2 safe rejection 100%、amount 100%、type 98.95%、category
+96.84%、time 100%、content 93.16%、content span 94.21%、high-confidence wrong 0、p95 1.076 ms。
+唯一 P0 未通过项是旧 corpus 将金额 0 标为 partial/`invalid_amount`，而当前安全规则按“无合法金额”
+进入 blocked/`amount_unrecognized`；这是明确的安全语义差异，不为提高指标放宽。
 
-P1 重建值不低于 75%，因此本轮不进入 n-gram。若完整 corpus 复验后 P1 明显低于 75%，停止继续堆
+P1 已高于 75% 停止点和 80% 阶段目标，因此本轮不进入 n-gram。若后续独立 corpus 的 P1 明显低于
+75%，停止继续堆
 确定性规则，先分析失败分布，再由人工决定是否创建真正的 char n-gram evidence source。n-gram 即使启用，
 也只能成为同一个 `LocalRecognizer` 的内部证据层，不能形成第二套识别器。
