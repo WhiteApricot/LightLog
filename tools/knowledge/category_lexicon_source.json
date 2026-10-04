@@ -17,7 +17,7 @@
     {"semanticKey":"expense.transport.parking","keywords":["停车","停车费"],"aliases":[],"negative":[],"score":0.84},
     {"semanticKey":"expense.medical.medicine","keywords":["药房","药店","买药"],"aliases":["大药房"],"negative":["农药"],"score":0.88},
     {"semanticKey":"expense.medical.clinic","keywords":["医院","诊所","挂号","门诊"],"aliases":["看病"],"negative":["宠物医院"],"score":0.86},
-    {"semanticKey":"expense.medical.dental","keywords":["牙科","口腔医院","补牙","洗牙"],"aliases":["齿科"],"negative":[],"score":0.87},
+    {"semanticKey":"expense.medical.dental","keywords":["牙科","口腔医院","补牙","洗牙","眼科门诊","眼科检查","验光","视力检查"],"aliases":["齿科"],"negative":[],"score":0.87},
     {"semanticKey":"expense.travel.hotel","keywords":["酒店","宾馆","民宿","旅馆"],"aliases":["住宿"],"negative":[],"score":0.86},
     {"semanticKey":"expense.travel.attraction","keywords":["景区","门票","博物馆"],"aliases":["景点"],"negative":["电影票"],"score":0.78},
     {"semanticKey":"expense.entertainment.movie","keywords":["电影票","电影院","影城"],"aliases":[],"negative":[],"score":0.86},

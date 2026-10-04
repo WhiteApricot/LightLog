@@ -1,5 +1,7 @@
 # Phase 3 候选词库吸收执行计划
 
+> 状态：已于 2026-10-05 执行完成。15,269 个 normalized positive 候选中选择性吸收 5,072 个，覆盖 118/118 semanticKey；候选 negativeTerms 未批量导入。最终验证结果见 [RECOGNITION_ALGORITHM.md](RECOGNITION_ALGORITHM.md)。
+
 本文是 `lightlog_lexicon.json` 的一次性执行规范。候选文件包含 118 个 semanticKey、15,271 个 positive terms、15,434 个 negative terms、2,984 个组合词和 1,106 组跨分类冲突。它只作为 candidate vocabulary pool，禁止整包复制进 runtime。执行目标是在不改变单一 `LocalRecognizer` 架构的前提下，选择性吸收约 3,000–6,000 个真正有价值的新增 positive terms。
 
 ## 冻结边界与输入

@@ -44,7 +44,8 @@ class ContextEvidenceBuilder {
         .hasMatch(matchingText);
     final hasExplicitClock = RegExp(r'(?<!\d)(?:[01]?\d|2[0-3]):[0-5]\d')
         .hasMatch(matchingText);
-    final hasMealTime = hasDaypart || (timeIsExplicit && hasExplicitClock);
+    final clockOnlyMealTime = !hasDaypart && timeIsExplicit && hasExplicitClock;
+    final hasMealTime = hasDaypart || clockOnlyMealTime;
     if (!hasMealScene && !(hasMealEligibleMerchant && hasMealTime)) {
       return const [];
     }
@@ -67,7 +68,7 @@ class ContextEvidenceBuilder {
         specificity: strongMealContext
             ? EvidenceSpecificity.specific
             : EvidenceSpecificity.general,
-        family: 'mealDaypart',
+        family: clockOnlyMealTime ? 'mealDaypartClock' : 'mealDaypart',
       ),
     ];
   }

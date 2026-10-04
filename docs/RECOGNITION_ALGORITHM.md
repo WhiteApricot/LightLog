@@ -93,7 +93,7 @@ Personal History 只按索引化 normalized content 查询。命中次数必须�
 数量与质量同时是硬门禁。当前生成结果为：
 
 - 447 个 approved runtime entities、1307 个 normalized aliases；
-- 149 个 lexicon groups、2411 个 positive terms、355 个 negative/conflict terms；
+- 267 个 lexicon groups、7486 个 positive terms、355 个 negative/conflict terms；
 - 63 个高频大陆日常 semanticKey 覆盖率 100%，每项至少 10 个真实表达和 2 个有意义冲突词；
 - 106 条覆盖实体、alias、product/action/service、组合语义、platform、broad、conflict 和 income 的
   production matcher/fusion review samples 为 106/106；
@@ -101,7 +101,7 @@ Personal History 只按索引化 normalized content 查询。命中次数必须�
 - runtime entity kind 分布：merchant 229、service 187、platform 30、productBrand 1；大陆场景占比 100%，
   media/game title runtime 占比 0%；
 - Phase 3 的 1600 个未审核 media/game snapshot records 从未进入 runtime，现已连同抓取脚本归档并退出 active generation pipeline；
-- runtime assets 185705 bytes，远低于 2 MiB。
+- runtime assets 281148 bytes，远低于 2 MiB。
 
 生成命令：
 
@@ -127,8 +127,8 @@ evaluation 输出 P0/P1/P2 exact、P2 safe rejection、amount/type/category/time
 真实 span 错误、confidence buckets、high-confidence wrong，以及 average/p50/p95/p99/max。报告带 corpus、
 recognizer version 与 knowledge hash。benchmark 分开统计 cold knowledge decode 和 warm recognize。
 
-2026-10-05 当前 benchmark（Windows、10,000 次 warm parse）：average 172 µs、p50 151 µs、p95 313 µs、
-p99 479 µs、max 11168 µs，p95 < 5 ms 门禁通过；cold decode 18565 µs。
+2026-10-05 候选词库吸收后的 benchmark（Windows、10,000 次 warm parse）：average 202 µs、p50 152 µs、
+p95 420 µs、p99 528 µs、max 2236 µs，p95 < 5 ms 门禁通过；cold decode 27314 µs。
 
 完整 190-case corpus 已恢复为 `tools/evaluation/phase3_regression_corpus.json`。该轮盲测先冻结算法与
 知识门禁，初测报告归档于 `tools/evaluation/archive/phase3/phase3_usability_initial.json`；仅做泛化修复后的最终报告为
@@ -142,3 +142,30 @@ P1 已高于 75% 停止点和 80% 阶段目标，因此本轮不进入 n-gram。
 75%，停止继续堆
 确定性规则，先分析失败分布，再由人工决定是否创建真正的 char n-gram evidence source。n-gram 即使启用，
 也只能成为同一个 `LocalRecognizer` 的内部证据层，不能形成第二套识别器。
+
+## Phase 3 候选词库吸收与 stress holdout
+
+候选原件归档为 `tools/knowledge/archive/phase3/lightlog_lexicon_candidate.json`。确定性 prepare 工具复用
+production normalization，对 15,269 个 normalized positive 候选完成 taxonomy、现有词 diff、短词、
+跨类别 owner、显式 conflict、低价值模板、机械重复和语义级上限检查；接受 5,072 个，过滤 10,197 个，
+覆盖候选的 118/118 semanticKey。候选中的巨量 negativeTerms 不导入，最终 negative/conflict 仍为 355，
+未解决 cross-category positive conflicts 为 0。逐词决策和汇总位于 `tools/knowledge/review/`。
+
+吸收后原 190-case regression 与吸收前完全一致：P0 97.56%、P1 88.06%、P2 safe rejection 100%、
+amount 100%、type 98.95%、category 96.84%、time 100%、content 93.16%、high-confidence wrong 0。
+
+生产代码、知识源和性能优化冻结后，首次运行并原样保存
+`phase3_stress_holdout_v2_initial.json`。初测 overall 55.79%、P0 66.67%、P1 56.39%、P2 exact 48.72%、
+P2 safe rejection 97.44%、amount 100%、type 97.37%、category 81.58%、time 100%、content 77.37%、
+high-confidence wrong 3。仅做三类可泛化修复：时钟独立触发的餐时语义置信度封顶、宠物医疗组合证据、
+以及“口腔眼科”taxonomy 边界归属。
+
+最终 stress report 为 `phase3_stress_holdout_v2_final.json`：overall 55.79%、P0 66.67%、P1 56.39%、
+P2 exact 48.72%、P2 safe rejection 100%、amount 100%、type 97.37%、category 82.11%、time 100%、
+content 77.37%、high-confidence wrong 0；confirmation 分布为 confident 20 / warning 155 / blocked 15，
+单次 evaluation latency p50/p95/p99 为 266/948/1284 µs。OCR noise subset 的 category accuracy 为
+30/35（85.71%），本轮不考核其 content span。
+
+剩余失败主要集中在 OCR/content span（42）、category/fusion 与 taxonomy oracle（34）、status 期望差异
+（16）、safe-rejection issue code 差异（12）和 type inference（5）。OCR 商户/商品字段结构化与 content
+ranking 仍按 Phase 4 路线处理，不为本轮 corpus 单独改写 Phase 3 content extractor。

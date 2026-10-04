@@ -7,7 +7,11 @@
 从仓库根目录执行：
 
 ```bash
+dart tools/knowledge/prepare_lexicon_candidates.dart --candidate <candidate.json> --report tools/knowledge/review/lexicon_candidate_report.json --review tools/knowledge/review/lexicon_candidate_review.json
+dart tools/knowledge/merge_lexicon_candidates.dart --review tools/knowledge/review/lexicon_candidate_review.json --target tools/knowledge/lexicon_expansion_source.json
 dart tools/knowledge/generate_knowledge.dart
 ```
+
+Phase 3 候选原件归档在 `archive/phase3/lightlog_lexicon_candidate.json`。prepare 工具复用 production normalization，输出逐词接受/拒绝原因；merge 只消费已审核 review，并以 `sourceId` 保证重复执行不会叠加。候选的巨量 `negativeTerms` 不进入 runtime，只有显式 conflict 信息参与筛选。
 
 脚本与运行时复用同一 alias 规范化口径，并检查 taxonomy、受控 kind/role/breadth、alias match policy、重复/冲突、score/confidence、实体分布、每个高频 semanticKey 的真实语言覆盖、106 条 production matcher/fusion review samples、50 个实体与 100 个词条抽查清单、review status 和运行时包体。实体、alias、正负词规模未达到 300/800/1800/250，未解决冲突，抽样准确率低于 98%，或资产达到 2 MiB 都会阻断生成。质量优先，达到下限后不以继续堆数量作为优化目标。生成后必须提交源清单、抽样清单、质量报告和 compact JSON，并运行识别测试与性能基准。

@@ -32,6 +32,8 @@ flutter run
 Phase 3 本地知识资产在修改源清单后执行：
 
 ```bash
+dart tools/knowledge/prepare_lexicon_candidates.dart --candidate <candidate.json> --report tools/knowledge/review/lexicon_candidate_report.json --review tools/knowledge/review/lexicon_candidate_review.json
+dart tools/knowledge/merge_lexicon_candidates.dart --review tools/knowledge/review/lexicon_candidate_review.json --target tools/knowledge/lexicon_expansion_source.json
 dart tools/knowledge/generate_knowledge.dart
 dart tools/evaluation/evaluate_recognition.dart --corpus tools/evaluation/phase3_regression_corpus.json --report <report.json>
 dart tools/evaluation/analyze_failures.dart <report.json> <summary.md>
@@ -40,7 +42,7 @@ dart tools/benchmark/benchmark_recognition.dart
 
 生成脚本校验 taxonomy、受控 kind/role/breadth、alias policy、未解决冲突、场景语义覆盖、固定抽样准确率和 2 MiB 上限，并写出 `assets/knowledge` 下的 compact JSON。运行时资产必须由脚本生成，不直接维护巨型 Dart 条件分支。evaluation、failure analyzer 与 benchmark 均直接调用 App 使用的 production `LocalRecognizer`；benchmark 将 cold knowledge decode 与 warm recognize 分开报告。
 
-开发工具统一位于 `tools/` 并按功能分目录：`tools/knowledge` 管理知识源、生成、质量报告、抽样清单和公开实体快照，`tools/evaluation` 管理 corpus/report/failure analysis，`tools/benchmark` 管理性能门禁，`tools/icons` 管理图标导入。刷新公开实体快照是显式开发操作，来源与许可写入 source data；未经审核的快照不进入 runtime，App 运行时不得联网。生成器使用质量与分布门禁，不以实体数量增长作为通过条件。
+开发工具统一位于 `tools/` 并按功能分目录：`tools/knowledge` 管理知识源、候选清洗/评审、生成、质量报告和抽样清单，`tools/evaluation` 管理 corpus/report/failure analysis，`tools/benchmark` 管理性能门禁，`tools/icons` 管理图标导入。历史公开实体快照只保留在 archive，不进入 active generation 或 runtime；App 运行时不得联网。生成器使用质量与分布门禁，不以实体或词条数量增长作为通过条件。
 
 普通 Dart/Flutter 改动完成后执行 format、analyze、test。只有涉及 Android plugin、Manifest、Gradle、OCR 或文件系统等原生能力时才执行 `flutter run`；不要为普通小改动反复执行完整 Android build。
 

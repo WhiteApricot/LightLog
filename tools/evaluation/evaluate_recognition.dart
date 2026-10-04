@@ -125,6 +125,7 @@ void main(List<String> args) {
       'max': latencies.last,
     },
     'failureReasonCounts': _failureCounts(failures),
+    'groupMetrics': _groupMetrics(results),
     'failures': failures,
   };
   final output = const JsonEncoder.withIndent('  ').convert(report);
@@ -292,6 +293,24 @@ Map<String, int> _failureCounts(List<Map<String, Object?>> failures) {
     }
   }
   return result;
+}
+
+Map<String, Object?> _groupMetrics(List<Map<String, Object?>> results) {
+  final groups = results.map((item) => item['group']! as String).toSet();
+  return {
+    for (final group in groups.toList()..sort())
+      group: () {
+        final subset = results.where((item) => item['group'] == group).toList();
+        return {
+          'count': subset.length,
+          'overallAccuracy': _rate(subset, (item) => item['correct'] == true),
+          'amountAccuracy': _fieldAccuracy(subset, 'amountCorrect'),
+          'typeAccuracy': _fieldAccuracy(subset, 'typeCorrect'),
+          'categoryAccuracy': _fieldAccuracy(subset, 'categoryCorrect'),
+          'timeAccuracy': _fieldAccuracy(subset, 'timeCorrect'),
+        };
+      }(),
+  };
 }
 
 Map<String, int> _counts(Iterable<String> values) {

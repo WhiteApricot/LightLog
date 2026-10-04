@@ -58,6 +58,13 @@ void main() {
     expect(recognizeForTest('今早星巴克 28').semanticKey, 'expense.food.drink');
   });
 
+  test('a transaction clock gives only warning-level meal context', () {
+    final result = recognizeForTest('麦当劳 2026-10-05 12:18:32 实付30');
+
+    expect(result.semanticKey, 'expense.food.lunch');
+    expect(result.confirmationLevel, ConfirmationLevel.warning);
+  });
+
   test('attached amount does not prevent latin or Chinese entity matching', () {
     final latin = recognizeForTest('kfc15');
     final chinese = recognizeForTest('麦当劳25');
@@ -101,6 +108,11 @@ void main() {
       recognizeForTest('车辆保养 600').semanticKey,
       'expense.transport.maintenance',
     );
+    expect(recognizeForTest('猫咪医院绝育 800').semanticKey, 'expense.pets.medical');
+  });
+
+  test('eye clinic language follows the oral and eye taxonomy boundary', () {
+    expect(recognizeForTest('眼科门诊验光 70').semanticKey, 'expense.medical.dental');
   });
 
   test('warning retains top prediction and remains manually confirmable', () {

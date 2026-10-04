@@ -108,6 +108,9 @@ class EvidenceFusion {
     if (top.description.contains('fuzzy')) {
       confidence = confidence.clamp(0, 0.70);
     }
+    if (top.family == 'mealDaypartClock') {
+      confidence = confidence.clamp(0, 0.79);
+    }
     confidence = confidence.clamp(0, 0.99);
     if (confidence < 0.58) {
       issues.add(RecognitionIssueCode.categoryLowConfidence);

@@ -63,6 +63,11 @@ class LexiconMatcher {
         semantic: 'expense.pets.service',
       ),
       (
+        modifier: RegExp(r'宠物|猫|狗'),
+        expression: RegExp(r'医院|门诊|看病|绝育|手术|疫苗|驱虫'),
+        semantic: 'expense.pets.medical',
+      ),
+      (
         modifier: RegExp(r'汽车|车辆|轿车|爱车|车子'),
         expression: RegExp(r'洗车|维修|保养|换机油|补胎'),
         semantic: 'expense.transport.maintenance',

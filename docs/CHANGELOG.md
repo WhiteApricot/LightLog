@@ -29,6 +29,8 @@
 - Added reviewed knowledge roles/kinds/breadth, per-alias match policies, deterministic review samples, scene coverage gates, and runtime distribution reports.
 - Added 447 reviewed mainland consumer entities, 1307 normalized aliases, 2411 real-language positive terms, 355 negative/conflict terms, 106 production-path review samples, and 50-entity/100-term audit gates.
 - Added the restored 190-case regression corpus plus immutable initial and final usability reports and failure summaries.
+- Added deterministic candidate-lexicon preparation/merge tooling, per-term review reports, and 5072 selectively reviewed positive terms covering all 118 candidate semantic keys.
+- Added an immutable first-run and final report for the 190-case Phase 3 stress holdout, including per-group field metrics.
 
 ### Changed
 
@@ -58,6 +60,8 @@
 - Changed recognition confirmation into explicit `confident`, `warning`, and `blocked` levels: warning retains top-1 prefill and permits reviewed confirmation, while only dangerous transaction states or missing legal amounts block quick entry.
 - Indexed entity aliases and lexicon terms by first character, preserving Personal History priority while preventing broad/platform evidence from outranking specific products, actions, or services.
 - Archived superseded Phase 3 planning/evaluation artifacts and documented the selective candidate-lexicon absorption workflow.
+- Expanded the runtime lexicon to 7486 positive terms while retaining 355 reviewed negative/conflict terms, zero unresolved cross-category owners, and a 281148-byte runtime asset footprint.
+- Capped clock-only meal context at warning confidence and added pet-medical modifier plus oral/eye taxonomy boundary handling after unseen stress evaluation, without changing original 190-case metrics.
 
 ### Fixed
 
