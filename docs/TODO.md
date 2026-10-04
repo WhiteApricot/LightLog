@@ -41,7 +41,7 @@
 - [x] Require explicit recognition and add an above-the-fold result/confirm card
 - [ ] Define duplicate fingerprint thresholds and add duplicate-detection tests
 
-## Phase 3 - Five-layer local hybrid recognizer
+## Phase 3 - Five-layer local hybrid recognizer ([refactor plan](PHASE3_RECOGNITION_REFACTOR_PLAN.md))
 
 - [x] Layer 1: strengthen normalization without losing raw input
 - [x] Layer 2: use personal confirmation/correction history as local evidence
