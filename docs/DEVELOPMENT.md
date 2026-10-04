@@ -29,6 +29,15 @@ flutter test
 flutter run
 ```
 
+Phase 3 本地知识资产在修改源清单后执行：
+
+```bash
+dart tools/knowledge/generate_knowledge.dart
+flutter test tools/benchmark_recognition.dart
+```
+
+生成脚本校验 taxonomy、别名/词条冲突及分数范围，并写出 `assets/knowledge` 下的 compact JSON。运行时资产必须由脚本生成，不直接维护巨型 Dart 条件分支。
+
 普通 Dart/Flutter 改动完成后执行 format、analyze、test。只有涉及 Android plugin、Manifest、Gradle、OCR 或文件系统等原生能力时才执行 `flutter run`；不要为普通小改动反复执行完整 Android build。
 
 ## 编码规范
@@ -55,6 +64,10 @@ unit test 优先覆盖：
 - 文本解析
 - RuleEngine
 - Confidence
+- Merchant KB / Category Lexicon 生成校验、别名冲突与负向词
+- Personal History 覆盖、纠正和最近使用证据
+- 中文自然时间的跨周、跨月、跨年与显式时刻覆盖
+- 本地解析性能数量级回归
 - DuplicateDetector
 - 统计计算
 - 转账排除与退款冲减语义

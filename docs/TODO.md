@@ -43,15 +43,22 @@
 
 ## Phase 3 - Five-layer local hybrid recognizer
 
-- [ ] Layer 1: strengthen normalization without losing raw input
-- [ ] Layer 2: use personal confirmation/correction history as local evidence
-- [ ] Layer 3: add a local Merchant Knowledge Base
-- [ ] Layer 4: extract and maintain a Category Lexicon
-- [ ] Layer 5: add a local character n-gram classifier
+- [x] Layer 1: strengthen normalization without losing raw input
+- [x] Layer 2: use personal confirmation/correction history as local evidence
+- [x] Layer 3: add a local Merchant Knowledge Base
+- [x] Layer 4: extract and maintain a Category Lexicon
+- [ ] Layer 5: add a local character n-gram classifier (input/output interface reserved; no model/runtime yet)
 - [ ] Add fuzzy matching with explicit thresholds and conflict handling
-- [ ] Fuse layer evidence into calibrated, explainable confidence
-- [ ] Persist the minimum local rules/events needed for evaluation and learning
+- [x] Fuse implemented layer evidence into priority-based, explainable confidence
+- [x] Persist the minimum local rules needed for confirmation/correction learning
+- [x] Add deterministic regression cases and a repeatable local performance benchmark
 - [ ] Add offline evaluation sets and regression metrics
+
+## Future - Category management
+
+- [ ] Add category create/rename/reorder/disable UI without physically deleting referenced categories
+- [ ] Let user categories map to stable `semanticKey` values and resolve ahead of system defaults
+- [ ] Design category merge/remap migration and history-rule behavior before implementing merge UI
 
 ## Phase 4 - OCR entry
 

@@ -8,6 +8,8 @@ import '../../../core/occurrence_time.dart';
 import '../../../data/database/database.dart';
 import '../../ledger/domain/ledger_models.dart';
 import '../../recognition/domain/recognition_models.dart';
+import '../../recognition/domain/personal_history.dart';
+import '../../recognition/domain/text_entry_parser.dart';
 import 'account_picker.dart';
 import 'category_picker.dart';
 import 'wheel_time_picker.dart';
@@ -48,6 +50,7 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
   late String _source;
   double? _confidence;
   bool _saving = false;
+  bool _parsing = false;
   bool _categoryValidationRequested = false;
   RecognitionCandidate? _smartCandidate;
 
@@ -345,9 +348,14 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
               alignment: Alignment.centerRight,
               child: FilledButton.tonalIcon(
                 key: const ValueKey('unified-smart-parse-button'),
-                onPressed: () => _parseSmartInput(categories),
-                icon: const Icon(Icons.auto_fix_high),
-                label: const Text('识别'),
+                onPressed: _parsing ? null : () => _parseSmartInput(categories),
+                icon: _parsing
+                    ? const SizedBox.square(
+                        dimension: 18,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.auto_fix_high),
+                label: Text(_parsing ? '加载中…' : '识别'),
               ),
             ),
             if (candidate != null) ...[
@@ -373,33 +381,47 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
     );
   }
 
-  void _parseSmartInput(List<Category> categories) {
+  Future<void> _parseSmartInput(List<Category> categories) async {
     if (_smartInputController.text.trim().isEmpty) {
       setState(() => _smartCandidate = null);
       return;
     }
-    final candidate = ref
-        .read(textEntryParserProvider)
-        .parse(
-          rawText: _smartInputController.text,
-          categories: categories,
-          now: DateTime.now(),
-        );
-    setState(() {
-      _smartCandidate = candidate;
-      if (!candidate.isComplete) return;
-      final draft = candidate.draft;
-      _type = draft.type!;
-      _amountController.text = MoneyParser.editableCny(draft.amountMinor!);
-      _contentController.text = draft.content!;
-      _occurredAtLocal = draft.occurredAtLocal!;
-      _timezoneOffsetMinutes = draft.timezoneOffsetMinutes!;
-      _categoryId = candidate.categoryId;
-      _subcategoryId = candidate.subcategoryId;
-      _source = 'text';
-      _confidence = candidate.confidence;
-      _categoryValidationRequested = false;
-    });
+    setState(() => _parsing = true);
+    try {
+      final values = await Future.wait([
+        ref.read(textEntryParserProvider.future),
+        ref.read(recognitionRepositoryProvider).loadHistory(),
+      ]);
+      if (!mounted) return;
+      final candidate = (values[0] as TextEntryParser).parse(
+        rawText: _smartInputController.text,
+        categories: categories,
+        now: DateTime.now(),
+        history: values[1] as List<PersonalHistoryRecord>,
+      );
+      setState(() {
+        _smartCandidate = candidate;
+        if (!candidate.isComplete) return;
+        final draft = candidate.draft;
+        _type = draft.type!;
+        _amountController.text = MoneyParser.editableCny(draft.amountMinor!);
+        _contentController.text = draft.content!;
+        _occurredAtLocal = draft.occurredAtLocal!;
+        _timezoneOffsetMinutes = draft.timezoneOffsetMinutes!;
+        _categoryId = candidate.categoryId;
+        _subcategoryId = candidate.subcategoryId;
+        _source = 'text';
+        _confidence = candidate.confidence;
+        _categoryValidationRequested = false;
+      });
+    } catch (error) {
+      if (mounted) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('本地识别资源加载失败：$error')));
+      }
+    } finally {
+      if (mounted) setState(() => _parsing = false);
+    }
   }
 
   Future<void> _pickDate() async {
@@ -475,6 +497,25 @@ class _TransactionEditorPageState extends ConsumerState<TransactionEditorPage> {
         await repository.create(draft);
       } else {
         await repository.update(widget.entry!.transaction.id, draft);
+      }
+      final candidate = _smartCandidate;
+      if (widget.entry == null && candidate != null && _source == 'text') {
+        try {
+          await ref
+              .read(recognitionRepositoryProvider)
+              .recordFeedback(
+                normalizedContent:
+                    candidate.draft.normalizedMerchant ?? draft.content,
+                predictedSemanticKey: candidate.semanticKey,
+                finalCategoryId: draft.subcategoryId,
+              );
+        } catch (error) {
+          if (mounted) {
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text('账目已保存，但本地识别学习未更新：$error')));
+          }
+        }
       }
       if (mounted) Navigator.of(context).pop(true);
     } catch (error) {
@@ -607,6 +648,16 @@ class _SmartCandidateResult extends StatelessWidget {
             label: '内容 / 商户',
             value: draft.content!,
           ),
+          for (final issue in candidate.issues) ...[
+            const SizedBox(height: 4),
+            Text(
+              '• $issue',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.error,
+                fontSize: 12,
+              ),
+            ),
+          ],
           const SizedBox(height: 8),
           SizedBox(
             width: double.infinity,

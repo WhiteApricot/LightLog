@@ -1,6 +1,6 @@
 # 数据模型
 
-本文定义 V0.1 的概念 schema 和已经落地的数据库约束。SQLite + Drift 是锁定方案；当前实现的 schema version 为 `3`。
+本文定义 V0.1 的概念 schema 和已经落地的数据库约束。SQLite + Drift 是锁定方案；当前实现的 schema version 为 `4`。
 
 ## 通用约定
 
@@ -56,12 +56,14 @@
 | `name` | 分类名称 |
 | `type` | 适用账务类型 |
 | `iconAsset` | 稳定关联的分类 SVG 资源路径 |
+| `semanticKey` | 可空的稳定消费语义；识别器通过该字段映射分类 |
+| `isSystem` | 是否为 App 内置分类；用户分类为 `false` |
 | `sortOrder` | 展示顺序 |
 | `isActive` | 是否可用于新账目 |
 | `createdAt` | 创建时间 |
 | `updatedAt` | 最后更新时间 |
 
-V0.1 仅支持一级与二级分类，不创建更深层级。分类必须是可维护数据，不得硬编码到 UI。`iconAsset` 作为分类数据随 seed/migration 维护，Widget 不按分类名称推断图标。schema v3 默认包含 23 个一级分类和 118 个二级分类，覆盖 17 个支出一级分类与 6 个收入一级分类；每个默认分类使用按稳定 ID 命名且图形签名不同的 24×24 SVG。已有历史账目引用的分类不得物理删除，优先设置 `isActive = false`。
+V0.1 仅支持一级与二级分类，不创建更深层级。分类必须是可维护数据，不得硬编码到 UI。`iconAsset` 作为分类数据随 seed/migration 维护，Widget 不按分类名称推断图标。schema v4 默认包含 23 个一级分类和 118 个二级分类，覆盖 17 个支出一级分类与 6 个收入一级分类；每个默认分类使用按稳定 ID 命名且图形签名不同的 24×24 SVG，并带独立 `semanticKey` 和 `isSystem = true`。未来用户分类可映射到已有语义，识别知识库不得直接保存分类 ID。已有历史账目引用的分类不得物理删除，优先设置 `isActive = false`。
 
 ## accounts
 
@@ -80,24 +82,19 @@ V0.1 只表示支付方式，不管理余额。账户图标随 seed/migration �
 
 ## recognition_rules
 
-该表应能表达可解释的本地学习规则，但不要在 V0.1 初期锁死为复杂规则 DSL。建议概念字段：
+schema v4 已实现最小可解释历史规则，不引入复杂 DSL：
 
 | 字段 | 含义 |
 | --- | --- |
 | `id` | 主键 |
-| `pattern` | 原始/规范化文本匹配模式 |
-| `merchantPattern` | 商户匹配模式，可选 |
-| `amountMinMinor` / `amountMaxMinor` | 可选金额区间，单位为分 |
-| `timeRange` | 可选时间区间；具体表示为 TBD |
-| `categoryId` | 目标一级分类 |
-| `subcategoryId` | 目标二级分类 |
-| `normalizedContent` | 推荐的规范化内容/商户名 |
+| `normalizedContent` | 规范化内容/商户精确匹配键 |
+| `semanticKey` | 目标稳定消费语义，不保存分类 ID |
 | `hitCount` | 命中次数 |
 | `correctionCount` | 被用户纠正次数 |
-| `confidence` | 当前可解释评分 |
+| `lastUsedAt` | 最近确认或纠正时间 |
 | `createdAt` / `updatedAt` | 时间戳 |
 
-规则必须保留足够证据以支持置信度调整；不能仅因命中过一次就永久自动入账。
+`(normalizedContent, semanticKey)` 唯一，命中/纠正次数均不得为负。规则必须保留足够证据以支持置信度调整；不能仅因命中过一次就永久自动入账。更复杂的金额/时间条件、衰减和撤销治理留待后续，不在本表提前固化。
 
 ## recognition_events（推荐）
 
@@ -125,4 +122,4 @@ schema v1 已为 `transactions.occurredAt`、`deletedAt`、`(type, occurredAt)` 
 - migration 必须测试既有数据升级，不得以清库作为正式升级方案。
 - 尚未决定的细节使用 `TBD`，在编码前完成最小必要决策。
 
-schema v1 通过 Drift `MigrationStrategy` 显式创建全部表。schema v2 为分类增加带安全默认值的 `iconAsset`，迁移分类名称并停用重复旧分类。schema v3 为账户增加 `iconAsset`，并将全部默认分类与账户迁移到按稳定 ID 命名的新 SVG；历史账目和默认数据 ID 不变。数据库打开且建表/迁移完成后继续执行幂等 seed。v1→v3 migration 由隔离数据库测试覆盖；未来 JSON 备份实现必须以 schema version 3 为当前写出版本，并为旧版本定义显式兼容路径。
+schema v1 通过 Drift `MigrationStrategy` 显式创建基础表。schema v2 为分类增加 `iconAsset` 并清理默认分类；schema v3 为账户增加 `iconAsset` 并迁移稳定 SVG；schema v4 为分类增加 `semanticKey/isSystem`，创建 `recognition_rules`，并为全部默认分类回填稳定语义。历史账目和默认数据 ID 不变。数据库打开且建表/迁移完成后继续执行幂等 seed。v1→v4 migration 由隔离数据库测试覆盖；未来 JSON 备份实现必须以 schema version 4 为当前写出版本，并为旧版本定义显式兼容路径。

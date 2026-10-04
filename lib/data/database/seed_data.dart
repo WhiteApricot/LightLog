@@ -16,6 +16,7 @@ class CategorySeed {
   final String? parentId;
 
   String get iconAsset => 'assets/icons/categories/$icon.svg';
+  String get semanticKey => id.replaceAll('-', '.');
 }
 
 class AccountSeed {

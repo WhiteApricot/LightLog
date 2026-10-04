@@ -7,6 +7,8 @@ class EntryDraft {
     this.type,
     this.amountMinor,
     this.content,
+    this.normalizedContent,
+    this.normalizedMerchant,
     this.occurredAtLocal,
     this.timezoneOffsetMinutes,
   });
@@ -16,20 +18,39 @@ class EntryDraft {
   final LedgerTransactionType? type;
   final int? amountMinor;
   final String? content;
+  final String? normalizedContent;
+  final String? normalizedMerchant;
   final DateTime? occurredAtLocal;
   final int? timezoneOffsetMinutes;
+}
+
+enum RecognitionEvidenceSource {
+  parser,
+  personalHistory,
+  merchantKnowledge,
+  categoryLexicon,
+  ngram,
+  context,
 }
 
 class RecognitionEvidence {
   const RecognitionEvidence({
     required this.field,
     required this.description,
-    required this.weight,
+    required this.score,
+    this.source = RecognitionEvidenceSource.parser,
+    this.semanticKey,
+    this.negative = false,
   });
 
   final String field;
   final String description;
-  final double weight;
+  final double score;
+  final RecognitionEvidenceSource source;
+  final String? semanticKey;
+  final bool negative;
+
+  double get weight => score;
 }
 
 class RecognitionCandidate {
@@ -39,8 +60,11 @@ class RecognitionCandidate {
     required this.subcategoryId,
     required this.categoryName,
     required this.subcategoryName,
+    required this.semanticKey,
+    required this.confidence,
     required this.evidence,
     required this.issues,
+    this.blockingIssues = const [],
   });
 
   final EntryDraft draft;
@@ -48,12 +72,11 @@ class RecognitionCandidate {
   final String? subcategoryId;
   final String? categoryName;
   final String? subcategoryName;
+  final String? semanticKey;
   final List<RecognitionEvidence> evidence;
   final List<String> issues;
-
-  double get confidence => evidence
-      .fold<double>(0, (total, item) => total + item.weight)
-      .clamp(0, 1);
+  final List<String> blockingIssues;
+  final double confidence;
 
   bool get isComplete =>
       draft.type != null &&
@@ -63,7 +86,7 @@ class RecognitionCandidate {
       draft.timezoneOffsetMinutes != null &&
       categoryId != null &&
       subcategoryId != null &&
-      issues.isEmpty;
+      blockingIssues.isEmpty;
 
   TransactionDraft toTransactionDraft({required String accountId}) {
     if (!isComplete) {

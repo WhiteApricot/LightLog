@@ -68,6 +68,32 @@ class $CategoriesTable extends Categories
       'assets/icons/categories/category-default.svg',
     ),
   );
+  static const VerificationMeta _semanticKeyMeta = const VerificationMeta(
+    'semanticKey',
+  );
+  @override
+  late final GeneratedColumn<String> semanticKey = GeneratedColumn<String>(
+    'semantic_key',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _isSystemMeta = const VerificationMeta(
+    'isSystem',
+  );
+  @override
+  late final GeneratedColumn<bool> isSystem = GeneratedColumn<bool>(
+    'is_system',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("is_system" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
   static const VerificationMeta _sortOrderMeta = const VerificationMeta(
     'sortOrder',
   );
@@ -123,6 +149,8 @@ class $CategoriesTable extends Categories
     name,
     type,
     iconAsset,
+    semanticKey,
+    isSystem,
     sortOrder,
     isActive,
     createdAt,
@@ -171,6 +199,21 @@ class $CategoriesTable extends Categories
       context.handle(
         _iconAssetMeta,
         iconAsset.isAcceptableOrUnknown(data['icon_asset']!, _iconAssetMeta),
+      );
+    }
+    if (data.containsKey('semantic_key')) {
+      context.handle(
+        _semanticKeyMeta,
+        semanticKey.isAcceptableOrUnknown(
+          data['semantic_key']!,
+          _semanticKeyMeta,
+        ),
+      );
+    }
+    if (data.containsKey('is_system')) {
+      context.handle(
+        _isSystemMeta,
+        isSystem.isAcceptableOrUnknown(data['is_system']!, _isSystemMeta),
       );
     }
     if (data.containsKey('sort_order')) {
@@ -232,6 +275,14 @@ class $CategoriesTable extends Categories
         DriftSqlType.string,
         data['${effectivePrefix}icon_asset'],
       )!,
+      semanticKey: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}semantic_key'],
+      ),
+      isSystem: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}is_system'],
+      )!,
       sortOrder: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}sort_order'],
@@ -263,6 +314,8 @@ class Category extends DataClass implements Insertable<Category> {
   final String name;
   final String type;
   final String iconAsset;
+  final String? semanticKey;
+  final bool isSystem;
   final int sortOrder;
   final bool isActive;
   final int createdAt;
@@ -273,6 +326,8 @@ class Category extends DataClass implements Insertable<Category> {
     required this.name,
     required this.type,
     required this.iconAsset,
+    this.semanticKey,
+    required this.isSystem,
     required this.sortOrder,
     required this.isActive,
     required this.createdAt,
@@ -288,6 +343,10 @@ class Category extends DataClass implements Insertable<Category> {
     map['name'] = Variable<String>(name);
     map['type'] = Variable<String>(type);
     map['icon_asset'] = Variable<String>(iconAsset);
+    if (!nullToAbsent || semanticKey != null) {
+      map['semantic_key'] = Variable<String>(semanticKey);
+    }
+    map['is_system'] = Variable<bool>(isSystem);
     map['sort_order'] = Variable<int>(sortOrder);
     map['is_active'] = Variable<bool>(isActive);
     map['created_at'] = Variable<int>(createdAt);
@@ -304,6 +363,10 @@ class Category extends DataClass implements Insertable<Category> {
       name: Value(name),
       type: Value(type),
       iconAsset: Value(iconAsset),
+      semanticKey: semanticKey == null && nullToAbsent
+          ? const Value.absent()
+          : Value(semanticKey),
+      isSystem: Value(isSystem),
       sortOrder: Value(sortOrder),
       isActive: Value(isActive),
       createdAt: Value(createdAt),
@@ -322,6 +385,8 @@ class Category extends DataClass implements Insertable<Category> {
       name: serializer.fromJson<String>(json['name']),
       type: serializer.fromJson<String>(json['type']),
       iconAsset: serializer.fromJson<String>(json['iconAsset']),
+      semanticKey: serializer.fromJson<String?>(json['semanticKey']),
+      isSystem: serializer.fromJson<bool>(json['isSystem']),
       sortOrder: serializer.fromJson<int>(json['sortOrder']),
       isActive: serializer.fromJson<bool>(json['isActive']),
       createdAt: serializer.fromJson<int>(json['createdAt']),
@@ -337,6 +402,8 @@ class Category extends DataClass implements Insertable<Category> {
       'name': serializer.toJson<String>(name),
       'type': serializer.toJson<String>(type),
       'iconAsset': serializer.toJson<String>(iconAsset),
+      'semanticKey': serializer.toJson<String?>(semanticKey),
+      'isSystem': serializer.toJson<bool>(isSystem),
       'sortOrder': serializer.toJson<int>(sortOrder),
       'isActive': serializer.toJson<bool>(isActive),
       'createdAt': serializer.toJson<int>(createdAt),
@@ -350,6 +417,8 @@ class Category extends DataClass implements Insertable<Category> {
     String? name,
     String? type,
     String? iconAsset,
+    Value<String?> semanticKey = const Value.absent(),
+    bool? isSystem,
     int? sortOrder,
     bool? isActive,
     int? createdAt,
@@ -360,6 +429,8 @@ class Category extends DataClass implements Insertable<Category> {
     name: name ?? this.name,
     type: type ?? this.type,
     iconAsset: iconAsset ?? this.iconAsset,
+    semanticKey: semanticKey.present ? semanticKey.value : this.semanticKey,
+    isSystem: isSystem ?? this.isSystem,
     sortOrder: sortOrder ?? this.sortOrder,
     isActive: isActive ?? this.isActive,
     createdAt: createdAt ?? this.createdAt,
@@ -372,6 +443,10 @@ class Category extends DataClass implements Insertable<Category> {
       name: data.name.present ? data.name.value : this.name,
       type: data.type.present ? data.type.value : this.type,
       iconAsset: data.iconAsset.present ? data.iconAsset.value : this.iconAsset,
+      semanticKey: data.semanticKey.present
+          ? data.semanticKey.value
+          : this.semanticKey,
+      isSystem: data.isSystem.present ? data.isSystem.value : this.isSystem,
       sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
       isActive: data.isActive.present ? data.isActive.value : this.isActive,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
@@ -387,6 +462,8 @@ class Category extends DataClass implements Insertable<Category> {
           ..write('name: $name, ')
           ..write('type: $type, ')
           ..write('iconAsset: $iconAsset, ')
+          ..write('semanticKey: $semanticKey, ')
+          ..write('isSystem: $isSystem, ')
           ..write('sortOrder: $sortOrder, ')
           ..write('isActive: $isActive, ')
           ..write('createdAt: $createdAt, ')
@@ -402,6 +479,8 @@ class Category extends DataClass implements Insertable<Category> {
     name,
     type,
     iconAsset,
+    semanticKey,
+    isSystem,
     sortOrder,
     isActive,
     createdAt,
@@ -416,6 +495,8 @@ class Category extends DataClass implements Insertable<Category> {
           other.name == this.name &&
           other.type == this.type &&
           other.iconAsset == this.iconAsset &&
+          other.semanticKey == this.semanticKey &&
+          other.isSystem == this.isSystem &&
           other.sortOrder == this.sortOrder &&
           other.isActive == this.isActive &&
           other.createdAt == this.createdAt &&
@@ -428,6 +509,8 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
   final Value<String> name;
   final Value<String> type;
   final Value<String> iconAsset;
+  final Value<String?> semanticKey;
+  final Value<bool> isSystem;
   final Value<int> sortOrder;
   final Value<bool> isActive;
   final Value<int> createdAt;
@@ -439,6 +522,8 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
     this.name = const Value.absent(),
     this.type = const Value.absent(),
     this.iconAsset = const Value.absent(),
+    this.semanticKey = const Value.absent(),
+    this.isSystem = const Value.absent(),
     this.sortOrder = const Value.absent(),
     this.isActive = const Value.absent(),
     this.createdAt = const Value.absent(),
@@ -451,6 +536,8 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
     required String name,
     required String type,
     this.iconAsset = const Value.absent(),
+    this.semanticKey = const Value.absent(),
+    this.isSystem = const Value.absent(),
     required int sortOrder,
     this.isActive = const Value.absent(),
     required int createdAt,
@@ -468,6 +555,8 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
     Expression<String>? name,
     Expression<String>? type,
     Expression<String>? iconAsset,
+    Expression<String>? semanticKey,
+    Expression<bool>? isSystem,
     Expression<int>? sortOrder,
     Expression<bool>? isActive,
     Expression<int>? createdAt,
@@ -480,6 +569,8 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
       if (name != null) 'name': name,
       if (type != null) 'type': type,
       if (iconAsset != null) 'icon_asset': iconAsset,
+      if (semanticKey != null) 'semantic_key': semanticKey,
+      if (isSystem != null) 'is_system': isSystem,
       if (sortOrder != null) 'sort_order': sortOrder,
       if (isActive != null) 'is_active': isActive,
       if (createdAt != null) 'created_at': createdAt,
@@ -494,6 +585,8 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
     Value<String>? name,
     Value<String>? type,
     Value<String>? iconAsset,
+    Value<String?>? semanticKey,
+    Value<bool>? isSystem,
     Value<int>? sortOrder,
     Value<bool>? isActive,
     Value<int>? createdAt,
@@ -506,6 +599,8 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
       name: name ?? this.name,
       type: type ?? this.type,
       iconAsset: iconAsset ?? this.iconAsset,
+      semanticKey: semanticKey ?? this.semanticKey,
+      isSystem: isSystem ?? this.isSystem,
       sortOrder: sortOrder ?? this.sortOrder,
       isActive: isActive ?? this.isActive,
       createdAt: createdAt ?? this.createdAt,
@@ -531,6 +626,12 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
     }
     if (iconAsset.present) {
       map['icon_asset'] = Variable<String>(iconAsset.value);
+    }
+    if (semanticKey.present) {
+      map['semantic_key'] = Variable<String>(semanticKey.value);
+    }
+    if (isSystem.present) {
+      map['is_system'] = Variable<bool>(isSystem.value);
     }
     if (sortOrder.present) {
       map['sort_order'] = Variable<int>(sortOrder.value);
@@ -558,6 +659,8 @@ class CategoriesCompanion extends UpdateCompanion<Category> {
           ..write('name: $name, ')
           ..write('type: $type, ')
           ..write('iconAsset: $iconAsset, ')
+          ..write('semanticKey: $semanticKey, ')
+          ..write('isSystem: $isSystem, ')
           ..write('sortOrder: $sortOrder, ')
           ..write('isActive: $isActive, ')
           ..write('createdAt: $createdAt, ')
@@ -2237,12 +2340,556 @@ class TransactionsCompanion extends UpdateCompanion<Transaction> {
   }
 }
 
+class $RecognitionRulesTable extends RecognitionRules
+    with TableInfo<$RecognitionRulesTable, RecognitionRule> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $RecognitionRulesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _normalizedContentMeta = const VerificationMeta(
+    'normalizedContent',
+  );
+  @override
+  late final GeneratedColumn<String> normalizedContent =
+      GeneratedColumn<String>(
+        'normalized_content',
+        aliasedName,
+        false,
+        additionalChecks: GeneratedColumn.checkTextLength(
+          minTextLength: 1,
+          maxTextLength: 160,
+        ),
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      );
+  static const VerificationMeta _semanticKeyMeta = const VerificationMeta(
+    'semanticKey',
+  );
+  @override
+  late final GeneratedColumn<String> semanticKey = GeneratedColumn<String>(
+    'semantic_key',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 80,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _hitCountMeta = const VerificationMeta(
+    'hitCount',
+  );
+  @override
+  late final GeneratedColumn<int> hitCount = GeneratedColumn<int>(
+    'hit_count',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _correctionCountMeta = const VerificationMeta(
+    'correctionCount',
+  );
+  @override
+  late final GeneratedColumn<int> correctionCount = GeneratedColumn<int>(
+    'correction_count',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _lastUsedAtMeta = const VerificationMeta(
+    'lastUsedAt',
+  );
+  @override
+  late final GeneratedColumn<int> lastUsedAt = GeneratedColumn<int>(
+    'last_used_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<int> createdAt = GeneratedColumn<int>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<int> updatedAt = GeneratedColumn<int>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    normalizedContent,
+    semanticKey,
+    hitCount,
+    correctionCount,
+    lastUsedAt,
+    createdAt,
+    updatedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'recognition_rules';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<RecognitionRule> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('normalized_content')) {
+      context.handle(
+        _normalizedContentMeta,
+        normalizedContent.isAcceptableOrUnknown(
+          data['normalized_content']!,
+          _normalizedContentMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_normalizedContentMeta);
+    }
+    if (data.containsKey('semantic_key')) {
+      context.handle(
+        _semanticKeyMeta,
+        semanticKey.isAcceptableOrUnknown(
+          data['semantic_key']!,
+          _semanticKeyMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_semanticKeyMeta);
+    }
+    if (data.containsKey('hit_count')) {
+      context.handle(
+        _hitCountMeta,
+        hitCount.isAcceptableOrUnknown(data['hit_count']!, _hitCountMeta),
+      );
+    }
+    if (data.containsKey('correction_count')) {
+      context.handle(
+        _correctionCountMeta,
+        correctionCount.isAcceptableOrUnknown(
+          data['correction_count']!,
+          _correctionCountMeta,
+        ),
+      );
+    }
+    if (data.containsKey('last_used_at')) {
+      context.handle(
+        _lastUsedAtMeta,
+        lastUsedAt.isAcceptableOrUnknown(
+          data['last_used_at']!,
+          _lastUsedAtMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_lastUsedAtMeta);
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_updatedAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  List<Set<GeneratedColumn>> get uniqueKeys => [
+    {normalizedContent, semanticKey},
+  ];
+  @override
+  RecognitionRule map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return RecognitionRule(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      normalizedContent: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}normalized_content'],
+      )!,
+      semanticKey: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}semantic_key'],
+      )!,
+      hitCount: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}hit_count'],
+      )!,
+      correctionCount: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}correction_count'],
+      )!,
+      lastUsedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}last_used_at'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}updated_at'],
+      )!,
+    );
+  }
+
+  @override
+  $RecognitionRulesTable createAlias(String alias) {
+    return $RecognitionRulesTable(attachedDatabase, alias);
+  }
+}
+
+class RecognitionRule extends DataClass implements Insertable<RecognitionRule> {
+  final String id;
+  final String normalizedContent;
+  final String semanticKey;
+  final int hitCount;
+  final int correctionCount;
+  final int lastUsedAt;
+  final int createdAt;
+  final int updatedAt;
+  const RecognitionRule({
+    required this.id,
+    required this.normalizedContent,
+    required this.semanticKey,
+    required this.hitCount,
+    required this.correctionCount,
+    required this.lastUsedAt,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['normalized_content'] = Variable<String>(normalizedContent);
+    map['semantic_key'] = Variable<String>(semanticKey);
+    map['hit_count'] = Variable<int>(hitCount);
+    map['correction_count'] = Variable<int>(correctionCount);
+    map['last_used_at'] = Variable<int>(lastUsedAt);
+    map['created_at'] = Variable<int>(createdAt);
+    map['updated_at'] = Variable<int>(updatedAt);
+    return map;
+  }
+
+  RecognitionRulesCompanion toCompanion(bool nullToAbsent) {
+    return RecognitionRulesCompanion(
+      id: Value(id),
+      normalizedContent: Value(normalizedContent),
+      semanticKey: Value(semanticKey),
+      hitCount: Value(hitCount),
+      correctionCount: Value(correctionCount),
+      lastUsedAt: Value(lastUsedAt),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+    );
+  }
+
+  factory RecognitionRule.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return RecognitionRule(
+      id: serializer.fromJson<String>(json['id']),
+      normalizedContent: serializer.fromJson<String>(json['normalizedContent']),
+      semanticKey: serializer.fromJson<String>(json['semanticKey']),
+      hitCount: serializer.fromJson<int>(json['hitCount']),
+      correctionCount: serializer.fromJson<int>(json['correctionCount']),
+      lastUsedAt: serializer.fromJson<int>(json['lastUsedAt']),
+      createdAt: serializer.fromJson<int>(json['createdAt']),
+      updatedAt: serializer.fromJson<int>(json['updatedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'normalizedContent': serializer.toJson<String>(normalizedContent),
+      'semanticKey': serializer.toJson<String>(semanticKey),
+      'hitCount': serializer.toJson<int>(hitCount),
+      'correctionCount': serializer.toJson<int>(correctionCount),
+      'lastUsedAt': serializer.toJson<int>(lastUsedAt),
+      'createdAt': serializer.toJson<int>(createdAt),
+      'updatedAt': serializer.toJson<int>(updatedAt),
+    };
+  }
+
+  RecognitionRule copyWith({
+    String? id,
+    String? normalizedContent,
+    String? semanticKey,
+    int? hitCount,
+    int? correctionCount,
+    int? lastUsedAt,
+    int? createdAt,
+    int? updatedAt,
+  }) => RecognitionRule(
+    id: id ?? this.id,
+    normalizedContent: normalizedContent ?? this.normalizedContent,
+    semanticKey: semanticKey ?? this.semanticKey,
+    hitCount: hitCount ?? this.hitCount,
+    correctionCount: correctionCount ?? this.correctionCount,
+    lastUsedAt: lastUsedAt ?? this.lastUsedAt,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+  );
+  RecognitionRule copyWithCompanion(RecognitionRulesCompanion data) {
+    return RecognitionRule(
+      id: data.id.present ? data.id.value : this.id,
+      normalizedContent: data.normalizedContent.present
+          ? data.normalizedContent.value
+          : this.normalizedContent,
+      semanticKey: data.semanticKey.present
+          ? data.semanticKey.value
+          : this.semanticKey,
+      hitCount: data.hitCount.present ? data.hitCount.value : this.hitCount,
+      correctionCount: data.correctionCount.present
+          ? data.correctionCount.value
+          : this.correctionCount,
+      lastUsedAt: data.lastUsedAt.present
+          ? data.lastUsedAt.value
+          : this.lastUsedAt,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('RecognitionRule(')
+          ..write('id: $id, ')
+          ..write('normalizedContent: $normalizedContent, ')
+          ..write('semanticKey: $semanticKey, ')
+          ..write('hitCount: $hitCount, ')
+          ..write('correctionCount: $correctionCount, ')
+          ..write('lastUsedAt: $lastUsedAt, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    normalizedContent,
+    semanticKey,
+    hitCount,
+    correctionCount,
+    lastUsedAt,
+    createdAt,
+    updatedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is RecognitionRule &&
+          other.id == this.id &&
+          other.normalizedContent == this.normalizedContent &&
+          other.semanticKey == this.semanticKey &&
+          other.hitCount == this.hitCount &&
+          other.correctionCount == this.correctionCount &&
+          other.lastUsedAt == this.lastUsedAt &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt);
+}
+
+class RecognitionRulesCompanion extends UpdateCompanion<RecognitionRule> {
+  final Value<String> id;
+  final Value<String> normalizedContent;
+  final Value<String> semanticKey;
+  final Value<int> hitCount;
+  final Value<int> correctionCount;
+  final Value<int> lastUsedAt;
+  final Value<int> createdAt;
+  final Value<int> updatedAt;
+  final Value<int> rowid;
+  const RecognitionRulesCompanion({
+    this.id = const Value.absent(),
+    this.normalizedContent = const Value.absent(),
+    this.semanticKey = const Value.absent(),
+    this.hitCount = const Value.absent(),
+    this.correctionCount = const Value.absent(),
+    this.lastUsedAt = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  RecognitionRulesCompanion.insert({
+    required String id,
+    required String normalizedContent,
+    required String semanticKey,
+    this.hitCount = const Value.absent(),
+    this.correctionCount = const Value.absent(),
+    required int lastUsedAt,
+    required int createdAt,
+    required int updatedAt,
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       normalizedContent = Value(normalizedContent),
+       semanticKey = Value(semanticKey),
+       lastUsedAt = Value(lastUsedAt),
+       createdAt = Value(createdAt),
+       updatedAt = Value(updatedAt);
+  static Insertable<RecognitionRule> custom({
+    Expression<String>? id,
+    Expression<String>? normalizedContent,
+    Expression<String>? semanticKey,
+    Expression<int>? hitCount,
+    Expression<int>? correctionCount,
+    Expression<int>? lastUsedAt,
+    Expression<int>? createdAt,
+    Expression<int>? updatedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (normalizedContent != null) 'normalized_content': normalizedContent,
+      if (semanticKey != null) 'semantic_key': semanticKey,
+      if (hitCount != null) 'hit_count': hitCount,
+      if (correctionCount != null) 'correction_count': correctionCount,
+      if (lastUsedAt != null) 'last_used_at': lastUsedAt,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  RecognitionRulesCompanion copyWith({
+    Value<String>? id,
+    Value<String>? normalizedContent,
+    Value<String>? semanticKey,
+    Value<int>? hitCount,
+    Value<int>? correctionCount,
+    Value<int>? lastUsedAt,
+    Value<int>? createdAt,
+    Value<int>? updatedAt,
+    Value<int>? rowid,
+  }) {
+    return RecognitionRulesCompanion(
+      id: id ?? this.id,
+      normalizedContent: normalizedContent ?? this.normalizedContent,
+      semanticKey: semanticKey ?? this.semanticKey,
+      hitCount: hitCount ?? this.hitCount,
+      correctionCount: correctionCount ?? this.correctionCount,
+      lastUsedAt: lastUsedAt ?? this.lastUsedAt,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (normalizedContent.present) {
+      map['normalized_content'] = Variable<String>(normalizedContent.value);
+    }
+    if (semanticKey.present) {
+      map['semantic_key'] = Variable<String>(semanticKey.value);
+    }
+    if (hitCount.present) {
+      map['hit_count'] = Variable<int>(hitCount.value);
+    }
+    if (correctionCount.present) {
+      map['correction_count'] = Variable<int>(correctionCount.value);
+    }
+    if (lastUsedAt.present) {
+      map['last_used_at'] = Variable<int>(lastUsedAt.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<int>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<int>(updatedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('RecognitionRulesCompanion(')
+          ..write('id: $id, ')
+          ..write('normalizedContent: $normalizedContent, ')
+          ..write('semanticKey: $semanticKey, ')
+          ..write('hitCount: $hitCount, ')
+          ..write('correctionCount: $correctionCount, ')
+          ..write('lastUsedAt: $lastUsedAt, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
   late final $CategoriesTable categories = $CategoriesTable(this);
   late final $AccountsTable accounts = $AccountsTable(this);
   late final $TransactionsTable transactions = $TransactionsTable(this);
+  late final $RecognitionRulesTable recognitionRules = $RecognitionRulesTable(
+    this,
+  );
   late final Index transactionsOccurredAt = Index(
     'transactions_occurred_at',
     'CREATE INDEX transactions_occurred_at ON transactions (occurred_at)',
@@ -2259,6 +2906,10 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     'transactions_fingerprint',
     'CREATE INDEX transactions_fingerprint ON transactions (fingerprint)',
   );
+  late final Index recognitionRulesNormalizedContent = Index(
+    'recognition_rules_normalized_content',
+    'CREATE INDEX recognition_rules_normalized_content ON recognition_rules (normalized_content)',
+  );
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -2267,10 +2918,12 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     categories,
     accounts,
     transactions,
+    recognitionRules,
     transactionsOccurredAt,
     transactionsDeletedAt,
     transactionsTypeOccurredAt,
     transactionsFingerprint,
+    recognitionRulesNormalizedContent,
   ];
 }
 
@@ -2280,6 +2933,8 @@ typedef $$CategoriesTableCreateCompanionBuilder = CategoriesCompanion Function({
   required String name,
   required String type,
   Value<String> iconAsset,
+  Value<String?> semanticKey,
+  Value<bool> isSystem,
   required int sortOrder,
   Value<bool> isActive,
   required int createdAt,
@@ -2292,6 +2947,8 @@ typedef $$CategoriesTableUpdateCompanionBuilder = CategoriesCompanion Function({
   Value<String> name,
   Value<String> type,
   Value<String> iconAsset,
+  Value<String?> semanticKey,
+  Value<bool> isSystem,
   Value<int> sortOrder,
   Value<bool> isActive,
   Value<int> createdAt,
@@ -2347,6 +3004,16 @@ class $$CategoriesTableFilterComposer
 
   ColumnFilters<String> get iconAsset => $composableBuilder(
     column: $table.iconAsset,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get semanticKey => $composableBuilder(
+    column: $table.semanticKey,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get isSystem => $composableBuilder(
+    column: $table.isSystem,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -2423,6 +3090,16 @@ class $$CategoriesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get semanticKey => $composableBuilder(
+    column: $table.semanticKey,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get isSystem => $composableBuilder(
+    column: $table.isSystem,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<int> get sortOrder => $composableBuilder(
     column: $table.sortOrder,
     builder: (column) => ColumnOrderings(column),
@@ -2487,6 +3164,14 @@ class $$CategoriesTableAnnotationComposer
 
   GeneratedColumn<String> get iconAsset =>
       $composableBuilder(column: $table.iconAsset, builder: (column) => column);
+
+  GeneratedColumn<String> get semanticKey => $composableBuilder(
+    column: $table.semanticKey,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get isSystem =>
+      $composableBuilder(column: $table.isSystem, builder: (column) => column);
 
   GeneratedColumn<int> get sortOrder =>
       $composableBuilder(column: $table.sortOrder, builder: (column) => column);
@@ -2557,6 +3242,8 @@ class $$CategoriesTableTableManager
                 Value<String> name = const Value.absent(),
                 Value<String> type = const Value.absent(),
                 Value<String> iconAsset = const Value.absent(),
+                Value<String?> semanticKey = const Value.absent(),
+                Value<bool> isSystem = const Value.absent(),
                 Value<int> sortOrder = const Value.absent(),
                 Value<bool> isActive = const Value.absent(),
                 Value<int> createdAt = const Value.absent(),
@@ -2568,6 +3255,8 @@ class $$CategoriesTableTableManager
                 name: name,
                 type: type,
                 iconAsset: iconAsset,
+                semanticKey: semanticKey,
+                isSystem: isSystem,
                 sortOrder: sortOrder,
                 isActive: isActive,
                 createdAt: createdAt,
@@ -2581,6 +3270,8 @@ class $$CategoriesTableTableManager
                 required String name,
                 required String type,
                 Value<String> iconAsset = const Value.absent(),
+                Value<String?> semanticKey = const Value.absent(),
+                Value<bool> isSystem = const Value.absent(),
                 required int sortOrder,
                 Value<bool> isActive = const Value.absent(),
                 required int createdAt,
@@ -2592,6 +3283,8 @@ class $$CategoriesTableTableManager
                 name: name,
                 type: type,
                 iconAsset: iconAsset,
+                semanticKey: semanticKey,
+                isSystem: isSystem,
                 sortOrder: sortOrder,
                 isActive: isActive,
                 createdAt: createdAt,
@@ -3894,6 +4587,286 @@ typedef $$TransactionsTableProcessedTableManager =
         bool relatedTransactionId,
       })
     >;
+typedef $$RecognitionRulesTableCreateCompanionBuilder =
+    RecognitionRulesCompanion Function({
+      required String id,
+      required String normalizedContent,
+      required String semanticKey,
+      Value<int> hitCount,
+      Value<int> correctionCount,
+      required int lastUsedAt,
+      required int createdAt,
+      required int updatedAt,
+      Value<int> rowid,
+    });
+typedef $$RecognitionRulesTableUpdateCompanionBuilder =
+    RecognitionRulesCompanion Function({
+      Value<String> id,
+      Value<String> normalizedContent,
+      Value<String> semanticKey,
+      Value<int> hitCount,
+      Value<int> correctionCount,
+      Value<int> lastUsedAt,
+      Value<int> createdAt,
+      Value<int> updatedAt,
+      Value<int> rowid,
+    });
+
+class $$RecognitionRulesTableFilterComposer
+    extends Composer<_$AppDatabase, $RecognitionRulesTable> {
+  $$RecognitionRulesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get normalizedContent => $composableBuilder(
+    column: $table.normalizedContent,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get semanticKey => $composableBuilder(
+    column: $table.semanticKey,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get hitCount => $composableBuilder(
+    column: $table.hitCount,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get correctionCount => $composableBuilder(
+    column: $table.correctionCount,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get lastUsedAt => $composableBuilder(
+    column: $table.lastUsedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$RecognitionRulesTableOrderingComposer
+    extends Composer<_$AppDatabase, $RecognitionRulesTable> {
+  $$RecognitionRulesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get normalizedContent => $composableBuilder(
+    column: $table.normalizedContent,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get semanticKey => $composableBuilder(
+    column: $table.semanticKey,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get hitCount => $composableBuilder(
+    column: $table.hitCount,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get correctionCount => $composableBuilder(
+    column: $table.correctionCount,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get lastUsedAt => $composableBuilder(
+    column: $table.lastUsedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$RecognitionRulesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $RecognitionRulesTable> {
+  $$RecognitionRulesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get normalizedContent => $composableBuilder(
+    column: $table.normalizedContent,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get semanticKey => $composableBuilder(
+    column: $table.semanticKey,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get hitCount =>
+      $composableBuilder(column: $table.hitCount, builder: (column) => column);
+
+  GeneratedColumn<int> get correctionCount => $composableBuilder(
+    column: $table.correctionCount,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get lastUsedAt => $composableBuilder(
+    column: $table.lastUsedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<int> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+}
+
+class $$RecognitionRulesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $RecognitionRulesTable,
+          RecognitionRule,
+          $$RecognitionRulesTableFilterComposer,
+          $$RecognitionRulesTableOrderingComposer,
+          $$RecognitionRulesTableAnnotationComposer,
+          $$RecognitionRulesTableCreateCompanionBuilder,
+          $$RecognitionRulesTableUpdateCompanionBuilder,
+          (
+            RecognitionRule,
+            BaseReferences<
+              _$AppDatabase,
+              $RecognitionRulesTable,
+              RecognitionRule
+            >,
+          ),
+          RecognitionRule,
+          PrefetchHooks Function()
+        > {
+  $$RecognitionRulesTableTableManager(
+    _$AppDatabase db,
+    $RecognitionRulesTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$RecognitionRulesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$RecognitionRulesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$RecognitionRulesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> normalizedContent = const Value.absent(),
+                Value<String> semanticKey = const Value.absent(),
+                Value<int> hitCount = const Value.absent(),
+                Value<int> correctionCount = const Value.absent(),
+                Value<int> lastUsedAt = const Value.absent(),
+                Value<int> createdAt = const Value.absent(),
+                Value<int> updatedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => RecognitionRulesCompanion(
+                id: id,
+                normalizedContent: normalizedContent,
+                semanticKey: semanticKey,
+                hitCount: hitCount,
+                correctionCount: correctionCount,
+                lastUsedAt: lastUsedAt,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String normalizedContent,
+                required String semanticKey,
+                Value<int> hitCount = const Value.absent(),
+                Value<int> correctionCount = const Value.absent(),
+                required int lastUsedAt,
+                required int createdAt,
+                required int updatedAt,
+                Value<int> rowid = const Value.absent(),
+              }) => RecognitionRulesCompanion.insert(
+                id: id,
+                normalizedContent: normalizedContent,
+                semanticKey: semanticKey,
+                hitCount: hitCount,
+                correctionCount: correctionCount,
+                lastUsedAt: lastUsedAt,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$RecognitionRulesTable, RecognitionRule>(table),
+                  BaseReferences<
+                    _$AppDatabase,
+                    $RecognitionRulesTable,
+                    RecognitionRule
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$RecognitionRulesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $RecognitionRulesTable,
+      RecognitionRule,
+      $$RecognitionRulesTableFilterComposer,
+      $$RecognitionRulesTableOrderingComposer,
+      $$RecognitionRulesTableAnnotationComposer,
+      $$RecognitionRulesTableCreateCompanionBuilder,
+      $$RecognitionRulesTableUpdateCompanionBuilder,
+      (
+        RecognitionRule,
+        BaseReferences<_$AppDatabase, $RecognitionRulesTable, RecognitionRule>,
+      ),
+      RecognitionRule,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -3904,4 +4877,6 @@ class $AppDatabaseManager {
       $$AccountsTableTableManager(_db, _db.accounts);
   $$TransactionsTableTableManager get transactions =>
       $$TransactionsTableTableManager(_db, _db.transactions);
+  $$RecognitionRulesTableTableManager get recognitionRules =>
+      $$RecognitionRulesTableTableManager(_db, _db.recognitionRules);
 }

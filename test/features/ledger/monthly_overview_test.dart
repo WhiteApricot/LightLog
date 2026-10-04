@@ -108,6 +108,7 @@ LedgerEntry _entry({
     iconAsset: 'assets/icons/categories/expense-other.svg',
     sortOrder: 1,
     isActive: true,
+    isSystem: true,
     createdAt: 0,
     updatedAt: 0,
   );
@@ -119,6 +120,7 @@ LedgerEntry _entry({
     iconAsset: 'assets/icons/categories/expense-other-general.svg',
     sortOrder: 1,
     isActive: true,
+    isSystem: true,
     createdAt: 0,
     updatedAt: 0,
   );

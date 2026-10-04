@@ -15,7 +15,7 @@ Phase 3 本地识别器按五层证据组织：
 → Evidence Fusion / Confidence
 ```
 
-Phase 2 只实现简单确定性解析和 UX 基础；五层混合识别器属于 Phase 3，全部在本机运行。Web Search 和 LLM 不属于 V0.1。
+当前已实现 Normalization、Personal History、Merchant Knowledge Base、Category Lexicon 和 Evidence Fusion；Character n-gram 只保留接口。全部在本机运行，App 运行时不联网。Web Search 和 LLM 不属于 V0.1。
 
 任何识别来源都只能生成 `RecognitionCandidate`：
 
@@ -31,24 +31,25 @@ Candidate 经用户确认或高置信自动确认策略后，才可由 Repositor
 
 ```text
 Raw Text
+→ Amount / Type / Natural Time Parser
 → Normalize
-→ Amount Parser
-→ Time Parser
-→ Content Parser
-→ Keyword Matching
+→ History / Merchant KB / Category Lexicon
+→ Evidence Fusion
+→ semanticKey / CategoryResolver
 → Candidate
 ```
 
 各阶段职责：
 
-- Normalize：清理空白、全半角和常见货币符号，不丢失原始输入。
+- Normalize：统一大小写、全半角、空白和标点，谨慎清理支付/订单、门店和公司噪声，不丢失原始输入。
 - Amount Parser：识别整数、小数、正负号和货币提示，输出整数 `amountMinor`；金额冲突必须标记。
 - Time Parser：识别显式时间和“昨晚”等相对时间；未给出时使用当前设备本地时间。
 - Content Parser：提取内容/商户候选，不凭空补全具体商户。
-- Keyword Matching：用确定性关键词推断账务类型和分类。
-- Candidate：汇总字段、每项证据、冲突、缺失项和 confidence。
+- Evidence Layers：个人历史、精确商户 alias 和数据驱动类别词典统一输出结构化 evidence。
+- Fusion / Resolver：先输出稳定消费语义，再映射当前活动分类；冲突降分，无证据可保持不确定。
+- Candidate：汇总字段、语义、当前分类映射、每项证据、冲突、缺失项和 confidence。
 
-Phase 2 只实现到确定性 Candidate；Personal History、商户知识库、分类词表、字符 n-gram 与证据融合留到 Phase 3，不参与当前评分。
+具体实现、数据规模、阈值和生成命令见 [RECOGNITION_ALGORITHM.md](RECOGNITION_ALGORITHM.md)。
 
 示例输入：
 
@@ -60,11 +61,11 @@ Phase 2 只实现到确定性 Candidate；Personal History、商户知识库、�
 昨晚麦当劳 28
 ```
 
-当前确定性规则分别生成餐饮、饮品/餐饮、交通、工资收入及带相对时间的餐饮候选。分类名称由规则匹配，但对应 ID 必须从数据库分类中查找；数据库缺少目标分类时 Candidate 标记为不完整，不能提交。
+当前规则分别生成餐饮、饮品、交通、工资收入及带自然时间的候选。识别器不使用分类名称或 ID 作为知识输出；数据库缺少目标 `semanticKey` 的活动分类映射时 Candidate 标记为不完整，不能提交。
 
 ## 时间分类
 
-时间是上下文信号，而不是事实。例如午间可增加“午餐”的权重，但不得无条件覆盖明确的商户规则或关键词。跨午夜的“昨晚”等相对表达基于解析时设备本地日期计算，并保留解析时 UTC offset；`昨晚` 默认前一天 20:00、`今早` 默认当天 08:00、`今晚` 默认当天 20:00，输入中的 `HH:mm` 优先覆盖默认时刻。未输入时间时使用解析时的本地日期和分钟。
+时间是上下文信号，而不是商户事实。餐食词可结合发生小时提供弱分类 evidence，但不得覆盖个人历史或精确商户知识。自然时间始终基于注入的 `now`；daypart 默认与周/月边界规则以算法文档为准，显式时刻优先。
 
 ## OCR 流水线
 
@@ -90,19 +91,13 @@ OCR 文本和坐标可用于当次字段提取，但不得直接写账。默认�
 
 ## Confidence
 
-Phase 2 采用相加后限制在 `0..1` 的简单可解释评分：
+Phase 3 分类 confidence 由优先级融合产生，不再把所有字段权重简单累加。个人历史可覆盖通用知识；精确 Merchant 高于普通关键词；同向独立来源只小幅增分；强冲突降至复核区；低于最低分类证据阈值时返回不确定。金额、内容、类型和时间证据仍随 Candidate 保留，但不能把无分类证据“加成”为高置信分类。
 
-- 唯一且有效的金额：`0.35`。
-- 存在金额、时间之外的内容：`0.15`。
-- 明确正负号或收入关键词确定类型：`0.15`；无收入证据时默认支出：`0.05`。
-- 分类关键词命中：`0.25`；回退到“其他支出/其他收入”：`0.05`。
-- 明确日期或时间表达：`0.10`。
-
-评分结果同时携带逐项证据说明。缺少金额/内容、出现多个金额或数据库分类缺失会使 Candidate 不完整。Phase 2 不设置自动确认门槛：用户必须主动点击“识别”，再从结果卡直接确认入账，或在同页完整表单修改后保存；两条路径复用相同验证与 Repository。
+当前不启用自动入账：用户必须主动识别并确认或修改。低置信冲突可以展示当前最优分类供复核；缺少金额、内容、分类语义或当前分类映射会阻止直接保存。
 
 ## 用户反馈学习
 
-Phase 3 的 Personal History 层将处理确认、修改和撤销反馈。目标流程为：
+Phase 3 的 Personal History 已处理确认和修改反馈：
 
 ```text
 Candidate
@@ -119,7 +114,7 @@ Candidate
 → 高置信自动写入并提供撤销 / 低置信要求确认
 ```
 
-不得把“第一次确认、第二次自动”机械写死为次数规则。用户纠正必须降低或修正规则权重；自动入账后的撤销也应作为负反馈信号。基础历史证据和学习属于 Phase 3；更高级的规则治理可在该阶段后段或 Phase 7 hardening 完成，具体更新策略仍为 **TBD**。
+不得把“第一次确认、第二次自动”机械写死为次数规则。用户纠正会增加原预测的 correction 并强化最终语义；命中、纠正和最近使用共同形成基础证据。撤销反馈、复杂衰减和规则合并仍为 **TBD**，留待 hardening。
 
 ## 重复检测
 

@@ -8,6 +8,8 @@ class Categories extends Table {
   TextColumn get iconAsset => text().withDefault(
     const Constant('assets/icons/categories/category-default.svg'),
   )();
+  TextColumn get semanticKey => text().nullable()();
+  BoolColumn get isSystem => boolean().withDefault(const Constant(false))();
   IntColumn get sortOrder => integer()();
   BoolColumn get isActive => boolean().withDefault(const Constant(true))();
   IntColumn get createdAt => integer()();
@@ -19,6 +21,35 @@ class Categories extends Table {
   @override
   List<String> get customConstraints => [
     "CHECK (type IN ('expense', 'income', 'transfer', 'refund'))",
+  ];
+}
+
+@TableIndex(
+  name: 'recognition_rules_normalized_content',
+  columns: {#normalizedContent},
+)
+class RecognitionRules extends Table {
+  TextColumn get id => text()();
+  TextColumn get normalizedContent => text().withLength(min: 1, max: 160)();
+  TextColumn get semanticKey => text().withLength(min: 1, max: 80)();
+  IntColumn get hitCount => integer().withDefault(const Constant(0))();
+  IntColumn get correctionCount => integer().withDefault(const Constant(0))();
+  IntColumn get lastUsedAt => integer()();
+  IntColumn get createdAt => integer()();
+  IntColumn get updatedAt => integer()();
+
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+
+  @override
+  List<Set<Column<Object>>> get uniqueKeys => [
+    {normalizedContent, semanticKey},
+  ];
+
+  @override
+  List<String> get customConstraints => [
+    'CHECK (hit_count >= 0)',
+    'CHECK (correction_count >= 0)',
   ];
 }
 

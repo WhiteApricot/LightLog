@@ -6,6 +6,7 @@ import 'package:light_log/data/database/database.dart';
 import 'package:light_log/data/database/seed_data.dart';
 import 'package:light_log/features/ledger/data/ledger_repository.dart';
 import 'package:light_log/features/ledger/domain/ledger_models.dart';
+import 'package:light_log/features/recognition/data/recognition_repository.dart';
 
 void main() {
   late AppDatabase database;
@@ -23,7 +24,7 @@ void main() {
   });
 
   test(
-    'schema v3 seeds icon-backed categories and accounts idempotently',
+    'schema v4 seeds semantic system categories and icon-backed accounts',
     () async {
       expect(
         await database.select(database.categories).get(),
@@ -39,6 +40,12 @@ void main() {
         categories.every(
           (category) =>
               category.iconAsset.startsWith('assets/icons/categories/'),
+        ),
+        isTrue,
+      );
+      expect(
+        categories.every(
+          (category) => category.isSystem && category.semanticKey != null,
         ),
         isTrue,
       );
@@ -77,12 +84,14 @@ void main() {
     },
   );
 
-  test('migrates schema v1 category and account icons', () async {
-    await database.close();
-    databaseClosed = true;
-    final executor = NativeDatabase.memory(
-      setup: (rawDatabase) {
-        rawDatabase.execute('''
+  test(
+    'migrates schema v1 through semantic categories and recognition rules',
+    () async {
+      await database.close();
+      databaseClosed = true;
+      final executor = NativeDatabase.memory(
+        setup: (rawDatabase) {
+          rawDatabase.execute('''
           CREATE TABLE categories (
             id TEXT NOT NULL PRIMARY KEY,
             parent_id TEXT,
@@ -94,7 +103,7 @@ void main() {
             updated_at INTEGER NOT NULL
           )
         ''');
-        rawDatabase.execute('''
+          rawDatabase.execute('''
           CREATE TABLE accounts (
             id TEXT NOT NULL PRIMARY KEY,
             name TEXT NOT NULL,
@@ -105,35 +114,39 @@ void main() {
             updated_at INTEGER NOT NULL
           )
         ''');
-        rawDatabase.execute(
-          "INSERT INTO categories VALUES "
-          "('expense-food-drink', 'expense-food', '饮料', 'expense', 40, 1, 0, 0)",
-        );
-        rawDatabase.execute(
-          "INSERT INTO accounts VALUES "
-          "('account-cash', '现金', 'cash', 1, 40, 0, 0)",
-        );
-        rawDatabase.execute('PRAGMA user_version = 1');
-      },
-    );
-    final migrated = AppDatabase(executor);
-    try {
-      final category = await (migrated.select(
-        migrated.categories,
-      )..where((table) => table.id.equals('expense-food-drink'))).getSingle();
-      expect(category.name, '饮品');
-      expect(
-        category.iconAsset,
-        'assets/icons/categories/expense-food-drink.svg',
+          rawDatabase.execute(
+            "INSERT INTO categories VALUES "
+            "('expense-food-drink', 'expense-food', '饮料', 'expense', 40, 1, 0, 0)",
+          );
+          rawDatabase.execute(
+            "INSERT INTO accounts VALUES "
+            "('account-cash', '现金', 'cash', 1, 40, 0, 0)",
+          );
+          rawDatabase.execute('PRAGMA user_version = 1');
+        },
       );
-      final account = await (migrated.select(
-        migrated.accounts,
-      )..where((table) => table.id.equals('account-cash'))).getSingle();
-      expect(account.iconAsset, 'assets/icons/accounts/account-cash.svg');
-    } finally {
-      await migrated.close();
-    }
-  });
+      final migrated = AppDatabase(executor);
+      try {
+        final category = await (migrated.select(
+          migrated.categories,
+        )..where((table) => table.id.equals('expense-food-drink'))).getSingle();
+        expect(category.name, '饮品');
+        expect(
+          category.iconAsset,
+          'assets/icons/categories/expense-food-drink.svg',
+        );
+        expect(category.semanticKey, 'expense.food.drink');
+        expect(category.isSystem, isTrue);
+        expect(await migrated.select(migrated.recognitionRules).get(), isEmpty);
+        final account = await (migrated.select(
+          migrated.accounts,
+        )..where((table) => table.id.equals('account-cash'))).getSingle();
+        expect(account.iconAsset, 'assets/icons/accounts/account-cash.svg');
+      } finally {
+        await migrated.close();
+      }
+    },
+  );
 
   test('initial database streams can be subscribed concurrently', () async {
     final results = await Future.wait([
@@ -243,6 +256,32 @@ void main() {
       ),
       throwsA(isA<LedgerValidationException>()),
     );
+  });
+
+  test('recognition feedback records hits and explicit corrections', () async {
+    final recognitionRepository = LocalRecognitionRepository(database);
+    await recognitionRepository.recordFeedback(
+      normalizedContent: '星巴克',
+      predictedSemanticKey: 'expense.food.drink',
+      finalCategoryId: 'expense-food-drink',
+    );
+    await recognitionRepository.recordFeedback(
+      normalizedContent: '星巴克',
+      predictedSemanticKey: 'expense.food.drink',
+      finalCategoryId: 'expense-food-dinner',
+    );
+
+    final records = await recognitionRepository.loadHistory();
+    final drink = records.singleWhere(
+      (item) => item.semanticKey == 'expense.food.drink',
+    );
+    final dinner = records.singleWhere(
+      (item) => item.semanticKey == 'expense.food.dinner',
+    );
+    expect(drink.hitCount, 1);
+    expect(drink.correctionCount, 1);
+    expect(dinner.hitCount, 1);
+    expect(dinner.correctionCount, 0);
   });
 
   test('editing preserves the supplied occurrence timezone offset', () async {

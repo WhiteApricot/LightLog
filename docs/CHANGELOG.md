@@ -18,6 +18,10 @@
 - Added a lightweight monthly income, expense, balance, and unset-budget overview above the ledger.
 - Added a maintained recognition algorithm working document covering the implemented pipeline, limitations, and local future directions.
 - Added five lightweight database-backed SVGs for the default payment methods and automated SVG uniqueness/shape checks.
+- Added the first four layers of the offline hybrid recognizer: safe normalization, personal history, a packaged Merchant Knowledge Base, and a data-driven Category Lexicon.
+- Added priority-based explainable evidence fusion, stable semantic category resolution, and an inert Character n-gram classifier interface for future work.
+- Added natural Chinese time parsing for relative days, weekdays, month boundaries, dayparts, 24-hour clocks, and spoken Chinese clock expressions.
+- Added reproducible knowledge generation/validation and a 10,000-parse performance benchmark.
 
 ### Changed
 
@@ -35,6 +39,8 @@
 - Replaced the account dropdown with icon choices and migrated account icon associations in schema v3.
 - Changed smart text entry to run only after an explicit “识别” action and added a compact result card with direct confirmation through the shared save path.
 - Replanned Phase 3 as the five-layer local hybrid recognizer and moved OCR to Phase 4; local history learning is no longer a separate phase.
+- Migrated the database to schema v4 with category `semanticKey` / `isSystem` fields and minimal local `recognition_rules` hit/correction history.
+- Changed text classification from hard-coded category-name rules and additive scoring to packaged indexes, stable semantics, `CategoryResolver`, and conflict-aware confidence.
 
 ### Fixed
 

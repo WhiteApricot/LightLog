@@ -9,6 +9,9 @@ import 'package:light_log/core/occurrence_time.dart';
 import 'package:light_log/data/database/database.dart';
 import 'package:light_log/features/ledger/data/ledger_repository.dart';
 import 'package:light_log/features/ledger/domain/ledger_models.dart';
+import 'package:light_log/features/recognition/data/recognition_repository.dart';
+import 'package:light_log/features/recognition/domain/personal_history.dart';
+import 'package:light_log/features/recognition/domain/text_entry_parser.dart';
 
 void main() {
   testWidgets('entry page combines smart input and manual form', (
@@ -241,11 +244,29 @@ Future<void> _pumpApp(
 ) async {
   await tester.pumpWidget(
     ProviderScope(
-      overrides: [ledgerRepositoryProvider.overrideWithValue(repository)],
+      overrides: [
+        ledgerRepositoryProvider.overrideWithValue(repository),
+        recognitionRepositoryProvider.overrideWithValue(
+          _FakeRecognitionRepository(),
+        ),
+        textEntryParserProvider.overrideWithValue(AsyncData(TextEntryParser())),
+      ],
       child: const LightLogApp(),
     ),
   );
   await tester.pump();
+}
+
+class _FakeRecognitionRepository implements RecognitionRepository {
+  @override
+  Future<List<PersonalHistoryRecord>> loadHistory() async => const [];
+
+  @override
+  Future<void> recordFeedback({
+    required String normalizedContent,
+    required String? predictedSemanticKey,
+    required String finalCategoryId,
+  }) async {}
 }
 
 class _FakeLedgerRepository implements LedgerRepository {
@@ -268,6 +289,7 @@ class _FakeLedgerRepository implements LedgerRepository {
       iconAsset: 'assets/icons/categories/expense-food.svg',
       sortOrder: 10,
       isActive: true,
+      isSystem: true,
       createdAt: 0,
       updatedAt: 0,
     ),
@@ -279,6 +301,8 @@ class _FakeLedgerRepository implements LedgerRepository {
       iconAsset: 'assets/icons/categories/expense-food-lunch.svg',
       sortOrder: 10,
       isActive: true,
+      semanticKey: 'expense.food.lunch',
+      isSystem: true,
       createdAt: 0,
       updatedAt: 0,
     ),
@@ -289,6 +313,7 @@ class _FakeLedgerRepository implements LedgerRepository {
       iconAsset: 'assets/icons/categories/income-other.svg',
       sortOrder: 10,
       isActive: true,
+      isSystem: true,
       createdAt: 0,
       updatedAt: 0,
     ),
@@ -300,6 +325,8 @@ class _FakeLedgerRepository implements LedgerRepository {
       iconAsset: 'assets/icons/categories/income-other-general.svg',
       sortOrder: 10,
       isActive: true,
+      semanticKey: 'income.other.general',
+      isSystem: true,
       createdAt: 0,
       updatedAt: 0,
     ),
@@ -398,6 +425,7 @@ const _expenseCategory = Category(
   iconAsset: 'assets/icons/categories/expense-food.svg',
   sortOrder: 10,
   isActive: true,
+  isSystem: true,
   createdAt: 0,
   updatedAt: 0,
 );
@@ -410,6 +438,8 @@ const _expenseSubcategory = Category(
   iconAsset: 'assets/icons/categories/expense-food-lunch.svg',
   sortOrder: 10,
   isActive: true,
+  semanticKey: 'expense.food.lunch',
+  isSystem: true,
   createdAt: 0,
   updatedAt: 0,
 );
@@ -421,6 +451,7 @@ const _incomeCategory = Category(
   iconAsset: 'assets/icons/categories/income-other.svg',
   sortOrder: 10,
   isActive: true,
+  isSystem: true,
   createdAt: 0,
   updatedAt: 0,
 );
@@ -433,6 +464,8 @@ const _incomeSubcategory = Category(
   iconAsset: 'assets/icons/categories/income-other-general.svg',
   sortOrder: 10,
   isActive: true,
+  semanticKey: 'income.other.general',
+  isSystem: true,
   createdAt: 0,
   updatedAt: 0,
 );

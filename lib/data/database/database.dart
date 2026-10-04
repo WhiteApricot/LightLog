@@ -6,12 +6,12 @@ import 'tables.dart';
 
 part 'database.g.dart';
 
-@DriftDatabase(tables: [Transactions, Categories, Accounts])
+@DriftDatabase(tables: [Transactions, Categories, Accounts, RecognitionRules])
 class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -66,6 +66,22 @@ class AppDatabase extends _$AppDatabase {
           );
         }
       }
+      if (from < 4) {
+        await migrator.addColumn(categories, categories.semanticKey);
+        await migrator.addColumn(categories, categories.isSystem);
+        await migrator.createTable(recognitionRules);
+        for (final category in defaultCategories) {
+          await (update(
+            categories,
+          )..where((table) => table.id.equals(category.id))).write(
+            CategoriesCompanion(
+              semanticKey: Value(category.semanticKey),
+              isSystem: const Value(true),
+              updatedAt: Value(DateTime.now().toUtc().millisecondsSinceEpoch),
+            ),
+          );
+        }
+      }
     },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');
@@ -83,6 +99,8 @@ class AppDatabase extends _$AppDatabase {
           name: category.name,
           type: category.type,
           iconAsset: Value(category.iconAsset),
+          semanticKey: Value(category.semanticKey),
+          isSystem: const Value(true),
           sortOrder: category.sortOrder,
           createdAt: now,
           updatedAt: now,
@@ -97,7 +115,13 @@ class AppDatabase extends _$AppDatabase {
                       'assets/icons/categories/category-default.svg',
                     )),
           ))
-          .write(CategoriesCompanion(iconAsset: Value(category.iconAsset)));
+          .write(
+            CategoriesCompanion(
+              iconAsset: Value(category.iconAsset),
+              semanticKey: Value(category.semanticKey),
+              isSystem: const Value(true),
+            ),
+          );
     }
     for (final account in defaultAccounts) {
       await into(accounts).insert(

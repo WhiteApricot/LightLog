@@ -33,7 +33,7 @@ Phase 2 在 `features/recognition/domain` 中实现无 UI、无数据库写入�
 
 分类与账户选择 UI 分别从数据库 `Category.iconAsset`、`Account.iconAsset` 读取 SVG，不按名称维护 Widget 映射。分类使用嵌入表单滚动区的紧凑纵向网格，不创建内部横向滚动区；一级分类默认展示，点击后展开或收起其二级分类。账户使用五项图标网格点选。日期选择和可循环的 24 小时时间滚轮只修改本地墙上时间；UTC instant 与发生时 offset 的转换仍由 `OccurrenceTime` 和 Repository 负责。
 
-Phase 3 将在 `features/recognition` 内实现五层本地混合识别器：Normalization、Personal History、Merchant Knowledge Base、Category Lexicon、Character n-gram classifier，并通过 Evidence Fusion 生成可解释 confidence。该阶段吸收基础历史学习能力；OCR 作为独立平台输入顺延到 Phase 4，不与本地文本识别器耦合。
+Phase 3 在 `features/recognition` 内实现本地混合识别器。`domain` 保存 Normalization、自然时间、Personal History 匹配、知识索引、Evidence Fusion、`CategoryResolver` 与 Candidate；`data` 只负责一次性加载打包 JSON 和通过独立 Repository 读写本地历史规则。当前前四层已实现，Character n-gram 只保留输入/输出接口和空实现，不包含模型或 runtime。OCR 作为独立平台输入顺延到 Phase 4，不与本地文本识别器耦合。
 
 首页本月概览由纯领域计算 `MonthlyOverview.fromEntries` 从当前账本流派生，按每笔账保存的 offset 还原所属本地月份，合计普通 `income` / `expense`、排除转账，并依据关联原账类型冲减退款。它不引入统计模块、图表或预算持久化；预算区域当前仅是“未设置”占位。
 
@@ -54,11 +54,12 @@ UI
 
 ```text
 Raw Input
-→ EntryDraft
-→ Parser/OCR
-→ RuleEngine
+→ amount/type/time parsing + Normalization
+→ Personal History / Merchant KB / Category Lexicon / future n-gram
+→ Evidence Fusion
+→ semanticKey
+→ CategoryResolver
 → RecognitionCandidate
-→ Confidence
 → Confirm
 → Repository
 → Transaction
@@ -72,14 +73,16 @@ LLM != Transaction
 Parser != Transaction
 ```
 
-任何识别系统都只能提出 Candidate。Phase 2 全部要求用户确认；高置信自动确认及其提示、撤销策略留到 Phase 3 本地混合识别器完成证据校准后评估。
+任何识别系统都只能提出 Candidate。Phase 3 仍要求用户确认；高置信自动确认尚未启用，必须等更完整的离线校准、提示和撤销闭环完成后再评估。
 
 ## 核心模型职责
 
 - `EntryDraft`：用户尚未提交的结构化输入，允许字段缺失。
 - `RecognitionCandidate`：识别系统的候选结果，包含字段证据、冲突和 confidence，不是正式账目。
 - `Transaction`：经过用户确认或自动确认策略后写入账本的正式记录。
-- `RecognitionRule`：从本地历史确认/修改中形成的可解释规则。
+- `RecognitionRule`：以规范化内容和稳定 `semanticKey` 保存的本地确认/修改统计。
+
+分类的数据库 ID 只由 `CategoryResolver` 在流水线末端解析。系统分类带 `semanticKey/isSystem`；未来用户分类可映射到同一语义，解析器和静态知识资产不依赖用户可见分类 ID。
 
 模型字段以 [DATABASE.md](DATABASE.md) 为准；识别语义以 [RECOGNITION.md](RECOGNITION.md) 为准。
 

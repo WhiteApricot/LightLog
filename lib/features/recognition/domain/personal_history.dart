@@ -1,0 +1,53 @@
+import 'recognition_models.dart';
+
+class PersonalHistoryRecord {
+  const PersonalHistoryRecord({
+    required this.normalizedContent,
+    required this.semanticKey,
+    required this.hitCount,
+    required this.correctionCount,
+    required this.lastUsedAt,
+  });
+
+  final String normalizedContent;
+  final String semanticKey;
+  final int hitCount;
+  final int correctionCount;
+  final int lastUsedAt;
+}
+
+class PersonalHistoryMatcher {
+  const PersonalHistoryMatcher();
+
+  List<RecognitionEvidence> match({
+    required String normalizedContent,
+    required List<PersonalHistoryRecord> records,
+    required DateTime now,
+  }) {
+    return [
+      for (final record in records)
+        if (record.normalizedContent == normalizedContent &&
+            record.hitCount > record.correctionCount)
+          RecognitionEvidence(
+            field: 'category',
+            source: RecognitionEvidenceSource.personalHistory,
+            semanticKey: record.semanticKey,
+            description:
+                '个人历史命中 ${record.hitCount} 次，纠正 ${record.correctionCount} 次',
+            score: _score(record, now),
+          ),
+    ];
+  }
+
+  double _score(PersonalHistoryRecord record, DateTime now) {
+    final age = now.millisecondsSinceEpoch - record.lastUsedAt;
+    final recentBonus = age <= const Duration(days: 30).inMilliseconds
+        ? 0.03
+        : 0.0;
+    return (0.86 +
+            (record.hitCount.clamp(0, 5) * 0.02) -
+            (record.correctionCount * 0.12) +
+            recentBonus)
+        .clamp(0.55, 0.99);
+  }
+}
