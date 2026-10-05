@@ -34,10 +34,10 @@ Candidate 经用户确认或高置信自动确认策略后，才可由 Repositor
 Raw Text
 → raw/display/matching 双轨 Normalize
 → Transaction status / Natural Time / protected numeric spans
-→ Amount candidates / Content span / Type evidence
+→ Amount candidates / Content span / Preliminary type evidence
 → indexed History / Local Entity KB / role-aware Category Lexicon
-→ flat LexicalFamilyMatcher / SpanConflictResolver / CompositionalMatcher
-→ Evidence Fusion
+→ FamilyMatcher (concept / optional prior / composition) / SpanConflictResolver
+→ parent-first EvidenceFusion / TypeInference.reconcile
 → semanticKey / CategoryResolver
 → Candidate
 ```
@@ -55,7 +55,7 @@ Raw Text
 
 具体实现、数据规模、阈值和生成命令见 [RECOGNITION_ALGORITHM.md](RECOGNITION_ALGORITHM.md)。
 
-Family 是平面概念知识，不能代替完整商品的 semantic lexicon；composition 只组合当次输入中实际命中的近邻 span。词族规模与规则覆盖通过并不代表分类泛化达标。2026-10-05 的 v4 未见测试初测和一次有限修复仍未达到 90% 分类门槛，Phase 3 classification 尚未收口；不引入 n-gram，不将此 corpus 继续用作扩词目标。
+Family 保持平面概念模型；稳定概念可以产生弱 standalone prior，contextual-only 概念必须等待上下文。Composition 对已命中 spans 精化/覆盖；没有实际 replacement evidence 的概念不能删除词典语义。Fusion 先选 parent，再排 child；语义可以校正弱默认类型，强类型冲突仍需确认，退款语义仍要求关联原账目。v5 initial/final category 均为 75.50%，Phase 3 classification 尚未收口；停止调 v5 和扩 family/rule，下一独立算法任务评估轻量字符分类 fallback，本轮没有实现 n-gram。
 
 示例输入：
 

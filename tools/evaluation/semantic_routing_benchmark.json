@@ -1,4 +1,4 @@
-﻿{
+{
   "warmUpIterations": 1000,
   "iterations": 10000,
   "averageMicroseconds": 193.1328,

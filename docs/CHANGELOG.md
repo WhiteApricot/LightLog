@@ -41,6 +41,11 @@
 
 ### Changed
 
+- Unified lexical-family matching, standalone priors and composition in one indexed FamilyMatcher; removed the two old matchers, unused Recognizer interface and destructive concept-only suppression. Existing 197 families/2145 terms/316 rules remain unchanged; 117 families emit bounded priors, 80 remain contextual-only.
+- Reworked EvidenceFusion to select parent before ranking children, and TypeInference to reconcile semantic direction after preliminary evidence. Removed duplicated meal/source routing and merged generator validators; added prior/schema gates and synthetic mechanism tests.
+- Preserved semantic-routing v5 initial/final reports: category 75.50%/75.50%, type 94.50%/96.50%, high-confidence wrong 0 and P2 safe 100%. The single generic repair restores refund type and mandatory original-transaction linkage for refund semantics. Phase 3 classification remains unfrozen; deterministic semantic routing is insufficient, so further rule growth and v5 tuning stop.
+- Validated 99 tests, original category 96.32%/type 100%, v2/v3/v4 category 90.53%/97.50%/67.67% and warm benchmark p95 0.403 ms; archived corpora/provenance and recorded reproducible freeze trees plus four-asset hashes.
+
 - Indexed normalized family terms once per recognizer; final warm benchmark p95 is 0.436 ms. Original/v2/v3 category regression is 96.32%/88.95%/97.50%; all 89 tests and static analysis pass. Final knowledgeHash is `40b6b94c`; detailed remaining failure families are recorded in `docs/RECOGNITION_ALGORITHM.md`.
 - Preserved atomic concept spans inside compounds and narrowly permitted embedded context/pet/income composition; constrained single-character replacement to adjacent reviewed components. Moved three tabletop/immersive entertainment lexicon terms to the hobby taxonomy while keeping 7486 positive and 355 negative terms.
 

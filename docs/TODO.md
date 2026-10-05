@@ -41,7 +41,7 @@
 - [x] Require explicit recognition and add an above-the-fold result/confirm card
 - [ ] Define duplicate fingerprint thresholds and add duplicate-detection tests
 
-## Phase 3 - Five-layer local hybrid recognizer
+## Phase 3 - Local semantic recognizer
 
 - [x] Layer 1: strengthen normalization without losing raw input
 - [x] Layer 2: use personal confirmation/correction history as local evidence
@@ -64,7 +64,11 @@
 - [x] Add data-driven lexical families, span conflict resolution, and proximity-aware composition rules; compositional holdout v3 category accuracy is 98.5% with zero high-confidence wrong predictions
 - [x] Refine the high-recall family pool without reading holdouts before freeze; expand production to 197 flat families / 2145 unique terms / 316 rules / 95 composition semantics, add generator distribution/conflict gates and four-asset knowledgeHash
 - [x] Preserve v4 initial (59.33% category) and one limited generic repair final (62.00%); archive candidates/corpora/superseded reports and validate 89 tests, original/v2/v3 regression and benchmark
-- [ ] Phase 3 classification frozen — **not achieved**: v4 final category 62.00% < 90%; final high-confidence wrong 0, P2 safe 100%, warm p95 0.436 ms. Remaining families and exact metrics: [algorithm record](RECOGNITION_ALGORITHM.md#phase-3-family-generalization-v4). Further work requires a new independently specified knowledge task and unseen corpus; do not tune this v4 again.
+- [x] Replace the two family/composition matchers with one indexed FamilyMatcher; add 117 standalone / 80 contextual-only policies without expanding 197 families / 2145 terms / 316 rules
+- [x] Replace destructive concept suppression, fuse parent before child, reconcile semantics with preliminary type, and remove unused interface / duplicated routing / generator validation
+- [x] Freeze before every holdout; preserve v5 immutable initial and one generic refund-safety repair final; pass 99 tests, analyzer and original 190 regression
+- [ ] Phase 3 classification frozen — **not achieved**: v5 initial/final category 75.50% < 80%; type 94.50% → 96.50%, high-confidence wrong 0, P2 safe 100%, warm benchmark p95 0.403 ms. **deterministic semantic routing insufficient**. See [final algorithm/results](RECOGNITION_ALGORITHM.md). Stop tuning v5 and expanding family/composition.
+- [ ] Next independent algorithm evaluation: character 2–4 gram + lightweight linear classifier / Naive Bayes as low-confidence fallback evidence; preserve Candidate/safety gates and require a new unseen corpus. No n-gram implementation exists in this task.
 - [ ] Resolve remaining non-blocking content-span families and taxonomy-oracle differences without weakening the zero/high-risk amount and refund safety policy
 
 ## Future - Category management

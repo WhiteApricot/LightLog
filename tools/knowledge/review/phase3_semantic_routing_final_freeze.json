@@ -1,0 +1,25 @@
+{
+  "stage": "single generic repair freeze",
+  "treeHash": "68cf26d20640d9a9c91f8acd1fe69d037a4c7e6f",
+  "knowledgeHash": "288a37c0",
+  "genericRepair": "Refund semantic reconciliation restores refund type and mandatory relatedTransactionRequired safety gate; no term, family or composition changes",
+  "initialReportSha256": "19bc15e9489d1ed4ec9d826f73a625aa0cdf931827a9878e6e548efded453502",
+  "checks": [
+    "generator",
+    "format",
+    "analyze",
+    "99 tests passed",
+    "diff check",
+    "original category 96.32%, type 100%, HC wrong 0, P2 safe 100%",
+    "benchmark p95 403us"
+  ],
+  "snapshotCommit": "b3af88ec355140c15d86ab2d98a9ff5287720138",
+  "snapshotCommitMaterializedAt": "2026-10-05T10:39:25.087981+00:00",
+  "assetSha256": {
+    "merchants": "ee55ff985d89d4dfe2f6131586a297228ab02a641899d95f0b3a96bc0fa76aaa",
+    "composition_rules": "94ad85c788a7d0c0f65acf77121f06f0eb4c033a7ca9b8a7e6bf40d26e4b6ac2",
+    "lexical_families": "7639a9b9ecf6fb79ac336f84c5c6b1a7b3628d6bea25cde8044bc994d5746757",
+    "category_lexicon": "4794c4dc9660c3c05a0bd257a6e7458924779892b012250b8b5abf1d089c0044"
+  },
+  "snapshotNote": "Trees were recorded before their evaluations; commits were materialized during final archival so the exact frozen trees remain reachable after push."
+}

@@ -1,0 +1,1029 @@
+{
+  "corpus": "LightLog Phase 3 Compositional Semantics Holdout Corpus",
+  "corpusVersion": 3,
+  "recognizerVersion": 3,
+  "knowledgeHash": "288a37c0",
+  "evaluatedAt": "2026-10-05T10:27:13.729349Z",
+  "totalCases": 200,
+  "priority": {
+    "P0": {
+      "total": 25,
+      "correct": 25,
+      "accuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "typeAccuracy": 1.0
+    },
+    "P1": {
+      "total": 170,
+      "correct": 162,
+      "accuracy": 0.9529411764705882,
+      "categoryAccuracy": 0.9705882352941176,
+      "typeAccuracy": 0.9764705882352941
+    },
+    "P2": {
+      "total": 5,
+      "correct": 5,
+      "accuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "typeAccuracy": 1.0
+    }
+  },
+  "p2SafeRejectionRate": 1.0,
+  "amountAccuracy": 1.0,
+  "typeAccuracy": 0.98,
+  "categoryAccuracy": 0.975,
+  "parentCategoryAccuracy": 0.975,
+  "childCategoryAccuracy": 0.975,
+  "categoryNullCount": 2,
+  "wrongCategoryCount": 3,
+  "routingFailureBreakdown": {
+    "noSemanticOutput": 1,
+    "noCategoryOutput": 2,
+    "wrongParent": 3,
+    "correctParentWrongChild": 0,
+    "wrongType": 4
+  },
+  "timeAccuracy": 1.0,
+  "contentAccuracy": 1.0,
+  "contentSpanAccuracy": 1.0,
+  "displayFormattingMismatchCount": 0,
+  "contentSpanErrorCount": 0,
+  "completeAccuracy": 0.96,
+  "highConfidenceWrongPredictionCount": 0,
+  "confirmationLevelDistribution": {
+    "warning": 197,
+    "blocked": 3
+  },
+  "confidenceBuckets": {
+    "lt_0_5": {
+      "count": 188,
+      "accuracy": 0.9574468085106383,
+      "coverage": 0.94
+    },
+    "0_5_to_0_65": {
+      "count": 0,
+      "accuracy": 0.0,
+      "coverage": 0.0
+    },
+    "0_65_to_0_8": {
+      "count": 12,
+      "accuracy": 1.0,
+      "coverage": 0.06
+    },
+    "gte_0_8": {
+      "count": 0,
+      "accuracy": 0.0,
+      "coverage": 0.0
+    }
+  },
+  "latencyMicroseconds": {
+    "average": 375.02,
+    "p50": 265,
+    "p95": 751,
+    "p99": 1464,
+    "max": 7520
+  },
+  "failureReasonCounts": {
+    "category_or_fusion": 5,
+    "type_inference": 4,
+    "status": 5
+  },
+  "groupMetrics": {
+    "action_object": {
+      "count": 45,
+      "overallAccuracy": 0.9777777777777777,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 0.9777777777777777,
+      "parentCategoryAccuracy": 0.9777777777777777,
+      "timeAccuracy": 1.0
+    },
+    "close_category": {
+      "count": 20,
+      "overallAccuracy": 1.0,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "parentCategoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "containment": {
+      "count": 25,
+      "overallAccuracy": 0.96,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 0.96,
+      "parentCategoryAccuracy": 0.96,
+      "timeAccuracy": 1.0
+    },
+    "income_boundary": {
+      "count": 25,
+      "overallAccuracy": 0.84,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 0.88,
+      "categoryAccuracy": 0.96,
+      "parentCategoryAccuracy": 0.96,
+      "timeAccuracy": 1.0
+    },
+    "long_tail_mixed": {
+      "count": 25,
+      "overallAccuracy": 1.0,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "parentCategoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "modifier_context": {
+      "count": 35,
+      "overallAccuracy": 0.9428571428571428,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 0.9714285714285714,
+      "categoryAccuracy": 0.9428571428571428,
+      "parentCategoryAccuracy": 0.9428571428571428,
+      "timeAccuracy": 1.0
+    },
+    "platform_specific": {
+      "count": 25,
+      "overallAccuracy": 1.0,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "parentCategoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    }
+  },
+  "semanticMetrics": {
+    "testedSemanticKeyCount": 74,
+    "fullyCorrectSemanticKeyCount": 69,
+    "bySemanticKey": {
+      "expense.communication.cloud": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.communication.internet": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.communication.mobile": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.daily.cleaning": {
+        "count": 11,
+        "categoryAccuracy": 1.0
+      },
+      "expense.daily.household": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.daily.personal": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.daily.service": {
+        "count": 11,
+        "categoryAccuracy": 0.9090909090909091
+      },
+      "expense.digital.accessory": {
+        "count": 4,
+        "categoryAccuracy": 1.0
+      },
+      "expense.digital.computer": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.digital.photo": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.digital.repair": {
+        "count": 12,
+        "categoryAccuracy": 1.0
+      },
+      "expense.digital.software": {
+        "count": 3,
+        "categoryAccuracy": 1.0
+      },
+      "expense.education.course": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.education.stationery": {
+        "count": 3,
+        "categoryAccuracy": 1.0
+      },
+      "expense.entertainment.movie": {
+        "count": 3,
+        "categoryAccuracy": 1.0
+      },
+      "expense.entertainment.subscription": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.family.child": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.family.education": {
+        "count": 4,
+        "categoryAccuracy": 1.0
+      },
+      "expense.family.elder": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.family.health": {
+        "count": 8,
+        "categoryAccuracy": 1.0
+      },
+      "expense.family.support": {
+        "count": 2,
+        "categoryAccuracy": 0.5
+      },
+      "expense.finance.insurance": {
+        "count": 3,
+        "categoryAccuracy": 1.0
+      },
+      "expense.food.groceries": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.food.takeout": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.housing.repair": {
+        "count": 11,
+        "categoryAccuracy": 1.0
+      },
+      "expense.housing.utilities": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.medical.dental": {
+        "count": 3,
+        "categoryAccuracy": 1.0
+      },
+      "expense.medical.medicine": {
+        "count": 2,
+        "categoryAccuracy": 0.5
+      },
+      "expense.pets.food": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.pets.grooming": {
+        "count": 7,
+        "categoryAccuracy": 1.0
+      },
+      "expense.pets.medical": {
+        "count": 7,
+        "categoryAccuracy": 1.0
+      },
+      "expense.pets.service": {
+        "count": 4,
+        "categoryAccuracy": 1.0
+      },
+      "expense.pets.supplies": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.shopping.appliance": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.shopping.clothing": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.shopping.home": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.shopping.other": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.social.donation": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.social.gathering": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.social.gift": {
+        "count": 1,
+        "categoryAccuracy": 0.0
+      },
+      "expense.social.red.packet": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.sports.equipment": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.sports.event": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.sports.fitness": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.sports.outdoor": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.sports.venue": {
+        "count": 3,
+        "categoryAccuracy": 1.0
+      },
+      "expense.transport.flight": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.transport.maintenance": {
+        "count": 13,
+        "categoryAccuracy": 1.0
+      },
+      "expense.transport.parking": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.transport.rail": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.transport.taxi": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.travel.attraction": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.travel.hotel": {
+        "count": 3,
+        "categoryAccuracy": 1.0
+      },
+      "expense.travel.package": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.travel.supplies": {
+        "count": 3,
+        "categoryAccuracy": 1.0
+      },
+      "income.investment.dividend": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.investment.interest": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.investment.rent": {
+        "count": 1,
+        "categoryAccuracy": 0.0
+      },
+      "income.other.reward": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.other.secondhand": {
+        "count": 3,
+        "categoryAccuracy": 1.0
+      },
+      "income.parttime.consulting": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.parttime.freelance": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "income.parttime.platform": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.parttime.project": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.refund.deposit": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.refund.shopping": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.refund.tax": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.reimbursement.medical": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.reimbursement.travel": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.reimbursement.work": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.salary.allowance": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "income.salary.bonus": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "income.salary.monthly": {
+        "count": 3,
+        "categoryAccuracy": 1.0
+      },
+      "income.salary.overtime": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      }
+    }
+  },
+  "failures": [
+    {
+      "id": "C016",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "手表换电池 25",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "parentCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.digital.repair",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "手表换电池",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": "2026-10-05T13:20:00.000",
+        "confidence": 0.4444444444444444,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.9,
+          "category": 0.64,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [
+          "category_ambiguous"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "25",
+            "amountMinor": 2500,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "C069",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "给家里补贴 1500",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": false,
+      "categoryCorrect": false,
+      "parentCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 150000,
+        "content": null,
+        "categoryId": "expense-family",
+        "subcategoryId": "expense-family-support",
+        "occurredAtLocal": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "income.salary.allowance",
+        "type": "income",
+        "amountMinor": 150000,
+        "content": "给家里补贴",
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-allowance",
+        "occurredAtLocal": "2026-10-05T13:20:00.000",
+        "confidence": 0.4444444444444444,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.9,
+          "category": 0.64,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [
+          "category_ambiguous"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "1500",
+            "amountMinor": 150000,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "type_inference",
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "C073",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "朋友生日送礼 300",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "partial",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": false,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "parentCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 30000,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-gift",
+        "occurredAtLocal": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": null,
+        "type": "expense",
+        "amountMinor": 30000,
+        "content": "朋友生日送礼",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": "2026-10-05T13:20:00.000",
+        "confidence": 0.0,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": false,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.88,
+          "category": 0.0,
+          "time": 0.82,
+          "content": 0.72
+        },
+        "issues": [
+          "category_low_confidence"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "300",
+            "amountMinor": 30000,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "status",
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "C092",
+      "priority": "P1",
+      "group": "containment",
+      "input": "猫眼滴眼液 28",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "parentCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2800,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-medicine",
+        "occurredAtLocal": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.entertainment.movie",
+        "type": "expense",
+        "amountMinor": 2800,
+        "content": "猫眼滴眼液",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": "2026-10-05T13:20:00.000",
+        "confidence": 0.4444444444444444,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.9,
+          "category": 0.79,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [],
+        "amountCandidates": [
+          {
+            "raw": "28",
+            "amountMinor": 2800,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "C150",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "出租房租金到账 3500",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "partial",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": false,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "parentCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 350000,
+        "content": null,
+        "categoryId": "income-investment",
+        "subcategoryId": "income-investment-rent",
+        "occurredAtLocal": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.housing.rent",
+        "type": "income",
+        "amountMinor": 350000,
+        "content": "出租房租金到账",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": "2026-10-05T13:20:00.000",
+        "confidence": 0.49,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": false,
+        "fieldConfidence": {
+          "amount": 0.7777777777777778,
+          "type": 0.94,
+          "category": 0.64,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [
+          "category_ambiguous",
+          "category_mapping_missing",
+          "type_conflict"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "3500",
+            "amountMinor": 350000,
+            "score": 105.0,
+            "role": "amount",
+            "reason": "应付或收入字段",
+            "features": [
+              "mediumLabel",
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "status",
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "C151",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "购物退款到账 99",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "rejected",
+      "confirmationLevel": "blocked",
+      "canQuickConfirm": false,
+      "amountCorrect": true,
+      "typeCorrect": false,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 9900,
+        "content": null,
+        "categoryId": "income-refund",
+        "subcategoryId": "income-refund-shopping",
+        "occurredAtLocal": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "income.refund.shopping",
+        "type": "refund",
+        "amountMinor": 9900,
+        "content": "购物",
+        "categoryId": "income-refund",
+        "subcategoryId": "income-refund-shopping",
+        "occurredAtLocal": "2026-10-05T13:20:00.000",
+        "confidence": 0.49,
+        "confirmationLevel": "blocked",
+        "canQuickConfirm": false,
+        "fieldConfidence": {
+          "amount": 0.7777777777777778,
+          "type": 0.99,
+          "category": 0.965,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [
+          "related_transaction_required"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "99",
+            "amountMinor": 9900,
+            "score": 105.0,
+            "role": "amount",
+            "reason": "应付或收入字段",
+            "features": [
+              "mediumLabel",
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "status",
+        "type_inference"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "C152",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "押金退回 500",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "rejected",
+      "confirmationLevel": "blocked",
+      "canQuickConfirm": false,
+      "amountCorrect": true,
+      "typeCorrect": false,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 50000,
+        "content": null,
+        "categoryId": "income-refund",
+        "subcategoryId": "income-refund-deposit",
+        "occurredAtLocal": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "income.refund.deposit",
+        "type": "refund",
+        "amountMinor": 50000,
+        "content": "押金退回",
+        "categoryId": "income-refund",
+        "subcategoryId": "income-refund-deposit",
+        "occurredAtLocal": "2026-10-05T13:20:00.000",
+        "confidence": 0.4444444444444444,
+        "confirmationLevel": "blocked",
+        "canQuickConfirm": false,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.9,
+          "category": 0.8,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [
+          "related_transaction_required"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "500",
+            "amountMinor": 50000,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "status",
+        "type_inference"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "C153",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "退税到账 260",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "rejected",
+      "confirmationLevel": "blocked",
+      "canQuickConfirm": false,
+      "amountCorrect": true,
+      "typeCorrect": false,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 26000,
+        "content": null,
+        "categoryId": "income-refund",
+        "subcategoryId": "income-refund-tax",
+        "occurredAtLocal": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "income.refund.tax",
+        "type": "refund",
+        "amountMinor": 26000,
+        "content": "退税到账",
+        "categoryId": "income-refund",
+        "subcategoryId": "income-refund-tax",
+        "occurredAtLocal": "2026-10-05T13:20:00.000",
+        "confidence": 0.49,
+        "confirmationLevel": "blocked",
+        "canQuickConfirm": false,
+        "fieldConfidence": {
+          "amount": 0.7777777777777778,
+          "type": 0.9,
+          "category": 0.99,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [
+          "related_transaction_required"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "260",
+            "amountMinor": 26000,
+            "score": 105.0,
+            "role": "amount",
+            "reason": "应付或收入字段",
+            "features": [
+              "mediumLabel",
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "status",
+        "type_inference"
+      ],
+      "highConfidenceWrong": false
+    }
+  ]
+}

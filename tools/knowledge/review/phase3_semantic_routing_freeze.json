@@ -1,0 +1,29 @@
+{
+  "stage": "pre-holdout architecture freeze",
+  "baseCommit": "6fcb978cb0ce396c6d9eaf4721a12478e8ec8dda",
+  "treeHash": "aebe9b65694f9c1bceb61c0c1c4d76f14ec72edd",
+  "knowledgeHash": "288a37c0",
+  "assetSha256": {
+    "merchants": "ee55ff985d89d4dfe2f6131586a297228ab02a641899d95f0b3a96bc0fa76aaa",
+    "composition_rules": "94ad85c788a7d0c0f65acf77121f06f0eb4c033a7ca9b8a7e6bf40d26e4b6ac2",
+    "lexical_families": "7639a9b9ecf6fb79ac336f84c5c6b1a7b3628d6bea25cde8044bc994d5746757",
+    "category_lexicon": "4794c4dc9660c3c05a0bd257a6e7458924779892b012250b8b5abf1d089c0044"
+  },
+  "checks": [
+    "generator",
+    "dart format .",
+    "flutter analyze",
+    "flutter test: 98 passed",
+    "git diff --check"
+  ],
+  "categoryAccuracy": 0.9631578947368421,
+  "typeAccuracy": 1.0,
+  "highConfidenceWrong": 0,
+  "p2Safe": 1.0,
+  "warmP95Microseconds": 399,
+  "frozenAt": "2026-10-05T10:20:57.4731959Z",
+  "holdoutsRead": [],
+  "snapshotCommit": "776afbb6bee24d8323f557f4448f20a3f8d0a0ee",
+  "snapshotCommitMaterializedAt": "2026-10-05T10:39:25.082928+00:00",
+  "snapshotNote": "Trees were recorded before their evaluations; commits were materialized during final archival so the exact frozen trees remain reachable after push."
+}
