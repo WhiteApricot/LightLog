@@ -29,7 +29,7 @@
       "id": "child-medical",
       "leftFamily": "modifier.child",
       "rightFamily": "action.medical",
-      "semanticKey": "expense.family.health",
+      "semanticKey": "expense.medical.clinic",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -37,7 +37,7 @@
       "id": "elder-medical",
       "leftFamily": "modifier.elder",
       "rightFamily": "action.medical",
-      "semanticKey": "expense.family.health",
+      "semanticKey": "expense.medical.clinic",
       "maxDistance": 5,
       "score": 0.93
     },
@@ -181,7 +181,7 @@
       "id": "child-medicine",
       "leftFamily": "modifier.child",
       "rightFamily": "action.medicine",
-      "semanticKey": "expense.family.health",
+      "semanticKey": "expense.medical.medicine",
       "maxDistance": 6,
       "score": 0.94
     },
@@ -189,7 +189,7 @@
       "id": "elder-medicine",
       "leftFamily": "modifier.elder",
       "rightFamily": "action.medicine",
-      "semanticKey": "expense.family.health",
+      "semanticKey": "expense.medical.medicine",
       "maxDistance": 6,
       "score": 0.94
     },
@@ -197,7 +197,7 @@
       "id": "child-education",
       "leftFamily": "modifier.child",
       "rightFamily": "action.education",
-      "semanticKey": "expense.family.education",
+      "semanticKey": "expense.education.course",
       "maxDistance": 6,
       "score": 0.94
     },
@@ -205,18 +205,9 @@
       "id": "elder-support",
       "leftFamily": "modifier.elder",
       "rightFamily": "action.familySupport",
-      "semanticKey": "expense.family.support",
+      "semanticKey": "expense.other.general",
       "maxDistance": 6,
       "score": 0.94
-    },
-    {
-      "id": "travel-supply",
-      "leftFamily": "context.travel",
-      "rightFamily": "object.travelSupply",
-      "semanticKey": "expense.travel.supplies",
-      "maxDistance": 6,
-      "score": 0.93,
-      "allowOverlap": true
     },
     {
       "id": "sport-equipment",
@@ -255,7 +246,7 @@
       "id": "scenic-ticket",
       "leftFamily": "venue.scenic",
       "rightFamily": "service.ticket",
-      "semanticKey": "expense.travel.attraction",
+      "semanticKey": "expense.entertainment.hobby",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -335,18 +326,10 @@
       "score": 0.93
     },
     {
-      "id": "elder-supply",
-      "leftFamily": "modifier.elder",
-      "rightFamily": "object.elderSupply",
-      "semanticKey": "expense.family.elder",
-      "maxDistance": 6,
-      "score": 0.94
-    },
-    {
       "id": "travel-visa",
       "leftFamily": "context.travel",
       "rightFamily": "service.visa",
-      "semanticKey": "expense.travel.package",
+      "semanticKey": "expense.other.general",
       "maxDistance": 8,
       "score": 0.93
     },
@@ -354,7 +337,7 @@
       "id": "visa-service",
       "leftFamily": "service.visa",
       "rightFamily": "service.fee",
-      "semanticKey": "expense.travel.package",
+      "semanticKey": "expense.other.general",
       "maxDistance": 6,
       "score": 0.94
     },
@@ -429,14 +412,6 @@
       "score": 0.94
     },
     {
-      "id": "delivery-food",
-      "leftFamily": "platform.delivery",
-      "rightFamily": "context.takeoutFood",
-      "semanticKey": "expense.food.takeout",
-      "maxDistance": 8,
-      "score": 0.94
-    },
-    {
       "id": "local-massage",
       "leftFamily": "platform.localService",
       "rightFamily": "service.massage",
@@ -448,7 +423,7 @@
       "id": "travel-platform-scenic",
       "leftFamily": "platform.travel",
       "rightFamily": "venue.scenic",
-      "semanticKey": "expense.travel.attraction",
+      "semanticKey": "expense.entertainment.hobby",
       "maxDistance": 8,
       "score": 0.94
     },
@@ -608,7 +583,7 @@
       "id": "daily-object-busTicket-service-ticketing",
       "leftFamily": "object.busTicket",
       "rightFamily": "service.ticketing",
-      "semanticKey": "expense.travel.ticket",
+      "semanticKey": "expense.transport.public",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -616,7 +591,7 @@
       "id": "daily-object-busTicket-action-book",
       "leftFamily": "object.busTicket",
       "rightFamily": "action.book",
-      "semanticKey": "expense.travel.ticket",
+      "semanticKey": "expense.transport.public",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1328,18 +1303,10 @@
       "score": 0.94
     },
     {
-      "id": "daily-modifier-child-object-babySupply",
-      "leftFamily": "modifier.child",
-      "rightFamily": "object.babySupply",
-      "semanticKey": "expense.family.child",
-      "maxDistance": 5,
-      "score": 0.94
-    },
-    {
       "id": "daily-modifier-child-service-childcare",
       "leftFamily": "modifier.child",
       "rightFamily": "service.childcare",
-      "semanticKey": "expense.family.child",
+      "semanticKey": "expense.daily.service",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1347,7 +1314,7 @@
       "id": "daily-modifier-child-service-training",
       "leftFamily": "modifier.child",
       "rightFamily": "service.training",
-      "semanticKey": "expense.family.education",
+      "semanticKey": "expense.education.course",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1355,7 +1322,7 @@
       "id": "daily-modifier-child-service-tuition",
       "leftFamily": "modifier.child",
       "rightFamily": "service.tuition",
-      "semanticKey": "expense.family.education",
+      "semanticKey": "expense.education.tuition",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1363,7 +1330,7 @@
       "id": "daily-modifier-child-object-book",
       "leftFamily": "modifier.child",
       "rightFamily": "object.book",
-      "semanticKey": "expense.family.education",
+      "semanticKey": "expense.education.book",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1371,7 +1338,7 @@
       "id": "daily-modifier-child-object-schoolSupply",
       "leftFamily": "modifier.child",
       "rightFamily": "object.schoolSupply",
-      "semanticKey": "expense.family.education",
+      "semanticKey": "expense.education.stationery",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1379,7 +1346,7 @@
       "id": "daily-modifier-student-service-training",
       "leftFamily": "modifier.student",
       "rightFamily": "service.training",
-      "semanticKey": "expense.family.education",
+      "semanticKey": "expense.education.course",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1387,7 +1354,7 @@
       "id": "daily-modifier-student-service-tuition",
       "leftFamily": "modifier.student",
       "rightFamily": "service.tuition",
-      "semanticKey": "expense.family.education",
+      "semanticKey": "expense.education.tuition",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1395,7 +1362,7 @@
       "id": "daily-modifier-student-object-book",
       "leftFamily": "modifier.student",
       "rightFamily": "object.book",
-      "semanticKey": "expense.family.education",
+      "semanticKey": "expense.education.book",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1403,7 +1370,7 @@
       "id": "daily-modifier-student-object-schoolSupply",
       "leftFamily": "modifier.student",
       "rightFamily": "object.schoolSupply",
-      "semanticKey": "expense.family.education",
+      "semanticKey": "expense.education.stationery",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1411,7 +1378,7 @@
       "id": "daily-modifier-child-action-physicalExam",
       "leftFamily": "modifier.child",
       "rightFamily": "action.physicalExam",
-      "semanticKey": "expense.family.health",
+      "semanticKey": "expense.medical.checkup",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1419,7 +1386,7 @@
       "id": "daily-modifier-child-action-rehabilitate",
       "leftFamily": "modifier.child",
       "rightFamily": "action.rehabilitate",
-      "semanticKey": "expense.family.health",
+      "semanticKey": "expense.medical.rehab",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1427,7 +1394,7 @@
       "id": "daily-modifier-child-service-nursing",
       "leftFamily": "modifier.child",
       "rightFamily": "service.nursing",
-      "semanticKey": "expense.family.health",
+      "semanticKey": "expense.medical.clinic",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1435,7 +1402,7 @@
       "id": "daily-modifier-child-service-dental",
       "leftFamily": "modifier.child",
       "rightFamily": "service.dental",
-      "semanticKey": "expense.family.health",
+      "semanticKey": "expense.medical.dental",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1443,7 +1410,7 @@
       "id": "daily-modifier-child-service-rehab",
       "leftFamily": "modifier.child",
       "rightFamily": "service.rehab",
-      "semanticKey": "expense.family.health",
+      "semanticKey": "expense.medical.rehab",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1451,7 +1418,7 @@
       "id": "daily-modifier-elder-action-physicalExam",
       "leftFamily": "modifier.elder",
       "rightFamily": "action.physicalExam",
-      "semanticKey": "expense.family.health",
+      "semanticKey": "expense.medical.checkup",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1459,7 +1426,7 @@
       "id": "daily-modifier-elder-action-rehabilitate",
       "leftFamily": "modifier.elder",
       "rightFamily": "action.rehabilitate",
-      "semanticKey": "expense.family.health",
+      "semanticKey": "expense.medical.rehab",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1467,7 +1434,7 @@
       "id": "daily-modifier-elder-service-nursing",
       "leftFamily": "modifier.elder",
       "rightFamily": "service.nursing",
-      "semanticKey": "expense.family.health",
+      "semanticKey": "expense.medical.clinic",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1475,7 +1442,7 @@
       "id": "daily-modifier-elder-service-dental",
       "leftFamily": "modifier.elder",
       "rightFamily": "service.dental",
-      "semanticKey": "expense.family.health",
+      "semanticKey": "expense.medical.dental",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1483,7 +1450,7 @@
       "id": "daily-modifier-elder-service-rehab",
       "leftFamily": "modifier.elder",
       "rightFamily": "service.rehab",
-      "semanticKey": "expense.family.health",
+      "semanticKey": "expense.medical.rehab",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1491,7 +1458,7 @@
       "id": "daily-modifier-elder-service-eldercare",
       "leftFamily": "modifier.elder",
       "rightFamily": "service.eldercare",
-      "semanticKey": "expense.family.elder",
+      "semanticKey": "expense.daily.service",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1499,7 +1466,7 @@
       "id": "daily-modifier-elder-object-medicalDevice",
       "leftFamily": "modifier.elder",
       "rightFamily": "object.medicalDevice",
-      "semanticKey": "expense.family.elder",
+      "semanticKey": "expense.medical.medicine",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1507,7 +1474,7 @@
       "id": "daily-modifier-elder-action-nurse",
       "leftFamily": "modifier.elder",
       "rightFamily": "action.nurse",
-      "semanticKey": "expense.family.elder",
+      "semanticKey": "expense.daily.service",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1739,7 +1706,7 @@
       "id": "daily-context-travel-service-hotel",
       "leftFamily": "context.travel",
       "rightFamily": "service.hotel",
-      "semanticKey": "expense.travel.hotel",
+      "semanticKey": "expense.housing.rent",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1747,7 +1714,7 @@
       "id": "daily-context-travel-venue-hotel",
       "leftFamily": "context.travel",
       "rightFamily": "venue.hotel",
-      "semanticKey": "expense.travel.hotel",
+      "semanticKey": "expense.housing.rent",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1755,7 +1722,7 @@
       "id": "daily-platform-travel-service-hotel",
       "leftFamily": "platform.travel",
       "rightFamily": "service.hotel",
-      "semanticKey": "expense.travel.hotel",
+      "semanticKey": "expense.housing.rent",
       "maxDistance": 8,
       "score": 0.94
     },
@@ -1763,7 +1730,7 @@
       "id": "daily-platform-travel-venue-hotel",
       "leftFamily": "platform.travel",
       "rightFamily": "venue.hotel",
-      "semanticKey": "expense.travel.hotel",
+      "semanticKey": "expense.housing.rent",
       "maxDistance": 8,
       "score": 0.94
     },
@@ -1771,7 +1738,7 @@
       "id": "daily-context-travel-service-travelPackage",
       "leftFamily": "context.travel",
       "rightFamily": "service.travelPackage",
-      "semanticKey": "expense.travel.package",
+      "semanticKey": "expense.other.general",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1779,7 +1746,7 @@
       "id": "daily-platform-travel-service-travelPackage",
       "leftFamily": "platform.travel",
       "rightFamily": "service.travelPackage",
-      "semanticKey": "expense.travel.package",
+      "semanticKey": "expense.other.general",
       "maxDistance": 8,
       "score": 0.94
     },
@@ -1787,7 +1754,7 @@
       "id": "daily-platform-travel-service-visa",
       "leftFamily": "platform.travel",
       "rightFamily": "service.visa",
-      "semanticKey": "expense.travel.package",
+      "semanticKey": "expense.other.general",
       "maxDistance": 8,
       "score": 0.94
     },
@@ -1795,15 +1762,7 @@
       "id": "daily-context-travel-service-rideHailing",
       "leftFamily": "context.travel",
       "rightFamily": "service.rideHailing",
-      "semanticKey": "expense.travel.local",
-      "maxDistance": 5,
-      "score": 0.94
-    },
-    {
-      "id": "daily-context-travel-action-rent",
-      "leftFamily": "context.travel",
-      "rightFamily": "action.rent",
-      "semanticKey": "expense.travel.local",
+      "semanticKey": "expense.transport.taxi",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1811,7 +1770,7 @@
       "id": "daily-context-travel-service-storage",
       "leftFamily": "context.travel",
       "rightFamily": "service.storage",
-      "semanticKey": "expense.travel.supplies",
+      "semanticKey": "expense.daily.service",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1819,7 +1778,7 @@
       "id": "daily-context-travel-action-store",
       "leftFamily": "context.travel",
       "rightFamily": "action.store",
-      "semanticKey": "expense.travel.supplies",
+      "semanticKey": "expense.daily.service",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1827,7 +1786,7 @@
       "id": "daily-context-travel-object-bag",
       "leftFamily": "context.travel",
       "rightFamily": "object.bag",
-      "semanticKey": "expense.travel.supplies",
+      "semanticKey": "expense.shopping.clothing",
       "maxDistance": 5,
       "score": 0.94,
       "allowOverlap": true

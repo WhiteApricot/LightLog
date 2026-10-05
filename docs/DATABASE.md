@@ -63,7 +63,7 @@
 | `createdAt` | 创建时间 |
 | `updatedAt` | 最后更新时间 |
 
-V0.1 仅支持一级与二级分类，不创建更深层级。分类必须是可维护数据，不得硬编码到 UI。`iconAsset` 作为分类数据随 seed/migration 维护，Widget 不按分类名称推断图标。schema v4 默认包含 23 个一级分类和 118 个二级分类，覆盖 17 个支出一级分类与 6 个收入一级分类；每个默认分类使用按稳定 ID 命名且图形签名不同的 24×24 SVG，并带独立 `semanticKey` 和 `isSystem = true`。未来用户分类可映射到已有语义，识别知识库不得直接保存分类 ID。已有历史账目引用的分类不得物理删除，优先设置 `isActive = false`。
+V0.1 仅支持一级与二级分类，不创建更深层级。分类必须是可维护数据，不得硬编码到 UI。`iconAsset` 作为分类数据随 seed/migration 维护，Widget 不按分类名称推断图标。schema v4 默认包含 21 个一级分类和 104 个二级分类，覆盖 15 个支出一级分类与 6 个收入一级分类；每个默认分类使用按稳定 ID 命名且图形签名不同的 24×24 SVG，并带独立 `semanticKey` 和 `isSystem = true`。未来用户分类可映射到已有语义，识别知识库不得直接保存分类 ID。已有历史账目引用的分类不得物理删除，优先设置 `isActive = false`。
 
 ## accounts
 
@@ -123,3 +123,7 @@ schema v1 已为 `transactions.occurredAt`、`deletedAt`、`(type, occurredAt)` 
 - 尚未决定的细节使用 `TBD`，在编码前完成最小必要决策。
 
 schema v1 通过 Drift `MigrationStrategy` 显式创建基础表。schema v2 为分类增加 `iconAsset` 并清理默认分类；schema v3 为账户增加 `iconAsset` 并迁移稳定 SVG；schema v4 为分类增加 `semanticKey/isSystem`，创建 `recognition_rules`，并为全部默认分类回填稳定语义。历史账目和默认数据 ID 不变。数据库打开且建表/迁移完成后继续执行幂等 seed。v1→v4 migration 由隔离数据库测试覆盖；未来 JSON 备份实现必须以 schema version 4 为当前写出版本，并为旧版本定义显式兼容路径。
+
+### V0.1 分类数据迁移
+
+本次仅在幂等 seed 中进行数据迁移，Drift schema 和 JSON 备份版本仍为 4。退役默认分类保留稳定 ID、图标和历史账目引用，设置 isActive=false、semanticKey=null；不删除、不改写历史账目分类。用户分类的失效 semantic mapping 同样清空。旧 recognition_rules 保留原始历史记录，但加载历史 evidence 时只允许现行 taxonomy；反馈也只学习活动且合法的分类。

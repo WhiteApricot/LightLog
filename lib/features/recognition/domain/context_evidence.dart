@@ -25,8 +25,7 @@ class ContextEvidenceBuilder {
     final hasMealEligibleMerchant = entityEvidence.any(
       (item) =>
           item.role == EvidenceRole.merchantType &&
-          (item.semanticKey == 'expense.food.other' ||
-              item.semanticKey == 'expense.food.takeout'),
+          item.semanticKey == 'expense.food.other',
     );
     final hasMealScene = RegExp(r'食堂|餐厅|吃饭|用餐|套餐|吃了|吃的').hasMatch(matchingText);
     final hasDaypart = RegExp(r'今早|早上|上午|中午|下午|昨晚|今晚|晚上')

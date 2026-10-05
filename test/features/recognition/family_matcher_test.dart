@@ -28,7 +28,7 @@ void main() {
         id: 'child-medical',
         leftFamily: 'modifier.child',
         rightFamily: 'action.medical',
-        semanticKey: 'expense.family.health',
+        semanticKey: 'expense.medical.clinic',
         maxDistance: 3,
         score: 0.94,
       ),
@@ -49,7 +49,7 @@ void main() {
     final evidence = FamilyMatcher(catalog)
         .evidence(FamilyMatcher(catalog).match('孩子去看病'));
 
-    expect(evidence.single.semanticKey, 'expense.family.health');
+    expect(evidence.single.semanticKey, 'expense.medical.clinic');
   });
 
   test('unrelated distant spans do not compose', () {

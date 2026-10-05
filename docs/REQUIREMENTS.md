@@ -34,6 +34,43 @@ UI 重点优化 `expense` 和 `income`，但数据模型必须能表达全部四
 
 `transfer` 必须记录转出和转入账户，不计入收入、支出或净收支统计。`refund` 应关联原账目，统计时按退款语义冲减原收入或支出，不机械视为普通收入或支出。时间持久化采用 UTC epoch milliseconds，并记录交易发生时的设备 UTC offset；历史账目的展示和编辑使用该 offset 还原发生时当地时间，编辑时保留原 offset，不使用当前设备时区重新解释。
 
+
+### V0.1 taxonomy contract（104 个二级语义）
+
+最终以已确认的逐项清单为准：78 个支出、26 个收入二级 semanticKey，共 104 类；21 个一级分类，共 125 个默认分类。下表中的一级前缀与二级后缀组成完整 semanticKey，是后续知识库和字符分类模型的唯一标签体系。本轮不实现 n-gram。
+
+| 一级前缀 | 二级后缀 |
+| --- | --- |
+| `expense.food` | `breakfast`, `lunch`, `dinner`, `drink`, `snack`, `groceries`, `other` |
+| `expense.transport` | `public`, `taxi`, `rail`, `flight`, `fuel`, `parking`, `maintenance` |
+| `expense.shopping` | `clothing`, `beauty`, `home`, `appliance`, `gift`, `other` |
+| `expense.housing` | `rent`, `mortgage`, `property`, `utilities`, `gas`, `repair` |
+| `expense.daily` | `household`, `personal`, `cleaning`, `haircut`, `service` |
+| `expense.entertainment` | `movie`, `game`, `music`, `subscription`, `hobby` |
+| `expense.education` | `book`, `course`, `exam`, `stationery`, `tuition` |
+| `expense.medical` | `clinic`, `medicine`, `dental`, `checkup`, `rehab` |
+| `expense.communication` | `mobile`, `internet`, `post`, `cloud` |
+| `expense.social` | `gathering`, `gift`, `donation`, `relationship` |
+| `expense.social.red` | `packet` |
+| `expense.sports` | `fitness`, `equipment`, `venue`, `outdoor`, `event` |
+| `expense.pets` | `food`, `medical`, `supplies`, `grooming`, `service` |
+| `expense.digital` | `phone`, `computer`, `photo`, `accessory`, `software`, `repair` |
+| `expense.finance` | `fee`, `interest`, `insurance`, `tax`, `loan`, `investment` |
+| `expense.other` | `general` |
+| `income.salary` | `monthly`, `bonus`, `allowance`, `overtime` |
+| `income.reimbursement` | `work`, `travel`, `medical`, `other` |
+| `income.parttime` | `freelance`, `project`, `platform`, `consulting` |
+| `income.investment` | `interest`, `dividend`, `fund`, `rent`, `other` |
+| `income.refund` | `shopping`, `service`, `deposit`, `tax` |
+| `income.other.red` | `packet` |
+| `income.other` | `secondhand`, `reward`, `compensation`, `general` |
+
+支出按真实用途分类。“外卖”是渠道，删除 `expense.food.takeout`；删除全部 `expense.travel.*` 和 `expense.family.*`。旅行交通、保险、用品按实际用途迁移；酒店、民宿、青旅统一归入 `expense.housing.rent`；无法稳定拆分用途的旅行套餐、签证代办归入 `expense.other.general`。儿童、老人等是使用者上下文，医疗、教育、护理用品按实际用途分类，纯家庭生活补贴归入 `expense.other.general`。`income.reimbursement.travel` 保留。
+
+保留早餐、午餐、晚餐。明确正餐证据 + 明确文本时间 > 明确正餐证据 + occurredAtLocal 时间段 > 其他 food subtype，是目标分类的最高优先级原则；不能把外卖渠道整体静态映射到某一餐。本轮仅迁移知识并保留现有正餐时间路由；通用无显式时间正餐及完整优先级落实属于下一独立任务。
+
+有效金额、交易类型已识别且无合法分类证据的普通支出应归入 `expense.other.general`；收入应归入 `income.other.general`。failed、cancelled、nontransaction、多笔交易、金额缺失、未关联退款不得被 fallback 绕过。目前 CategoryResolver 没有可配置的空语义 fallback，LocalRecognizer 的空语义路径不会调用 resolver；本轮不修改 pipeline，fallback 实现留在 TODO，不能宣称已生效。
+
 ### 二级分类
 
 分类采用两级结构，并可维护，不得硬编码到 UI 逻辑中：

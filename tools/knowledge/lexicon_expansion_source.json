@@ -57,7 +57,8 @@
         "早饭盒",
         "包子玩偶",
         "豆浆机"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.food.lunch",
@@ -113,7 +114,8 @@
         "午餐垫",
         "午餐食谱",
         "午餐预约取消"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.food.dinner",
@@ -169,35 +171,21 @@
         "夜宵锅具",
         "宵夜教程",
         "晚餐预约取消"
-      ]
+      ],
+      "aliases": []
     },
     {
-      "semanticKey": "expense.food.takeout",
-      "role": "service",
-      "specificity": "specific",
+      "semanticKey": "expense.food.other",
+      "role": "merchantType",
+      "specificity": "general",
       "score": 0.91,
       "keywords": [
-        "点外卖",
-        "叫外卖",
-        "外卖订单",
         "外卖餐费",
-        "外卖午餐",
-        "外卖晚餐",
-        "外卖夜宵",
-        "外卖早餐",
-        "外卖配送",
         "餐饮配送",
-        "送餐费",
-        "外卖跑腿",
-        "外卖实付",
-        "外卖红包后实付",
         "外卖套餐",
-        "外卖便当",
         "外卖盖饭",
         "外卖炒饭",
         "外卖面条",
-        "外卖奶茶",
-        "外卖咖啡",
         "外卖烧烤",
         "外卖火锅",
         "外卖轻食",
@@ -209,11 +197,83 @@
         "线上订餐",
         "手机点餐",
         "外送餐品",
-        "打包配送",
         "餐费加配送",
+        "外卖餐盒费"
+      ],
+      "negative": [
+        "外卖箱",
+        "外卖工作",
+        "外卖骑手收入",
+        "外卖退款",
+        "外卖装备",
+        "外卖车"
+      ],
+      "aliases": []
+    },
+    {
+      "semanticKey": "expense.food.lunch",
+      "role": "service",
+      "specificity": "specific",
+      "score": 0.91,
+      "keywords": [
+        "外卖午餐"
+      ],
+      "negative": [
+        "外卖箱",
+        "外卖工作",
+        "外卖骑手收入",
+        "外卖退款",
+        "外卖装备",
+        "外卖车"
+      ],
+      "aliases": []
+    },
+    {
+      "semanticKey": "expense.food.dinner",
+      "role": "service",
+      "specificity": "specific",
+      "score": 0.91,
+      "keywords": [
+        "外卖晚餐",
+        "外卖夜宵"
+      ],
+      "negative": [
+        "外卖箱",
+        "外卖工作",
+        "外卖骑手收入",
+        "外卖退款",
+        "外卖装备",
+        "外卖车"
+      ],
+      "aliases": []
+    },
+    {
+      "semanticKey": "expense.food.breakfast",
+      "role": "service",
+      "specificity": "specific",
+      "score": 0.91,
+      "keywords": [
+        "外卖早餐"
+      ],
+      "negative": [
+        "外卖箱",
+        "外卖工作",
+        "外卖骑手收入",
+        "外卖退款",
+        "外卖装备",
+        "外卖车"
+      ],
+      "aliases": []
+    },
+    {
+      "semanticKey": "expense.daily.service",
+      "role": "service",
+      "specificity": "specific",
+      "score": 0.91,
+      "keywords": [
+        "送餐费",
+        "外卖跑腿",
         "骑手配送费",
-        "外卖打包费",
-        "外卖餐盒费",
         "外卖小费",
         "外卖会员",
         "外卖月卡"
@@ -225,7 +285,27 @@
         "外卖退款",
         "外卖装备",
         "外卖车"
-      ]
+      ],
+      "aliases": []
+    },
+    {
+      "semanticKey": "expense.food.drink",
+      "role": "service",
+      "specificity": "specific",
+      "score": 0.91,
+      "keywords": [
+        "外卖奶茶",
+        "外卖咖啡"
+      ],
+      "negative": [
+        "外卖箱",
+        "外卖工作",
+        "外卖骑手收入",
+        "外卖退款",
+        "外卖装备",
+        "外卖车"
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.food.drink",
@@ -281,7 +361,8 @@
         "水杯",
         "咖啡豆设备",
         "饮料柜"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.food.snack",
@@ -337,7 +418,8 @@
         "宠物零食",
         "零食批发生意",
         "零食包装袋"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.food.groceries",
@@ -426,7 +508,8 @@
         "食用油桶",
         "菜市场摊位租金",
         "生鲜店工资"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.food.other",
@@ -504,7 +587,8 @@
         "饭店装修",
         "食品加工设备",
         "餐桌"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.transport.public",
@@ -560,7 +644,8 @@
         "公交司机工资",
         "地铁广告",
         "交通卡出售"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.transport.taxi",
@@ -616,7 +701,8 @@
         "车辆租赁",
         "买汽车",
         "出租车广告"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.transport.rail",
@@ -672,7 +758,8 @@
         "列车员工资",
         "车票退款到账",
         "铁路工程"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.transport.flight",
@@ -728,7 +815,8 @@
         "飞行员工资",
         "无人机",
         "机场工程"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.transport.fuel",
@@ -784,7 +872,8 @@
         "加油站工资",
         "充电器",
         "手机充电"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.transport.parking",
@@ -840,7 +929,8 @@
         "停车场工资",
         "ETC退款",
         "高速救援"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.shopping.clothing",
@@ -906,7 +996,8 @@
         "衣服退款",
         "鞋子清洗",
         "箱包维修"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.shopping.beauty",
@@ -962,7 +1053,8 @@
         "护肤品退款",
         "香水瓶",
         "美妆店装修"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.shopping.home",
@@ -1019,7 +1111,8 @@
         "二手家具出售",
         "家电",
         "办公家具报销"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.shopping.appliance",
@@ -1075,7 +1168,8 @@
         "二手家电出售",
         "家具",
         "工业电器"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.housing.rent",
@@ -1131,7 +1225,8 @@
         "租车",
         "出租房维修",
         "房租报销到账"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.housing.utilities",
@@ -1187,7 +1282,8 @@
         "水电维修",
         "手机话费",
         "汽车充电费"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.daily.household",
@@ -1243,7 +1339,8 @@
         "宠物清洁用品",
         "纸巾批发生意",
         "垃圾处理费"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.daily.haircut",
@@ -1299,7 +1396,8 @@
         "理发师工资",
         "美发店装修",
         "假发购买"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.daily.service",
@@ -1355,7 +1453,8 @@
         "皮鞋购买",
         "闪送骑手收入",
         "家政长期保洁"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.entertainment.movie",
@@ -1411,7 +1510,8 @@
         "电影票退款到账",
         "电影从业工资",
         "家庭影院设备"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.entertainment.game",
@@ -1521,7 +1621,8 @@
         "会员退款到账",
         "会员销售收入",
         "实体俱乐部会费"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.education.book",
@@ -1577,7 +1678,8 @@
         "印刷设备",
         "稿费收入",
         "教材退款到账"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.medical.clinic",
@@ -1632,7 +1734,8 @@
         "医疗报销到账",
         "医院食堂",
         "体检套餐"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.medical.medicine",
@@ -1688,7 +1791,8 @@
         "药店工资",
         "保健品礼盒",
         "医疗器械大型设备"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.communication.mobile",
@@ -1744,7 +1848,8 @@
         "话费退款到账",
         "运营商工资",
         "手机软件订阅"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.communication.internet",
@@ -1800,10 +1905,11 @@
         "宽带退款到账",
         "网络兼职收入",
         "云服务器"
-      ]
+      ],
+      "aliases": []
     },
     {
-      "semanticKey": "expense.travel.hotel",
+      "semanticKey": "expense.housing.rent",
       "role": "venue",
       "specificity": "specific",
       "score": 0.92,
@@ -1825,11 +1931,9 @@
         "度假酒店",
         "温泉酒店",
         "机场酒店",
-        "高铁站酒店",
         "景区酒店",
         "酒店押金支出",
         "酒店服务费",
-        "酒店早餐费",
         "酒店加床费",
         "酒店延时费",
         "酒店升级房型",
@@ -1840,14 +1944,26 @@
         "连住酒店",
         "出差住宿",
         "旅游住宿",
-        "考试住宿",
-        "陪护住宿",
         "短途住宿",
         "异地住宿",
-        "酒店洗衣费",
-        "酒店迷你吧",
-        "酒店停车除外",
         "住宿费"
+      ],
+      "negative": [
+        "酒店退款到账",
+        "酒店工资收入",
+        "酒店用品购买",
+        "酒店股票",
+        "住宿报销到账"
+      ],
+      "aliases": []
+    },
+    {
+      "semanticKey": "expense.transport.rail",
+      "role": "venue",
+      "specificity": "specific",
+      "score": 0.92,
+      "keywords": [
+        "高铁站酒店"
       ],
       "negative": [
         "酒店退款到账",
@@ -1856,7 +1972,116 @@
         "租房月租",
         "酒店股票",
         "住宿报销到账"
-      ]
+      ],
+      "aliases": []
+    },
+    {
+      "semanticKey": "expense.food.breakfast",
+      "role": "venue",
+      "specificity": "specific",
+      "score": 0.92,
+      "keywords": [
+        "酒店早餐费"
+      ],
+      "negative": [
+        "酒店退款到账",
+        "酒店工资收入",
+        "酒店用品购买",
+        "租房月租",
+        "酒店股票",
+        "住宿报销到账"
+      ],
+      "aliases": []
+    },
+    {
+      "semanticKey": "expense.education.exam",
+      "role": "venue",
+      "specificity": "specific",
+      "score": 0.92,
+      "keywords": [
+        "考试住宿"
+      ],
+      "negative": [
+        "酒店退款到账",
+        "酒店工资收入",
+        "酒店用品购买",
+        "租房月租",
+        "酒店股票",
+        "住宿报销到账"
+      ],
+      "aliases": []
+    },
+    {
+      "semanticKey": "expense.medical.clinic",
+      "role": "venue",
+      "specificity": "specific",
+      "score": 0.92,
+      "keywords": [
+        "陪护住宿"
+      ],
+      "negative": [
+        "酒店退款到账",
+        "酒店工资收入",
+        "酒店用品购买",
+        "租房月租",
+        "酒店股票",
+        "住宿报销到账"
+      ],
+      "aliases": []
+    },
+    {
+      "semanticKey": "expense.daily.cleaning",
+      "role": "venue",
+      "specificity": "specific",
+      "score": 0.92,
+      "keywords": [
+        "酒店洗衣费"
+      ],
+      "negative": [
+        "酒店退款到账",
+        "酒店工资收入",
+        "酒店用品购买",
+        "租房月租",
+        "酒店股票",
+        "住宿报销到账"
+      ],
+      "aliases": []
+    },
+    {
+      "semanticKey": "expense.food.other",
+      "role": "venue",
+      "specificity": "specific",
+      "score": 0.92,
+      "keywords": [
+        "酒店迷你吧"
+      ],
+      "negative": [
+        "酒店退款到账",
+        "酒店工资收入",
+        "酒店用品购买",
+        "租房月租",
+        "酒店股票",
+        "住宿报销到账"
+      ],
+      "aliases": []
+    },
+    {
+      "semanticKey": "expense.transport.parking",
+      "role": "venue",
+      "specificity": "specific",
+      "score": 0.92,
+      "keywords": [
+        "酒店停车除外"
+      ],
+      "negative": [
+        "酒店退款到账",
+        "酒店工资收入",
+        "酒店用品购买",
+        "租房月租",
+        "酒店股票",
+        "住宿报销到账"
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.sports.fitness",
@@ -1912,7 +2137,8 @@
         "运动鞋",
         "宠物健身",
         "健身房装修"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.pets.food",
@@ -1968,7 +2194,8 @@
         "宠物食品店工资",
         "人吃的主粮",
         "宠物碗"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.pets.medical",
@@ -2024,7 +2251,8 @@
         "宠物医疗退款",
         "宠物保险理赔到账",
         "宠物玩具"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.digital.accessory",
@@ -2090,7 +2318,8 @@
         "买电脑",
         "耳机维修",
         "配件销售收入"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.digital.software",
@@ -2146,7 +2375,8 @@
         "云服务退款",
         "实体会员卡",
         "服务器硬件"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.digital.repair",
@@ -2202,7 +2432,8 @@
         "维修收入",
         "手机壳",
         "买新电脑"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "income.salary.monthly",
@@ -2258,7 +2489,8 @@
         "工资借款",
         "薪资证明费用",
         "工资卡年费"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "income.salary.bonus",
@@ -2314,7 +2546,8 @@
         "奖品购买",
         "绩效考核培训费",
         "提成支出"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "income.reimbursement.work",
@@ -2370,7 +2603,8 @@
         "报销失败",
         "代开发票费用",
         "报销手续费"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "income.parttime.freelance",
@@ -2426,7 +2660,8 @@
         "接单平台会员费",
         "劳务退款",
         "外包支出"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "income.investment.interest",
@@ -2482,7 +2717,8 @@
         "利息税费",
         "理财亏损",
         "利息退款"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "income.other.secondhand",
@@ -2538,7 +2774,8 @@
         "二手平台服务费",
         "回收处理费",
         "卖货退款"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.daily.personal",
@@ -2578,7 +2815,8 @@
         "剃须刀维修",
         "牙膏广告",
         "护理培训费"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.daily.cleaning",
@@ -2606,7 +2844,8 @@
         "洗衣机购买",
         "清洗剂购买",
         "洗衣店工资"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.transport.maintenance",
@@ -2634,10 +2873,11 @@
         "汽车配件出售",
         "修车报销",
         "洗车机购买"
-      ]
+      ],
+      "aliases": []
     },
     {
-      "semanticKey": "expense.travel.ticket",
+      "semanticKey": "expense.other.general",
       "role": "service",
       "specificity": "specific",
       "score": 0.89,
@@ -2648,9 +2888,6 @@
         "跟团游",
         "自由行套餐",
         "旅游车票",
-        "游船票",
-        "旅游大巴",
-        "旅行保险",
         "行程预订",
         "旅游订单",
         "旅行费用"
@@ -2659,10 +2896,42 @@
         "门票退款",
         "旅游报销",
         "旅行箱购买"
-      ]
+      ],
+      "aliases": []
     },
     {
-      "semanticKey": "expense.travel.attraction",
+      "semanticKey": "expense.transport.public",
+      "role": "service",
+      "specificity": "specific",
+      "score": 0.89,
+      "keywords": [
+        "游船票",
+        "旅游大巴"
+      ],
+      "negative": [
+        "门票退款",
+        "旅游报销",
+        "旅行箱购买"
+      ],
+      "aliases": []
+    },
+    {
+      "semanticKey": "expense.finance.insurance",
+      "role": "service",
+      "specificity": "specific",
+      "score": 0.89,
+      "keywords": [
+        "旅行保险"
+      ],
+      "negative": [
+        "门票退款",
+        "旅游报销",
+        "旅行箱购买"
+      ],
+      "aliases": []
+    },
+    {
+      "semanticKey": "expense.entertainment.hobby",
       "role": "venue",
       "specificity": "specific",
       "score": 0.89,
@@ -2684,7 +2953,8 @@
         "景区工资",
         "门票转卖",
         "景点退款"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.communication.post",
@@ -2709,7 +2979,8 @@
         "快递报销",
         "快递赔偿收入",
         "退货运费险赔付"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.education.course",
@@ -2734,7 +3005,8 @@
         "培训报销",
         "课程退款",
         "讲课费收入"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.education.exam",
@@ -2759,7 +3031,8 @@
         "考试退费",
         "监考费收入",
         "考试奖金"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.education.stationery",
@@ -2784,7 +3057,8 @@
         "笔记本电脑",
         "文具报销",
         "打印纸退款"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.pets.grooming",
@@ -2809,7 +3083,8 @@
         "宠物美容师工资",
         "宠物洗护用品",
         "剪毛器购买"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.pets.service",
@@ -2834,7 +3109,8 @@
         "宠物寄养退款",
         "宠物店工资",
         "宠物用品购买"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.finance.insurance",
@@ -2859,7 +3135,8 @@
         "保险理赔收入",
         "保费退款",
         "保险代理佣金"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "income.salary.allowance",
@@ -2884,7 +3161,8 @@
         "补贴退回",
         "代发补贴",
         "申请补贴费用"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "income.investment.dividend",
@@ -2909,7 +3187,8 @@
         "分红税费",
         "分红退回",
         "购买分红险"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "income.investment.rent",
@@ -2934,7 +3213,8 @@
         "支付房租",
         "退还押金",
         "房屋维修费"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "income.other.red.packet",
@@ -2959,7 +3239,8 @@
         "发红包",
         "红包退回",
         "红包封面购买"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.food.groceries",
@@ -2971,7 +3252,8 @@
         "苹果",
         "香蕉"
       ],
-      "negative": []
+      "negative": [],
+      "aliases": []
     },
     {
       "semanticKey": "expense.daily.haircut",
@@ -2984,7 +3266,8 @@
         "美容",
         "美甲"
       ],
-      "negative": []
+      "negative": [],
+      "aliases": []
     },
     {
       "semanticKey": "expense.housing.property",
@@ -3009,7 +3292,8 @@
         "物业费退款",
         "物业公司工资",
         "物业费报销"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.finance.fee",
@@ -3034,7 +3318,8 @@
         "手续费返还",
         "手续费报销",
         "手续费收入"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "income.parttime.project",
@@ -3059,7 +3344,8 @@
         "项目支出",
         "项目退款",
         "项目采购费"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.communication.cloud",
@@ -4397,7 +4683,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.family.child",
+      "semanticKey": "expense.daily.household",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -4405,53 +4691,60 @@
       "keywords": [
         "买尿不湿",
         "买纸尿裤",
+        "买拉拉裤",
+        "尿不湿钱",
+        "纸尿裤钱",
+        "买婴儿湿巾",
+        "尿不湿",
+        "纸尿裤"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.digital.photo",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
         "宝宝写真",
+        "周岁照",
+        "满月照",
+        "百日照",
+        "儿童摄影"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.shopping.other",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
         "宝宝用品",
-        "宝宝疫苗",
         "母婴用品",
         "买婴儿用品",
         "宝宝用品费",
         "母婴用品店",
         "买奶瓶",
-        "买奶粉",
         "婴儿玩具",
         "安全座椅",
-        "买辅食",
-        "周岁照",
         "母婴店",
-        "满月照",
-        "百日照",
-        "育儿费",
-        "买婴儿床",
         "买婴儿车",
         "买学步车",
-        "买拉拉裤",
-        "买爬行垫",
-        "养娃开销",
-        "尿不湿钱",
-        "纸尿裤钱",
-        "买儿童牙刷",
-        "买儿童牙膏",
         "买儿童玩具",
-        "买婴儿湿巾",
         "买婴儿玩具",
         "买婴儿背带",
-        "买婴儿餐椅",
         "买安全座椅",
         "买早教玩具",
-        "买婴儿沐浴露",
         "婴儿车",
-        "尿不湿",
-        "爬行垫",
-        "纸尿裤",
-        "一段奶粉",
-        "三段奶粉",
-        "二段奶粉",
         "亲子活动",
-        "保姆育儿",
-        "儿童围栏",
         "儿童推车",
-        "儿童摄影",
         "儿童水杯"
       ],
       "aliases": [],
@@ -4459,61 +4752,114 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.family.education",
+      "semanticKey": "expense.medical.clinic",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "宝宝疫苗"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.food.groceries",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "买奶粉",
+        "买辅食",
+        "一段奶粉",
+        "三段奶粉",
+        "二段奶粉"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.daily.service",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "育儿费",
+        "养娃开销",
+        "保姆育儿"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.shopping.home",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "买婴儿床",
+        "买爬行垫",
+        "买婴儿餐椅",
+        "爬行垫",
+        "儿童围栏"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.daily.personal",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "买儿童牙刷",
+        "买儿童牙膏",
+        "买婴儿沐浴露"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.education.course",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
       "reviewStatus": "approved",
       "keywords": [
         "孩子培训",
-        "孩子托管",
-        "孩子考级",
-        "孩子生活费",
         "给孩子报班",
-        "给孩子生活费",
         "给孩子请家教",
-        "孩子书包",
         "孩子家教",
-        "孩子教材",
-        "孩子教辅",
-        "孩子文具",
-        "孩子晚托",
-        "孩子校服",
-        "孩子游学",
-        "孩子留学",
         "孩子补课",
         "孩子辅导",
-        "交孩子学费",
-        "孩子体育班",
         "孩子兴趣班",
-        "孩子冬令营",
-        "孩子压岁钱",
         "孩子培训班",
         "孩子培训费",
-        "孩子夏令营",
         "孩子奥数班",
         "孩子家教费",
-        "孩子报名费",
         "孩子教育费",
         "孩子编程课",
-        "孩子考试费",
         "孩子舞蹈课",
         "孩子英语班",
         "孩子补课费",
         "孩子课外班",
         "孩子钢琴课",
-        "孩子零花钱",
-        "给孩子学费",
-        "孩子学费缴纳",
         "孩子教育开销",
-        "给孩子交学费",
         "孩子特长班",
         "孩子艺术班",
         "孩子辅导费",
         "早教费",
         "兴趣班费",
         "养娃教育",
-        "子女学费",
         "子女教育"
       ],
       "aliases": [],
@@ -4521,61 +4867,325 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.family.elder",
+      "semanticKey": "expense.daily.service",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "孩子托管",
+        "孩子晚托"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.education.exam",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "孩子考级",
+        "孩子报名费",
+        "孩子考试费"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.other.general",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "孩子生活费",
+        "给孩子生活费",
+        "孩子游学",
+        "孩子留学",
+        "孩子冬令营",
+        "孩子夏令营",
+        "孩子零花钱"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.education.stationery",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "孩子书包",
+        "孩子文具"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.education.book",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "孩子教材",
+        "孩子教辅"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.shopping.clothing",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "孩子校服"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.education.tuition",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "交孩子学费",
+        "给孩子学费",
+        "孩子学费缴纳",
+        "给孩子交学费",
+        "子女学费"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.sports.fitness",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "孩子体育班"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.social.red.packet",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "孩子压岁钱"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.other.general",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
       "reviewStatus": "approved",
       "keywords": [
         "孝敬父母",
-        "父母礼物",
-        "父母社保",
-        "父母红包",
         "给父母钱",
         "给爸妈钱",
         "给父母转钱",
-        "给父母买保险",
-        "养老院费",
         "孝敬爸妈",
         "孝顺父母",
-        "爸妈礼物",
         "给妈妈钱",
         "给爸爸钱",
         "赡养支出",
         "赡养老人",
-        "父母保健品",
-        "父母医药费",
         "父母零花钱",
-        "给爸妈红包",
         "给爸妈转钱",
-        "给父母买手机",
-        "给父母买衣服",
-        "给爸妈买手机",
-        "给父母买保健品",
         "养老费",
-        "养老院",
         "养老钱",
         "尽孝费",
-        "敬老院",
         "给父母过年费",
-        "养老公寓",
         "养老支出",
-        "养老机构",
-        "养老社区",
         "养老缴费",
         "养老补贴",
         "孝敬老人",
+        "父母养老",
+        "父母赡养",
+        "给老人钱"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.social.gift",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "父母礼物",
+        "爸妈礼物"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.finance.insurance",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "父母社保",
+        "给父母买保险",
+        "父母医保"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.social.red.packet",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "父母红包",
+        "给爸妈红包"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.housing.rent",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "养老院费",
+        "养老院",
+        "敬老院",
+        "养老公寓",
+        "养老机构",
+        "养老社区"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.medical.medicine",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "父母保健品",
+        "父母医药费",
+        "给父母买保健品"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.digital.phone",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "给父母买手机",
+        "给爸妈买手机",
+        "老人手机"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.shopping.clothing",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "给父母买衣服"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.daily.service",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
         "家政养老",
         "居家养老",
-        "康养中心",
-        "父母养老",
-        "父母医保",
+        "老人家政"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.medical.rehab",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "康养中心"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.medical.clinic",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
         "父母医疗",
-        "父母赡养",
-        "给老人钱",
-        "老人家政",
-        "老人手机",
-        "老人护理",
+        "老人护理"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.daily.household",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
         "老人用品"
       ],
       "aliases": [],
@@ -4583,61 +5193,119 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.family.health",
+      "semanticKey": "expense.medical.clinic",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
       "reviewStatus": "approved",
       "keywords": [
         "家人住院",
-        "家人体检",
         "家人挂号",
-        "家人看牙",
-        "家人药费",
         "家人住院费",
-        "家人保健品",
         "家人医疗费",
         "家人手术费",
-        "给家人买药",
-        "陪家人产检",
         "陪家人看病",
-        "给家人买保险",
         "给家人请护工",
-        "给家人买保健品",
-        "家人产检",
-        "家人保险",
-        "家人医保",
-        "家人孕检",
         "家人手术",
         "家人疫苗",
         "家人看病",
         "家人输液",
         "家人陪护",
-        "家庭药品",
         "流感疫苗",
         "父母看病",
-        "家人买药钱",
-        "家人医药费",
         "家人看病钱",
         "家人配眼镜",
         "家庭医疗费",
-        "家庭医药费",
         "给家人挂号",
         "给家人治病",
         "家人护工",
-        "家人体检套餐",
-        "家人买药",
         "家人健康",
         "家人医疗",
-        "家人康复",
         "家人急诊",
         "家人打针",
         "家人护理",
-        "家人按摩",
-        "家人推拿",
         "家人月子",
-        "家人治病",
-        "家人牙科",
+        "家人治病"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.medical.checkup",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "家人体检",
+        "陪家人产检",
+        "家人产检",
+        "家人孕检",
+        "家人体检套餐"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.medical.dental",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "家人看牙",
+        "家人牙科"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.medical.medicine",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "家人药费",
+        "家人保健品",
+        "给家人买药",
+        "给家人买保健品",
+        "家庭药品",
+        "家人买药钱",
+        "家人医药费",
+        "家庭医药费",
+        "家人买药"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.finance.insurance",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "给家人买保险",
+        "家人保险",
+        "家人医保"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.medical.rehab",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "家人康复",
         "家人理疗"
       ],
       "aliases": [],
@@ -4645,7 +5313,21 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.family.support",
+      "semanticKey": "expense.daily.service",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "家人按摩",
+        "家人推拿"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.other.general",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -4658,49 +5340,181 @@
         "补贴家用",
         "补贴老家",
         "贴补家用",
-        "家庭伙食费",
-        "给家里买菜",
         "给家里打钱",
         "给家里转钱",
-        "给家里还房贷",
-        "给家里交水电费",
         "全家开销",
         "家庭公用",
         "家庭开销",
         "家用补贴",
         "家里开支",
-        "家里维修",
         "家里记账",
         "汇钱回家",
         "给媳妇家用",
-        "给家里月供",
         "给家里补贴",
         "给老婆家用",
         "给老家打钱",
         "夫妻共同开销",
-        "给家里买家电",
-        "给家里交学费",
         "给家里生活费",
-        "给家里买日用品",
-        "给家里交物业费",
         "家用钱",
         "家庭基金",
-        "家庭月供",
         "家庭补贴",
         "家庭补贴钱",
         "一家开销",
-        "家庭伙食",
-        "家庭保险",
         "家庭储蓄",
         "家庭支出",
-        "家庭维修",
-        "家庭缴税",
         "家庭采购",
         "家用支出",
         "家里采购",
         "日常家用",
         "给家人钱",
         "给家打钱"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.food.other",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "家庭伙食费",
+        "家庭伙食"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.food.groceries",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "给家里买菜"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.housing.mortgage",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "给家里还房贷",
+        "给家里月供",
+        "家庭月供"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.housing.utilities",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "给家里交水电费"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.housing.repair",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "家里维修",
+        "家庭维修"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.shopping.appliance",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "给家里买家电"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.education.tuition",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "给家里交学费"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.daily.household",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "给家里买日用品"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.housing.property",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "给家里交物业费"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.finance.insurance",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "家庭保险"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.finance.tax",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "家庭缴税"
       ],
       "aliases": [],
       "negative": [],
@@ -5366,47 +6180,62 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.food.takeout",
+      "semanticKey": "expense.food.drink",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
       "reviewStatus": "approved",
       "keywords": [
-        "外卖拼单",
-        "外卖费",
-        "饿了么",
         "代买奶茶",
-        "叫个外卖",
         "叫杯奶茶",
-        "外卖到了",
-        "点个外卖",
-        "点个奶茶",
-        "外卖平台下单",
-        "打包费",
+        "点个奶茶"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.food.groceries",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
         "买菜外卖",
-        "到家服务",
-        "外卖下单",
         "外卖买菜",
-        "外卖代买",
-        "外卖代购",
-        "外卖优惠",
-        "外卖凑单",
-        "外卖到付",
-        "外卖到家",
-        "外卖寿司",
-        "外卖小哥",
-        "外卖平台",
-        "外卖快餐",
-        "外卖打包",
-        "外卖投诉",
-        "外卖披萨",
         "外卖水果",
-        "外卖汉堡",
-        "外卖满减",
-        "外卖炸鸡",
-        "外卖甜品",
-        "外卖生煎",
         "外卖生鲜"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.food.other",
+      "role": "merchantType",
+      "specificity": "general",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "外卖寿司",
+        "外卖快餐",
+        "外卖披萨",
+        "外卖汉堡",
+        "外卖炸鸡",
+        "外卖生煎"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.food.snack",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "外卖甜品"
       ],
       "aliases": [],
       "negative": [],
@@ -6092,7 +6921,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.other.lost",
+      "semanticKey": "expense.other.general",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -6107,33 +6936,23 @@
         "损坏赔偿",
         "电信诈骗",
         "网络诈骗",
-        "补办证件",
         "证件丢失",
         "赔付他人",
         "赔付商家",
         "赔偿他人",
         "超速罚款",
         "违章罚款",
-        "钱包丢了",
         "丢东西损失",
-        "补办身份证",
-        "补办银行卡",
         "闯红灯罚款",
         "悬赏金",
         "理赔金",
-        "登报挂失",
         "丢东西",
         "丢包裹",
         "丢快递",
-        "丢手机",
-        "丢钱包",
         "被骗钱",
-        "挂失登报",
-        "补办费",
         "赔付金",
         "东西丢了",
         "丢了东西",
-        "丢失手机",
         "丢失赔付",
         "交通罚款",
         "价格补偿",
@@ -6154,45 +6973,102 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.other.unexpected",
+      "semanticKey": "expense.daily.service",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "补办证件",
+        "补办身份证",
+        "登报挂失",
+        "挂失登报",
+        "补办费"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.finance.fee",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "补办银行卡"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.other.general",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "钱包丢了",
+        "丢钱包"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.other.general",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "丢手机",
+        "丢失手机"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.finance.loan",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
       "reviewStatus": "approved",
       "keywords": [
         "临时借款",
+        "临时还款",
+        "应急借款",
+        "应急还款",
+        "临时分期"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.other.general",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
         "临时加急",
         "临时周转",
         "临时垫付",
         "临时支出",
         "临时费用",
         "应急垫付",
-        "应急维修",
         "应急购买",
         "意外费用",
-        "临时买药",
-        "临时充值",
         "临时就医",
         "临时应急",
         "临时开销",
-        "临时打车",
-        "临时捐款",
-        "临时红包",
-        "临时维修",
-        "临时请客",
-        "临时还款",
-        "临时送礼",
-        "临时随礼",
-        "应急买药",
-        "应急借款",
-        "应急充值",
-        "应急打车",
-        "应急还款",
         "意外支出",
         "突发支出",
         "突发费用",
         "紧急用钱",
-        "紧急维修",
         "应急备用金",
         "加急费",
         "周转金",
@@ -6204,12 +7080,145 @@
         "意外开销",
         "应急金",
         "临时交费",
-        "临时住院",
-        "临时体检",
         "临时凭证",
         "临时出行",
-        "临时分期",
         "临时加购"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.daily.service",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "应急维修",
+        "临时维修",
+        "紧急维修"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.medical.medicine",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "临时买药",
+        "应急买药"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.other.general",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "临时充值",
+        "应急充值"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.transport.taxi",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "临时打车",
+        "应急打车"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.social.donation",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "临时捐款"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.social.red.packet",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "临时红包",
+        "临时随礼"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.social.gathering",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "临时请客"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.social.gift",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "临时送礼"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.medical.clinic",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "临时住院"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.medical.checkup",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "临时体检"
       ],
       "aliases": [],
       "negative": [],
@@ -7711,7 +8720,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.travel.attraction",
+      "semanticKey": "expense.entertainment.hobby",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -7735,7 +8744,6 @@
         "老人票",
         "订门票",
         "动物园",
-        "卡丁车",
         "天文馆",
         "景区票",
         "植物园",
@@ -7752,7 +8760,6 @@
         "车展门票",
         "优惠票",
         "半价票",
-        "漂流票",
         "电子票",
         "纸质票",
         "万达乐园",
@@ -7768,22 +8775,33 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.travel.hotel",
+      "semanticKey": "expense.sports.outdoor",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "卡丁车",
+        "漂流票"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.housing.rent",
       "role": "venue",
       "specificity": "specific",
       "score": 0.8,
       "reviewStatus": "approved",
       "keywords": [
         "住宿一晚",
-        "帐篷营地",
         "民宿预订",
         "胶囊酒店",
         "酒店代订",
         "酒店取消",
         "酒店团购",
         "酒店押金",
-        "酒店早餐",
-        "酒店退款",
         "酒店预订",
         "Airbnb",
         "订宾馆",
@@ -7792,22 +8810,17 @@
         "酒店券",
         "预订酒店",
         "住宿券",
-        "含早餐",
         "小时房",
         "爱彼迎",
         "订青旅",
         "酒店钱",
-        "露营地",
         "携程订房",
         "美团订房",
-        "不含早",
         "海景房",
         "代订酒店",
         "住宿发票",
         "住宿预订",
         "儿童加床",
-        "到店支付",
-        "前台办理",
         "周末房费"
       ],
       "aliases": [],
@@ -7815,7 +8828,36 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.travel.local",
+      "semanticKey": "expense.sports.outdoor",
+      "role": "venue",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "帐篷营地",
+        "露营地"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.food.breakfast",
+      "role": "venue",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "酒店早餐",
+        "含早餐",
+        "不含早"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.transport.taxi",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -7823,50 +8865,29 @@
       "keywords": [
         "租电动车",
         "租车押金",
-        "共享电动车",
         "一嗨租车",
-        "当地公交",
         "当地包车",
-        "当地地铁",
         "当地打车",
-        "当地船票",
-        "扫码骑车",
         "携程租车",
-        "旅行包车",
         "旅行打车",
         "旅行租车",
         "神州租车",
         "租自行车",
         "租车自驾",
-        "当地交通费",
-        "景区观光车",
         "包车游",
         "异地还车",
         "机场取车",
-        "里程限制",
         "包车费",
         "租车费",
         "专车接送",
         "包车司机",
         "包车平台",
-        "单车押金",
-        "当地交通",
         "当地租车",
-        "当地骑行",
         "悟空租车",
         "接机送机",
         "接送服务",
-        "摆渡车票",
-        "旅行公交",
-        "旅行地铁",
-        "景区交通",
-        "景区公交",
-        "景区接驳",
-        "景区摆渡",
         "景点取车",
-        "汽车租赁",
         "租车事故",
-        "租车保险",
         "租车发票",
         "租车平台",
         "租车油费",
@@ -7877,7 +8898,76 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.travel.package",
+      "semanticKey": "expense.other.general",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "共享电动车",
+        "当地交通费",
+        "里程限制",
+        "当地交通",
+        "景区交通",
+        "汽车租赁"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.transport.public",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "当地公交",
+        "当地地铁",
+        "当地船票",
+        "扫码骑车",
+        "景区观光车",
+        "单车押金",
+        "当地骑行",
+        "摆渡车票",
+        "旅行公交",
+        "旅行地铁",
+        "景区公交",
+        "景区接驳",
+        "景区摆渡"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.shopping.clothing",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "旅行包车"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.finance.insurance",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "租车保险"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.other.general",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -7922,7 +9012,6 @@
         "私家团",
         "纯玩团",
         "线路费",
-        "退团费",
         "邮轮游",
         "地接费",
         "多日游",
@@ -7930,16 +9019,27 @@
         "零购物",
         "半自由行",
         "团费不含",
-        "团费分期",
-        "团费包含",
-        "团费退款"
+        "团费包含"
       ],
       "aliases": [],
       "negative": [],
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.travel.supplies",
+      "semanticKey": "expense.finance.loan",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "团费分期"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.shopping.other",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -7947,52 +9047,108 @@
       "keywords": [
         "买旅行箱",
         "折叠水壶",
-        "折叠衣架",
-        "旅行插排",
-        "旅行收纳",
         "旅行用品",
-        "旅行药盒",
-        "登山装备",
         "行李箱套",
-        "隔脏睡袋",
-        "一次性床单",
-        "旅行吹风机",
         "行李打包带",
-        "万能转换插头",
-        "旅行收纳套装",
         "旅行枕",
-        "买背包",
         "分装瓶",
-        "化妆包",
         "急救包",
         "护照夹",
         "沙滩巾",
-        "洗漱包",
         "行李牌",
         "行李秤",
         "行李锁",
-        "买旅行包",
         "旅行装",
-        "便携熨斗",
-        "内衣收纳",
-        "徒步装备",
-        "急救药品",
         "折叠水盆",
         "旅行套装",
+        "行李箱贴"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.daily.household",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "折叠衣架",
+        "旅行收纳",
+        "一次性床单",
+        "内衣收纳",
         "旅行床单",
-        "旅行洗护",
-        "旅行熨斗",
-        "旅行相机",
-        "旅行背包",
-        "旅行腰包",
-        "旅行药品",
-        "旅行衣架",
-        "晒后修复",
-        "行李箱贴",
-        "贴身钱包",
-        "防偷背包",
-        "防盗背包",
-        "防盗腰包",
+        "旅行衣架"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.shopping.other",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "旅行收纳套装"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.digital.accessory",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "旅行插排",
+        "万能转换插头"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.shopping.other",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "旅行药盒"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.medical.medicine",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "急救药品",
+        "旅行药品"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.sports.equipment",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "登山装备",
+        "隔脏睡袋",
+        "徒步装备",
         "露营锅具",
         "露营餐具"
       ],
@@ -8001,57 +9157,157 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.travel.ticket",
+      "semanticKey": "expense.shopping.appliance",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "旅行吹风机",
+        "便携熨斗",
+        "旅行熨斗"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.shopping.clothing",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "买背包",
+        "化妆包",
+        "洗漱包",
+        "买旅行包",
+        "旅行背包",
+        "旅行腰包",
+        "贴身钱包",
+        "防偷背包",
+        "防盗背包",
+        "防盗腰包"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.daily.personal",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "旅行洗护",
+        "晒后修复"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.digital.photo",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "旅行相机"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.transport.public",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
       "reviewStatus": "approved",
       "keywords": [
         "订汽车票",
+        "大巴票",
+        "订船票",
+        "订大巴",
+        "买汽车票",
+        "汽车票",
+        "城际巴士",
+        "大巴车票",
+        "往返大巴",
+        "机场快线",
+        "汽车客运",
+        "船票预订",
+        "长途汽车"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.transport.rail",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
         "订火车票",
         "订高铁票",
+        "往返火车票",
+        "往返高铁票",
+        "火车站票",
+        "高铁往返"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.other.general",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
         "出行路费",
         "往返路费",
         "旅行交通",
         "旅行车费",
         "长途车票",
-        "往返火车票",
-        "往返高铁票",
-        "大巴票",
         "往返票",
-        "订船票",
-        "订大巴",
         "订邮轮",
-        "买汽车票",
-        "汽车票",
         "交通费用",
         "出游交通",
         "出行交通",
         "出行票价",
         "出行订票",
-        "去程机票",
-        "回程机票",
-        "城际巴士",
-        "大巴车票",
         "往返交通",
-        "往返大巴",
         "旅游票务",
         "旅程交通",
         "旅行出行",
-        "旅行机票",
         "旅行票务",
         "旅行订票",
         "旅行车票",
         "旅途交通",
-        "机场快线",
-        "机票往返",
-        "汽车客运",
-        "火车站票",
         "票务预订",
-        "船票预订",
-        "邮轮航线",
-        "长途汽车",
-        "高铁往返"
+        "邮轮航线"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.transport.flight",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "去程机票",
+        "回程机票",
+        "旅行机票",
+        "机票往返"
       ],
       "aliases": [],
       "negative": [],

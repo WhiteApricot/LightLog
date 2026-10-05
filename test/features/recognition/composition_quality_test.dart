@@ -2,11 +2,35 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:light_log/data/database/seed_data.dart';
 
 import '../../../tools/knowledge/composition_quality.dart';
 import '../../../tools/evaluation/knowledge_hash.dart';
 
 void main() {
+  test('V0.1 taxonomy is exactly the approved 104 children', () {
+    final children = defaultCategories
+        .where((c) => c.parentId != null)
+        .toList();
+    expect(children, hasLength(104));
+    expect(children.where((c) => c.type == 'expense'), hasLength(78));
+    expect(children.where((c) => c.type == 'income'), hasLength(26));
+    expect(defaultCategories.where((c) => c.parentId == null), hasLength(21));
+    expect(children.map((c) => c.semanticKey).toSet(), hasLength(104));
+    expect(
+      children.any(
+        (c) =>
+            c.semanticKey == 'expense.food.takeout' ||
+            c.semanticKey.startsWith('expense.travel.') ||
+            c.semanticKey.startsWith('expense.family.'),
+      ),
+      isFalse,
+    );
+    expect(
+      children.map((c) => c.semanticKey),
+      contains('income.reimbursement.travel'),
+    );
+  });
   Map<String, Object?> read(String path) =>
       (jsonDecode(File(path).readAsStringSync()) as Map)
           .cast<String, Object?>();

@@ -127,7 +127,10 @@ void main() {
         'expense.daily.cleaning',
       );
       expect(recognizeForTest('鞋子补底 35').semanticKey, 'expense.daily.service');
-      expect(recognizeForTest('孩子看病 100').semanticKey, 'expense.family.health');
+      expect(
+        recognizeForTest('孩子看病 100').semanticKey,
+        'expense.medical.clinic',
+      );
     },
   );
 

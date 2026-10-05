@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:drift/drift.dart' show Value;
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:light_log/data/database/database.dart';
@@ -23,6 +24,91 @@ void main() {
     if (!databaseClosed) await database.close();
   });
 
+  test('taxonomy seed retirement preserves transactions and excludes legacy history', () async {
+    await database.select(database.categories).get();
+    await database
+        .into(database.categories)
+        .insert(
+          CategoriesCompanion.insert(
+            id: 'expense-travel',
+            name: '旅行',
+            type: 'expense',
+            semanticKey: const Value('expense.travel'),
+            isSystem: const Value(true),
+            sortOrder: 1,
+            createdAt: 1,
+            updatedAt: 1,
+          ),
+        );
+    await database
+        .into(database.categories)
+        .insert(
+          CategoriesCompanion.insert(
+            id: 'expense-travel-hotel',
+            parentId: const Value('expense-travel'),
+            name: '住宿',
+            type: 'expense',
+            semanticKey: const Value('expense.travel.hotel'),
+            isSystem: const Value(true),
+            sortOrder: 1,
+            createdAt: 1,
+            updatedAt: 1,
+          ),
+        );
+    await database
+        .into(database.transactions)
+        .insert(
+          TransactionsCompanion.insert(
+            id: 'historical-taxonomy',
+            type: 'expense',
+            categoryId: 'expense-travel',
+            subcategoryId: 'expense-travel-hotel',
+            content: '历史住宿',
+            amountMinor: 10000,
+            occurredAt: 1,
+            timezoneOffsetMinutes: 480,
+            accountId: 'account-cash',
+            createdAt: 1,
+            updatedAt: 1,
+          ),
+        );
+    await database
+        .into(database.recognitionRules)
+        .insert(
+          RecognitionRulesCompanion.insert(
+            id: 'legacy-history',
+            normalizedContent: 'historical',
+            semanticKey: 'expense.travel.hotel',
+            hitCount: const Value(10),
+            lastUsedAt: 1,
+            createdAt: 1,
+            updatedAt: 1,
+          ),
+        );
+    await database.seedDefaults();
+    final retired = await (database.select(
+      database.categories,
+    )..where((c) => c.id.equals('expense-travel-hotel'))).getSingle();
+    expect(retired.isActive, isFalse);
+    expect(retired.semanticKey, isNull);
+    final entry = await (database.select(
+      database.transactions,
+    )..where((t) => t.id.equals('historical-taxonomy'))).getSingle();
+    expect(entry.subcategoryId, 'expense-travel-hotel');
+    expect(entry.amountMinor, 10000);
+    expect(
+      await database.select(database.recognitionRules).get(),
+      hasLength(1),
+    );
+    expect(
+      await LocalRecognitionRepository(database)
+          .loadHistoryForKey('historical'),
+      isEmpty,
+    );
+    await database.seedDefaults();
+    expect(await database.select(database.transactions).get(), hasLength(1));
+  });
+
   test(
     'schema v4 seeds semantic system categories and icon-backed accounts',
     () async {
@@ -35,7 +121,7 @@ void main() {
         hasLength(defaultAccounts.length),
       );
       final categories = await database.select(database.categories).get();
-      expect(categories, hasLength(141));
+      expect(categories, hasLength(125));
       expect(
         categories.every(
           (category) =>

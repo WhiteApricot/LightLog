@@ -1,0 +1,6363 @@
+{
+  "taxonomyChildCount": 104,
+  "policy": "Purpose-specific reclassification; null means removed semantic output; no new terms.",
+  "counts": {
+    "lexiconTerm": 783,
+    "entity": 45,
+    "prior": 10,
+    "rule": 50,
+    "reviewOracle": 9
+  },
+  "changes": [
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "配送餐",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "宾馆",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "民宿",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅馆",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "住宿",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "景区",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "门票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "博物馆",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "景点",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "给爸妈生活费",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "赡养费",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "老人生活费",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "父母生活费",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子补习班",
+      "old": "expense.family.education",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "儿童培训",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子学费",
+      "old": "expense.family.education",
+      "new": "expense.education.tuition"
+    },
+    {
+      "source": "category_lexicon_source.json",
+      "kind": "lexiconTerm",
+      "term": "少儿课程",
+      "old": "expense.family.education",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "点外卖",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "叫外卖",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖订单",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖餐费",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖午餐",
+      "old": "expense.food.takeout",
+      "new": "expense.food.lunch"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖晚餐",
+      "old": "expense.food.takeout",
+      "new": "expense.food.dinner"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖夜宵",
+      "old": "expense.food.takeout",
+      "new": "expense.food.dinner"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖早餐",
+      "old": "expense.food.takeout",
+      "new": "expense.food.breakfast"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖配送",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "餐饮配送",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "送餐费",
+      "old": "expense.food.takeout",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖跑腿",
+      "old": "expense.food.takeout",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖实付",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖红包后实付",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖套餐",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖便当",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖盖饭",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖炒饭",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖面条",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖奶茶",
+      "old": "expense.food.takeout",
+      "new": "expense.food.drink"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖咖啡",
+      "old": "expense.food.takeout",
+      "new": "expense.food.drink"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖烧烤",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖火锅",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖轻食",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖沙拉",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "到家餐饮",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "送餐到家",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "餐品配送",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "订餐平台",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "线上订餐",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "手机点餐",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外送餐品",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "打包配送",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "餐费加配送",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "骑手配送费",
+      "old": "expense.food.takeout",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖打包费",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖餐盒费",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖小费",
+      "old": "expense.food.takeout",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖会员",
+      "old": "expense.food.takeout",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖月卡",
+      "old": "expense.food.takeout",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店住宿",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店房费",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "宾馆房费",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "民宿房费",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅馆住宿",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "客栈住宿",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "青年旅舍",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "钟点房",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "大床房",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "双床房",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭房",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "套房住宿",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "商务酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "快捷酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "度假酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "温泉酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "机场酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "高铁站酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.transport.rail"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "景区酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店押金支出",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店服务费",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店早餐费",
+      "old": "expense.travel.hotel",
+      "new": "expense.food.breakfast"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店加床费",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店延时费",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店升级房型",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店补差价",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店取消费",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店预付款",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店现付",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "连住酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "出差住宿",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅游住宿",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "考试住宿",
+      "old": "expense.travel.hotel",
+      "new": "expense.education.exam"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "陪护住宿",
+      "old": "expense.travel.hotel",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "短途住宿",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "异地住宿",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店洗衣费",
+      "old": "expense.travel.hotel",
+      "new": "expense.daily.cleaning"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店迷你吧",
+      "old": "expense.travel.hotel",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店停车除外",
+      "old": "expense.travel.hotel",
+      "new": "expense.transport.parking"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "住宿费",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "景区门票",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅游门票",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行团费",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "跟团游",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "自由行套餐",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅游车票",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "游船票",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅游大巴",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行保险",
+      "old": "expense.travel.ticket",
+      "new": "expense.finance.insurance"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "行程预订",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅游订单",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行费用",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "景区消费",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "景点消费",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "博物馆门票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "动物园门票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "水族馆门票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "主题乐园门票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "游乐园门票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "古镇门票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "公园门票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "展览门票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "观光票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "景点讲解",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买尿不湿",
+      "old": "expense.family.child",
+      "new": "expense.daily.household"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买纸尿裤",
+      "old": "expense.family.child",
+      "new": "expense.daily.household"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "宝宝写真",
+      "old": "expense.family.child",
+      "new": "expense.digital.photo"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "宝宝用品",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "宝宝疫苗",
+      "old": "expense.family.child",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "母婴用品",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买婴儿用品",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "宝宝用品费",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "母婴用品店",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买奶瓶",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买奶粉",
+      "old": "expense.family.child",
+      "new": "expense.food.groceries"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "婴儿玩具",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "安全座椅",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买辅食",
+      "old": "expense.family.child",
+      "new": "expense.food.groceries"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "周岁照",
+      "old": "expense.family.child",
+      "new": "expense.digital.photo"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "母婴店",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "满月照",
+      "old": "expense.family.child",
+      "new": "expense.digital.photo"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "百日照",
+      "old": "expense.family.child",
+      "new": "expense.digital.photo"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "育儿费",
+      "old": "expense.family.child",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买婴儿床",
+      "old": "expense.family.child",
+      "new": "expense.shopping.home"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买婴儿车",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买学步车",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买拉拉裤",
+      "old": "expense.family.child",
+      "new": "expense.daily.household"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买爬行垫",
+      "old": "expense.family.child",
+      "new": "expense.shopping.home"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "养娃开销",
+      "old": "expense.family.child",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "尿不湿钱",
+      "old": "expense.family.child",
+      "new": "expense.daily.household"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "纸尿裤钱",
+      "old": "expense.family.child",
+      "new": "expense.daily.household"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买儿童牙刷",
+      "old": "expense.family.child",
+      "new": "expense.daily.personal"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买儿童牙膏",
+      "old": "expense.family.child",
+      "new": "expense.daily.personal"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买儿童玩具",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买婴儿湿巾",
+      "old": "expense.family.child",
+      "new": "expense.daily.household"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买婴儿玩具",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买婴儿背带",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买婴儿餐椅",
+      "old": "expense.family.child",
+      "new": "expense.shopping.home"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买安全座椅",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买早教玩具",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买婴儿沐浴露",
+      "old": "expense.family.child",
+      "new": "expense.daily.personal"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "婴儿车",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "尿不湿",
+      "old": "expense.family.child",
+      "new": "expense.daily.household"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "爬行垫",
+      "old": "expense.family.child",
+      "new": "expense.shopping.home"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "纸尿裤",
+      "old": "expense.family.child",
+      "new": "expense.daily.household"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "一段奶粉",
+      "old": "expense.family.child",
+      "new": "expense.food.groceries"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "三段奶粉",
+      "old": "expense.family.child",
+      "new": "expense.food.groceries"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "二段奶粉",
+      "old": "expense.family.child",
+      "new": "expense.food.groceries"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "亲子活动",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "保姆育儿",
+      "old": "expense.family.child",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "儿童围栏",
+      "old": "expense.family.child",
+      "new": "expense.shopping.home"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "儿童推车",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "儿童摄影",
+      "old": "expense.family.child",
+      "new": "expense.digital.photo"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "儿童水杯",
+      "old": "expense.family.child",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子培训",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子托管",
+      "old": "expense.family.education",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子考级",
+      "old": "expense.family.education",
+      "new": "expense.education.exam"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子生活费",
+      "old": "expense.family.education",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给孩子报班",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给孩子生活费",
+      "old": "expense.family.education",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给孩子请家教",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子书包",
+      "old": "expense.family.education",
+      "new": "expense.education.stationery"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子家教",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子教材",
+      "old": "expense.family.education",
+      "new": "expense.education.book"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子教辅",
+      "old": "expense.family.education",
+      "new": "expense.education.book"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子文具",
+      "old": "expense.family.education",
+      "new": "expense.education.stationery"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子晚托",
+      "old": "expense.family.education",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子校服",
+      "old": "expense.family.education",
+      "new": "expense.shopping.clothing"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子游学",
+      "old": "expense.family.education",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子留学",
+      "old": "expense.family.education",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子补课",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子辅导",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "交孩子学费",
+      "old": "expense.family.education",
+      "new": "expense.education.tuition"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子体育班",
+      "old": "expense.family.education",
+      "new": "expense.sports.fitness"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子兴趣班",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子冬令营",
+      "old": "expense.family.education",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子压岁钱",
+      "old": "expense.family.education",
+      "new": "expense.social.red.packet"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子培训班",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子培训费",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子夏令营",
+      "old": "expense.family.education",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子奥数班",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子家教费",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子报名费",
+      "old": "expense.family.education",
+      "new": "expense.education.exam"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子教育费",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子编程课",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子考试费",
+      "old": "expense.family.education",
+      "new": "expense.education.exam"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子舞蹈课",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子英语班",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子补课费",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子课外班",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子钢琴课",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子零花钱",
+      "old": "expense.family.education",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给孩子学费",
+      "old": "expense.family.education",
+      "new": "expense.education.tuition"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子学费缴纳",
+      "old": "expense.family.education",
+      "new": "expense.education.tuition"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子教育开销",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给孩子交学费",
+      "old": "expense.family.education",
+      "new": "expense.education.tuition"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子特长班",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子艺术班",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孩子辅导费",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "早教费",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "兴趣班费",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "养娃教育",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "子女学费",
+      "old": "expense.family.education",
+      "new": "expense.education.tuition"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "子女教育",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孝敬父母",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "父母礼物",
+      "old": "expense.family.elder",
+      "new": "expense.social.gift"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "父母社保",
+      "old": "expense.family.elder",
+      "new": "expense.finance.insurance"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "父母红包",
+      "old": "expense.family.elder",
+      "new": "expense.social.red.packet"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给父母钱",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给爸妈钱",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给父母转钱",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给父母买保险",
+      "old": "expense.family.elder",
+      "new": "expense.finance.insurance"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "养老院费",
+      "old": "expense.family.elder",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孝敬爸妈",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孝顺父母",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "爸妈礼物",
+      "old": "expense.family.elder",
+      "new": "expense.social.gift"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给妈妈钱",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给爸爸钱",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "赡养支出",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "赡养老人",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "父母保健品",
+      "old": "expense.family.elder",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "父母医药费",
+      "old": "expense.family.elder",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "父母零花钱",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给爸妈红包",
+      "old": "expense.family.elder",
+      "new": "expense.social.red.packet"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给爸妈转钱",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给父母买手机",
+      "old": "expense.family.elder",
+      "new": "expense.digital.phone"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给父母买衣服",
+      "old": "expense.family.elder",
+      "new": "expense.shopping.clothing"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给爸妈买手机",
+      "old": "expense.family.elder",
+      "new": "expense.digital.phone"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给父母买保健品",
+      "old": "expense.family.elder",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "养老费",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "养老院",
+      "old": "expense.family.elder",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "养老钱",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "尽孝费",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "敬老院",
+      "old": "expense.family.elder",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给父母过年费",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "养老公寓",
+      "old": "expense.family.elder",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "养老支出",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "养老机构",
+      "old": "expense.family.elder",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "养老社区",
+      "old": "expense.family.elder",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "养老缴费",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "养老补贴",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "孝敬老人",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家政养老",
+      "old": "expense.family.elder",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "居家养老",
+      "old": "expense.family.elder",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "康养中心",
+      "old": "expense.family.elder",
+      "new": "expense.medical.rehab"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "父母养老",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "父母医保",
+      "old": "expense.family.elder",
+      "new": "expense.finance.insurance"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "父母医疗",
+      "old": "expense.family.elder",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "父母赡养",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给老人钱",
+      "old": "expense.family.elder",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "老人家政",
+      "old": "expense.family.elder",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "老人手机",
+      "old": "expense.family.elder",
+      "new": "expense.digital.phone"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "老人护理",
+      "old": "expense.family.elder",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "老人用品",
+      "old": "expense.family.elder",
+      "new": "expense.daily.household"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人住院",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人体检",
+      "old": "expense.family.health",
+      "new": "expense.medical.checkup"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人挂号",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人看牙",
+      "old": "expense.family.health",
+      "new": "expense.medical.dental"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人药费",
+      "old": "expense.family.health",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人住院费",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人保健品",
+      "old": "expense.family.health",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人医疗费",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人手术费",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家人买药",
+      "old": "expense.family.health",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "陪家人产检",
+      "old": "expense.family.health",
+      "new": "expense.medical.checkup"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "陪家人看病",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家人买保险",
+      "old": "expense.family.health",
+      "new": "expense.finance.insurance"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家人请护工",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家人买保健品",
+      "old": "expense.family.health",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人产检",
+      "old": "expense.family.health",
+      "new": "expense.medical.checkup"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人保险",
+      "old": "expense.family.health",
+      "new": "expense.finance.insurance"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人医保",
+      "old": "expense.family.health",
+      "new": "expense.finance.insurance"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人孕检",
+      "old": "expense.family.health",
+      "new": "expense.medical.checkup"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人手术",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人疫苗",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人看病",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人输液",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人陪护",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭药品",
+      "old": "expense.family.health",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "流感疫苗",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "父母看病",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人买药钱",
+      "old": "expense.family.health",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人医药费",
+      "old": "expense.family.health",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人看病钱",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人配眼镜",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭医疗费",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭医药费",
+      "old": "expense.family.health",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家人挂号",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家人治病",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人护工",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人体检套餐",
+      "old": "expense.family.health",
+      "new": "expense.medical.checkup"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人买药",
+      "old": "expense.family.health",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人健康",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人医疗",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人康复",
+      "old": "expense.family.health",
+      "new": "expense.medical.rehab"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人急诊",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人打针",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人护理",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人按摩",
+      "old": "expense.family.health",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人推拿",
+      "old": "expense.family.health",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人月子",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人治病",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人牙科",
+      "old": "expense.family.health",
+      "new": "expense.medical.dental"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家人理疗",
+      "old": "expense.family.health",
+      "new": "expense.medical.rehab"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭开支",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家里开销",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "寄钱回家",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家里钱",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "补贴家用",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "补贴老家",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "贴补家用",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭伙食费",
+      "old": "expense.family.support",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家里买菜",
+      "old": "expense.family.support",
+      "new": "expense.food.groceries"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家里打钱",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家里转钱",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家里还房贷",
+      "old": "expense.family.support",
+      "new": "expense.housing.mortgage"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家里交水电费",
+      "old": "expense.family.support",
+      "new": "expense.housing.utilities"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "全家开销",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭公用",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭开销",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家用补贴",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家里开支",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家里维修",
+      "old": "expense.family.support",
+      "new": "expense.housing.repair"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家里记账",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "汇钱回家",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给媳妇家用",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家里月供",
+      "old": "expense.family.support",
+      "new": "expense.housing.mortgage"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家里补贴",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给老婆家用",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给老家打钱",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "夫妻共同开销",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家里买家电",
+      "old": "expense.family.support",
+      "new": "expense.shopping.appliance"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家里交学费",
+      "old": "expense.family.support",
+      "new": "expense.education.tuition"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家里生活费",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家里买日用品",
+      "old": "expense.family.support",
+      "new": "expense.daily.household"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家里交物业费",
+      "old": "expense.family.support",
+      "new": "expense.housing.property"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家用钱",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭基金",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭月供",
+      "old": "expense.family.support",
+      "new": "expense.housing.mortgage"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭补贴",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭补贴钱",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "一家开销",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭伙食",
+      "old": "expense.family.support",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭保险",
+      "old": "expense.family.support",
+      "new": "expense.finance.insurance"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭储蓄",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭支出",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭维修",
+      "old": "expense.family.support",
+      "new": "expense.housing.repair"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭缴税",
+      "old": "expense.family.support",
+      "new": "expense.finance.tax"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家庭采购",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家用支出",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "家里采购",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "日常家用",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家人钱",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "给家打钱",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖拼单",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖费",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "饿了么",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "代买奶茶",
+      "old": "expense.food.takeout",
+      "new": "expense.food.drink"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "叫个外卖",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "叫杯奶茶",
+      "old": "expense.food.takeout",
+      "new": "expense.food.drink"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖到了",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "点个外卖",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "点个奶茶",
+      "old": "expense.food.takeout",
+      "new": "expense.food.drink"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖平台下单",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "打包费",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买菜外卖",
+      "old": "expense.food.takeout",
+      "new": "expense.food.groceries"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "到家服务",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖下单",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖买菜",
+      "old": "expense.food.takeout",
+      "new": "expense.food.groceries"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖代买",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖代购",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖优惠",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖凑单",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖到付",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖到家",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖寿司",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖小哥",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖平台",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖快餐",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖打包",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖投诉",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖披萨",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖水果",
+      "old": "expense.food.takeout",
+      "new": "expense.food.groceries"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖汉堡",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖满减",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖炸鸡",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖甜品",
+      "old": "expense.food.takeout",
+      "new": "expense.food.snack"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖生煎",
+      "old": "expense.food.takeout",
+      "new": "expense.food.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "外卖生鲜",
+      "old": "expense.food.takeout",
+      "new": "expense.food.groceries"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "上当受骗",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "交警罚款",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "寻物启事",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "弄坏赔偿",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "快递丢失",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "打碎赔偿",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "损坏赔偿",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "电信诈骗",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "网络诈骗",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "补办证件",
+      "old": "expense.other.lost",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "证件丢失",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "赔付他人",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "赔付商家",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "赔偿他人",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "超速罚款",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "违章罚款",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "钱包丢了",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "丢东西损失",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "补办身份证",
+      "old": "expense.other.lost",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "补办银行卡",
+      "old": "expense.other.lost",
+      "new": "expense.finance.fee"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "闯红灯罚款",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "悬赏金",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "理赔金",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "登报挂失",
+      "old": "expense.other.lost",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "丢东西",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "丢包裹",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "丢快递",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "丢手机",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "丢钱包",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "被骗钱",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "挂失登报",
+      "old": "expense.other.lost",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "补办费",
+      "old": "expense.other.lost",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "赔付金",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "东西丢了",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "丢了东西",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "丢失手机",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "丢失赔付",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "交通罚款",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "价格补偿",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "入室盗窃",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "包裹丢失",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "卫生罚款",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "城管罚款",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "失物招领",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "失窃损失",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "客户赔偿",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "差价补偿",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "拾金不昧",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "损失补偿",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "物品遗失",
+      "old": "expense.other.lost",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时借款",
+      "old": "expense.other.unexpected",
+      "new": "expense.finance.loan"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时加急",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时周转",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时垫付",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时支出",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时费用",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "应急垫付",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "应急维修",
+      "old": "expense.other.unexpected",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "应急购买",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "意外费用",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时买药",
+      "old": "expense.other.unexpected",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时充值",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时就医",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时应急",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时开销",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时打车",
+      "old": "expense.other.unexpected",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时捐款",
+      "old": "expense.other.unexpected",
+      "new": "expense.social.donation"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时红包",
+      "old": "expense.other.unexpected",
+      "new": "expense.social.red.packet"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时维修",
+      "old": "expense.other.unexpected",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时请客",
+      "old": "expense.other.unexpected",
+      "new": "expense.social.gathering"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时还款",
+      "old": "expense.other.unexpected",
+      "new": "expense.finance.loan"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时送礼",
+      "old": "expense.other.unexpected",
+      "new": "expense.social.gift"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时随礼",
+      "old": "expense.other.unexpected",
+      "new": "expense.social.red.packet"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "应急买药",
+      "old": "expense.other.unexpected",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "应急借款",
+      "old": "expense.other.unexpected",
+      "new": "expense.finance.loan"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "应急充值",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "应急打车",
+      "old": "expense.other.unexpected",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "应急还款",
+      "old": "expense.other.unexpected",
+      "new": "expense.finance.loan"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "意外支出",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "突发支出",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "突发费用",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "紧急用钱",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "紧急维修",
+      "old": "expense.other.unexpected",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "应急备用金",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "加急费",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "周转金",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "备用金",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时收据",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时账单",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "应急储备",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "急用钱",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "意外开销",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "应急金",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时交费",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时住院",
+      "old": "expense.other.unexpected",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时体检",
+      "old": "expense.other.unexpected",
+      "new": "expense.medical.checkup"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时凭证",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时出行",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时分期",
+      "old": "expense.other.unexpected",
+      "new": "expense.finance.loan"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "临时加购",
+      "old": "expense.other.unexpected",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "景区预约",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "代订门票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "展会门票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "景点门票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "水上乐园",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "漫展门票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "环球影城",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "门票优惠",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "门票团购",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "门票预订",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "野生动物园",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买门票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "导游费",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "泡温泉",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "温泉票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "老人票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "订门票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "动物园",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "卡丁车",
+      "old": "expense.travel.attraction",
+      "new": "expense.sports.outdoor"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "天文馆",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "景区票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "植物园",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "欢乐谷",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "水族馆",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "海洋馆",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "游乐园",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "科技馆",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "美术馆",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "讲解费",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "迪士尼",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "门票费",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买景区票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "车展门票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "优惠票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "半价票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "漂流票",
+      "old": "expense.travel.attraction",
+      "new": "expense.sports.outdoor"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "电子票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "纸质票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "万达乐园",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "主题乐园",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "主题公园",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "乐园游玩",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "乐园门票",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "体验项目",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "冒险乐园",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "住宿一晚",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "帐篷营地",
+      "old": "expense.travel.hotel",
+      "new": "expense.sports.outdoor"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "民宿预订",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "胶囊酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店代订",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店取消",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店团购",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店押金",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店早餐",
+      "old": "expense.travel.hotel",
+      "new": "expense.food.breakfast"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店退款",
+      "old": "expense.travel.hotel",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店预订",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "Airbnb",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "订宾馆",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "订民宿",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "订酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店券",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "预订酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "住宿券",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "含早餐",
+      "old": "expense.travel.hotel",
+      "new": "expense.food.breakfast"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "小时房",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "爱彼迎",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "订青旅",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店钱",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "露营地",
+      "old": "expense.travel.hotel",
+      "new": "expense.sports.outdoor"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "携程订房",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "美团订房",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "不含早",
+      "old": "expense.travel.hotel",
+      "new": "expense.food.breakfast"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "海景房",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "代订酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "住宿发票",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "住宿预订",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "儿童加床",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "到店支付",
+      "old": "expense.travel.hotel",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "前台办理",
+      "old": "expense.travel.hotel",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "周末房费",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "租电动车",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "租车押金",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "共享电动车",
+      "old": "expense.travel.local",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "一嗨租车",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "当地公交",
+      "old": "expense.travel.local",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "当地包车",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "当地地铁",
+      "old": "expense.travel.local",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "当地打车",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "当地船票",
+      "old": "expense.travel.local",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "扫码骑车",
+      "old": "expense.travel.local",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "携程租车",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行包车",
+      "old": "expense.travel.local",
+      "new": "expense.shopping.clothing"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行打车",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行租车",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "神州租车",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "租自行车",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "租车自驾",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "当地交通费",
+      "old": "expense.travel.local",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "景区观光车",
+      "old": "expense.travel.local",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "包车游",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "异地还车",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "机场取车",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "里程限制",
+      "old": "expense.travel.local",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "包车费",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "租车费",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "专车接送",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "包车司机",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "包车平台",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "单车押金",
+      "old": "expense.travel.local",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "当地交通",
+      "old": "expense.travel.local",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "当地租车",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "当地骑行",
+      "old": "expense.travel.local",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "悟空租车",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "接机送机",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "接送服务",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "摆渡车票",
+      "old": "expense.travel.local",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行公交",
+      "old": "expense.travel.local",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行地铁",
+      "old": "expense.travel.local",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "景区交通",
+      "old": "expense.travel.local",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "景区公交",
+      "old": "expense.travel.local",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "景区接驳",
+      "old": "expense.travel.local",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "景区摆渡",
+      "old": "expense.travel.local",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "景点取车",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "汽车租赁",
+      "old": "expense.travel.local",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "租车事故",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "租车保险",
+      "old": "expense.travel.local",
+      "new": "expense.finance.insurance"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "租车发票",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "租车平台",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "租车油费",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "租车理赔",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "一价全含",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅游合同",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅游套餐",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行套餐",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "精品小团",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "导游服务费",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "团费定金",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "团费尾款",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "散客拼团",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅游团购",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅游定金",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅游尾款",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅游线路",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "机酒套餐",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "私人订制",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "跟团团购",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "跟团费用",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "酒店套餐",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "一日游",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "定制游",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅游团",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行团",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "早鸟价",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "私家定制",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "七日游",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "三日游",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "两日游",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "五日游",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "出国游",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "出境游",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "参团费",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "国内游",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "报团费",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行社",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "海外游",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "海岛游",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "私家团",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "纯玩团",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "线路费",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "退团费",
+      "old": "expense.travel.package",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "邮轮游",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "地接费",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "多日游",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "零自费",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "零购物",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "半自由行",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "团费不含",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "团费分期",
+      "old": "expense.travel.package",
+      "new": "expense.finance.loan"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "团费包含",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "团费退款",
+      "old": "expense.travel.package",
+      "new": null
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买旅行箱",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "折叠水壶",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "折叠衣架",
+      "old": "expense.travel.supplies",
+      "new": "expense.daily.household"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行插排",
+      "old": "expense.travel.supplies",
+      "new": "expense.digital.accessory"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行收纳",
+      "old": "expense.travel.supplies",
+      "new": "expense.daily.household"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行用品",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行药盒",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "登山装备",
+      "old": "expense.travel.supplies",
+      "new": "expense.sports.equipment"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "行李箱套",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "隔脏睡袋",
+      "old": "expense.travel.supplies",
+      "new": "expense.sports.equipment"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "一次性床单",
+      "old": "expense.travel.supplies",
+      "new": "expense.daily.household"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行吹风机",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.appliance"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "行李打包带",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "万能转换插头",
+      "old": "expense.travel.supplies",
+      "new": "expense.digital.accessory"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行收纳套装",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行枕",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买背包",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.clothing"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "分装瓶",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "化妆包",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.clothing"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "急救包",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "护照夹",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "沙滩巾",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "洗漱包",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.clothing"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "行李牌",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "行李秤",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "行李锁",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买旅行包",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.clothing"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行装",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "便携熨斗",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.appliance"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "内衣收纳",
+      "old": "expense.travel.supplies",
+      "new": "expense.daily.household"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "徒步装备",
+      "old": "expense.travel.supplies",
+      "new": "expense.sports.equipment"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "急救药品",
+      "old": "expense.travel.supplies",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "折叠水盆",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行套装",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行床单",
+      "old": "expense.travel.supplies",
+      "new": "expense.daily.household"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行洗护",
+      "old": "expense.travel.supplies",
+      "new": "expense.daily.personal"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行熨斗",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.appliance"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行相机",
+      "old": "expense.travel.supplies",
+      "new": "expense.digital.photo"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行背包",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.clothing"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行腰包",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.clothing"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行药品",
+      "old": "expense.travel.supplies",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行衣架",
+      "old": "expense.travel.supplies",
+      "new": "expense.daily.household"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "晒后修复",
+      "old": "expense.travel.supplies",
+      "new": "expense.daily.personal"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "行李箱贴",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.other"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "贴身钱包",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.clothing"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "防偷背包",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.clothing"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "防盗背包",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.clothing"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "防盗腰包",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.clothing"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "露营锅具",
+      "old": "expense.travel.supplies",
+      "new": "expense.sports.equipment"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "露营餐具",
+      "old": "expense.travel.supplies",
+      "new": "expense.sports.equipment"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "订汽车票",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "订火车票",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.rail"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "订高铁票",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.rail"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "出行路费",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "往返路费",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行交通",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行车费",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "长途车票",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "往返火车票",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.rail"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "往返高铁票",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.rail"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "大巴票",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "往返票",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "订船票",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "订大巴",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "订邮轮",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "买汽车票",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "汽车票",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "交通费用",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "出游交通",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "出行交通",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "出行票价",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "出行订票",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "去程机票",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.flight"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "回程机票",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.flight"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "城际巴士",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "大巴车票",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "往返交通",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "往返大巴",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅游票务",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅程交通",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行出行",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行机票",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.flight"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行票务",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行订票",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅行车票",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "旅途交通",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "机场快线",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "机票往返",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.flight"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "汽车客运",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "火车站票",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.rail"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "票务预订",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "船票预订",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "邮轮航线",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "长途汽车",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "lexicon_expansion_source.json",
+      "kind": "lexiconTerm",
+      "term": "高铁往返",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.rail"
+    },
+    {
+      "source": "merchants_source.json",
+      "kind": "entity",
+      "term": "美团外卖",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "merchants_source.json",
+      "kind": "entity",
+      "term": "饿了么",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "merchants_source.json",
+      "kind": "entity",
+      "term": "携程旅行",
+      "old": "expense.travel.ticket",
+      "new": null
+    },
+    {
+      "source": "merchants_source.json",
+      "kind": "entity",
+      "term": "去哪儿旅行",
+      "old": "expense.travel.ticket",
+      "new": null
+    },
+    {
+      "source": "merchants_source.json",
+      "kind": "entity",
+      "term": "华住会",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "merchants_source.json",
+      "kind": "entity",
+      "term": "汉庭酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "merchants_source.json",
+      "kind": "entity",
+      "term": "全季酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "merchants_source.json",
+      "kind": "entity",
+      "term": "亚朵酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "merchants_source.json",
+      "kind": "entity",
+      "term": "如家酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "merchants_source.json",
+      "kind": "entity",
+      "term": "锦江酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "格林豪泰酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "锦江之星酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "速8酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "7天酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "维也纳酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "麗枫酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "喆啡酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "希岸酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "城市便捷酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "宜尚酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "桔子酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "美居酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "漫心酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "你好酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "轻居酒店",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "飞猪旅行",
+      "old": "expense.travel.ticket",
+      "new": null
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "同程旅行",
+      "old": "expense.travel.ticket",
+      "new": null
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "途牛旅游",
+      "old": "expense.travel.ticket",
+      "new": null
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "马蜂窝旅游",
+      "old": "expense.travel.ticket",
+      "new": null
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "驴妈妈旅游",
+      "old": "expense.travel.ticket",
+      "new": null
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "航旅纵横",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.flight"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "智行火车票",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.rail"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "铁友火车票",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.rail"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "高铁管家",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.rail"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "去哪儿旅行网",
+      "old": "expense.travel.ticket",
+      "new": null
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "故宫博物院",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "上海迪士尼度假区",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "北京环球度假区",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "长隆旅游度假区",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "欢乐谷",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "方特旅游区",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "海昌海洋公园",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "华侨城旅游",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "中青旅遨游",
+      "old": "expense.travel.attraction",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "mainland_entities_source.json",
+      "kind": "entity",
+      "term": "中国国旅",
+      "old": "expense.travel.attraction",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexical_families_source.json",
+      "kind": "prior",
+      "term": "action.familySupport",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexical_families_source.json",
+      "kind": "prior",
+      "term": "object.travelSupply",
+      "old": "expense.travel.supplies",
+      "new": null
+    },
+    {
+      "source": "lexical_families_source.json",
+      "kind": "prior",
+      "term": "object.elderSupply",
+      "old": "expense.family.elder",
+      "new": null
+    },
+    {
+      "source": "lexical_families_source.json",
+      "kind": "prior",
+      "term": "service.visa",
+      "old": "expense.travel.ticket",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexical_families_source.json",
+      "kind": "prior",
+      "term": "object.babySupply",
+      "old": "expense.family.child",
+      "new": null
+    },
+    {
+      "source": "lexical_families_source.json",
+      "kind": "prior",
+      "term": "service.travelPackage",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "lexical_families_source.json",
+      "kind": "prior",
+      "term": "service.hotel",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "lexical_families_source.json",
+      "kind": "prior",
+      "term": "service.childcare",
+      "old": "expense.family.child",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexical_families_source.json",
+      "kind": "prior",
+      "term": "service.eldercare",
+      "old": "expense.family.elder",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "lexical_families_source.json",
+      "kind": "prior",
+      "term": "venue.hotel",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "child-medical",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "elder-medical",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "child-medicine",
+      "old": "expense.family.health",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "elder-medicine",
+      "old": "expense.family.health",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "child-education",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "elder-support",
+      "old": "expense.family.support",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "travel-supply",
+      "old": "expense.travel.supplies",
+      "new": null
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "scenic-ticket",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "elder-supply",
+      "old": "expense.family.elder",
+      "new": null
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "travel-visa",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "visa-service",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "delivery-food",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "travel-platform-scenic",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-object-busTicket-service-ticketing",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-object-busTicket-action-book",
+      "old": "expense.travel.ticket",
+      "new": "expense.transport.public"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-child-object-babySupply",
+      "old": "expense.family.child",
+      "new": null
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-child-service-childcare",
+      "old": "expense.family.child",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-child-service-training",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-child-service-tuition",
+      "old": "expense.family.education",
+      "new": "expense.education.tuition"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-child-object-book",
+      "old": "expense.family.education",
+      "new": "expense.education.book"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-child-object-schoolSupply",
+      "old": "expense.family.education",
+      "new": "expense.education.stationery"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-student-service-training",
+      "old": "expense.family.education",
+      "new": "expense.education.course"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-student-service-tuition",
+      "old": "expense.family.education",
+      "new": "expense.education.tuition"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-student-object-book",
+      "old": "expense.family.education",
+      "new": "expense.education.book"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-student-object-schoolSupply",
+      "old": "expense.family.education",
+      "new": "expense.education.stationery"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-child-action-physicalExam",
+      "old": "expense.family.health",
+      "new": "expense.medical.checkup"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-child-action-rehabilitate",
+      "old": "expense.family.health",
+      "new": "expense.medical.rehab"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-child-service-nursing",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-child-service-dental",
+      "old": "expense.family.health",
+      "new": "expense.medical.dental"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-child-service-rehab",
+      "old": "expense.family.health",
+      "new": "expense.medical.rehab"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-elder-action-physicalExam",
+      "old": "expense.family.health",
+      "new": "expense.medical.checkup"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-elder-action-rehabilitate",
+      "old": "expense.family.health",
+      "new": "expense.medical.rehab"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-elder-service-nursing",
+      "old": "expense.family.health",
+      "new": "expense.medical.clinic"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-elder-service-dental",
+      "old": "expense.family.health",
+      "new": "expense.medical.dental"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-elder-service-rehab",
+      "old": "expense.family.health",
+      "new": "expense.medical.rehab"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-elder-service-eldercare",
+      "old": "expense.family.elder",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-elder-object-medicalDevice",
+      "old": "expense.family.elder",
+      "new": "expense.medical.medicine"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-modifier-elder-action-nurse",
+      "old": "expense.family.elder",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-context-travel-service-hotel",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-context-travel-venue-hotel",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-platform-travel-service-hotel",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-platform-travel-venue-hotel",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-context-travel-service-travelPackage",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-platform-travel-service-travelPackage",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-platform-travel-service-visa",
+      "old": "expense.travel.package",
+      "new": "expense.other.general"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-context-travel-service-rideHailing",
+      "old": "expense.travel.local",
+      "new": "expense.transport.taxi"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-context-travel-action-rent",
+      "old": "expense.travel.local",
+      "new": null,
+      "reason": "Travel context plus unspecified rental cannot determine the rented object."
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-context-travel-service-storage",
+      "old": "expense.travel.supplies",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-context-travel-action-store",
+      "old": "expense.travel.supplies",
+      "new": "expense.daily.service"
+    },
+    {
+      "source": "composition_rules_source.json",
+      "kind": "rule",
+      "term": "daily-context-travel-object-bag",
+      "old": "expense.travel.supplies",
+      "new": "expense.shopping.clothing"
+    },
+    {
+      "source": "review_samples.json",
+      "kind": "reviewOracle",
+      "term": "美团外卖",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "review_samples.json",
+      "kind": "reviewOracle",
+      "term": "饿了么",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "review_samples.json",
+      "kind": "reviewOracle",
+      "term": "携程",
+      "old": "expense.travel.ticket",
+      "new": null
+    },
+    {
+      "source": "review_samples.json",
+      "kind": "reviewOracle",
+      "term": "去哪儿",
+      "old": "expense.travel.ticket",
+      "new": null
+    },
+    {
+      "source": "review_samples.json",
+      "kind": "reviewOracle",
+      "term": "汉庭",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "review_samples.json",
+      "kind": "reviewOracle",
+      "term": "亚朵",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    },
+    {
+      "source": "review_samples.json",
+      "kind": "reviewOracle",
+      "term": "故宫博物院",
+      "old": "expense.travel.attraction",
+      "new": "expense.entertainment.hobby"
+    },
+    {
+      "source": "review_samples.json",
+      "kind": "reviewOracle",
+      "term": "点外卖",
+      "old": "expense.food.takeout",
+      "new": null
+    },
+    {
+      "source": "review_samples.json",
+      "kind": "reviewOracle",
+      "term": "酒店房费",
+      "old": "expense.travel.hotel",
+      "new": "expense.housing.rent"
+    }
+  ],
+  "retiredFamilies": [
+    {
+      "id": "object.travelSupply",
+      "terms": [
+        "转换插头",
+        "雨衣",
+        "行李箱",
+        "旅行枕",
+        "旅行用品",
+        "旅游用品",
+        "旅行收纳",
+        "颈枕",
+        "洗漱包",
+        "行李牌"
+      ],
+      "kind": "object",
+      "policy": "contextualOnly"
+    },
+    {
+      "id": "object.elderSupply",
+      "terms": [
+        "护理垫",
+        "拐杖",
+        "助行器"
+      ],
+      "kind": "object",
+      "policy": "contextualOnly"
+    },
+    {
+      "id": "context.takeoutFood",
+      "terms": [
+        "麻辣烫",
+        "盖饭",
+        "汉堡",
+        "便当",
+        "米饭",
+        "面条",
+        "馒头",
+        "包子",
+        "饺子",
+        "米粉",
+        "主食"
+      ],
+      "kind": "context",
+      "policy": "contextualOnly"
+    },
+    {
+      "id": "object.babySupply",
+      "terms": [
+        "母婴用品",
+        "婴儿用品",
+        "宝宝用品",
+        "奶瓶",
+        "纸尿裤",
+        "尿不湿",
+        "婴儿车",
+        "玩具",
+        "儿童玩具",
+        "积木",
+        "玩偶",
+        "拼图",
+        "遥控车",
+        "益智玩具"
+      ],
+      "kind": "object",
+      "policy": "contextualOnly"
+    }
+  ],
+  "removedSemanticTermCount": 36,
+  "removedRuleCount": 5
+}

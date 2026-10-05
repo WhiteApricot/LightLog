@@ -110,3 +110,11 @@ Phase 3 and the next recognition evaluation do not require strong OCR cases to h
 - [ ] Review privacy, accessibility, performance, and failure recovery
 - [ ] Harden advanced local rule governance and correction/undo feedback
 - [ ] Resolve release-blocking TBD items and prepare V0.1 checklist
+
+## V0.1 taxonomy 收缩
+
+- [x] 按用户确认冻结 104 个二级语义，迁移 seed、mapping、已有知识和 review oracle；退役历史分类停用，历史账目不改写。
+- [x] Generator 校验 104 类、失效 runtime semantic 引用为零；本轮不读取或运行 holdout。
+- [ ] 在独立识别任务实现无分类证据的支出/收入 other.general fallback，完整保留所有安全门禁。
+- [ ] 在独立识别任务落实正餐文本时间 > occurredAtLocal 时间段 > 其他 food subtype；本轮只复用已有时间 routing。
+- [ ] 后续字符分类方案仅使用这 104 个标签；本轮不实现 n-gram、不开始 OCR。

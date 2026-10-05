@@ -89,7 +89,7 @@ void main() {
             specificity: EvidenceSpecificity.specific,
           );
       final result = const EvidenceFusion().fuse([
-        item('expense.travel.hotel', 'a'),
+        item('expense.housing.rent', 'a'),
         item('expense.transport.rail', 'b'),
         item('expense.transport.taxi', 'c'),
       ]);

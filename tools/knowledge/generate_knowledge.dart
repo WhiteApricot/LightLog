@@ -31,7 +31,6 @@ const _requiredSceneSemantics = {
   'expense.food.breakfast',
   'expense.food.lunch',
   'expense.food.dinner',
-  'expense.food.takeout',
   'expense.food.drink',
   'expense.food.snack',
   'expense.food.groceries',
@@ -67,9 +66,6 @@ const _requiredSceneSemantics = {
   'expense.communication.mobile',
   'expense.communication.internet',
   'expense.communication.post',
-  'expense.travel.hotel',
-  'expense.travel.ticket',
-  'expense.travel.attraction',
   'expense.sports.fitness',
   'expense.pets.food',
   'expense.pets.medical',
@@ -95,8 +91,21 @@ const _requiredSceneSemantics = {
 
 void main() {
   final validSemantics = defaultCategories
+      .where((item) => item.parentId != null)
       .map((item) => item.semanticKey)
       .toSet();
+  final childCount = defaultCategories.where((c) => c.parentId != null).length;
+  if (childCount != 104 ||
+      validSemantics.any(
+        (s) =>
+            s == 'expense.food.takeout' ||
+            s.startsWith('expense.travel') ||
+            s.startsWith('expense.family'),
+      )) {
+    throw const FormatException(
+      'V0.1 requires exactly 104 child semantics with no obsolete categories',
+    );
+  }
   final curated = _read('tools/knowledge/merchants_source.json');
   final mainland = _read('tools/knowledge/mainland_entities_source.json');
   final lexiconSource = _read('tools/knowledge/category_lexicon_source.json');
@@ -376,6 +385,8 @@ void main() {
     normalizeValues: true,
   );
   final report = <String, Object?>{
+    'secondLevelTaxonomyCount': childCount,
+    'obsoleteRuntimeSemanticReferenceCount': 0,
     'canonicalEntityCount': runtimeEntities.length,
     'aliasCount': normalizedRuntimeAliases.length,
     'lexiconEntryCount': runtimeLexicon.length,
@@ -521,7 +532,7 @@ _validateSamples({
   final samples = (reviewSamples['samples']! as List).cast<Map>();
   for (final raw in samples) {
     final sample = raw.cast<String, Object?>();
-    final expected = sample['semanticKey']! as String;
+    final expected = sample['semanticKey'] as String?;
     final fused = recognizer.recognize(
       RecognitionInput(
         rawText: '${sample['text']} 10?',

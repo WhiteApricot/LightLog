@@ -6,7 +6,10 @@ Map<String, Object?> compositionQuality(
   Map<String, Object?> familySource,
   Map<String, Object?> ruleSource,
 ) {
-  final validSemantics = categorySemanticKeys.values.toSet();
+  final validSemantics = defaultCategories
+      .where((c) => c.parentId != null)
+      .map((c) => c.semanticKey)
+      .toSet();
   final families = (familySource['families']! as List).cast<Map>();
   final rules = (ruleSource['rules']! as List).cast<Map>();
   final familyIds = <String>{};

@@ -71,7 +71,7 @@ Family 保持平面概念模型；稳定概念可以产生弱 standalone prior�
 
 ## 时间分类
 
-时间是上下文信号，而不是商户事实。餐食词可结合发生小时提供弱分类 evidence，但不得覆盖个人历史或精确商户知识。自然时间始终基于注入的 `now`；daypart 默认与周/月边界规则以算法文档为准，显式时刻优先。
+V0.1 正餐时间优先级契约见 [REQUIREMENTS.md](REQUIREMENTS.md)：明确文本时间优先于发生时间段，再优先于其他食物子类。当前实现仍使用已有弱时间 evidence；完整优先级尚待独立任务落实。自然时间始终基于注入的 `now`；daypart 默认与周/月边界规则以算法文档为准，显式时刻优先。
 
 ## OCR 流水线
 
@@ -137,3 +137,7 @@ Candidate
 - 将低置信 Candidate 直接写入正式账本。
 - Future 接入 LLM 后让其直接拥有数据库写权限。
 - 将原始支付截图持久化或上传。
+
+## 当前 taxonomy 边界
+
+V0.1 固定 104 个二级 semanticKey；按真实用途分类，外卖渠道、旅行场景、家庭使用者不再输出独立支出类。默认分类和无分类 fallback 的契约与未实现边界以 [REQUIREMENTS.md](REQUIREMENTS.md) 为准，后续模型只能使用该标签体系。收入差旅报销保留。此次只迁移知识，未修改 fusion、family matching、type 参数；没有执行新的盲测。

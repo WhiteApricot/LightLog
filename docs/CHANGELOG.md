@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+- Contracted V0.1 taxonomy to the confirmed 104 children (78 expense / 26 income) and 21 parents; removed takeout, travel/family expenses and lost/unexpected labels. Migrated existing knowledge by actual purpose without adding vocabulary; retired historical categories remain inactive with transaction references intact. Generator rejects obsolete semantic outputs. Empty-category fallback and complete meal-time priority remain pending separate implementation.
+
 ### Added
 
 - Expanded the flat lexical-family production layer to 197 families, 2145 unique terms and 316 composition rules covering 95 semantics; retained the original family/rule layer and archived the untrusted candidate pool with normalized review decisions.

@@ -615,7 +615,7 @@
       ],
       "kind": "action",
       "prior": {
-        "semanticKey": "expense.family.support",
+        "semanticKey": "expense.other.general",
         "score": 0.74
       },
       "policy": "standalone"
@@ -650,27 +650,6 @@
       ],
       "kind": "context",
       "policy": "contextualOnly"
-    },
-    {
-      "id": "object.travelSupply",
-      "terms": [
-        "转换插头",
-        "雨衣",
-        "行李箱",
-        "旅行枕",
-        "旅行用品",
-        "旅游用品",
-        "旅行收纳",
-        "颈枕",
-        "洗漱包",
-        "行李牌"
-      ],
-      "kind": "object",
-      "prior": {
-        "semanticKey": "expense.travel.supplies",
-        "score": 0.76
-      },
-      "policy": "standalone"
     },
     {
       "id": "context.sport",
@@ -1058,20 +1037,6 @@
       "policy": "contextualOnly"
     },
     {
-      "id": "object.elderSupply",
-      "terms": [
-        "护理垫",
-        "拐杖",
-        "助行器"
-      ],
-      "kind": "object",
-      "prior": {
-        "semanticKey": "expense.family.elder",
-        "score": 0.76
-      },
-      "policy": "standalone"
-    },
-    {
       "id": "service.visa",
       "terms": [
         "签证",
@@ -1087,7 +1052,7 @@
       "kind": "service",
       "policy": "standalone",
       "prior": {
-        "semanticKey": "expense.travel.ticket",
+        "semanticKey": "expense.other.general",
         "score": 0.74
       }
     },
@@ -1433,24 +1398,6 @@
         "即时零售"
       ],
       "kind": "platform",
-      "policy": "contextualOnly"
-    },
-    {
-      "id": "context.takeoutFood",
-      "terms": [
-        "麻辣烫",
-        "盖饭",
-        "汉堡",
-        "便当",
-        "米饭",
-        "面条",
-        "馒头",
-        "包子",
-        "饺子",
-        "米粉",
-        "主食"
-      ],
-      "kind": "context",
       "policy": "contextualOnly"
     },
     {
@@ -2055,31 +2002,6 @@
       "kind": "object",
       "prior": {
         "semanticKey": "expense.pets.medical",
-        "score": 0.76
-      },
-      "policy": "standalone"
-    },
-    {
-      "id": "object.babySupply",
-      "terms": [
-        "母婴用品",
-        "婴儿用品",
-        "宝宝用品",
-        "奶瓶",
-        "纸尿裤",
-        "尿不湿",
-        "婴儿车",
-        "玩具",
-        "儿童玩具",
-        "积木",
-        "玩偶",
-        "拼图",
-        "遥控车",
-        "益智玩具"
-      ],
-      "kind": "object",
-      "prior": {
-        "semanticKey": "expense.family.child",
         "score": 0.76
       },
       "policy": "standalone"
@@ -2905,7 +2827,7 @@
       ],
       "kind": "service",
       "prior": {
-        "semanticKey": "expense.travel.package",
+        "semanticKey": "expense.other.general",
         "score": 0.74
       },
       "policy": "standalone"
@@ -2923,7 +2845,7 @@
       ],
       "kind": "service",
       "prior": {
-        "semanticKey": "expense.travel.hotel",
+        "semanticKey": "expense.housing.rent",
         "score": 0.74
       },
       "policy": "standalone"
@@ -2977,7 +2899,7 @@
       ],
       "kind": "service",
       "prior": {
-        "semanticKey": "expense.family.child",
+        "semanticKey": "expense.daily.service",
         "score": 0.74
       },
       "policy": "standalone"
@@ -2995,7 +2917,7 @@
       ],
       "kind": "service",
       "prior": {
-        "semanticKey": "expense.family.elder",
+        "semanticKey": "expense.daily.service",
         "score": 0.74
       },
       "policy": "standalone"
@@ -3106,7 +3028,7 @@
       ],
       "kind": "venue",
       "prior": {
-        "semanticKey": "expense.travel.hotel",
+        "semanticKey": "expense.housing.rent",
         "score": 0.7
       },
       "policy": "standalone"

@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../data/database/database.dart';
+import '../../../data/database/seed_data.dart';
 import '../domain/normalization.dart';
 import '../domain/recognition_models.dart';
 
@@ -30,7 +31,11 @@ class LocalRecognitionRepository implements RecognitionRepository {
     if (normalizedKey.isEmpty) return const [];
     final rows =
         await (_database.select(_database.recognitionRules)
-              ..where((table) => table.normalizedContent.equals(normalizedKey))
+              ..where(
+                (table) =>
+                    table.normalizedContent.equals(normalizedKey) &
+                    table.semanticKey.isIn(categorySemanticKeys.values),
+              )
               ..orderBy([(table) => OrderingTerm.desc(table.lastUsedAt)]))
             .get();
     return [
@@ -58,10 +63,15 @@ class LocalRecognitionRepository implements RecognitionRepository {
       _database.categories,
     )..where((table) => table.id.equals(finalCategoryId))).getSingleOrNull();
     final finalSemanticKey = category?.semanticKey;
-    if (finalSemanticKey == null || finalSemanticKey.isEmpty) return;
+    if (category?.isActive != true ||
+        finalSemanticKey == null ||
+        !categorySemanticKeys.containsValue(finalSemanticKey)) {
+      return;
+    }
     await _database.transaction(() async {
       final now = recordedAtUtcMilliseconds;
       if (predictedSemanticKey != null &&
+          categorySemanticKeys.containsValue(predictedSemanticKey) &&
           predictedSemanticKey != finalSemanticKey) {
         await _increment(
           normalizedContent: key,

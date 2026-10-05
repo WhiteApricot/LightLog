@@ -91,6 +91,30 @@ class AppDatabase extends _$AppDatabase {
 
   Future<void> seedDefaults() => transaction(() async {
     final now = DateTime.now().toUtc().millisecondsSinceEpoch;
+    // Data-only taxonomy migration: retain historical IDs and foreign keys.
+    await (update(categories)..where(
+          (table) =>
+              table.id.isIn(retiredDefaultCategoryIds) &
+              (table.isActive.equals(true) | table.semanticKey.isNotNull()),
+        ))
+        .write(
+          CategoriesCompanion(
+            isActive: const Value(false),
+            semanticKey: const Value(null),
+            updatedAt: Value(now),
+          ),
+        );
+    await (update(categories)..where(
+          (table) =>
+              table.semanticKey.isNotNull() &
+              table.semanticKey.isNotIn(categorySemanticKeys.values),
+        ))
+        .write(
+          CategoriesCompanion(
+            semanticKey: const Value(null),
+            updatedAt: Value(now),
+          ),
+        );
     for (final category in defaultCategories) {
       await into(categories).insert(
         CategoriesCompanion.insert(

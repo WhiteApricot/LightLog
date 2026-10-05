@@ -6,13 +6,13 @@ Active source 为 merchants_source、mainland_entities_source、category_lexicon
 
 ## Family schema v2
 
-197 个 flat families / 2145 normalized unique terms / 316 rules 保持不变。Family 包含 id、kind、terms、policy，以及可选单个 prior（semanticKey/score）。没有 prior 就是 contextualOnly，存在合法 prior 才能是 standalone。117 standalone / 80 contextual families；prior score 为 0.70–0.78，prior 输出覆盖 78 children，composition 输出覆盖 95；联合覆盖 22 parents / 100 children。
+104 类迁移后为 193 个 flat families / 2107 normalized unique terms / 311 rules。Family 包含 id、kind、terms、policy 和可选单个 prior（semanticKey/score）。114 standalone / 79 contextual families；prior 覆盖 73 children、composition 覆盖 87，联合覆盖 21 parents / 89 children。未增加词或规则。
 
 requiresAdjacentFamily 限制单字匹配；rule 的 allowOverlap 显式声明嵌入上下文。Matcher 只扫描 family terms 一次，随后按命中的 family 索引规则。Prior 是默认值；明确 semantic lexicon 和 composition 可以覆盖，不建立 family hierarchy。
 
 单一 compositionQuality 检查 prior policy、唯一默认语义、score、taxonomy、跨 type 风险、prior/composition 矛盾、空词、normalized duplicates、危险共享词、无效 family refs、重复 rule/pair、距离、contextual orphan 和规则结构有效性。Family 数量不再作为质量 gate。Report 包含 standalone/contextual count、familiesWithSemanticPrior、prior/composition semantic coverage、parent/child coverage、orphan/unused、term/kind/rule/domain/conflict 分布。unusedRules 是结构检查结果，不能解读为 review samples 对全部规则的覆盖率。
 
-四个 runtime 文件 merchants.json、category_lexicon.json、lexical_families.json、composition_rules.json 共同参与 evaluation knowledgeHash；最终为 288a37c0。任何 family/rule 改动都会改变 fingerprint。原语义词典仍是 447 entities / 1307 aliases / 7486 positive / 355 negative terms。
+四个 runtime 文件 merchants.json、category_lexicon.json、lexical_families.json、composition_rules.json 共同参与 evaluation knowledgeHash；历史冻结值为 288a37c0；此次资产迁移后已变化。任何 family/rule 改动都会改变 fingerprint。原语义词典仍是 447 entities / 1307 aliases / 7450 positive / 354 negative terms。
 
 ## 生成与验证
 
@@ -29,3 +29,11 @@ requiresAdjacentFamily 限制单字匹配；rule 的 allowOverlap 显式声明�
 所有有历史价值的 blind initial/final reports 保留于 tools/evaluation（此前归档文件仍按历史路径保留）。本轮 v5 corpus 已移出根目录。完整 group/semantic metrics、失败分布及最终算法见 [算法记录](../../docs/RECOGNITION_ALGORITHM.md)。
 
 Phase 3 classification 未达到 freeze 门槛：v5 < 80%，deterministic semantic routing insufficient。停止扩 family/composition 和调 v5；下一独立任务评估 character 2–4 gram + linear classifier / Naive Bayes 的低置信 fallback，本轮没有实现。Phase 4 OCR structured extraction 保持独立范围。
+
+## 104 类知识迁移契约
+
+完整标签和正餐最高优先级原则见 [需求契约](../../docs/REQUIREMENTS.md)。删除 takeout、全部 travel/family 支出及 lost/unexpected；按真实用途迁移已有词、实体、prior 和规则，收入差旅报销不变。无分类时的支出/收入 other.general fallback 及完整正餐时间优先级尚待独立 pipeline 任务，本次不调识别参数。后续 n-gram 只能使用 104 个标签，本轮未实现。
+
+Generator 强制 secondLevelTaxonomyCount=104，所有知识输出必须引用合法二级语义，obsoleteRuntimeSemanticReferenceCount=0。逐项审核记录在 tools/knowledge/review/v01_taxonomy_migration.json（相对仓库根）；旧 semantic 仅作为历史审核来源，不参与 runtime generation。移除 36 条不稳定词条语义、4 个无输出的 contextual family 和 5 条无明确用途规则。
+
+本文此前的 corpus 分数、freeze hash 和 blind 记录属于旧 taxonomy 历史结果，不是迁移后验收。本轮仅运行生成、格式化、分析、单元测试和 diff 检查，未读取或运行任何 holdout。
