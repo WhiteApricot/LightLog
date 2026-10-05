@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+- 完成冻结后的migrated-104与v6首次统一验收并归档SHA256：历史category为95.26/90/94/70.67/78.75%，v6为76%；全部高置信错误为0，历史P2 safe为100%，v6无P2样本。首次报告不可覆盖，未按失败修改算法；Phase3泛化暂不收口。
+
+- Implemented guarded expense/income other.general fallback after deterministic + frozen n-gram classification and active-category resolution fail, reusing Candidate safety gates and retaining warning confidence.
+- Implemented main-meal routing by explicit parsed local time, otherwise occurredAtLocal, ahead of other food subtypes; centralized local meal windows and prevented n-gram-only daypart selection without changing the frozen model or knowledge assets.
+- Individually migrated 111 retired-label oracles across original190/v2/v3/v4/v5 to the 104-class taxonomy; archived original corpora, corrected one obsolete history reference and sealed reviewed corpora with SHA256 before production work. Added boundary/safety tests and final evaluation instrumentation.
+
 - Added offline train/dev-selected character n-gram Logistic Regression (16,384 features, int8 asset 1.796 MiB) with pure Dart inference as guarded weak fallback in the unique LocalRecognizer. Preserved deterministic priority, transaction type and safety gates; archived training data under tools/ngram. Dev accuracy 83.24% / macro F1 82.76%; frozen historical regression v4 category 62.67% -> 64.33%, v5 67.75% -> 69.00%, all high-confidence wrong 0 / P2 safe 100%. Added parity/safety tests and reproducible training/evaluation/performance reports.
 - Fixed evaluation-only handling of retired-category history fixtures, reporting exclusions while retaining historical expected labels.
 

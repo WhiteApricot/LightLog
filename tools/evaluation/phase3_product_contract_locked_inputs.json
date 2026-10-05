@@ -1,0 +1,22 @@
+{
+  "assets/knowledge/category_lexicon.json": "fa6d97a0ecdd61eea8df48c00d944032db96d619ee6f789c13a1f72b637b6cc3",
+  "assets/knowledge/composition_rules.json": "613688d9ae58512616e5833258509d67c404b94575436474deba0efd492f90b8",
+  "assets/knowledge/lexical_families.json": "ff312c0fd6d5b86822f3fb080bda58aaf1d6199fc60d3d8ba92601d9d7cff00b",
+  "assets/knowledge/merchants.json": "b29e14f230ef299911a948f8f17a31b69590156e6884d9a95e33c6075123cbfd",
+  "assets/knowledge/ngram.bin": "4e161509b937b9125cf66676bca0a2ae5d2c17d04390ef1af44e1f6f76c2a818",
+  "lib/features/recognition/domain/ngram_classifier.dart": "36bf6956bbc504de655aa51810ea4794481b127d0946fc5286bd5c6a0865ce86",
+  "lib/features/recognition/domain/ngram_model.dart": "4586d69c35d5d37905f263d8afe1eee4ff967acee9b2df8452c34cecb80261b1",
+  "tools/ngram/train.py": "876a6fa967e60220522eab72dbcf6711a5ed4b8bbd62e976d3ff660fcc37449f",
+  "tools/ngram/training_report.json": "f5959a2089d59d24bdd2066b92850c7702d8774397121ed50bac77278f3efc61",
+  "tools/ngram/requirements.txt": "5621df29dcdf29dc0a1f77ab8b30ea003628a88135761333b578ffdbe340991b",
+  "tools/ngram/data/ngram_dataset_review_report_v2.json": "34f9561a3bba6a33ae42784e44aa414ec4e83c7a335bf739c78c439d901f7aeb",
+  "tools/ngram/data/ngram_dev_v2.jsonl": "064f692db4f304bc00b669abeea657aab1b66620793a9f611222722636d25249",
+  "tools/ngram/data/ngram_training_corpus_v2.jsonl": "7b102aa2c519dc34f56cc18156d66f3a2351efb8a63b828e119683b48619e4c9",
+  "tools/ngram/data/ngram_train_v2.jsonl": "74fb53c23ece0d3f7d75d4f37aa3508f1799fb84e93fc3364df5b7e8c26d3e10",
+  "tools/knowledge/category_lexicon_source.json": "fd8521805c49d2d27ad6b96d711efbc9901e0d40b92925ba011ff1de27efe89d",
+  "tools/knowledge/composition_rules_source.json": "29c67ff3af2ca40699558bccd15345d41d561a87475e827d1c96cc559c70bcc0",
+  "tools/knowledge/lexical_families_source.json": "300283ff92bee4c3c19412f578f08bb79c6efc4232a8c69cc6491f00fa9368e8",
+  "tools/knowledge/lexicon_expansion_source.json": "bf39552b0cc9e23a2e4fb6dea5e67fdfbb951fefeaab0f1bde8bc78a1facb0ed",
+  "tools/knowledge/mainland_entities_source.json": "801fbf4428943e178a45c9f83048644382a017ded75bc6ec7331e18b0f5a00ab",
+  "tools/knowledge/merchants_source.json": "9ef91f5b80797d2e4ee77f761070e58f01690c5d062de01de1f70abddef8e4ab"
+}

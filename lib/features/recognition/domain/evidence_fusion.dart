@@ -17,6 +17,29 @@ class EvidenceFusionResult {
 class EvidenceFusion {
   const EvidenceFusion();
 
+  /// Product contract: a definite meal and its parsed local time outrank food
+  /// subtypes. Non-food purposes and all safety gates remain untouched.
+  EvidenceFusionResult withMealEvidence(
+    EvidenceFusionResult deterministic,
+    RecognitionEvidence? meal,
+  ) {
+    if (meal == null ||
+        (deterministic.semanticKey != null &&
+            !deterministic.semanticKey!.startsWith('expense.food.'))) {
+      return deterministic;
+    }
+    return EvidenceFusionResult(
+      semanticKey: meal.semanticKey,
+      confidence: meal.score.clamp(0, .79),
+      issueCodes: {
+        ...deterministic.issueCodes.where(
+          (c) => c != RecognitionIssueCode.categoryLowConfidence,
+        ),
+      },
+      winningEvidence: [meal],
+    );
+  }
+
   bool needsWeakEvidence(EvidenceFusionResult deterministic) =>
       deterministic.semanticKey == null ||
       (deterministic.confidence < .70 &&

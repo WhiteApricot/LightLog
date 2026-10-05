@@ -62,6 +62,7 @@ Raw Input / OCR Text
 → independent TypeInference + Evidence Fusion
 → semanticKey
 → CategoryResolver
+→ guarded other.general fallback if no legal ordinary expense/income category
 → RecognitionCandidate
 → Confirm
 → Repository

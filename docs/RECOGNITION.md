@@ -71,7 +71,7 @@ Family 保持平面概念模型；稳定概念可以产生弱 standalone prior�
 
 ## 时间分类
 
-V0.1 正餐时间优先级契约见 [REQUIREMENTS.md](REQUIREMENTS.md)：明确文本时间优先于发生时间段，再优先于其他食物子类。当前实现仍使用已有弱时间 evidence；完整优先级尚待独立任务落实。自然时间始终基于注入的 `now`；daypart 默认与周/月边界规则以算法文档为准，显式时刻优先。
+V0.1 正餐时间优先级已落实：明确正餐证据结合文本时刻优先，缺少文本时刻时使用已提取的occurredAtLocal，再优先于其他food subtype。ContextEvidenceBuilder集中管理餐段窗口，EvidenceFusion仅在食品用途内应用该产品规则；模型不能单独决定餐段。自然时间仍复用注入now的NaturalTimeParser，显式时刻优先；日期本身不算明确餐段。
 
 ## OCR 流水线
 
@@ -140,4 +140,4 @@ Candidate
 
 ## 当前 taxonomy 边界
 
-V0.1 固定104个二级semanticKey；按真实用途分类，外卖渠道、旅行场景、家庭使用者不再输出独立支出类。默认分类和无分类other.general fallback的契约与未实现边界以 [REQUIREMENTS.md](REQUIREMENTS.md) 为准；当前字符模型只使用该标签体系。收入差旅报销保留。taxonomy迁移时未修改fusion/type参数；后续字符模块仅增加受限弱evidence，完整前后回归与冻结见算法文档。
+V0.1固定104个二级semanticKey；外卖渠道、旅行场景、家庭使用者不再输出独立支出类，收入差旅报销保留。字符模型完全冻结。普通有效收支在所有证据及映射失败后使用other.general低置信fallback，复用Candidate同一危险门禁和CategoryResolver；可用分类缺失时继续返回不完整结果。104-class历史oracle迁移、封存协议、生产冻结及最终评测见算法文档。

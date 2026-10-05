@@ -95,20 +95,26 @@ class LocalRecognizer {
         now: input.nowLocal,
       ),
       ...resolvedSemanticEvidence,
-      ..._contextBuilder.build(
-        matchingText: normalized.matchingText,
-        occurredHour: fields.time.value.hour,
-        timeIsExplicit: fields.time.isExplicit,
-        entityEvidence: resolvedSemanticEvidence,
-      ),
     ];
-    final deterministicFusion = _fusion.fuse(semanticEvidence);
+    final mealEvidence = _contextBuilder
+        .build(
+          matchingText: normalized.matchingText,
+          occurredHour: fields.time.value.hour,
+          timeIsExplicit: fields.time.isExplicit,
+          entityEvidence: resolvedSemanticEvidence,
+        )
+        .firstOrNull;
+    final deterministicFusion = _fusion.withMealEvidence(
+      _fusion.fuse(semanticEvidence),
+      mealEvidence,
+    );
+    if (mealEvidence != null) semanticEvidence.add(mealEvidence);
     final typeDecision = _typeInference.reconcile(
       preliminaryType,
       deterministicFusion.semanticKey,
       deterministicFusion.winningEvidence,
     );
-    final weakEvidence =
+    var weakEvidence =
         _fusion.needsWeakEvidence(deterministicFusion) &&
             (fields.status == TransactionStatus.success ||
                 fields.status == TransactionStatus.unknown) &&
@@ -117,6 +123,13 @@ class LocalRecognizer {
             typeDecision.type != RecognitionTransactionType.refund
         ? ngram?.evidence(input.rawText)
         : null;
+    // A frozen model may suggest a meal label, but never determines daypart.
+    if (mealEvidence == null &&
+        ContextEvidenceBuilder.mealSemantics.contains(
+          weakEvidence?.semanticKey,
+        )) {
+      weakEvidence = null;
+    }
     final fusion = _fusion.withWeakEvidence(
       deterministicFusion,
       weakEvidence,
@@ -139,14 +152,46 @@ class LocalRecognizer {
     if (type == RecognitionTransactionType.refund) {
       issueCodes.add(RecognitionIssueCode.relatedTransactionRequired);
     }
-    final resolved = fusion.semanticKey == null || resolverType == null
+    var semanticKey = fusion.semanticKey;
+    var categoryConfidence = fusion.confidence;
+    var resolved = semanticKey == null || resolverType == null
         ? null
         : _resolver.resolve(
-            semanticKey: fusion.semanticKey!,
+            semanticKey: semanticKey,
             type: resolverType,
             categories: input.activeCategories,
           );
-    if (fusion.semanticKey != null &&
+    // Final category resolution only: deterministic and n-gram had their chance.
+    // Reuse the same dangerous-issue gate as Candidate confirmation.
+    if (resolved == null &&
+        (type == RecognitionTransactionType.expense ||
+            type == RecognitionTransactionType.income) &&
+        (fields.selectedAmount?.amountMinor ?? 0) > 0 &&
+        !RecognitionResult.isSafetyBlocked(issueCodes)) {
+      final fallbackKey = '${type!.value}.other.general';
+      final fallback = _resolver.resolve(
+        semanticKey: fallbackKey,
+        type: type,
+        categories: input.activeCategories,
+      );
+      if (fallback != null) {
+        resolved = fallback;
+        semanticKey = fallbackKey;
+        categoryConfidence = .55;
+        issueCodes.add(RecognitionIssueCode.categoryLowConfidence);
+        semanticEvidence.add(
+          RecognitionEvidence(
+            field: 'category',
+            description: '无合法分类，使用其他分类并要求确认',
+            score: .55,
+            source: RecognitionEvidenceSource.context,
+            semanticKey: fallbackKey,
+            family: 'otherGeneralFallback',
+          ),
+        );
+      }
+    }
+    if (semanticKey != null &&
         resolved == null &&
         fields.status != TransactionStatus.refund) {
       issueCodes.add(RecognitionIssueCode.categoryMappingMissing);
@@ -157,7 +202,7 @@ class LocalRecognizer {
     final fieldConfidence = FieldConfidence(
       amount: amountConfidence,
       type: typeDecision.confidence,
-      category: fusion.confidence,
+      category: categoryConfidence,
       time: fields.time.isExplicit ? 0.96 : 0.82,
       content: content?.confidence ?? 0,
     );
@@ -184,7 +229,7 @@ class LocalRecognizer {
       subcategoryId: resolved?.child.id,
       categoryName: resolved?.parent.name,
       subcategoryName: resolved?.child.name,
-      semanticKey: fusion.semanticKey,
+      semanticKey: semanticKey,
       confidence: confidence,
       fieldConfidence: fieldConfidence,
       evidence: List.unmodifiable([

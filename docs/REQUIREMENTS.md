@@ -67,9 +67,9 @@ UI 重点优化 `expense` 和 `income`，但数据模型必须能表达全部四
 
 支出按真实用途分类。“外卖”是渠道，删除 `expense.food.takeout`；删除全部 `expense.travel.*` 和 `expense.family.*`。旅行交通、保险、用品按实际用途迁移；酒店、民宿、青旅统一归入 `expense.housing.rent`；无法稳定拆分用途的旅行套餐、签证代办归入 `expense.other.general`。儿童、老人等是使用者上下文，医疗、教育、护理用品按实际用途分类，纯家庭生活补贴归入 `expense.other.general`。`income.reimbursement.travel` 保留。
 
-保留早餐、午餐、晚餐。明确正餐证据 + 明确文本时间 > 明确正餐证据 + occurredAtLocal 时间段 > 其他 food subtype，是目标分类的最高优先级原则；不能把外卖渠道整体静态映射到某一餐。本轮仅迁移知识并保留现有正餐时间路由；通用无显式时间正餐及完整优先级落实属于下一独立任务。
+保留早餐、午餐、晚餐。明确正餐证据 + 明确文本时间 > 明确正餐证据 + occurredAtLocal 时间段 > 其他 food subtype，是食品用途分类的最高优先级原则；不能把外卖渠道整体静态映射到某一餐。该规则已在唯一LocalRecognizer中实现，时段、弱置信上限和证据边界见 [算法文档](RECOGNITION_ALGORITHM.md)。n-gram不能单独猜餐段，饮品、零食及食材本身不属于明确正餐证据。
 
-有效金额、交易类型已识别且无合法分类证据的普通支出应归入 `expense.other.general`；收入应归入 `income.other.general`。failed、cancelled、nontransaction、多笔交易、金额缺失、未关联退款不得被 fallback 绕过。目前 CategoryResolver 没有可配置的空语义 fallback，LocalRecognizer 的空语义路径不会调用 resolver；本轮不修改 pipeline，fallback 实现留在 TODO，不能宣称已生效。
+有效金额、交易类型已识别且最终无合法semantic/活动分类映射的普通支出归入 `expense.other.general`，收入归入 `income.other.general`。该fallback已在deterministic与ngram均尝试之后实现，复用CategoryResolver；必须有可用的other.general活动分类，结果保持warning并要求复核。failed、cancelled、nontransaction、多笔交易、金额缺失、未关联退款及其他safety-blocked状态不得被fallback绕过，不得伪造缺失的分类映射。
 
 ### 二级分类
 

@@ -134,7 +134,20 @@ class NaturalTimeParser {
     }
 
     String? daypart;
-    for (final token in ['凌晨', '今天早上', '早上', '上午', '中午', '下午', '晚上']) {
+    for (final token in [
+      '凌晨',
+      '今天早上',
+      '早上',
+      '清晨',
+      '早晨',
+      '上午',
+      '中午',
+      '正午',
+      '午间',
+      '下午',
+      '晚上',
+      '晚间',
+    ]) {
       if (remaining.contains(token)) {
         daypart = token;
         break;
@@ -144,9 +157,9 @@ class NaturalTimeParser {
       explicit = true;
       hour = switch (daypart) {
         '凌晨' => 2,
-        '今天早上' || '早上' => 8,
+        '今天早上' || '早上' || '清晨' || '早晨' => 8,
         '上午' => 9,
-        '中午' => 12,
+        '中午' || '正午' || '午间' => 12,
         '下午' => 15,
         _ => 20,
       };
@@ -160,6 +173,7 @@ class NaturalTimeParser {
         '早饭',
         '午餐',
         '午饭',
+        '中饭',
         '晚餐',
         '晚饭',
         '夜宵',
@@ -168,7 +182,7 @@ class NaturalTimeParser {
         explicit = true;
         hour = switch (mealDaypart) {
           '早餐' || '早点' || '早饭' => 8,
-          '午餐' || '午饭' => 12,
+          '午餐' || '午饭' || '中饭' => 12,
           '晚餐' || '晚饭' => 20,
           _ => 22,
         };
@@ -251,7 +265,7 @@ class NaturalTimeParser {
       RegExp(r'这个月初|本月初|这个月底|本月底|前天|昨晚|昨天|今早|今晚|今天|明天'),
       'relativeDate',
     );
-    addMatches(RegExp(r'凌晨|今天早上|早上|上午|中午|下午|晚上'), 'daypart');
+    addMatches(RegExp(r'凌晨|今天早上|早上|清晨|早晨|上午|中午|正午|午间|下午|晚上|晚间'), 'daypart');
     spans.sort((a, b) => a.range.start.compareTo(b.range.start));
     return List.unmodifiable(spans);
   }
@@ -267,10 +281,10 @@ class NaturalTimeParser {
   };
 
   static int _adjustHourForPeriod(int hour, String input) {
-    if (RegExp(r'下午|晚上|今晚|昨晚').hasMatch(input) && hour < 12) {
+    if (RegExp(r'下午|晚上|晚间|今晚|昨晚').hasMatch(input) && hour < 12) {
       return hour + 12;
     }
-    if (input.contains('中午') && hour < 11) return hour + 12;
+    if (RegExp(r'中午|正午|午间').hasMatch(input) && hour < 11) return hour + 12;
     if (input.contains('凌晨') && hour == 12) return 0;
     return hour;
   }

@@ -1,0 +1,133 @@
+{
+  "productionSha256": "91de03c89c5b170af8f8b62901697ee46b12b9d59c4fb71728f257f02dab1996",
+  "phase3ClosureRecommended": false,
+  "reason": "v5 category 78.75%, v6 category 76%, v6 P1 72.66%; v6 has no P2 samples",
+  "reports": [
+    {
+      "report": "original190_104class_final",
+      "totalCases": 190,
+      "categoryAccuracy": 0.9526315789473684,
+      "parentCategoryAccuracy": 0.968421052631579,
+      "typeAccuracy": 1.0,
+      "categoryNullCount": 5,
+      "otherGeneralFallbackCount": 6,
+      "mealRoutingCaseCount": 19,
+      "mealRoutingAccuracy": 0.8947368421052632,
+      "highConfidenceWrongPredictionCount": 0,
+      "latencyMicroseconds": {
+        "average": 357.8315789473684,
+        "p50": 264,
+        "p95": 922,
+        "p99": 1236,
+        "max": 2678
+      },
+      "p2SampleCount": 15,
+      "p2Safe": 1.0
+    },
+    {
+      "report": "v2_104class_final",
+      "totalCases": 190,
+      "categoryAccuracy": 0.9,
+      "parentCategoryAccuracy": 0.9368421052631579,
+      "typeAccuracy": 1.0,
+      "categoryNullCount": 6,
+      "otherGeneralFallbackCount": 13,
+      "mealRoutingCaseCount": 10,
+      "mealRoutingAccuracy": 0.9,
+      "highConfidenceWrongPredictionCount": 0,
+      "latencyMicroseconds": {
+        "average": 352.90526315789475,
+        "p50": 267,
+        "p95": 850,
+        "p99": 1053,
+        "max": 1306
+      },
+      "p2SampleCount": 39,
+      "p2Safe": 1.0
+    },
+    {
+      "report": "v3_104class_final",
+      "totalCases": 200,
+      "categoryAccuracy": 0.94,
+      "parentCategoryAccuracy": 0.96,
+      "typeAccuracy": 0.98,
+      "categoryNullCount": 0,
+      "otherGeneralFallbackCount": 5,
+      "mealRoutingCaseCount": 1,
+      "mealRoutingAccuracy": 1.0,
+      "highConfidenceWrongPredictionCount": 0,
+      "latencyMicroseconds": {
+        "average": 295.22,
+        "p50": 251,
+        "p95": 495,
+        "p99": 874,
+        "max": 1370
+      },
+      "p2SampleCount": 5,
+      "p2Safe": 1.0
+    },
+    {
+      "report": "v4_104class_final",
+      "totalCases": 300,
+      "categoryAccuracy": 0.7066666666666667,
+      "parentCategoryAccuracy": 0.7833333333333333,
+      "typeAccuracy": 0.9733333333333334,
+      "categoryNullCount": 0,
+      "otherGeneralFallbackCount": 48,
+      "mealRoutingCaseCount": 5,
+      "mealRoutingAccuracy": 0.8,
+      "highConfidenceWrongPredictionCount": 0,
+      "latencyMicroseconds": {
+        "average": 311.37666666666667,
+        "p50": 269,
+        "p95": 625,
+        "p99": 801,
+        "max": 1240
+      },
+      "p2SampleCount": 9,
+      "p2Safe": 1.0
+    },
+    {
+      "report": "v5_104class_final",
+      "totalCases": 400,
+      "categoryAccuracy": 0.7875,
+      "parentCategoryAccuracy": 0.8425,
+      "typeAccuracy": 0.965,
+      "categoryNullCount": 0,
+      "otherGeneralFallbackCount": 48,
+      "mealRoutingCaseCount": 12,
+      "mealRoutingAccuracy": 1.0,
+      "highConfidenceWrongPredictionCount": 0,
+      "latencyMicroseconds": {
+        "average": 308.205,
+        "p50": 264,
+        "p95": 660,
+        "p99": 832,
+        "max": 1332
+      },
+      "p2SampleCount": 2,
+      "p2Safe": 1.0
+    },
+    {
+      "report": "v6_first_run_initial",
+      "totalCases": 400,
+      "categoryAccuracy": 0.76,
+      "parentCategoryAccuracy": 0.82,
+      "typeAccuracy": 0.9625,
+      "categoryNullCount": 0,
+      "otherGeneralFallbackCount": 66,
+      "mealRoutingCaseCount": 25,
+      "mealRoutingAccuracy": 0.76,
+      "highConfidenceWrongPredictionCount": 0,
+      "latencyMicroseconds": {
+        "average": 326.8375,
+        "p50": 288,
+        "p95": 692,
+        "p99": 889,
+        "max": 1131
+      },
+      "p2SampleCount": 0,
+      "p2Safe": null
+    }
+  ]
+}

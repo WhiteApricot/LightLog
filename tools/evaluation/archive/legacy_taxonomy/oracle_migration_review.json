@@ -1,0 +1,3011 @@
+[
+  {
+    "corpus": "lightlog_phase3_recognition_test_cases.json",
+    "id": "L019",
+    "input": "民宿 288",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 28800,
+      "content": "民宿",
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-hotel",
+      "occurredAtLocal": null,
+      "minConfidence": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 28800,
+      "content": "民宿",
+      "categoryId": "expense-housing",
+      "subcategoryId": "expense-housing-rent",
+      "occurredAtLocal": null,
+      "minConfidence": null,
+      "issues": [],
+      "semanticKey": "expense.housing.rent"
+    },
+    "reason": "民宿住宿"
+  },
+  {
+    "corpus": "lightlog_phase3_recognition_test_cases.json",
+    "id": "L020",
+    "input": "景区门票 80",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 8000,
+      "content": "景区门票",
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-attraction",
+      "occurredAtLocal": null,
+      "minConfidence": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 8000,
+      "content": "景区门票",
+      "categoryId": "expense-entertainment",
+      "subcategoryId": "expense-entertainment-hobby",
+      "occurredAtLocal": null,
+      "minConfidence": null,
+      "issues": [],
+      "semanticKey": "expense.entertainment.hobby"
+    },
+    "reason": "景区游览门票"
+  },
+  {
+    "corpus": "lightlog_phase3_recognition_test_cases.json",
+    "id": "P004",
+    "input": "美团 外卖 32",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3200,
+      "content": "美团外卖",
+      "categoryId": "expense-food",
+      "subcategoryId": "expense-food-takeout",
+      "occurredAtLocal": null,
+      "minConfidence": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3200,
+      "content": "美团外卖",
+      "categoryId": "expense-food",
+      "subcategoryId": "expense-food-other",
+      "occurredAtLocal": null,
+      "minConfidence": null,
+      "issues": [],
+      "semanticKey": "expense.food.other"
+    },
+    "reason": "外卖渠道，无明确正餐或饮品零食用途"
+  },
+  {
+    "corpus": "lightlog_phase3_recognition_test_cases.json",
+    "id": "H003",
+    "input": "美团 35",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3500,
+      "content": "美团",
+      "categoryId": "expense-food",
+      "subcategoryId": "expense-food-takeout",
+      "occurredAtLocal": null,
+      "minConfidence": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3500,
+      "content": "美团",
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "minConfidence": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "只有美团平台，不能推定具体食品用途"
+  },
+  {
+    "corpus": "lightlog_phase3_recognition_test_cases.json",
+    "id": "X013",
+    "input": "给爸妈生活费 1000",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 100000,
+      "content": "给爸妈生活费",
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-elder",
+      "occurredAtLocal": null,
+      "minConfidence": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 100000,
+      "content": "给爸妈生活费",
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "minConfidence": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "父母生活补贴，非护理商品"
+  },
+  {
+    "corpus": "lightlog_phase3_recognition_test_cases.json",
+    "id": "X014",
+    "input": "孩子补习班 1200",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 120000,
+      "content": "孩子补习班",
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-education",
+      "occurredAtLocal": null,
+      "minConfidence": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 120000,
+      "content": "孩子补习班",
+      "categoryId": "expense-education",
+      "subcategoryId": "expense-education-course",
+      "occurredAtLocal": null,
+      "minConfidence": null,
+      "issues": [],
+      "semanticKey": "expense.education.course"
+    },
+    "reason": "孩子补习课程"
+  },
+  {
+    "corpus": "lightlog_phase3_stress_holdout_v2.json",
+    "id": "S074",
+    "input": "支付成功\n商户名：汉庭酒店\n入住日期 2026-10-08\n离店日期 2026-10-10\n房费 498.00\n优惠 50\n实付 448.00\n支付时间 2026-10-05 09:15",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 44800,
+      "content": "汉庭酒店",
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-hotel",
+      "occurredAtLocal": "2026-10-05T09:15:00",
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 44800,
+      "content": "汉庭酒店",
+      "categoryId": "expense-housing",
+      "subcategoryId": "expense-housing-rent",
+      "occurredAtLocal": "2026-10-05T09:15:00",
+      "issues": [],
+      "semanticKey": "expense.housing.rent"
+    },
+    "reason": "酒店房费"
+  },
+  {
+    "corpus": "lightlog_phase3_stress_holdout_v2.json",
+    "id": "S116",
+    "input": "给妈妈生活费 500",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 50000,
+      "content": "给妈妈生活费",
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-support",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 50000,
+      "content": "给妈妈生活费",
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "母亲生活补贴"
+  },
+  {
+    "corpus": "lightlog_phase3_stress_holdout_v2.json",
+    "id": "S117",
+    "input": "孩子看病 200",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 20000,
+      "content": "孩子看病",
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-health",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 20000,
+      "content": "孩子看病",
+      "categoryId": "expense-medical",
+      "subcategoryId": "expense-medical-clinic",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.medical.clinic"
+    },
+    "reason": "孩子看病门诊"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C060",
+    "input": "孩子看病 200",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 20000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-health",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 20000,
+      "content": null,
+      "categoryId": "expense-medical",
+      "subcategoryId": "expense-medical-clinic",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.medical.clinic"
+    },
+    "reason": "孩子看病"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C061",
+    "input": "宝宝打疫苗 100",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 10000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-health",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 10000,
+      "content": null,
+      "categoryId": "expense-medical",
+      "subcategoryId": "expense-medical-clinic",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.medical.clinic"
+    },
+    "reason": "疫苗诊疗服务"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C062",
+    "input": "给孩子买药 60",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 6000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-health",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 6000,
+      "content": null,
+      "categoryId": "expense-medical",
+      "subcategoryId": "expense-medical-medicine",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.medical.medicine"
+    },
+    "reason": "孩子药品"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C063",
+    "input": "老人看病 300",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 30000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-health",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 30000,
+      "content": null,
+      "categoryId": "expense-medical",
+      "subcategoryId": "expense-medical-clinic",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.medical.clinic"
+    },
+    "reason": "老人看病"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C064",
+    "input": "给爸妈买药 120",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 12000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-health",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 12000,
+      "content": null,
+      "categoryId": "expense-medical",
+      "subcategoryId": "expense-medical-medicine",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.medical.medicine"
+    },
+    "reason": "父母药品"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C065",
+    "input": "孩子补课 600",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 60000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-education",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 60000,
+      "content": null,
+      "categoryId": "expense-education",
+      "subcategoryId": "expense-education-course",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.education.course"
+    },
+    "reason": "补课"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C066",
+    "input": "宝宝早教课 1200",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 120000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-education",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 120000,
+      "content": null,
+      "categoryId": "expense-education",
+      "subcategoryId": "expense-education-course",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.education.course"
+    },
+    "reason": "早教课程"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C067",
+    "input": "孩子兴趣班 800",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 80000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-education",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 80000,
+      "content": null,
+      "categoryId": "expense-education",
+      "subcategoryId": "expense-education-course",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.education.course"
+    },
+    "reason": "兴趣班课程"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C068",
+    "input": "给爸妈生活费 1000",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 100000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-support",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 100000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "父母生活补贴"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C069",
+    "input": "给家里补贴 1500",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 150000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-support",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 150000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "家庭生活补贴"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C070",
+    "input": "赡养费 2000",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 200000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-elder",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 200000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "赡养生活费"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C075",
+    "input": "旅行买转换插头 35",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3500,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-supplies",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3500,
+      "content": null,
+      "categoryId": "expense-digital",
+      "subcategoryId": "expense-digital-accessory",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.digital.accessory"
+    },
+    "reason": "电源转换插头"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C076",
+    "input": "旅行买行李锁 25",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 2500,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-supplies",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 2500,
+      "content": null,
+      "categoryId": "expense-shopping",
+      "subcategoryId": "expense-shopping-home",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.shopping.home"
+    },
+    "reason": "行李锁家居出行用品"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C094",
+    "input": "美团外卖 25",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 2500,
+      "content": null,
+      "categoryId": "expense-food",
+      "subcategoryId": "expense-food-takeout",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 2500,
+      "content": null,
+      "categoryId": "expense-food",
+      "subcategoryId": "expense-food-other",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.food.other"
+    },
+    "reason": "只有外卖渠道，没有明确正餐证据"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C101",
+    "input": "携程酒店 399",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 39900,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-hotel",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 39900,
+      "content": null,
+      "categoryId": "expense-housing",
+      "subcategoryId": "expense-housing-rent",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.housing.rent"
+    },
+    "reason": "酒店住宿"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C118",
+    "input": "美团外卖麻辣烫 32",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3200,
+      "content": null,
+      "categoryId": "expense-food",
+      "subcategoryId": "expense-food-takeout",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3200,
+      "content": null,
+      "categoryId": "expense-food",
+      "subcategoryId": "expense-food-lunch",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.food.lunch"
+    },
+    "reason": "麻辣烫正餐；referenceNow当地13:20"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C123",
+    "input": "飞猪酒店 450",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 45000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-hotel",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 45000,
+      "content": null,
+      "categoryId": "expense-housing",
+      "subcategoryId": "expense-housing-rent",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.housing.rent"
+    },
+    "reason": "酒店住宿"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C125",
+    "input": "携程景区门票 160",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 16000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-attraction",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 16000,
+      "content": null,
+      "categoryId": "expense-entertainment",
+      "subcategoryId": "expense-entertainment-hobby",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.entertainment.hobby"
+    },
+    "reason": "景区门票"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C162",
+    "input": "景区门票 120",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 12000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-attraction",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 12000,
+      "content": null,
+      "categoryId": "expense-entertainment",
+      "subcategoryId": "expense-entertainment-hobby",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.entertainment.hobby"
+    },
+    "reason": "景区门票"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C172",
+    "input": "儿童医院 380",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 38000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-health",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 38000,
+      "content": null,
+      "categoryId": "expense-medical",
+      "subcategoryId": "expense-medical-clinic",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.medical.clinic"
+    },
+    "reason": "儿童医院"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C179",
+    "input": "孩子配眼镜 600",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 60000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-health",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 60000,
+      "content": null,
+      "categoryId": "expense-medical",
+      "subcategoryId": "expense-medical-dental",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.medical.dental"
+    },
+    "reason": "配眼镜；当前口腔眼科分类"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C180",
+    "input": "给爸爸买降压药 90",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 9000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-health",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 9000,
+      "content": null,
+      "categoryId": "expense-medical",
+      "subcategoryId": "expense-medical-medicine",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.medical.medicine"
+    },
+    "reason": "降压药"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C190",
+    "input": "宝宝纸尿裤 120",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 12000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-child",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 12000,
+      "content": null,
+      "categoryId": "expense-daily",
+      "subcategoryId": "expense-daily-personal",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.daily.personal"
+    },
+    "reason": "纸尿裤个人护理用品"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C191",
+    "input": "儿童绘本 80",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 8000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-education",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 8000,
+      "content": null,
+      "categoryId": "expense-education",
+      "subcategoryId": "expense-education-book",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.education.book"
+    },
+    "reason": "儿童绘本书籍"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C192",
+    "input": "老人护理垫 65",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 6500,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-elder",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 6500,
+      "content": null,
+      "categoryId": "expense-daily",
+      "subcategoryId": "expense-daily-personal",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.daily.personal"
+    },
+    "reason": "老人护理垫"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C198",
+    "input": "旅游买雨衣 20",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 2000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-supplies",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 2000,
+      "content": null,
+      "categoryId": "expense-shopping",
+      "subcategoryId": "expense-shopping-clothing",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.shopping.clothing"
+    },
+    "reason": "雨衣服饰"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C199",
+    "input": "出差酒店住宿 520",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 52000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-hotel",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 52000,
+      "content": null,
+      "categoryId": "expense-housing",
+      "subcategoryId": "expense-housing-rent",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.housing.rent"
+    },
+    "reason": "出差住宿，非差旅收入报销"
+  },
+  {
+    "corpus": "lightlog_phase3_compositional_holdout_v3.json",
+    "id": "C200",
+    "input": "办签证服务费 400",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 40000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-package",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 40000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "签证服务，需求契约明确兜底"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G094",
+    "input": "美团叫了份便当 26",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 2600,
+      "content": null,
+      "categoryId": "expense-food",
+      "subcategoryId": "expense-food-takeout",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 2600,
+      "content": null,
+      "categoryId": "expense-food",
+      "subcategoryId": "expense-food-lunch",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.food.lunch"
+    },
+    "reason": "便当正餐；referenceNow当地14:30"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G151",
+    "input": "宝宝纸尿裤 138",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 13800,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-child",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 13800,
+      "content": null,
+      "categoryId": "expense-daily",
+      "subcategoryId": "expense-daily-personal",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.daily.personal"
+    },
+    "reason": "纸尿裤个人护理用品"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G152",
+    "input": "婴儿奶瓶 69",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 6900,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-child",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 6900,
+      "content": null,
+      "categoryId": "expense-daily",
+      "subcategoryId": "expense-daily-personal",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.daily.personal"
+    },
+    "reason": "奶瓶个人生活用品"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G153",
+    "input": "儿童玩具积木 159",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 15900,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-child",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 15900,
+      "content": null,
+      "categoryId": "expense-shopping",
+      "subcategoryId": "expense-shopping-other",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.shopping.other"
+    },
+    "reason": "玩具积木"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G154",
+    "input": "孩子钢琴课 800",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 80000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-education",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 80000,
+      "content": null,
+      "categoryId": "expense-education",
+      "subcategoryId": "expense-education-course",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.education.course"
+    },
+    "reason": "钢琴课程"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G155",
+    "input": "孩子买教辅书 120",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 12000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-education",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 12000,
+      "content": null,
+      "categoryId": "expense-education",
+      "subcategoryId": "expense-education-book",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.education.book"
+    },
+    "reason": "教辅书"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G156",
+    "input": "给妈妈生活补贴 1000",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 100000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-support",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 100000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "母亲生活补贴"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G157",
+    "input": "给家里转生活费 1500",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 150000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-support",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 150000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "家庭生活费；保留原始expense类型oracle"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G158",
+    "input": "老人护理垫 76",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 7600,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-elder",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 7600,
+      "content": null,
+      "categoryId": "expense-daily",
+      "subcategoryId": "expense-daily-personal",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.daily.personal"
+    },
+    "reason": "护理垫"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G159",
+    "input": "给爷爷买拐杖 180",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 18000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-elder",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 18000,
+      "content": null,
+      "categoryId": "expense-medical",
+      "subcategoryId": "expense-medical-rehab",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.medical.rehab"
+    },
+    "reason": "拐杖康复辅助用品"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G160",
+    "input": "孩子配眼镜 650",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 65000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-health",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 65000,
+      "content": null,
+      "categoryId": "expense-medical",
+      "subcategoryId": "expense-medical-dental",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.medical.dental"
+    },
+    "reason": "配眼镜；口腔眼科"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G181",
+    "input": "民宿两晚 560",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 56000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-hotel",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 56000,
+      "content": null,
+      "categoryId": "expense-housing",
+      "subcategoryId": "expense-housing-rent",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.housing.rent"
+    },
+    "reason": "民宿住宿"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G182",
+    "input": "青旅床位 88",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 8800,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-hotel",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 8800,
+      "content": null,
+      "categoryId": "expense-housing",
+      "subcategoryId": "expense-housing-rent",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.housing.rent"
+    },
+    "reason": "青旅住宿"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G183",
+    "input": "出游往返大巴 160",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 16000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-ticket",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 16000,
+      "content": null,
+      "categoryId": "expense-transport",
+      "subcategoryId": "expense-transport-public",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.transport.public"
+    },
+    "reason": "大巴公共交通"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G184",
+    "input": "旅行接驳车 45",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 4500,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-local",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 4500,
+      "content": null,
+      "categoryId": "expense-transport",
+      "subcategoryId": "expense-transport-public",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.transport.public"
+    },
+    "reason": "接驳车公共交通"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G185",
+    "input": "景区观光车 30",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-local",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3000,
+      "content": null,
+      "categoryId": "expense-transport",
+      "subcategoryId": "expense-transport-public",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.transport.public"
+    },
+    "reason": "观光车交通服务"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G186",
+    "input": "博物馆特展门票 80",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 8000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-attraction",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 8000,
+      "content": null,
+      "categoryId": "expense-entertainment",
+      "subcategoryId": "expense-entertainment-hobby",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.entertainment.hobby"
+    },
+    "reason": "博物馆展览门票"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G187",
+    "input": "主题乐园快速通行 299",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 29900,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-attraction",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 29900,
+      "content": null,
+      "categoryId": "expense-entertainment",
+      "subcategoryId": "expense-entertainment-hobby",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.entertainment.hobby"
+    },
+    "reason": "乐园通行服务"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G188",
+    "input": "旅行社跟团尾款 1800",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 180000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-package",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 180000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "不可稳定拆分的跟团旅行套餐"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G189",
+    "input": "签证代办服务 420",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 42000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-package",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 42000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "签证代办，需求契约明确兜底"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G190",
+    "input": "当地导游服务 300",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 30000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-package",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 30000,
+      "content": null,
+      "categoryId": "expense-daily",
+      "subcategoryId": "expense-daily-service",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.daily.service"
+    },
+    "reason": "导游劳务服务，非交通或门票"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G191",
+    "input": "旅行收纳袋 39",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3900,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-supplies",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3900,
+      "content": null,
+      "categoryId": "expense-shopping",
+      "subcategoryId": "expense-shopping-home",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.shopping.home"
+    },
+    "reason": "收纳袋"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G192",
+    "input": "行李箱绑带 25",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 2500,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-supplies",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 2500,
+      "content": null,
+      "categoryId": "expense-shopping",
+      "subcategoryId": "expense-shopping-home",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.shopping.home"
+    },
+    "reason": "行李箱绑带"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G292",
+    "input": "门禁卡弄丢赔了50",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 5000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-lost",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 5000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "遗失赔付，lost退役"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G293",
+    "input": "临时补交一笔杂费 80",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 8000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-unexpected",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 8000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "无法拆分的临时杂费"
+  },
+  {
+    "corpus": "lightlog_phase3_family_generalization_holdout_v4.json",
+    "id": "G294",
+    "input": "宝宝临时托管 120",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 12000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-child",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 12000,
+      "content": null,
+      "categoryId": "expense-daily",
+      "subcategoryId": "expense-daily-service",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.daily.service"
+    },
+    "reason": "儿童托管生活服务"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-010",
+    "input": "外卖黄焖鸡 88",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 8800,
+      "content": null,
+      "categoryId": "expense-food",
+      "subcategoryId": "expense-food-takeout",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 8800,
+      "content": null,
+      "categoryId": "expense-food",
+      "subcategoryId": "expense-food-dinner",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.food.dinner"
+    },
+    "reason": "黄焖鸡正餐；referenceNow当地17:45"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-011",
+    "input": "点了份外卖 99",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 9900,
+      "content": null,
+      "categoryId": "expense-food",
+      "subcategoryId": "expense-food-takeout",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 9900,
+      "content": null,
+      "categoryId": "expense-food",
+      "subcategoryId": "expense-food-other",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.food.other"
+    },
+    "reason": "只有外卖渠道，没有明确正餐证据"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-012",
+    "input": "送到家的麻辣烫 120",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 12000,
+      "content": null,
+      "categoryId": "expense-food",
+      "subcategoryId": "expense-food-takeout",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 12000,
+      "content": null,
+      "categoryId": "expense-food",
+      "subcategoryId": "expense-food-dinner",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.food.dinner"
+    },
+    "reason": "麻辣烫正餐；referenceNow当地17:45"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-169",
+    "input": "酒店住宿 138",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 13800,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-hotel",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 13800,
+      "content": null,
+      "categoryId": "expense-housing",
+      "subcategoryId": "expense-housing-rent",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.housing.rent"
+    },
+    "reason": "酒店住宿"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-170",
+    "input": "民宿两晚 168",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 16800,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-hotel",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 16800,
+      "content": null,
+      "categoryId": "expense-housing",
+      "subcategoryId": "expense-housing-rent",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.housing.rent"
+    },
+    "reason": "民宿住宿"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-171",
+    "input": "青旅床位 199",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 19900,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-hotel",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 19900,
+      "content": null,
+      "categoryId": "expense-housing",
+      "subcategoryId": "expense-housing-rent",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.housing.rent"
+    },
+    "reason": "青旅住宿"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-172",
+    "input": "旅行往返大巴 239",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 23900,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-ticket",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 23900,
+      "content": null,
+      "categoryId": "expense-transport",
+      "subcategoryId": "expense-transport-public",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.transport.public"
+    },
+    "reason": "大巴公共交通"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-173",
+    "input": "旅游火车联程票 299",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 29900,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-ticket",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 29900,
+      "content": null,
+      "categoryId": "expense-transport",
+      "subcategoryId": "expense-transport-rail",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.transport.rail"
+    },
+    "reason": "火车联程票"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-174",
+    "input": "旅行交通套票 399",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 39900,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-ticket",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 39900,
+      "content": null,
+      "categoryId": "expense-transport",
+      "subcategoryId": "expense-transport-public",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.transport.public"
+    },
+    "reason": "交通套票，未指定轨道航空方式"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-175",
+    "input": "景区接驳车 520",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 52000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-local",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 52000,
+      "content": null,
+      "categoryId": "expense-transport",
+      "subcategoryId": "expense-transport-public",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.transport.public"
+    },
+    "reason": "接驳车公共交通"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-176",
+    "input": "旅行当地打车 680",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 68000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-local",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 68000,
+      "content": null,
+      "categoryId": "expense-transport",
+      "subcategoryId": "expense-transport-taxi",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.transport.taxi"
+    },
+    "reason": "当地打车"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-177",
+    "input": "旅游观光车 880",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 88000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-local",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 88000,
+      "content": null,
+      "categoryId": "expense-transport",
+      "subcategoryId": "expense-transport-public",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.transport.public"
+    },
+    "reason": "观光车交通服务"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-178",
+    "input": "景区门票 1200",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 120000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-attraction",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 120000,
+      "content": null,
+      "categoryId": "expense-entertainment",
+      "subcategoryId": "expense-entertainment-hobby",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.entertainment.hobby"
+    },
+    "reason": "景区门票"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-179",
+    "input": "博物馆特展票 1600",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 160000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-attraction",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 160000,
+      "content": null,
+      "categoryId": "expense-entertainment",
+      "subcategoryId": "expense-entertainment-hobby",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.entertainment.hobby"
+    },
+    "reason": "博物馆展览票"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-180",
+    "input": "主题乐园门票 2200",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 220000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-attraction",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 220000,
+      "content": null,
+      "categoryId": "expense-entertainment",
+      "subcategoryId": "expense-entertainment-hobby",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.entertainment.hobby"
+    },
+    "reason": "主题乐园门票"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-181",
+    "input": "跟团游尾款 3500",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 350000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-package",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 350000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "无法稳定拆分的跟团游"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-182",
+    "input": "签证代办 5200",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 520000,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-package",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 520000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "签证代办，需求契约明确兜底"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-183",
+    "input": "旅行社套餐 12",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 1200,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-package",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 1200,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "无法稳定拆分的旅行社套餐"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-184",
+    "input": "旅行收纳袋 18",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 1800,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-supplies",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 1800,
+      "content": null,
+      "categoryId": "expense-shopping",
+      "subcategoryId": "expense-shopping-home",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.shopping.home"
+    },
+    "reason": "收纳袋"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-185",
+    "input": "行李箱绑带 25",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 2500,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-supplies",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 2500,
+      "content": null,
+      "categoryId": "expense-shopping",
+      "subcategoryId": "expense-shopping-home",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.shopping.home"
+    },
+    "reason": "行李箱绑带"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-186",
+    "input": "出游转换插头 32",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3200,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-supplies",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3200,
+      "content": null,
+      "categoryId": "expense-digital",
+      "subcategoryId": "expense-digital-accessory",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.digital.accessory"
+    },
+    "reason": "电源转换插头"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-253",
+    "input": "宝宝纸尿裤 520",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 52000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-child",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 52000,
+      "content": null,
+      "categoryId": "expense-daily",
+      "subcategoryId": "expense-daily-personal",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.daily.personal"
+    },
+    "reason": "纸尿裤个人护理用品"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-254",
+    "input": "婴儿奶瓶 680",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 68000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-child",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 68000,
+      "content": null,
+      "categoryId": "expense-daily",
+      "subcategoryId": "expense-daily-personal",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.daily.personal"
+    },
+    "reason": "奶瓶个人生活用品"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-255",
+    "input": "儿童玩具 880",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 88000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-child",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 88000,
+      "content": null,
+      "categoryId": "expense-shopping",
+      "subcategoryId": "expense-shopping-other",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.shopping.other"
+    },
+    "reason": "儿童玩具"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-256",
+    "input": "老人护理垫 1200",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 120000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-elder",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 120000,
+      "content": null,
+      "categoryId": "expense-daily",
+      "subcategoryId": "expense-daily-personal",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.daily.personal"
+    },
+    "reason": "护理垫"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-257",
+    "input": "给爷爷买拐杖 1600",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 160000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-elder",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 160000,
+      "content": null,
+      "categoryId": "expense-medical",
+      "subcategoryId": "expense-medical-rehab",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.medical.rehab"
+    },
+    "reason": "拐杖康复用品"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-258",
+    "input": "老人照护用品 2200",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 220000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-elder",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 220000,
+      "content": null,
+      "categoryId": "expense-daily",
+      "subcategoryId": "expense-daily-personal",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.daily.personal"
+    },
+    "reason": "照护日常用品"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-259",
+    "input": "给家里生活费 3500",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 350000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-support",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 350000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "家庭生活补贴"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-260",
+    "input": "给父母生活补贴 5200",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 520000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-support",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 520000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "父母生活补贴"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-261",
+    "input": "家庭日常补贴 12",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 1200,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-support",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 1200,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "家庭生活补贴"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-262",
+    "input": "孩子补课 18",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 1800,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-education",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 1800,
+      "content": null,
+      "categoryId": "expense-education",
+      "subcategoryId": "expense-education-course",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.education.course"
+    },
+    "reason": "孩子补课"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-263",
+    "input": "儿童绘本教材 25",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 2500,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-education",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 2500,
+      "content": null,
+      "categoryId": "expense-education",
+      "subcategoryId": "expense-education-book",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.education.book"
+    },
+    "reason": "绘本教材书籍"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-264",
+    "input": "孩子兴趣班 32",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3200,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-education",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3200,
+      "content": null,
+      "categoryId": "expense-education",
+      "subcategoryId": "expense-education-course",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.education.course"
+    },
+    "reason": "兴趣班课程"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-265",
+    "input": "孩子看病 39",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3900,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-health",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3900,
+      "content": null,
+      "categoryId": "expense-medical",
+      "subcategoryId": "expense-medical-clinic",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.medical.clinic"
+    },
+    "reason": "孩子看病"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-266",
+    "input": "给爸妈买药 46",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 4600,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-health",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 4600,
+      "content": null,
+      "categoryId": "expense-medical",
+      "subcategoryId": "expense-medical-medicine",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.medical.medicine"
+    },
+    "reason": "父母药品"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-267",
+    "input": "老人门诊 58",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 5800,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-health",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 5800,
+      "content": null,
+      "categoryId": "expense-medical",
+      "subcategoryId": "expense-medical-clinic",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.medical.clinic"
+    },
+    "reason": "老人门诊"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-271",
+    "input": "东西丢了赔钱 99",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 9900,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-lost",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 9900,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "遗失赔付，lost退役"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-272",
+    "input": "遗失物品赔付 120",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 12000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-lost",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 12000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "遗失赔付，lost退役"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-273",
+    "input": "丢失赔偿 138",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 13800,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-lost",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 13800,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "遗失赔付，lost退役"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-274",
+    "input": "临时突发支出 168",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 16800,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-unexpected",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 16800,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "临时支出，unexpected退役"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-275",
+    "input": "意外临时花费 199",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 19900,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-unexpected",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 19900,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "临时支出，unexpected退役"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-276",
+    "input": "紧急杂费 239",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 23900,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-unexpected",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 23900,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "无法拆分的紧急杂费"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-356",
+    "input": "旅行途中地铁 7",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 700,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-local",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 700,
+      "content": null,
+      "categoryId": "expense-transport",
+      "subcategoryId": "expense-transport-public",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.transport.public"
+    },
+    "reason": "地铁公共交通"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-371",
+    "input": "孩子口腔看牙 600",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 60000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-health",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 60000,
+      "content": null,
+      "categoryId": "expense-medical",
+      "subcategoryId": "expense-medical-dental",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.medical.dental"
+    },
+    "reason": "口腔看牙"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-373",
+    "input": "给妈妈买降压药 90",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 9000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-health",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 9000,
+      "content": null,
+      "categoryId": "expense-medical",
+      "subcategoryId": "expense-medical-medicine",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.medical.medicine"
+    },
+    "reason": "降压药"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-375",
+    "input": "给孩子买教材 120",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 12000,
+      "content": null,
+      "categoryId": "expense-family",
+      "subcategoryId": "expense-family-education",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 12000,
+      "content": null,
+      "categoryId": "expense-education",
+      "subcategoryId": "expense-education-book",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.education.book"
+    },
+    "reason": "教材书籍"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-380",
+    "input": "旅行买雨衣 35",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3500,
+      "content": null,
+      "categoryId": "expense-travel",
+      "subcategoryId": "expense-travel-supplies",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 3500,
+      "content": null,
+      "categoryId": "expense-shopping",
+      "subcategoryId": "expense-shopping-clothing",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.shopping.clothing"
+    },
+    "reason": "雨衣服饰"
+  },
+  {
+    "corpus": "lightlog_phase3_semantic_routing_holdout_v5.json",
+    "id": "V5-399",
+    "input": "一个说不清是什么的临时开销 60",
+    "before": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 6000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-unexpected",
+      "occurredAtLocal": null,
+      "issues": []
+    },
+    "after": {
+      "status": "complete",
+      "type": "expense",
+      "amountMinor": 6000,
+      "content": null,
+      "categoryId": "expense-other",
+      "subcategoryId": "expense-other-general",
+      "occurredAtLocal": null,
+      "issues": [],
+      "semanticKey": "expense.other.general"
+    },
+    "reason": "无法确定用途的临时开销"
+  }
+]

@@ -1,0 +1,55 @@
+{
+  "v6OriginalSha256": "10a5ad45a136255d9e80202ab22550446ceb23aa45e1cf1372eff13bc10232d7",
+  "v6ArchivedPath": "tools/evaluation/corpora/phase3_104class/lightlog_phase3_104class_generalization_v6.json",
+  "productionVerifiedUnchanged": true,
+  "sha256": {
+    "tools/evaluation/corpora/phase3_104class/lightlog_phase3_104class_generalization_v6.json": "10a5ad45a136255d9e80202ab22550446ceb23aa45e1cf1372eff13bc10232d7",
+    "tools/evaluation/corpora/phase3_104class/lightlog_phase3_compositional_holdout_v3_104class.json": "a4094e9ffcc9fb89f65fe0cb597825618cb04b0f82f1846dd5e4c59bd0debc57",
+    "tools/evaluation/corpora/phase3_104class/lightlog_phase3_family_generalization_holdout_v4_104class.json": "b1292913e8c067a521ab3263535a6928e94421f0513415834e27a469b3241658",
+    "tools/evaluation/corpora/phase3_104class/lightlog_phase3_recognition_test_cases_104class.json": "d13b12f17dfe41ecd2e2beac9a1bb0b5f2b28949ea8f91304083ebd7ab918f07",
+    "tools/evaluation/corpora/phase3_104class/lightlog_phase3_semantic_routing_holdout_v5_104class.json": "023a234d74e3583e93c11b611671ad62711921b3a31f932c0a9fdb9acfbdc12d",
+    "tools/evaluation/corpora/phase3_104class/lightlog_phase3_stress_holdout_v2_104class.json": "865154fe3f7ab4d91879f3c88d0550f5ba3883dd6a6e415ce553152dee5f7b4a",
+    "tools/evaluation/reports/phase3_product_contract/final_analysis.md": "c541679858551a30dddb76c70561cd6333c219fc5fe681a89e50223fe7083bf3",
+    "tools/evaluation/reports/phase3_product_contract/original190_104class_final.json": "a32ad80a89c257c51fd7e1348e904ffafc1a7bfc96eafa38490afa5c8c40082d",
+    "tools/evaluation/reports/phase3_product_contract/summary.json": "d16eeb40020190acbbbb6c8ff22784dd97d15df7220cce75f0d382da409746bd",
+    "tools/evaluation/reports/phase3_product_contract/v2_104class_final.json": "2364191bb635226d2972d94ea12f53f1be96c6909a9699d2666a62940b571f02",
+    "tools/evaluation/reports/phase3_product_contract/v3_104class_final.json": "1c9fd496d5bb17231026b654c2dc6578822b19a100b3b077986674c59f26d16d",
+    "tools/evaluation/reports/phase3_product_contract/v4_104class_final.json": "61fb58c89b5964393c33028e6ad0764981ee2a3841c8e1b812edee08e1448800",
+    "tools/evaluation/reports/phase3_product_contract/v5_104class_final.json": "27814ee79faed0200ee21b3b175f7e4b682d97d85b7e947f595a4e2cc8287e2d",
+    "tools/evaluation/reports/phase3_product_contract/v6_first_run_initial.json": "f2301a0565c21af6be5283892f3aea6c88483c1c5f047cfaeb078b0e70e2e171",
+    "tools/evaluation/oracle_migration_freeze.json": "0b9df6a13e787e515b6aac22f7dc9c809761021b5cf9d765c05e36d6c33baab2",
+    "tools/evaluation/phase3_product_contract_production_freeze.json": "de9fe08ed63968fdef90afb638599802321217eeeb489903794d39f298001e0d"
+  },
+  "oracleValidation": {
+    "lightlog_phase3_104class_generalization_v6.json": {
+      "cases": 400,
+      "coveredSemanticCount": 104,
+      "allExpectedLabelsLegal": true
+    },
+    "lightlog_phase3_compositional_holdout_v3_104class.json": {
+      "cases": 200,
+      "coveredSemanticCount": 71,
+      "allExpectedLabelsLegal": true
+    },
+    "lightlog_phase3_family_generalization_holdout_v4_104class.json": {
+      "cases": 300,
+      "coveredSemanticCount": 104,
+      "allExpectedLabelsLegal": true
+    },
+    "lightlog_phase3_recognition_test_cases_104class.json": {
+      "cases": 190,
+      "coveredSemanticCount": 71,
+      "allExpectedLabelsLegal": true
+    },
+    "lightlog_phase3_semantic_routing_holdout_v5_104class.json": {
+      "cases": 400,
+      "coveredSemanticCount": 104,
+      "allExpectedLabelsLegal": true
+    },
+    "lightlog_phase3_stress_holdout_v2_104class.json": {
+      "cases": 190,
+      "coveredSemanticCount": 62,
+      "allExpectedLabelsLegal": true
+    }
+  }
+}

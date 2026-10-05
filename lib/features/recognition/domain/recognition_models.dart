@@ -304,7 +304,7 @@ class RecognitionResult {
   ];
 
   ConfirmationLevel get confirmationLevel {
-    if (issueCodes.any(_dangerousIssueCodes.contains)) {
+    if (isSafetyBlocked(issueCodes)) {
       return ConfirmationLevel.blocked;
     }
     if (issueCodes.isNotEmpty || confidence < 0.80 || !hasRequiredFields) {
@@ -345,6 +345,9 @@ class RecognitionResult {
     RecognitionIssueCode.relatedTransactionRequired,
     RecognitionIssueCode.multipleTransactionsDetected,
   };
+
+  static bool isSafetyBlocked(Iterable<RecognitionIssueCode> issues) =>
+      issues.any(_dangerousIssueCodes.contains);
 
   static const _blockingIssueCodes = {..._dangerousIssueCodes};
 

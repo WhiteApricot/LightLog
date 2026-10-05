@@ -141,3 +141,38 @@ train=38,539、dev=4,832、104类，splitGroup 不交叉。八组 Logistic Regre
 本机Dart VM warm dev ngram p50/p95/p99=0.019/0.032/0.044ms，完整LocalRecognizer=0.521/1.119/1.390ms；既有10000次warm benchmark p95=0.517ms。完整指标与逐类/分组结果见 [summary](../tools/ngram/evaluation_summary.json)、[runtime report](../tools/ngram/runtime_report.json) 和regression目录。以上为host CPU，不宣称Android/API26实机性能。
 
 模块已冻结，分类收益有限，整个Phase3泛化收口尚未达到历史阈值；不继续调历史holdout。完整正餐时间优先级、无语义other.general fallback、OCR和新未见corpus仍是独立任务。复现命令、数据归档、依赖与资产格式见 [训练工具](../tools/ngram/README.md)。
+
+## 104-class oracle与产品规则冻结（2026-10-06）
+
+本节取代上一轮fallback/正餐优先级“待实现”的状态。没有重训、改动n-gram input/weights/threshold/margin、扩充实体/词典/family/composition或调整其优先级。模型仍为char2–3、16384维Logistic Regression、int8、confidence ceiling=0.69；资产SHA256仍为`4e161509b937b9125cf66676bca0a2ae5d2c17d04390ef1af44e1f6f76c2a818`。
+
+先单独审核旧oracle，逐条按实际食品/住宿/交通/娱乐/用品/教育/医疗/护理用途迁移退役分类，不使用识别预测；原190/v2/v3/v4/v5分别迁移6/3/28/26/48条，共111条，原始输入和所有合法标签以及type/status/amount/time/issues不变。H003的旧平台history改为无确定用途的other.general。原始文件及逐条理由在tools/evaluation/archive/legacy_taxonomy；新文件命名为*_104class.json。全部非空expected semantic和history引用通过104-class校验，SHA256与封存时刻见 [oracle freeze](../tools/evaluation/oracle_migration_freeze.json)。封存后到production freeze期间没有重新打开、搜索、解析或统计新corpus及审核明细；v6直到最终验收前保持未读。
+
+other.general发生在deterministic、冻结ngram及活动分类映射均尝试后：普通expense/income、正合法金额、没有Candidate统一危险门禁、最终没有合法分类时，再由原CategoryResolver尝试`type.other.general`。若other.general本身停用/无父子映射则继续不完整，不伪造ID。实际兜底证据标记otherGeneralFallback、category confidence=0.55并保留warning/复核；不改变type/amount/time/content，不绕过失败、取消、非交易、多笔、缺金额或需关联退款。
+
+ContextEvidenceBuilder复用已解析的当地发生时刻和现有食品正证据，识别明确正餐/熟食主食结构；不建立第二套pipeline，不修改知识数据。明确文本时刻由NaturalTimeParser优先提取，否则使用occurredAtLocal；只有日期不算显式餐段。集中时窗：早餐[05:00,10:00)，午餐[10:00,17:00)，晚餐[17:00,次日05:00)，无空档。EvidenceFusion.withMealEvidence仅在食品用途内让明确正餐与时刻优先于其他food subtype，非食品目的保持原融合。饮品/零食/食材、外卖渠道本身不能产生正餐路由；保留原有“餐饮商户+显式交易时刻”的弱上下文，并在出现具体非正餐食品时禁止该商户推断。路由confidence为显式时刻0.79、发生时刻0.74，均要求确认。ngram-only的breakfast/lunch/dinner不被采用，不能猜餐段。
+
+独立机制测试覆盖24小时和分钟边界、正文时刻优先、日期不含时刻、主食、饮品/零食/食材、无映射/停用映射、统一危险门禁及模型不得独立猜餐段。全量format/analyze/test、既有warm benchmark完成后，记录 [production freeze](../tools/evaluation/phase3_product_contract_production_freeze.json)，包含生产源码、评测工具、全部锁定模型/知识/训练输入hash和聚合productionSha256。冻结后禁止修改识别代码。
+
+最终评测一次运行所有migrated-104及v6 first-run。meal accuracy分母预先固定为全部expected早餐/午餐/晚餐case（包括未命中），另记路由应用数；otherGeneralFallbackCount只计实际兜底，不把词典或模型本来预测other.general计入。P2 expected reject必须blocked且不能quick-confirm，同时报告全P2 blocked rate。v6 initial报告不可覆盖；首次结束后只分析失败、维护文档和归档。结果与Phase3收口建议见下表，流程见 [evaluation README](../tools/evaluation/README.md)。
+
+最终冻结评测；无结果驱动的算法变更。
+
+| Corpus | Category | Parent | Type | null | fallback | Meal | P2 safe | p50/p95/p99 ms |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| original190_104class_final | 95.26% | 96.84% | 100.00% | 5 | 6 | 89.47% (19例) | 100% | 0.264/0.922/1.236 |
+| v2_104class_final | 90.00% | 93.68% | 100.00% | 6 | 13 | 90.00% (10例) | 100% | 0.267/0.850/1.053 |
+| v3_104class_final | 94.00% | 96.00% | 98.00% | 0 | 5 | 100.00% (1例) | 100% | 0.251/0.495/0.874 |
+| v4_104class_final | 70.67% | 78.33% | 97.33% | 0 | 48 | 80.00% (5例) | 100% | 0.269/0.625/0.801 |
+| v5_104class_final | 78.75% | 84.25% | 96.50% | 0 | 48 | 100.00% (12例) | 100% | 0.264/0.660/0.832 |
+| v6_first_run_initial | 76.00% | 82.00% | 96.25% | 0 | 66 | 76.00% (25例) | N/A (0例) | 0.288/0.692/0.889 |
+
+所有报告high-confidence wrong=0。v6无P2样本，原始report的空分母数值0必须解释为N/A。v6首次报告保持原字节，不覆盖。
+
+v6分类错误96例，其中错父类72、父类正确但子类错误24；type错误15例。餐段19/25，失败集中在正餐证据缺失与已吃食品/食材边界；仅分析记录，不增加规则。
+
+format、analyze、113项test及diff检查通过。10000次warm benchmark p50/p95/p99=0.148/0.405/0.472ms；冻结n-gram既有p95=0.032ms。均为本机Dart VM，非Android实机。
+
+本轮实现任务完成；不建议Phase 3整体收口：v5、v6分类仍低于80%，v6 P1为72.66%，且缺少P2覆盖。
+
+完整结果与SHA256见 [验收归档](../tools/evaluation/phase3_product_contract_artifacts.json)。productionSha256=`91de03c89c5b170af8f8b62901697ee46b12b9d59c4fb71728f257f02dab1996`，最终评测后再次验证全部生产hash未变。

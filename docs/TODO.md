@@ -116,6 +116,8 @@ Phase 3 and the next recognition evaluation do not require strong OCR cases to h
 
 - [x] 按用户确认冻结 104 个二级语义，迁移 seed、mapping、已有知识和 review oracle；退役历史分类停用，历史账目不改写。
 - [x] Generator 校验 104 类、失效 runtime semantic 引用为零；本轮不读取或运行 holdout。
-- [ ] 在独立识别任务实现无分类证据的支出/收入 other.general fallback，完整保留所有安全门禁。
-- [ ] 在独立识别任务落实正餐文本时间 > occurredAtLocal 时间段 > 其他 food subtype；本轮只复用已有时间 routing。
+- [x] 在唯一LocalRecognizer中实现所有证据及分类映射失败后的支出/收入other.general fallback，复用Candidate安全门禁，保持warning。
+- [x] 落实明确正餐文本时间 > occurredAtLocal时间段 > 其他food subtype；集中餐段窗口，禁止模型单独猜餐段，保留饮品/零食/食材边界。
+- [x] 逐条迁移五套历史失效taxonomy oracle，原始数据归档，104-class校验和SHA256封存后停止访问内容，生产完成前保持v6 blind。
+- [x] 生产冻结后统一评测五套migrated-104与v6 immutable first-run，记录失败，禁止继续调本轮算法。v6 category=76%、meal=76%、high-confidence wrong=0；无P2样本。v5/v6未达80%，Phase3整体暂不收口，结果见RECOGNITION_ALGORITHM.md。
 - [x] 字符模型仅使用104标签，完成训练、弱fallback集成、测试和评测；未开始OCR。

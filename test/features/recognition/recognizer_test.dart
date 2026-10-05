@@ -218,8 +218,9 @@ void main() {
       final result = recognizeForTest('老王 88');
 
       expect(result.draft.type, RecognitionTransactionType.expense);
-      expect(result.semanticKey, isNull);
-      expect(result.resultStatus, RecognitionResultStatus.partial);
+      expect(result.semanticKey, 'expense.other.general');
+      expect(result.resultStatus, RecognitionResultStatus.complete);
+      expect(result.confirmationLevel, ConfirmationLevel.warning);
     },
   );
 

@@ -1,0 +1,52 @@
+{
+  "sealedAt": "2026-10-05T17:22:36.457042+00:00",
+  "taxonomyCount": 104,
+  "policy": "No further corpus or review-content access until production freeze. v6 remains unopened.",
+  "corpora": [
+    {
+      "source": "tools\\evaluation\\archive\\legacy_taxonomy\\lightlog_phase3_recognition_test_cases.json",
+      "sourceSha256": "2513047d0c2d0ba6d6a4d309248ed944eb45b9f38c6833b3ef19ac47cd6a86e9",
+      "target": "tools\\evaluation\\corpora\\phase3_104class\\lightlog_phase3_recognition_test_cases_104class.json",
+      "sha256": "d13b12f17dfe41ecd2e2beac9a1bb0b5f2b28949ea8f91304083ebd7ab918f07",
+      "cases": 190,
+      "migratedLabels": 6,
+      "invalidLabels": 0
+    },
+    {
+      "source": "tools\\evaluation\\archive\\legacy_taxonomy\\lightlog_phase3_stress_holdout_v2.json",
+      "sourceSha256": "283bd27965f0664c13e195b9e73f3a11c3ebd3d45d385277ecf313b30b3e3d5d",
+      "target": "tools\\evaluation\\corpora\\phase3_104class\\lightlog_phase3_stress_holdout_v2_104class.json",
+      "sha256": "865154fe3f7ab4d91879f3c88d0550f5ba3883dd6a6e415ce553152dee5f7b4a",
+      "cases": 190,
+      "migratedLabels": 3,
+      "invalidLabels": 0
+    },
+    {
+      "source": "tools\\evaluation\\archive\\legacy_taxonomy\\lightlog_phase3_compositional_holdout_v3.json",
+      "sourceSha256": "d3acde91457298feeacd5632c91cef76a253aabcf4bcdf5ec467d9d669b63882",
+      "target": "tools\\evaluation\\corpora\\phase3_104class\\lightlog_phase3_compositional_holdout_v3_104class.json",
+      "sha256": "a4094e9ffcc9fb89f65fe0cb597825618cb04b0f82f1846dd5e4c59bd0debc57",
+      "cases": 200,
+      "migratedLabels": 28,
+      "invalidLabels": 0
+    },
+    {
+      "source": "tools\\evaluation\\archive\\legacy_taxonomy\\lightlog_phase3_family_generalization_holdout_v4.json",
+      "sourceSha256": "6b0008f27e7faf267381bbd9d3db25fd0a327a21a88235065c427993b7d48200",
+      "target": "tools\\evaluation\\corpora\\phase3_104class\\lightlog_phase3_family_generalization_holdout_v4_104class.json",
+      "sha256": "b1292913e8c067a521ab3263535a6928e94421f0513415834e27a469b3241658",
+      "cases": 300,
+      "migratedLabels": 26,
+      "invalidLabels": 0
+    },
+    {
+      "source": "tools\\evaluation\\archive\\legacy_taxonomy\\lightlog_phase3_semantic_routing_holdout_v5.json",
+      "sourceSha256": "ce0820930142b7fccad62237b56c93f0504c6def2ed518034e6d607d1464b49d",
+      "target": "tools\\evaluation\\corpora\\phase3_104class\\lightlog_phase3_semantic_routing_holdout_v5_104class.json",
+      "sha256": "023a234d74e3583e93c11b611671ad62711921b3a31f932c0a9fdb9acfbdc12d",
+      "cases": 400,
+      "migratedLabels": 48,
+      "invalidLabels": 0
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import 'package:light_log/data/database/seed_data.dart';
 
 import 'package:light_log/features/recognition/domain/normalization.dart';
 import 'package:light_log/features/recognition/domain/recognition_models.dart';
+import 'package:light_log/features/recognition/domain/context_evidence.dart';
 
 import '../recognition_tool_harness.dart';
 import 'knowledge_hash.dart';
@@ -36,6 +37,10 @@ void main(List<String> args) {
   final categoryById = {
     for (final item in RecognitionToolHarness.categories) item.id: item,
   };
+  final categoryBySemantic = {
+    for (final item in RecognitionToolHarness.categories)
+      if (item.parentId != null) item.semanticKey: item,
+  };
   final cases = isBaselineReport
       ? [
           for (final raw in (root['failures']! as List))
@@ -49,6 +54,26 @@ void main(List<String> args) {
             },
         ]
       : (root['cases']! as List).cast<Map<String, Object?>>();
+  // Accept semantic-first fixtures as well as the historical database-ID form.
+  // This conversion never changes a supplied oracle.
+  for (final testCase in cases) {
+    final expected = testCase['expected']! as Map;
+    final semantic = expected['semanticKey'] as String?;
+    if (semantic != null) {
+      final category = categoryBySemantic[semantic];
+      if (category == null) {
+        throw StateError('Invalid oracle semantic: $semantic');
+      }
+      if ((expected['subcategoryId'] != null &&
+              expected['subcategoryId'] != category.id) ||
+          (expected['categoryId'] != null &&
+              expected['categoryId'] != category.parentId)) {
+        throw StateError('Oracle semantic/ID mismatch: ${testCase['id']}');
+      }
+      expected['subcategoryId'] = category.id;
+      expected['categoryId'] = category.parentId;
+    }
+  }
   for (var index = 0; index < 1000; index++) {
     harness.recognize(
       cases[index % cases.length]['input']! as String,
@@ -60,7 +85,11 @@ void main(List<String> args) {
   final inactiveHistory = <Map<String, Object?>>[];
   final latencies = <int>[];
   for (final testCase in cases) {
-    final setup = (testCase['setup']! as Map).cast<String, Object?>();
+    final setup = (testCase['setup'] as Map? ?? const {})
+        .cast<String, Object?>();
+    final caseNow = setup['nowLocal'] == null
+        ? now
+        : _wallTime(setup['nowLocal']! as String);
     final history = <PersonalHistoryRecord>[];
     for (final raw in (setup['history'] as List? ?? const [])) {
       final item = (raw as Map).cast<String, Object?>();
@@ -82,14 +111,14 @@ void main(List<String> args) {
           semanticKey: category.semanticKey!,
           hitCount: item['hitCount']! as int,
           correctionCount: item['correctionCount']! as int,
-          lastUsedAt: now.millisecondsSinceEpoch,
+          lastUsedAt: caseNow.millisecondsSinceEpoch,
         ),
       );
     }
     final stopwatch = Stopwatch()..start();
     final candidate = harness.recognize(
       testCase['input']! as String,
-      now: now,
+      now: caseNow,
       history: history,
     );
     stopwatch.stop();
@@ -102,6 +131,7 @@ void main(List<String> args) {
     'corpus': metadata['name'],
     'corpusVersion': metadata['version'],
     'recognizerVersion': 3,
+    'evaluationVersion': 4,
     'ngramEnabled': !const bool.fromEnvironment('DISABLE_NGRAM'),
     'knowledgeHash': knowledgeHash(),
     'evaluatedAt': DateTime.now().toUtc().toIso8601String(),
@@ -123,6 +153,34 @@ void main(List<String> args) {
     'categoryNullCount': results
         .where((r) => (r['actual'] as Map)['categoryId'] == null)
         .length,
+    'otherGeneralFallbackCount': results
+        .where((r) => r['otherGeneralFallback'] == true)
+        .length,
+    'otherGeneralCategoryCount': results
+        .where(
+          (r) => const {
+            'expense.other.general',
+            'income.other.general',
+          }.contains((r['actual'] as Map)['semanticKey']),
+        )
+        .length,
+    // Denominator is all oracles expecting breakfast/lunch/dinner, fixed before
+    // opening the blind corpus; includes missed routes, not just successful ones.
+    'mealRoutingCaseCount': results
+        .where((r) => r['mealOracle'] == true)
+        .length,
+    'mealRoutingAccuracy': _rate(
+      results.where((r) => r['mealOracle'] == true),
+      (r) => r['categoryCorrect'] == true,
+    ),
+    'mealRoutingAccuracyDefinition': 'Category accuracy over all non-null breakfast/lunch/dinner oracles, including missed routes',
+    'mealRoutingAppliedCount': results
+        .where((r) => r['mealRoutingApplied'] == true)
+        .length,
+    'p2BlockedRate': _rate(
+      results.where((r) => r['priority'] == 'P2'),
+      (r) => r['confirmationLevel'] == ConfirmationLevel.blocked.name,
+    ),
     'wrongCategoryCount': results
         .where(
           (r) =>
@@ -235,7 +293,8 @@ Map<String, Object?> _evaluate(
         actual.draft.occurredAtLocal,
         _wallTime(expected['occurredAtLocal']! as String),
       );
-  final expectedIssues = (expected['issues']! as List).cast<String>();
+  final expectedIssues = (expected['issues'] as List? ?? const [])
+      .cast<String>();
   final actualIssues = actual.issueCodes.map(_issueCode).toSet();
   final issuesCorrect = expectedIssues.every(actualIssues.contains);
   final correct =
@@ -266,11 +325,31 @@ Map<String, Object?> _evaluate(
     'priority': testCase['priority'],
     'group': testCase['group'],
     'input': testCase['input'],
+    'otherGeneralFallback': actual.evidence.any(
+      (e) => e.family == 'otherGeneralFallback',
+    ),
+    'mealOracle': ContextEvidenceBuilder.mealSemantics.contains(
+      expected['semanticKey'] ??
+          RecognitionToolHarness.categories
+              .where((c) => c.id == expected['subcategoryId'])
+              .firstOrNull
+              ?.semanticKey,
+    ),
+    'mealRoutingApplied': actual.evidence.any(
+      (e) =>
+          (e.family == 'mealByExplicitTime' ||
+              e.family == 'mealByOccurredAt') &&
+          e.semanticKey == actual.semanticKey,
+    ),
     'correct': correct,
     'safe':
-        correct ||
-        actual.resultStatus != RecognitionResultStatus.complete ||
-        !highConfidenceWrong,
+        testCase['priority'] == 'P2' &&
+            const {'reject', 'rejected'}.contains(expected['status'])
+        ? actual.confirmationLevel == ConfirmationLevel.blocked &&
+              !actual.canQuickConfirm
+        : correct ||
+              actual.resultStatus != RecognitionResultStatus.complete ||
+              !highConfidenceWrong,
     'expectedStatus': expected['status'],
     'actualStatus': actual.resultStatus.name,
     'confirmationLevel': actual.confirmationLevel.name,

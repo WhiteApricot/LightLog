@@ -1,0 +1,6 @@
+# Preserve sealed oracle and immutable evaluation bytes across checkouts.
+tools/evaluation/archive/legacy_taxonomy/** -text whitespace=cr-at-eol
+tools/evaluation/corpora/phase3_104class/** -text whitespace=cr-at-eol
+tools/evaluation/reports/phase3_product_contract/** -text whitespace=cr-at-eol
+tools/evaluation/*freeze.json -text whitespace=cr-at-eol
+tools/evaluation/phase3_product_contract_*.json -text whitespace=cr-at-eol
