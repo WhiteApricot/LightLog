@@ -142,6 +142,20 @@ class TypeInference {
     );
     final strong = support.any((e) => e.score >= .70);
     if (!strong) return preliminary;
+    if (semanticKey.startsWith('income.refund.')) {
+      return TypeDecision(
+        type: RecognitionTransactionType.refund,
+        confidence: .90,
+        evidence: [
+          ...preliminary.evidence,
+          const RecognitionEvidence(
+            field: 'type',
+            description: '退款语义要求关联原账目',
+            score: .90,
+          ),
+        ],
+      );
+    }
     if (preliminary.isDefault ||
         (preliminary.type == null && !preliminary.hasConflict)) {
       return TypeDecision(

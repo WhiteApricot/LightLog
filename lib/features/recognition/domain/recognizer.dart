@@ -118,6 +118,9 @@ class LocalRecognizer {
     final resolverType = type == RecognitionTransactionType.refund
         ? RecognitionTransactionType.income
         : type;
+    if (type == RecognitionTransactionType.refund) {
+      issueCodes.add(RecognitionIssueCode.relatedTransactionRequired);
+    }
     final resolved = fusion.semanticKey == null || resolverType == null
         ? null
         : _resolver.resolve(

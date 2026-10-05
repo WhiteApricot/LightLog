@@ -3,7 +3,7 @@
   "corpusVersion": 1,
   "recognizerVersion": 3,
   "knowledgeHash": "288a37c0",
-  "evaluatedAt": "2026-10-05T10:19:04.206933Z",
+  "evaluatedAt": "2026-10-05T10:25:14.560188Z",
   "totalCases": 190,
   "priority": {
     "P0": {
@@ -78,11 +78,11 @@
     }
   },
   "latencyMicroseconds": {
-    "average": 361.65263157894736,
-    "p50": 252,
-    "p95": 965,
+    "average": 368.77894736842103,
+    "p50": 270,
+    "p95": 894,
     "p99": 1355,
-    "max": 2726
+    "max": 2616
   },
   "failureReasonCounts": {
     "content_span_error": 11,

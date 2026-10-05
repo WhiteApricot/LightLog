@@ -5,6 +5,7 @@ import 'package:light_log/features/recognition/domain/knowledge_models.dart';
 import 'package:light_log/features/recognition/domain/recognition_models.dart';
 import 'package:light_log/features/recognition/domain/span_conflict_resolver.dart';
 import 'package:light_log/features/recognition/domain/type_inference.dart';
+import 'package:light_log/features/recognition/domain/recognizer.dart';
 
 void main() {
   final matcher = FamilyMatcher(
@@ -149,5 +150,57 @@ void main() {
       ]).type,
       RecognitionTransactionType.refund,
     );
+  });
+  test('semantic refund restores refund type and blocks unlinked entry', () {
+    final recognizer = LocalRecognizer(
+      knowledge: KnowledgeCatalog(
+        entities: const [],
+        lexicon: const [],
+        lexicalFamilies: const [
+          LexicalFamilyKnowledge(
+            id: 'object.syntheticReturn',
+            terms: ['回流'],
+            prior: (semanticKey: 'income.refund.service', score: .76),
+          ),
+        ],
+      ),
+    );
+    final result = recognizer.recognize(
+      RecognitionInput(
+        rawText: '回流 13元',
+        nowLocal: DateTime(2026, 1, 1),
+        timezoneOffsetMinutes: 480,
+        activeCategories: const [
+          RecognitionCategory(
+            id: 'parent',
+            parentId: null,
+            name: '退款',
+            type: RecognitionTransactionType.income,
+            semanticKey: 'income.refund',
+            isSystem: true,
+            sortOrder: 0,
+            isActive: true,
+          ),
+          RecognitionCategory(
+            id: 'child',
+            parentId: 'parent',
+            name: '服务',
+            type: RecognitionTransactionType.income,
+            semanticKey: 'income.refund.service',
+            isSystem: true,
+            sortOrder: 0,
+            isActive: true,
+          ),
+        ],
+      ),
+    );
+    expect(result.draft.type, RecognitionTransactionType.refund);
+    expect(result.subcategoryId, 'child');
+    expect(
+      result.issueCodes,
+      contains(RecognitionIssueCode.relatedTransactionRequired),
+    );
+    expect(result.confirmationLevel, ConfirmationLevel.blocked);
+    expect(result.canQuickConfirm, isFalse);
   });
 }
