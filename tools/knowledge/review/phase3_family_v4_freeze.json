@@ -1,0 +1,59 @@
+{
+  "stage": "final production freeze before first v4 read; limited generic containment correction after historical regression",
+  "knowledgeHash": "69d5deae",
+  "checks": {
+    "generator": "passed 106/106 samples",
+    "format": "passed",
+    "analyze": "passed",
+    "flutterTest": "88 passed",
+    "originalRegressionCategory": 0.9631578947368421,
+    "p2Safe": 1.0,
+    "highConfidenceWrong": 0,
+    "warmP95Microseconds": 448
+  },
+  "sha256": {
+    "tools/knowledge/lexical_families_source.json": "60f4bd01f2c4f428a31d3fde332898986b3d951c53e7dde9169785a9df1d256a",
+    "tools/knowledge/composition_rules_source.json": "8966398e8f7e2557c694e9a9edd7d168be639105e4c0ff54191b4de11dd7586a",
+    "tools/knowledge/generate_knowledge.dart": "ce77746966dafb74e8f284b723611fc32dc91b7016b0aa5274d257053b5b0def",
+    "tools/knowledge/composition_quality.dart": "67eca10d124e493f6dca56e1fc0ff378b8aaf0a7dc0b204e0ffcf10fcdbdd8c6",
+    "tools/evaluation/evaluate_recognition.dart": "8584a236054ddf060c9d45b1d675dfe69a95a67d0ea5c3019bf3bdb89bbaecc1",
+    "tools/evaluation/knowledge_hash.dart": "7a2c7c625d78ba398be39b69f74849bc3ed6c00bf4b216efad6288ff9ee2d144",
+    "tools/benchmark/benchmark_recognition.dart": "fb871b2ad6a306fef5f680450b9e3247e143ed4f32fb444065c44283243eb55d",
+    "lib/features/recognition/domain/amount_extractor.dart": "2add788ed4eec8359ee31908418a08972d34054c945d688bf0c6cc6c8b45d542",
+    "lib/features/recognition/domain/category_resolver.dart": "1b2be97c734b2a946035971302334d2d8ba80600825dfe1a91fbaa25d818188f",
+    "lib/features/recognition/domain/compositional_matcher.dart": "853cc8df309851e0e2340e0d149662afa776ab1baf11ac64ee83c1258cfccb5c",
+    "lib/features/recognition/domain/confidence_calibrator.dart": "54b11bce92f28c173dfbaf7cc9f065ea01ecca6fb897a0d5ff8e9c49858e9bdb",
+    "lib/features/recognition/domain/content_extractor.dart": "065a7cf163d36adb5f6775d57df22d2bd9ca818faa5d75073d5452cd066c7a87",
+    "lib/features/recognition/domain/context_evidence.dart": "45b20b7e31b4d1f63026470ba19e0816bb8a6932865cbda0714449e0235b75e7",
+    "lib/features/recognition/domain/entity_matcher.dart": "c2a25ea008871b89f5ebf6922e80c14246ee9ec3d6b471ce25df4b4248dadcc2",
+    "lib/features/recognition/domain/evidence_fusion.dart": "a13fab8a46047abf184d700f4279d6aa0d4cf264669ead104695921d4c02bbde",
+    "lib/features/recognition/domain/field_extractor.dart": "160013a86a7860f733f22f4ed6de6a46bb44a24f7480317cebd14fe557f97b64",
+    "lib/features/recognition/domain/knowledge_models.dart": "b6246d757743a591088017bb4355d68a1d7b447143c161054e0cf0fa8c500338",
+    "lib/features/recognition/domain/lexical_family_matcher.dart": "65706b1bf53fb9c1343cdcd7e6fc9407750509e23847d83c819c7d10036172bc",
+    "lib/features/recognition/domain/lexicon_matcher.dart": "dd9227c55affe0047389e67908b876eceecb8180d450823e5be7f552287027d4",
+    "lib/features/recognition/domain/natural_time_parser.dart": "9867c9b5c621a7b596671236b9ca94e0ed69a375dbd3daffb83717ad1b0a32c2",
+    "lib/features/recognition/domain/normalization.dart": "d31f0f18715c8ac47e01bb28278de4185ac8805fc7e6d3b95f05b46d0ef202b4",
+    "lib/features/recognition/domain/personal_history.dart": "2ca841de677bf70c73ffa391ea6d30add01c789ecb60f92d8652b41da4251129",
+    "lib/features/recognition/domain/recognition_models.dart": "21d28fa2c4ac508f6c957b572a685cc6d0fc862fbab55837cd13dd8d15d07f1f",
+    "lib/features/recognition/domain/recognizer.dart": "a9c2c3bf25bf429aa26d8dd21bdf42500732c606b775317f0a7f4f7318e359a4",
+    "lib/features/recognition/domain/span_conflict_resolver.dart": "b0a2f6826860636279b2d6196f3fe4494dd142f1ab348dc69f25e75b09f0339e",
+    "lib/features/recognition/domain/transaction_status_detector.dart": "aa1a683cf5320b751eb0974cb22dec5d856351826a622fa03df20dd38a67f5d4",
+    "lib/features/recognition/domain/type_inference.dart": "5930365a59586c921f0566d4297e8b954e947296f4d79b75b8cb05852987b676",
+    "assets/knowledge/category_lexicon.json": "069c3ce711ce7e7d8d0fe64deffe0c7490b69e99e30427fb6bb02dba6c43c1d1",
+    "assets/knowledge/composition_rules.json": "28f67d566eb4a311481a9d3c64ce5aecf36bfa9929b309591f789e5da3a01bed",
+    "assets/knowledge/lexical_families.json": "e5907ecd5c9607b1e3533eab2f3c72c147afbff794efea774a5b00747720364f",
+    "assets/knowledge/merchants.json": "ee55ff985d89d4dfe2f6131586a297228ab02a641899d95f0b3a96bc0fa76aaa"
+  },
+  "historicalRegression": {
+    "v2": {
+      "categoryAccuracy": 0.8894736842105263,
+      "highConfidenceWrongPredictionCount": 0,
+      "p2SafeRejectionRate": 1.0
+    },
+    "v3": {
+      "categoryAccuracy": 0.975,
+      "highConfidenceWrongPredictionCount": 0,
+      "p2SafeRejectionRate": 1.0
+    }
+  }
+}

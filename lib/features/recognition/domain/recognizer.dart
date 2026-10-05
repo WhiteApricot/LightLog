@@ -82,7 +82,9 @@ class LocalRecognizer implements Recognizer {
           (item) => item.source == RecognitionEvidenceSource.categoryLexicon,
         )
         .toList();
-    final compositionEvidence = _compositionalMatcher.match(familyMatches);
+    final compositionEvidence = _spanConflictResolver.resolveEvidence(
+      _compositionalMatcher.match(familyMatches),
+    );
     final fields = _fieldExtractor.extract(
       displayText: normalized.displayText,
       matchingText: normalized.matchingText,

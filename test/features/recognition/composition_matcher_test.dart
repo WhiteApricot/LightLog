@@ -60,6 +60,124 @@ void main() {
     expect(evidence, isEmpty);
   });
 
+  test('single-character replacement requires an immediate component', () {
+    final knowledge = KnowledgeCatalog(
+      entities: const [],
+      lexicon: const [],
+      lexicalFamilies: const [
+        LexicalFamilyKnowledge(id: 'action.replacePart', terms: ['换']),
+        LexicalFamilyKnowledge(id: 'object.digitalComponent', terms: ['硬盘']),
+        LexicalFamilyKnowledge(id: 'object.digitalDevice', terms: ['手机']),
+      ],
+    );
+    final matcher = LexicalFamilyMatcher(knowledge);
+    expect(
+      matcher
+          .match('换手机')
+          .where((m) => m.conceptFamily == 'action.replacePart'),
+      isEmpty,
+    );
+    expect(
+      matcher
+          .match('换了别的硬盘')
+          .where((m) => m.conceptFamily == 'action.replacePart'),
+      isEmpty,
+    );
+    expect(
+      matcher
+          .match('换硬盘')
+          .where((m) => m.conceptFamily == 'action.replacePart'),
+      hasLength(1),
+    );
+  });
+
+  test('an embedded context can qualify a specific object', () {
+    final knowledge = KnowledgeCatalog(
+      entities: const [],
+      lexicon: const [],
+      compositionRules: const [
+        CompositionRuleKnowledge(
+          id: 'photo-object',
+          leftFamily: 'context.photo',
+          rightFamily: 'object.light',
+          semanticKey: 'expense.digital.photo',
+          maxDistance: 4,
+          score: .93,
+        ),
+      ],
+    );
+    final evidence = CompositionalMatcher(knowledge).match(const [
+      LexicalFamilyMatch(
+        conceptFamily: 'context.photo',
+        term: '摄影',
+        range: TextSpanRange(start: 0, end: 2),
+      ),
+      LexicalFamilyMatch(
+        conceptFamily: 'object.light',
+        term: '摄影灯',
+        range: TextSpanRange(start: 0, end: 3),
+      ),
+    ]);
+    expect(evidence.single.semanticKey, 'expense.digital.photo');
+  });
+
+  test('atomic concept survives when its compound embeds another family', () {
+    const cloud = LexicalFamilyMatch(
+      conceptFamily: 'object.cloud',
+      term: '网盘',
+      range: TextSpanRange(start: 0, end: 2),
+    );
+    const compound = LexicalFamilyMatch(
+      conceptFamily: 'object.cloud',
+      term: '网盘会员',
+      range: TextSpanRange(start: 0, end: 4),
+    );
+    const membership = LexicalFamilyMatch(
+      conceptFamily: 'service.membership',
+      term: '会员',
+      range: TextSpanRange(start: 2, end: 4),
+    );
+    final result = const SpanConflictResolver().resolveFamilyMatches([
+      cloud,
+      compound,
+      membership,
+    ]);
+    expect(result, contains(cloud));
+    expect(result, contains(membership));
+  });
+
+  test('one nested compound cannot act as two independent concepts', () {
+    final evidence = CompositionalMatcher(catalog).match(const [
+      LexicalFamilyMatch(
+        conceptFamily: 'object.device',
+        term: '设备',
+        range: TextSpanRange(start: 0, end: 2),
+      ),
+      LexicalFamilyMatch(
+        conceptFamily: 'action.repair',
+        term: '设备维修',
+        range: TextSpanRange(start: 0, end: 4),
+      ),
+    ]);
+    expect(evidence, isEmpty);
+  });
+
+  test('longer object concept suppresses a contained different object', () {
+    const short = LexicalFamilyMatch(
+      conceptFamily: 'object.phone',
+      term: '手机',
+      range: TextSpanRange(start: 0, end: 2),
+    );
+    const long = LexicalFamilyMatch(
+      conceptFamily: 'object.accessory',
+      term: '手机壳',
+      range: TextSpanRange(start: 0, end: 3),
+    );
+    expect(const SpanConflictResolver().resolveFamilyMatches([short, long]), [
+      long,
+    ]);
+  });
+
   test('contained shorter conflicting span is suppressed', () {
     const short = RecognitionEvidence(
       field: 'category',

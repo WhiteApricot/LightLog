@@ -20,7 +20,11 @@ class CompositionalMatcher {
       var bestDistance = 1 << 30;
       for (final leftMatch in left) {
         for (final rightMatch in right) {
-          if (identical(leftMatch, rightMatch)) continue;
+          // A single compound term is not two independent concept spans.
+          if (leftMatch.range.overlaps(rightMatch.range) &&
+              !_embeddedContext(rule, leftMatch, rightMatch)) {
+            continue;
+          }
           final distance = _distance(leftMatch.range, rightMatch.range);
           if (distance <= rule.maxDistance && distance < bestDistance) {
             bestLeft = leftMatch;
@@ -58,5 +62,32 @@ class CompositionalMatcher {
     if (left.overlaps(right)) return 0;
     if (left.end <= right.start) return right.start - left.end;
     return left.start - right.end;
+  }
+
+  static bool _embeddedContext(
+    CompositionRuleKnowledge rule,
+    LexicalFamilyMatch left,
+    LexicalFamilyMatch right,
+  ) {
+    // Contexts may be embedded in object names (摄影灯); animal prefixes
+    // identify supplies (猫砂盆). Identical spans remain a single concept.
+    if (left.range.start == right.range.start &&
+        left.range.end == right.range.end) {
+      return false;
+    }
+    final families = {rule.leftFamily, rule.rightFamily};
+    return families.every((id) => id.startsWith('income.')) ||
+        (families.any((id) => id.startsWith('context.')) &&
+            families.any(
+              (id) => id.startsWith('object.') || id.startsWith('income.'),
+            )) ||
+        (families.contains('object.pet') &&
+            families.any(
+              (id) => const {
+                'object.petSupply',
+                'object.petFood',
+                'object.petMedicine',
+              }.contains(id),
+            ));
   }
 }

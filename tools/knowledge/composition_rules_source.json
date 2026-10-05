@@ -1,60 +1,2533 @@
 {
   "version": 1,
   "rules": [
-    {"id":"pet-grooming","leftFamily":"object.pet","rightFamily":"action.grooming","semanticKey":"expense.pets.grooming","maxDistance":4,"score":0.94},
-    {"id":"pet-medical","leftFamily":"object.pet","rightFamily":"action.medical","semanticKey":"expense.pets.medical","maxDistance":5,"score":0.94},
-    {"id":"pet-service","leftFamily":"object.pet","rightFamily":"action.petService","semanticKey":"expense.pets.service","maxDistance":5,"score":0.93},
-    {"id":"child-medical","leftFamily":"modifier.child","rightFamily":"action.medical","semanticKey":"expense.family.health","maxDistance":5,"score":0.94},
-    {"id":"elder-medical","leftFamily":"modifier.elder","rightFamily":"action.medical","semanticKey":"expense.family.health","maxDistance":5,"score":0.93},
-    {"id":"vehicle-maintenance","leftFamily":"object.vehicle","rightFamily":"action.maintenance","semanticKey":"expense.transport.maintenance","maxDistance":5,"score":0.94},
-    {"id":"vehicle-repair","leftFamily":"object.vehicle","rightFamily":"action.repair","semanticKey":"expense.transport.maintenance","maxDistance":5,"score":0.94},
-    {"id":"appliance-repair","leftFamily":"object.appliance","rightFamily":"action.repair","semanticKey":"expense.housing.repair","maxDistance":5,"score":0.94},
-    {"id":"appliance-cleaning","leftFamily":"object.appliance","rightFamily":"action.cleaning","semanticKey":"expense.daily.cleaning","maxDistance":5,"score":0.94},
-    {"id":"appliance-part","leftFamily":"object.appliance","rightFamily":"action.replacePart","semanticKey":"expense.housing.repair","maxDistance":5,"score":0.96},
-    {"id":"home-furnishing-cleaning","leftFamily":"object.homeFurnishing","rightFamily":"action.cleaning","semanticKey":"expense.daily.cleaning","maxDistance":5,"score":0.94},
-    {"id":"home-fixture-repair","leftFamily":"object.homeFixture","rightFamily":"action.repair","semanticKey":"expense.housing.repair","maxDistance":5,"score":0.94},
-    {"id":"home-fixture-part","leftFamily":"object.homeFixture","rightFamily":"action.replacePart","semanticKey":"expense.housing.repair","maxDistance":5,"score":0.94},
-    {"id":"digital-repair","leftFamily":"object.digitalDevice","rightFamily":"action.repair","semanticKey":"expense.digital.repair","maxDistance":5,"score":0.94},
-    {"id":"digital-cleaning","leftFamily":"object.digitalDevice","rightFamily":"action.cleaning","semanticKey":"expense.digital.repair","maxDistance":5,"score":0.93},
-    {"id":"digital-part","leftFamily":"object.digitalDevice","rightFamily":"action.replacePart","semanticKey":"expense.digital.repair","maxDistance":5,"score":0.94},
-    {"id":"clothing-cleaning","leftFamily":"object.clothing","rightFamily":"action.cleaning","semanticKey":"expense.daily.cleaning","maxDistance":5,"score":0.93},
-    {"id":"clothing-alteration","leftFamily":"object.clothing","rightFamily":"action.alteration","semanticKey":"expense.daily.service","maxDistance":5,"score":0.94},
-    {"id":"shoe-repair","leftFamily":"object.shoe","rightFamily":"action.repair","semanticKey":"expense.daily.service","maxDistance":5,"score":0.93},
-    {"id":"shoe-maintenance","leftFamily":"object.shoe","rightFamily":"action.maintenance","semanticKey":"expense.daily.service","maxDistance":5,"score":0.93},
-    {"id":"eyewear-part","leftFamily":"object.eyewear","rightFamily":"action.replacePart","semanticKey":"expense.daily.service","maxDistance":5,"score":0.93},
-    {"id":"vehicle-part","leftFamily":"object.vehicle","rightFamily":"action.replacePart","semanticKey":"expense.transport.maintenance","maxDistance":5,"score":0.94},
-    {"id":"child-medicine","leftFamily":"modifier.child","rightFamily":"action.medicine","semanticKey":"expense.family.health","maxDistance":6,"score":0.94},
-    {"id":"elder-medicine","leftFamily":"modifier.elder","rightFamily":"action.medicine","semanticKey":"expense.family.health","maxDistance":6,"score":0.94},
-    {"id":"child-education","leftFamily":"modifier.child","rightFamily":"action.education","semanticKey":"expense.family.education","maxDistance":6,"score":0.94},
-    {"id":"elder-support","leftFamily":"modifier.elder","rightFamily":"action.familySupport","semanticKey":"expense.family.support","maxDistance":6,"score":0.94},
-    {"id":"travel-supply","leftFamily":"context.travel","rightFamily":"object.travelSupply","semanticKey":"expense.travel.supplies","maxDistance":6,"score":0.93},
-    {"id":"sport-equipment","leftFamily":"context.sport","rightFamily":"object.sportEquipment","semanticKey":"expense.sports.equipment","maxDistance":6,"score":0.93},
-    {"id":"sport-event","leftFamily":"context.sport","rightFamily":"action.sportEvent","semanticKey":"expense.sports.event","maxDistance":6,"score":0.93},
-    {"id":"supermarket-membership","leftFamily":"venue.supermarket","rightFamily":"service.membership","semanticKey":"expense.shopping.other","maxDistance":6,"score":0.93},
-    {"id":"cloud-membership","leftFamily":"object.cloud","rightFamily":"service.membership","semanticKey":"expense.communication.cloud","maxDistance":6,"score":0.94},
-    {"id":"scenic-ticket","leftFamily":"venue.scenic","rightFamily":"service.ticket","semanticKey":"expense.travel.attraction","maxDistance":5,"score":0.94},
-    {"id":"sport-venue-ticket","leftFamily":"venue.sport","rightFamily":"service.ticket","semanticKey":"expense.sports.venue","maxDistance":5,"score":0.94},
-    {"id":"vehicle-insurance","leftFamily":"object.vehicle","rightFamily":"service.insurance","semanticKey":"expense.finance.insurance","maxDistance":5,"score":0.94},
-    {"id":"pet-insurance","leftFamily":"object.pet","rightFamily":"service.insurance","semanticKey":"expense.finance.insurance","maxDistance":5,"score":0.94},
-    {"id":"digital-insurance","leftFamily":"object.digitalDevice","rightFamily":"service.insurance","semanticKey":"expense.finance.insurance","maxDistance":5,"score":0.94},
-    {"id":"game-hardware","leftFamily":"context.game","rightFamily":"object.computerHardware","semanticKey":"expense.digital.computer","maxDistance":5,"score":0.94},
-    {"id":"photo-equipment","leftFamily":"context.photo","rightFamily":"object.photoEquipment","semanticKey":"expense.digital.photo","maxDistance":5,"score":0.93},
-    {"id":"digital-accessory","leftFamily":"object.digitalDevice","rightFamily":"object.digitalAccessory","semanticKey":"expense.digital.accessory","maxDistance":5,"score":0.94},
-    {"id":"pet-supply","leftFamily":"object.pet","rightFamily":"object.petSupply","semanticKey":"expense.pets.supplies","maxDistance":5,"score":0.94},
-    {"id":"laundry-refill","leftFamily":"object.laundryProduct","rightFamily":"modifier.refill","semanticKey":"expense.daily.cleaning","maxDistance":5,"score":0.93},
-    {"id":"elder-supply","leftFamily":"modifier.elder","rightFamily":"object.elderSupply","semanticKey":"expense.family.elder","maxDistance":6,"score":0.94},
-    {"id":"travel-visa","leftFamily":"context.travel","rightFamily":"service.visa","semanticKey":"expense.travel.package","maxDistance":8,"score":0.93},
-    {"id":"visa-service","leftFamily":"service.visa","rightFamily":"service.fee","semanticKey":"expense.travel.package","maxDistance":6,"score":0.94},
-    {"id":"salary-performance","leftFamily":"income.salaryPerformance","rightFamily":"income.wage","semanticKey":"income.salary.overtime","maxDistance":5,"score":0.94},
-    {"id":"medical-reimbursement","leftFamily":"context.medicalVenue","rightFamily":"income.reimbursement","semanticKey":"income.reimbursement.medical","maxDistance":8,"score":0.94},
-    {"id":"design-private-order","leftFamily":"context.design","rightFamily":"income.privateOrder","semanticKey":"income.parttime.freelance","maxDistance":6,"score":0.94},
-    {"id":"platform-order-income","leftFamily":"context.ridePlatform","rightFamily":"income.orderIncome","semanticKey":"income.parttime.platform","maxDistance":8,"score":0.94},
-    {"id":"teaching-fee","leftFamily":"context.teaching","rightFamily":"income.teachingFee","semanticKey":"income.parttime.consulting","maxDistance":6,"score":0.94},
-    {"id":"shopping-refund","leftFamily":"context.shopping","rightFamily":"income.refund","semanticKey":"income.refund.shopping","maxDistance":6,"score":0.94},
-    {"id":"shopping-medicine","leftFamily":"platform.shopping","rightFamily":"action.medicine","semanticKey":"expense.medical.medicine","maxDistance":6,"score":0.94},
-    {"id":"shopping-household","leftFamily":"platform.shopping","rightFamily":"object.household","semanticKey":"expense.daily.household","maxDistance":6,"score":0.94},
-    {"id":"delivery-food","leftFamily":"platform.delivery","rightFamily":"context.takeoutFood","semanticKey":"expense.food.takeout","maxDistance":8,"score":0.94},
-    {"id":"local-massage","leftFamily":"platform.localService","rightFamily":"service.massage","semanticKey":"expense.daily.service","maxDistance":8,"score":0.94},
-    {"id":"travel-platform-scenic","leftFamily":"platform.travel","rightFamily":"venue.scenic","semanticKey":"expense.travel.attraction","maxDistance":8,"score":0.94}
+    {
+      "id": "pet-grooming",
+      "leftFamily": "object.pet",
+      "rightFamily": "action.grooming",
+      "semanticKey": "expense.pets.grooming",
+      "maxDistance": 4,
+      "score": 0.94
+    },
+    {
+      "id": "pet-medical",
+      "leftFamily": "object.pet",
+      "rightFamily": "action.medical",
+      "semanticKey": "expense.pets.medical",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "pet-service",
+      "leftFamily": "object.pet",
+      "rightFamily": "action.petService",
+      "semanticKey": "expense.pets.service",
+      "maxDistance": 5,
+      "score": 0.93
+    },
+    {
+      "id": "child-medical",
+      "leftFamily": "modifier.child",
+      "rightFamily": "action.medical",
+      "semanticKey": "expense.family.health",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "elder-medical",
+      "leftFamily": "modifier.elder",
+      "rightFamily": "action.medical",
+      "semanticKey": "expense.family.health",
+      "maxDistance": 5,
+      "score": 0.93
+    },
+    {
+      "id": "vehicle-maintenance",
+      "leftFamily": "object.vehicle",
+      "rightFamily": "action.maintenance",
+      "semanticKey": "expense.transport.maintenance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "vehicle-repair",
+      "leftFamily": "object.vehicle",
+      "rightFamily": "action.repair",
+      "semanticKey": "expense.transport.maintenance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "appliance-repair",
+      "leftFamily": "object.appliance",
+      "rightFamily": "action.repair",
+      "semanticKey": "expense.housing.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "appliance-cleaning",
+      "leftFamily": "object.appliance",
+      "rightFamily": "action.cleaning",
+      "semanticKey": "expense.daily.cleaning",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "appliance-part",
+      "leftFamily": "object.appliance",
+      "rightFamily": "action.replacePart",
+      "semanticKey": "expense.housing.repair",
+      "maxDistance": 5,
+      "score": 0.96
+    },
+    {
+      "id": "home-furnishing-cleaning",
+      "leftFamily": "object.homeFurnishing",
+      "rightFamily": "action.cleaning",
+      "semanticKey": "expense.daily.cleaning",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "home-fixture-repair",
+      "leftFamily": "object.homeFixture",
+      "rightFamily": "action.repair",
+      "semanticKey": "expense.housing.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "home-fixture-part",
+      "leftFamily": "object.homeFixture",
+      "rightFamily": "action.replacePart",
+      "semanticKey": "expense.housing.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "digital-repair",
+      "leftFamily": "object.digitalDevice",
+      "rightFamily": "action.repair",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "digital-cleaning",
+      "leftFamily": "object.digitalDevice",
+      "rightFamily": "action.cleaning",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.93
+    },
+    {
+      "id": "digital-part",
+      "leftFamily": "object.digitalDevice",
+      "rightFamily": "action.replacePart",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "clothing-cleaning",
+      "leftFamily": "object.clothing",
+      "rightFamily": "action.cleaning",
+      "semanticKey": "expense.daily.cleaning",
+      "maxDistance": 5,
+      "score": 0.93
+    },
+    {
+      "id": "clothing-alteration",
+      "leftFamily": "object.clothing",
+      "rightFamily": "action.alteration",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "shoe-repair",
+      "leftFamily": "object.shoe",
+      "rightFamily": "action.repair",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.93
+    },
+    {
+      "id": "shoe-maintenance",
+      "leftFamily": "object.shoe",
+      "rightFamily": "action.maintenance",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.93
+    },
+    {
+      "id": "eyewear-part",
+      "leftFamily": "object.eyewear",
+      "rightFamily": "action.replacePart",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.93
+    },
+    {
+      "id": "vehicle-part",
+      "leftFamily": "object.vehicle",
+      "rightFamily": "action.replacePart",
+      "semanticKey": "expense.transport.maintenance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "child-medicine",
+      "leftFamily": "modifier.child",
+      "rightFamily": "action.medicine",
+      "semanticKey": "expense.family.health",
+      "maxDistance": 6,
+      "score": 0.94
+    },
+    {
+      "id": "elder-medicine",
+      "leftFamily": "modifier.elder",
+      "rightFamily": "action.medicine",
+      "semanticKey": "expense.family.health",
+      "maxDistance": 6,
+      "score": 0.94
+    },
+    {
+      "id": "child-education",
+      "leftFamily": "modifier.child",
+      "rightFamily": "action.education",
+      "semanticKey": "expense.family.education",
+      "maxDistance": 6,
+      "score": 0.94
+    },
+    {
+      "id": "elder-support",
+      "leftFamily": "modifier.elder",
+      "rightFamily": "action.familySupport",
+      "semanticKey": "expense.family.support",
+      "maxDistance": 6,
+      "score": 0.94
+    },
+    {
+      "id": "travel-supply",
+      "leftFamily": "context.travel",
+      "rightFamily": "object.travelSupply",
+      "semanticKey": "expense.travel.supplies",
+      "maxDistance": 6,
+      "score": 0.93
+    },
+    {
+      "id": "sport-equipment",
+      "leftFamily": "context.sport",
+      "rightFamily": "object.sportEquipment",
+      "semanticKey": "expense.sports.equipment",
+      "maxDistance": 6,
+      "score": 0.93
+    },
+    {
+      "id": "sport-event",
+      "leftFamily": "context.sport",
+      "rightFamily": "action.sportEvent",
+      "semanticKey": "expense.sports.event",
+      "maxDistance": 6,
+      "score": 0.93
+    },
+    {
+      "id": "supermarket-membership",
+      "leftFamily": "venue.supermarket",
+      "rightFamily": "service.membership",
+      "semanticKey": "expense.shopping.other",
+      "maxDistance": 6,
+      "score": 0.93
+    },
+    {
+      "id": "cloud-membership",
+      "leftFamily": "object.cloud",
+      "rightFamily": "service.membership",
+      "semanticKey": "expense.communication.cloud",
+      "maxDistance": 6,
+      "score": 0.94
+    },
+    {
+      "id": "scenic-ticket",
+      "leftFamily": "venue.scenic",
+      "rightFamily": "service.ticket",
+      "semanticKey": "expense.travel.attraction",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "sport-venue-ticket",
+      "leftFamily": "venue.sport",
+      "rightFamily": "service.ticket",
+      "semanticKey": "expense.sports.venue",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "vehicle-insurance",
+      "leftFamily": "object.vehicle",
+      "rightFamily": "service.insurance",
+      "semanticKey": "expense.finance.insurance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "pet-insurance",
+      "leftFamily": "object.pet",
+      "rightFamily": "service.insurance",
+      "semanticKey": "expense.finance.insurance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "digital-insurance",
+      "leftFamily": "object.digitalDevice",
+      "rightFamily": "service.insurance",
+      "semanticKey": "expense.finance.insurance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "game-hardware",
+      "leftFamily": "context.game",
+      "rightFamily": "object.computerHardware",
+      "semanticKey": "expense.digital.computer",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "photo-equipment",
+      "leftFamily": "context.photo",
+      "rightFamily": "object.photoEquipment",
+      "semanticKey": "expense.digital.photo",
+      "maxDistance": 5,
+      "score": 0.93
+    },
+    {
+      "id": "digital-accessory",
+      "leftFamily": "object.digitalDevice",
+      "rightFamily": "object.digitalAccessory",
+      "semanticKey": "expense.digital.accessory",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "pet-supply",
+      "leftFamily": "object.pet",
+      "rightFamily": "object.petSupply",
+      "semanticKey": "expense.pets.supplies",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "laundry-refill",
+      "leftFamily": "object.laundryProduct",
+      "rightFamily": "modifier.refill",
+      "semanticKey": "expense.daily.cleaning",
+      "maxDistance": 5,
+      "score": 0.93
+    },
+    {
+      "id": "elder-supply",
+      "leftFamily": "modifier.elder",
+      "rightFamily": "object.elderSupply",
+      "semanticKey": "expense.family.elder",
+      "maxDistance": 6,
+      "score": 0.94
+    },
+    {
+      "id": "travel-visa",
+      "leftFamily": "context.travel",
+      "rightFamily": "service.visa",
+      "semanticKey": "expense.travel.package",
+      "maxDistance": 8,
+      "score": 0.93
+    },
+    {
+      "id": "visa-service",
+      "leftFamily": "service.visa",
+      "rightFamily": "service.fee",
+      "semanticKey": "expense.travel.package",
+      "maxDistance": 6,
+      "score": 0.94
+    },
+    {
+      "id": "salary-performance",
+      "leftFamily": "income.salaryPerformance",
+      "rightFamily": "income.wage",
+      "semanticKey": "income.salary.overtime",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "medical-reimbursement",
+      "leftFamily": "context.medicalVenue",
+      "rightFamily": "income.reimbursement",
+      "semanticKey": "income.reimbursement.medical",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "design-private-order",
+      "leftFamily": "context.design",
+      "rightFamily": "income.privateOrder",
+      "semanticKey": "income.parttime.freelance",
+      "maxDistance": 6,
+      "score": 0.94
+    },
+    {
+      "id": "platform-order-income",
+      "leftFamily": "context.ridePlatform",
+      "rightFamily": "income.orderIncome",
+      "semanticKey": "income.parttime.platform",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "teaching-fee",
+      "leftFamily": "context.teaching",
+      "rightFamily": "income.teachingFee",
+      "semanticKey": "income.parttime.consulting",
+      "maxDistance": 6,
+      "score": 0.94
+    },
+    {
+      "id": "shopping-refund",
+      "leftFamily": "context.shopping",
+      "rightFamily": "income.refund",
+      "semanticKey": "income.refund.shopping",
+      "maxDistance": 6,
+      "score": 0.94
+    },
+    {
+      "id": "shopping-medicine",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "action.medicine",
+      "semanticKey": "expense.medical.medicine",
+      "maxDistance": 6,
+      "score": 0.94
+    },
+    {
+      "id": "shopping-household",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.household",
+      "semanticKey": "expense.daily.household",
+      "maxDistance": 6,
+      "score": 0.94
+    },
+    {
+      "id": "delivery-food",
+      "leftFamily": "platform.delivery",
+      "rightFamily": "context.takeoutFood",
+      "semanticKey": "expense.food.takeout",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "local-massage",
+      "leftFamily": "platform.localService",
+      "rightFamily": "service.massage",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "travel-platform-scenic",
+      "leftFamily": "platform.travel",
+      "rightFamily": "venue.scenic",
+      "semanticKey": "expense.travel.attraction",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-vehicle-action-install",
+      "leftFamily": "object.vehicle",
+      "rightFamily": "action.install",
+      "semanticKey": "expense.transport.maintenance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-vehicle-service-carWash",
+      "leftFamily": "object.vehicle",
+      "rightFamily": "service.carWash",
+      "semanticKey": "expense.transport.maintenance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-vehiclePart-action-repair",
+      "leftFamily": "object.vehiclePart",
+      "rightFamily": "action.repair",
+      "semanticKey": "expense.transport.maintenance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-vehiclePart-action-maintenance",
+      "leftFamily": "object.vehiclePart",
+      "rightFamily": "action.maintenance",
+      "semanticKey": "expense.transport.maintenance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-vehiclePart-action-replacePart",
+      "leftFamily": "object.vehiclePart",
+      "rightFamily": "action.replacePart",
+      "semanticKey": "expense.transport.maintenance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-vehiclePart-action-install",
+      "leftFamily": "object.vehiclePart",
+      "rightFamily": "action.install",
+      "semanticKey": "expense.transport.maintenance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-vehiclePart-service-carWash",
+      "leftFamily": "object.vehiclePart",
+      "rightFamily": "service.carWash",
+      "semanticKey": "expense.transport.maintenance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-vehicle-service-parking",
+      "leftFamily": "object.vehicle",
+      "rightFamily": "service.parking",
+      "semanticKey": "expense.transport.parking",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-vehicle-action-renew",
+      "leftFamily": "object.vehicle",
+      "rightFamily": "action.renew",
+      "semanticKey": "expense.transport.parking",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-parkingCredential-service-parking",
+      "leftFamily": "object.parkingCredential",
+      "rightFamily": "service.parking",
+      "semanticKey": "expense.transport.parking",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-parkingCredential-action-renew",
+      "leftFamily": "object.parkingCredential",
+      "rightFamily": "action.renew",
+      "semanticKey": "expense.transport.parking",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-vehicle-action-recharge",
+      "leftFamily": "object.vehicle",
+      "rightFamily": "action.recharge",
+      "semanticKey": "expense.transport.fuel",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-fuel-action-recharge",
+      "leftFamily": "object.fuel",
+      "rightFamily": "action.recharge",
+      "semanticKey": "expense.transport.fuel",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-publicTransitCard-action-recharge",
+      "leftFamily": "object.publicTransitCard",
+      "rightFamily": "action.recharge",
+      "semanticKey": "expense.transport.public",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-publicTransitCard-action-renew",
+      "leftFamily": "object.publicTransitCard",
+      "rightFamily": "action.renew",
+      "semanticKey": "expense.transport.public",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-railTicket-service-ticketing",
+      "leftFamily": "object.railTicket",
+      "rightFamily": "service.ticketing",
+      "semanticKey": "expense.transport.rail",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-railTicket-action-book",
+      "leftFamily": "object.railTicket",
+      "rightFamily": "action.book",
+      "semanticKey": "expense.transport.rail",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-flightTicket-service-ticketing",
+      "leftFamily": "object.flightTicket",
+      "rightFamily": "service.ticketing",
+      "semanticKey": "expense.transport.flight",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-flightTicket-action-book",
+      "leftFamily": "object.flightTicket",
+      "rightFamily": "action.book",
+      "semanticKey": "expense.transport.flight",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-busTicket-service-ticketing",
+      "leftFamily": "object.busTicket",
+      "rightFamily": "service.ticketing",
+      "semanticKey": "expense.travel.ticket",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-busTicket-action-book",
+      "leftFamily": "object.busTicket",
+      "rightFamily": "action.book",
+      "semanticKey": "expense.travel.ticket",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-phone-action-repair",
+      "leftFamily": "object.phone",
+      "rightFamily": "action.repair",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-phone-action-replacePart",
+      "leftFamily": "object.phone",
+      "rightFamily": "action.replacePart",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-phone-action-install",
+      "leftFamily": "object.phone",
+      "rightFamily": "action.install",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-phone-action-maintenance",
+      "leftFamily": "object.phone",
+      "rightFamily": "action.maintenance",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-computerHardware-action-repair",
+      "leftFamily": "object.computerHardware",
+      "rightFamily": "action.repair",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-computerHardware-action-replacePart",
+      "leftFamily": "object.computerHardware",
+      "rightFamily": "action.replacePart",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-computerHardware-action-install",
+      "leftFamily": "object.computerHardware",
+      "rightFamily": "action.install",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-computerHardware-action-maintenance",
+      "leftFamily": "object.computerHardware",
+      "rightFamily": "action.maintenance",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-photoEquipment-action-repair",
+      "leftFamily": "object.photoEquipment",
+      "rightFamily": "action.repair",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-photoEquipment-action-replacePart",
+      "leftFamily": "object.photoEquipment",
+      "rightFamily": "action.replacePart",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-photoEquipment-action-install",
+      "leftFamily": "object.photoEquipment",
+      "rightFamily": "action.install",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-photoEquipment-action-maintenance",
+      "leftFamily": "object.photoEquipment",
+      "rightFamily": "action.maintenance",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-digitalDevice-action-install",
+      "leftFamily": "object.digitalDevice",
+      "rightFamily": "action.install",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-digitalDevice-action-maintenance",
+      "leftFamily": "object.digitalDevice",
+      "rightFamily": "action.maintenance",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-appliance-action-install",
+      "leftFamily": "object.appliance",
+      "rightFamily": "action.install",
+      "semanticKey": "expense.housing.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-appliance-action-maintenance",
+      "leftFamily": "object.appliance",
+      "rightFamily": "action.maintenance",
+      "semanticKey": "expense.housing.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-appliance-action-decorate",
+      "leftFamily": "object.appliance",
+      "rightFamily": "action.decorate",
+      "semanticKey": "expense.housing.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-appliance-service-homeRepair",
+      "leftFamily": "object.appliance",
+      "rightFamily": "service.homeRepair",
+      "semanticKey": "expense.housing.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-homeFixture-action-install",
+      "leftFamily": "object.homeFixture",
+      "rightFamily": "action.install",
+      "semanticKey": "expense.housing.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-homeFixture-action-maintenance",
+      "leftFamily": "object.homeFixture",
+      "rightFamily": "action.maintenance",
+      "semanticKey": "expense.housing.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-homeFixture-action-decorate",
+      "leftFamily": "object.homeFixture",
+      "rightFamily": "action.decorate",
+      "semanticKey": "expense.housing.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-homeFixture-service-homeRepair",
+      "leftFamily": "object.homeFixture",
+      "rightFamily": "service.homeRepair",
+      "semanticKey": "expense.housing.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-homeFurnishing-service-housekeeping",
+      "leftFamily": "object.homeFurnishing",
+      "rightFamily": "service.housekeeping",
+      "semanticKey": "expense.daily.cleaning",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-homeFixture-action-cleaning",
+      "leftFamily": "object.homeFixture",
+      "rightFamily": "action.cleaning",
+      "semanticKey": "expense.daily.cleaning",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-homeFixture-service-housekeeping",
+      "leftFamily": "object.homeFixture",
+      "rightFamily": "service.housekeeping",
+      "semanticKey": "expense.daily.cleaning",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-clothing-service-housekeeping",
+      "leftFamily": "object.clothing",
+      "rightFamily": "service.housekeeping",
+      "semanticKey": "expense.daily.cleaning",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-shoe-action-cleaning",
+      "leftFamily": "object.shoe",
+      "rightFamily": "action.cleaning",
+      "semanticKey": "expense.daily.cleaning",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-shoe-service-housekeeping",
+      "leftFamily": "object.shoe",
+      "rightFamily": "service.housekeeping",
+      "semanticKey": "expense.daily.cleaning",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-bag-action-cleaning",
+      "leftFamily": "object.bag",
+      "rightFamily": "action.cleaning",
+      "semanticKey": "expense.daily.cleaning",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-bag-service-housekeeping",
+      "leftFamily": "object.bag",
+      "rightFamily": "service.housekeeping",
+      "semanticKey": "expense.daily.cleaning",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-bag-action-repair",
+      "leftFamily": "object.bag",
+      "rightFamily": "action.repair",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-bag-action-maintenance",
+      "leftFamily": "object.bag",
+      "rightFamily": "action.maintenance",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-jewelry-action-repair",
+      "leftFamily": "object.jewelry",
+      "rightFamily": "action.repair",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-jewelry-action-maintenance",
+      "leftFamily": "object.jewelry",
+      "rightFamily": "action.maintenance",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-eyewear-action-repair",
+      "leftFamily": "object.eyewear",
+      "rightFamily": "action.repair",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-eyewear-action-maintenance",
+      "leftFamily": "object.eyewear",
+      "rightFamily": "action.maintenance",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-shoe-action-alteration",
+      "leftFamily": "object.shoe",
+      "rightFamily": "action.alteration",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-bag-action-alteration",
+      "leftFamily": "object.bag",
+      "rightFamily": "action.alteration",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-homeFurnishing-service-moving",
+      "leftFamily": "object.homeFurnishing",
+      "rightFamily": "service.moving",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-homeFurnishing-action-move",
+      "leftFamily": "object.homeFurnishing",
+      "rightFamily": "action.move",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-homeFixture-service-moving",
+      "leftFamily": "object.homeFixture",
+      "rightFamily": "service.moving",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-homeFixture-action-move",
+      "leftFamily": "object.homeFixture",
+      "rightFamily": "action.move",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-property-service-moving",
+      "leftFamily": "object.property",
+      "rightFamily": "service.moving",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-property-action-move",
+      "leftFamily": "object.property",
+      "rightFamily": "action.move",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-property-action-rent",
+      "leftFamily": "object.property",
+      "rightFamily": "action.rent",
+      "semanticKey": "expense.housing.rent",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-property-action-decorate",
+      "leftFamily": "object.property",
+      "rightFamily": "action.decorate",
+      "semanticKey": "expense.housing.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-property-service-homeRepair",
+      "leftFamily": "object.property",
+      "rightFamily": "service.homeRepair",
+      "semanticKey": "expense.housing.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-software-action-renew",
+      "leftFamily": "object.software",
+      "rightFamily": "action.renew",
+      "semanticKey": "expense.digital.software",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-software-service-membership",
+      "leftFamily": "object.software",
+      "rightFamily": "service.membership",
+      "semanticKey": "expense.digital.software",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-cloud-action-renew",
+      "leftFamily": "object.cloud",
+      "rightFamily": "action.renew",
+      "semanticKey": "expense.communication.cloud",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-cloud-action-recharge",
+      "leftFamily": "object.cloud",
+      "rightFamily": "action.recharge",
+      "semanticKey": "expense.communication.cloud",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-network-action-renew",
+      "leftFamily": "object.network",
+      "rightFamily": "action.renew",
+      "semanticKey": "expense.communication.internet",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-network-action-install",
+      "leftFamily": "object.network",
+      "rightFamily": "action.install",
+      "semanticKey": "expense.communication.internet",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-network-action-recharge",
+      "leftFamily": "object.network",
+      "rightFamily": "action.recharge",
+      "semanticKey": "expense.communication.internet",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-mobilePlan-action-renew",
+      "leftFamily": "object.mobilePlan",
+      "rightFamily": "action.renew",
+      "semanticKey": "expense.communication.mobile",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-mobilePlan-action-recharge",
+      "leftFamily": "object.mobilePlan",
+      "rightFamily": "action.recharge",
+      "semanticKey": "expense.communication.mobile",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-media-action-renew",
+      "leftFamily": "object.media",
+      "rightFamily": "action.renew",
+      "semanticKey": "expense.entertainment.subscription",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-media-service-membership",
+      "leftFamily": "object.media",
+      "rightFamily": "service.membership",
+      "semanticKey": "expense.entertainment.subscription",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-content-action-renew",
+      "leftFamily": "platform.content",
+      "rightFamily": "action.renew",
+      "semanticKey": "expense.entertainment.subscription",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-content-service-membership",
+      "leftFamily": "platform.content",
+      "rightFamily": "service.membership",
+      "semanticKey": "expense.entertainment.subscription",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-gameProduct-action-recharge",
+      "leftFamily": "object.gameProduct",
+      "rightFamily": "action.recharge",
+      "semanticKey": "expense.entertainment.game",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-gameProduct-service-membership",
+      "leftFamily": "object.gameProduct",
+      "rightFamily": "service.membership",
+      "semanticKey": "expense.entertainment.game",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-game-action-recharge",
+      "leftFamily": "context.game",
+      "rightFamily": "action.recharge",
+      "semanticKey": "expense.entertainment.game",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-game-service-membership",
+      "leftFamily": "context.game",
+      "rightFamily": "service.membership",
+      "semanticKey": "expense.entertainment.game",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-gameVenue-action-recharge",
+      "leftFamily": "venue.gameVenue",
+      "rightFamily": "action.recharge",
+      "semanticKey": "expense.entertainment.game",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-gameVenue-service-membership",
+      "leftFamily": "venue.gameVenue",
+      "rightFamily": "service.membership",
+      "semanticKey": "expense.entertainment.game",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-cinema-service-ticket",
+      "leftFamily": "venue.cinema",
+      "rightFamily": "service.ticket",
+      "semanticKey": "expense.entertainment.movie",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-cinema-action-book",
+      "leftFamily": "venue.cinema",
+      "rightFamily": "action.book",
+      "semanticKey": "expense.entertainment.movie",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-theater-service-ticket",
+      "leftFamily": "venue.theater",
+      "rightFamily": "service.ticket",
+      "semanticKey": "expense.entertainment.music",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-theater-action-book",
+      "leftFamily": "venue.theater",
+      "rightFamily": "action.book",
+      "semanticKey": "expense.entertainment.music",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-gym-action-train",
+      "leftFamily": "venue.gym",
+      "rightFamily": "action.train",
+      "semanticKey": "expense.sports.fitness",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-gym-service-membership",
+      "leftFamily": "venue.gym",
+      "rightFamily": "service.membership",
+      "semanticKey": "expense.sports.fitness",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-sport-action-train",
+      "leftFamily": "context.sport",
+      "rightFamily": "action.train",
+      "semanticKey": "expense.sports.fitness",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-sport-service-membership",
+      "leftFamily": "context.sport",
+      "rightFamily": "service.membership",
+      "semanticKey": "expense.sports.fitness",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-sport-service-membership",
+      "leftFamily": "venue.sport",
+      "rightFamily": "service.membership",
+      "semanticKey": "expense.sports.venue",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-sport-action-book",
+      "leftFamily": "venue.sport",
+      "rightFamily": "action.book",
+      "semanticKey": "expense.sports.venue",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-outdoorSite-object-outdoorGear",
+      "leftFamily": "venue.outdoorSite",
+      "rightFamily": "object.outdoorGear",
+      "semanticKey": "expense.sports.outdoor",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-sport-object-outdoorGear",
+      "leftFamily": "context.sport",
+      "rightFamily": "object.outdoorGear",
+      "semanticKey": "expense.sports.outdoor",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-pet-action-physicalExam",
+      "leftFamily": "object.pet",
+      "rightFamily": "action.physicalExam",
+      "semanticKey": "expense.pets.medical",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-pet-action-rehabilitate",
+      "leftFamily": "object.pet",
+      "rightFamily": "action.rehabilitate",
+      "semanticKey": "expense.pets.medical",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-pet-service-nursing",
+      "leftFamily": "object.pet",
+      "rightFamily": "service.nursing",
+      "semanticKey": "expense.pets.medical",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-petHospital-action-physicalExam",
+      "leftFamily": "venue.petHospital",
+      "rightFamily": "action.physicalExam",
+      "semanticKey": "expense.pets.medical",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-petHospital-action-rehabilitate",
+      "leftFamily": "venue.petHospital",
+      "rightFamily": "action.rehabilitate",
+      "semanticKey": "expense.pets.medical",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-petHospital-service-nursing",
+      "leftFamily": "venue.petHospital",
+      "rightFamily": "service.nursing",
+      "semanticKey": "expense.pets.medical",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-pet-object-petFood",
+      "leftFamily": "object.pet",
+      "rightFamily": "object.petFood",
+      "semanticKey": "expense.pets.food",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-pet-object-petMedicine",
+      "leftFamily": "object.pet",
+      "rightFamily": "object.petMedicine",
+      "semanticKey": "expense.pets.medical",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-pet-action-store",
+      "leftFamily": "object.pet",
+      "rightFamily": "action.store",
+      "semanticKey": "expense.pets.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-pet-service-hotel",
+      "leftFamily": "object.pet",
+      "rightFamily": "service.hotel",
+      "semanticKey": "expense.pets.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-child-object-babySupply",
+      "leftFamily": "modifier.child",
+      "rightFamily": "object.babySupply",
+      "semanticKey": "expense.family.child",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-child-service-childcare",
+      "leftFamily": "modifier.child",
+      "rightFamily": "service.childcare",
+      "semanticKey": "expense.family.child",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-child-service-training",
+      "leftFamily": "modifier.child",
+      "rightFamily": "service.training",
+      "semanticKey": "expense.family.education",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-child-service-tuition",
+      "leftFamily": "modifier.child",
+      "rightFamily": "service.tuition",
+      "semanticKey": "expense.family.education",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-child-object-book",
+      "leftFamily": "modifier.child",
+      "rightFamily": "object.book",
+      "semanticKey": "expense.family.education",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-child-object-schoolSupply",
+      "leftFamily": "modifier.child",
+      "rightFamily": "object.schoolSupply",
+      "semanticKey": "expense.family.education",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-student-service-training",
+      "leftFamily": "modifier.student",
+      "rightFamily": "service.training",
+      "semanticKey": "expense.family.education",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-student-service-tuition",
+      "leftFamily": "modifier.student",
+      "rightFamily": "service.tuition",
+      "semanticKey": "expense.family.education",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-student-object-book",
+      "leftFamily": "modifier.student",
+      "rightFamily": "object.book",
+      "semanticKey": "expense.family.education",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-student-object-schoolSupply",
+      "leftFamily": "modifier.student",
+      "rightFamily": "object.schoolSupply",
+      "semanticKey": "expense.family.education",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-child-action-physicalExam",
+      "leftFamily": "modifier.child",
+      "rightFamily": "action.physicalExam",
+      "semanticKey": "expense.family.health",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-child-action-rehabilitate",
+      "leftFamily": "modifier.child",
+      "rightFamily": "action.rehabilitate",
+      "semanticKey": "expense.family.health",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-child-service-nursing",
+      "leftFamily": "modifier.child",
+      "rightFamily": "service.nursing",
+      "semanticKey": "expense.family.health",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-child-service-dental",
+      "leftFamily": "modifier.child",
+      "rightFamily": "service.dental",
+      "semanticKey": "expense.family.health",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-child-service-rehab",
+      "leftFamily": "modifier.child",
+      "rightFamily": "service.rehab",
+      "semanticKey": "expense.family.health",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-elder-action-physicalExam",
+      "leftFamily": "modifier.elder",
+      "rightFamily": "action.physicalExam",
+      "semanticKey": "expense.family.health",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-elder-action-rehabilitate",
+      "leftFamily": "modifier.elder",
+      "rightFamily": "action.rehabilitate",
+      "semanticKey": "expense.family.health",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-elder-service-nursing",
+      "leftFamily": "modifier.elder",
+      "rightFamily": "service.nursing",
+      "semanticKey": "expense.family.health",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-elder-service-dental",
+      "leftFamily": "modifier.elder",
+      "rightFamily": "service.dental",
+      "semanticKey": "expense.family.health",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-elder-service-rehab",
+      "leftFamily": "modifier.elder",
+      "rightFamily": "service.rehab",
+      "semanticKey": "expense.family.health",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-elder-service-eldercare",
+      "leftFamily": "modifier.elder",
+      "rightFamily": "service.eldercare",
+      "semanticKey": "expense.family.elder",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-elder-object-medicalDevice",
+      "leftFamily": "modifier.elder",
+      "rightFamily": "object.medicalDevice",
+      "semanticKey": "expense.family.elder",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-elder-action-nurse",
+      "leftFamily": "modifier.elder",
+      "rightFamily": "action.nurse",
+      "semanticKey": "expense.family.elder",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-medicalVenue-action-physicalExam",
+      "leftFamily": "context.medicalVenue",
+      "rightFamily": "action.physicalExam",
+      "semanticKey": "expense.medical.checkup",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-medicalVenue-service-dental",
+      "leftFamily": "context.medicalVenue",
+      "rightFamily": "service.dental",
+      "semanticKey": "expense.medical.dental",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-medicalVenue-service-rehab",
+      "leftFamily": "context.medicalVenue",
+      "rightFamily": "service.rehab",
+      "semanticKey": "expense.medical.rehab",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-medicalVenue-action-rehabilitate",
+      "leftFamily": "context.medicalVenue",
+      "rightFamily": "action.rehabilitate",
+      "semanticKey": "expense.medical.rehab",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-medicalVenue-service-nursing",
+      "leftFamily": "context.medicalVenue",
+      "rightFamily": "service.nursing",
+      "semanticKey": "expense.medical.rehab",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-pharmacy-object-medicine",
+      "leftFamily": "venue.pharmacy",
+      "rightFamily": "object.medicine",
+      "semanticKey": "expense.medical.medicine",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-pharmacy-action-medicine",
+      "leftFamily": "venue.pharmacy",
+      "rightFamily": "action.medicine",
+      "semanticKey": "expense.medical.medicine",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-document-action-print",
+      "leftFamily": "object.document",
+      "rightFamily": "action.print",
+      "semanticKey": "expense.education.stationery",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-document-service-printing",
+      "leftFamily": "object.document",
+      "rightFamily": "service.printing",
+      "semanticKey": "expense.education.stationery",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-book-action-print",
+      "leftFamily": "object.book",
+      "rightFamily": "action.print",
+      "semanticKey": "expense.education.stationery",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-book-service-printing",
+      "leftFamily": "object.book",
+      "rightFamily": "service.printing",
+      "semanticKey": "expense.education.stationery",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-certificate-action-print",
+      "leftFamily": "object.certificate",
+      "rightFamily": "action.print",
+      "semanticKey": "expense.education.stationery",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-certificate-service-printing",
+      "leftFamily": "object.certificate",
+      "rightFamily": "service.printing",
+      "semanticKey": "expense.education.stationery",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-exam-service-exam",
+      "leftFamily": "object.exam",
+      "rightFamily": "service.exam",
+      "semanticKey": "expense.education.exam",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-exam-action-authenticate",
+      "leftFamily": "object.exam",
+      "rightFamily": "action.authenticate",
+      "semanticKey": "expense.education.exam",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-education-service-exam",
+      "leftFamily": "context.education",
+      "rightFamily": "service.exam",
+      "semanticKey": "expense.education.exam",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-education-action-authenticate",
+      "leftFamily": "context.education",
+      "rightFamily": "action.authenticate",
+      "semanticKey": "expense.education.exam",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-education-service-training",
+      "leftFamily": "context.education",
+      "rightFamily": "service.training",
+      "semanticKey": "expense.education.course",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-education-action-education",
+      "leftFamily": "context.education",
+      "rightFamily": "action.education",
+      "semanticKey": "expense.education.course",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-school-service-training",
+      "leftFamily": "venue.school",
+      "rightFamily": "service.training",
+      "semanticKey": "expense.education.course",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-school-action-education",
+      "leftFamily": "venue.school",
+      "rightFamily": "action.education",
+      "semanticKey": "expense.education.course",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-school-service-tuition",
+      "leftFamily": "venue.school",
+      "rightFamily": "service.tuition",
+      "semanticKey": "expense.education.tuition",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-library-object-book",
+      "leftFamily": "venue.library",
+      "rightFamily": "object.book",
+      "semanticKey": "expense.education.book",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-photo-service-photography",
+      "leftFamily": "context.photo",
+      "rightFamily": "service.photography",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-home-service-housekeeping",
+      "leftFamily": "context.home",
+      "rightFamily": "service.housekeeping",
+      "semanticKey": "expense.daily.cleaning",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-home-service-moving",
+      "leftFamily": "context.home",
+      "rightFamily": "service.moving",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-home-action-move",
+      "leftFamily": "context.home",
+      "rightFamily": "action.move",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-home-service-storage",
+      "leftFamily": "context.home",
+      "rightFamily": "service.storage",
+      "semanticKey": "expense.daily.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-travel-service-hotel",
+      "leftFamily": "context.travel",
+      "rightFamily": "service.hotel",
+      "semanticKey": "expense.travel.hotel",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-travel-venue-hotel",
+      "leftFamily": "context.travel",
+      "rightFamily": "venue.hotel",
+      "semanticKey": "expense.travel.hotel",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-travel-service-hotel",
+      "leftFamily": "platform.travel",
+      "rightFamily": "service.hotel",
+      "semanticKey": "expense.travel.hotel",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-travel-venue-hotel",
+      "leftFamily": "platform.travel",
+      "rightFamily": "venue.hotel",
+      "semanticKey": "expense.travel.hotel",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-travel-service-travelPackage",
+      "leftFamily": "context.travel",
+      "rightFamily": "service.travelPackage",
+      "semanticKey": "expense.travel.package",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-travel-service-travelPackage",
+      "leftFamily": "platform.travel",
+      "rightFamily": "service.travelPackage",
+      "semanticKey": "expense.travel.package",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-travel-service-visa",
+      "leftFamily": "platform.travel",
+      "rightFamily": "service.visa",
+      "semanticKey": "expense.travel.package",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-travel-service-rideHailing",
+      "leftFamily": "context.travel",
+      "rightFamily": "service.rideHailing",
+      "semanticKey": "expense.travel.local",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-travel-action-rent",
+      "leftFamily": "context.travel",
+      "rightFamily": "action.rent",
+      "semanticKey": "expense.travel.local",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-travel-service-storage",
+      "leftFamily": "context.travel",
+      "rightFamily": "service.storage",
+      "semanticKey": "expense.travel.supplies",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-travel-action-store",
+      "leftFamily": "context.travel",
+      "rightFamily": "action.store",
+      "semanticKey": "expense.travel.supplies",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-travel-object-bag",
+      "leftFamily": "context.travel",
+      "rightFamily": "object.bag",
+      "semanticKey": "expense.travel.supplies",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-wedding-object-gift",
+      "leftFamily": "context.wedding",
+      "rightFamily": "object.gift",
+      "semanticKey": "expense.social.gift",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-wedding-service-eventPlanning",
+      "leftFamily": "context.wedding",
+      "rightFamily": "service.eventPlanning",
+      "semanticKey": "expense.social.gift",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-socialGift-object-gift",
+      "leftFamily": "context.socialGift",
+      "rightFamily": "object.gift",
+      "semanticKey": "expense.social.gift",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-socialGift-service-eventPlanning",
+      "leftFamily": "context.socialGift",
+      "rightFamily": "service.eventPlanning",
+      "semanticKey": "expense.social.gift",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-gathering-service-catering",
+      "leftFamily": "context.gathering",
+      "rightFamily": "service.catering",
+      "semanticKey": "expense.social.gathering",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-gathering-venue-restaurant",
+      "leftFamily": "context.gathering",
+      "rightFamily": "venue.restaurant",
+      "semanticKey": "expense.social.gathering",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-charity-action-donate",
+      "leftFamily": "context.charity",
+      "rightFamily": "action.donate",
+      "semanticKey": "expense.social.donation",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-loan-action-repay",
+      "leftFamily": "object.loan",
+      "rightFamily": "action.repay",
+      "semanticKey": "expense.finance.loan",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-financialProduct-action-insure",
+      "leftFamily": "object.financialProduct",
+      "rightFamily": "action.insure",
+      "semanticKey": "expense.finance.insurance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-financialProduct-service-insurance",
+      "leftFamily": "object.financialProduct",
+      "rightFamily": "service.insurance",
+      "semanticKey": "expense.finance.insurance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-vehicle-action-insure",
+      "leftFamily": "object.vehicle",
+      "rightFamily": "action.insure",
+      "semanticKey": "expense.finance.insurance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-property-action-insure",
+      "leftFamily": "object.property",
+      "rightFamily": "action.insure",
+      "semanticKey": "expense.finance.insurance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-property-service-insurance",
+      "leftFamily": "object.property",
+      "rightFamily": "service.insurance",
+      "semanticKey": "expense.finance.insurance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-finance-service-fee",
+      "leftFamily": "context.finance",
+      "rightFamily": "service.fee",
+      "semanticKey": "expense.finance.fee",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-finance-action-withdraw",
+      "leftFamily": "context.finance",
+      "rightFamily": "action.withdraw",
+      "semanticKey": "expense.finance.fee",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-finance-action-exchangeCurrency",
+      "leftFamily": "context.finance",
+      "rightFamily": "action.exchangeCurrency",
+      "semanticKey": "expense.finance.fee",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-bank-service-fee",
+      "leftFamily": "venue.bank",
+      "rightFamily": "service.fee",
+      "semanticKey": "expense.finance.fee",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-bank-action-withdraw",
+      "leftFamily": "venue.bank",
+      "rightFamily": "action.withdraw",
+      "semanticKey": "expense.finance.fee",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-venue-bank-action-exchangeCurrency",
+      "leftFamily": "venue.bank",
+      "rightFamily": "action.exchangeCurrency",
+      "semanticKey": "expense.finance.fee",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-bankAccount-service-fee",
+      "leftFamily": "object.bankAccount",
+      "rightFamily": "service.fee",
+      "semanticKey": "expense.finance.fee",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-bankAccount-action-withdraw",
+      "leftFamily": "object.bankAccount",
+      "rightFamily": "action.withdraw",
+      "semanticKey": "expense.finance.fee",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-bankAccount-action-exchangeCurrency",
+      "leftFamily": "object.bankAccount",
+      "rightFamily": "action.exchangeCurrency",
+      "semanticKey": "expense.finance.fee",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-object-foodIngredient",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.foodIngredient",
+      "semanticKey": "expense.food.groceries",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-object-fruit",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.fruit",
+      "semanticKey": "expense.food.groceries",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-object-dairy",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.dairy",
+      "semanticKey": "expense.food.groceries",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-object-beautyProduct",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.beautyProduct",
+      "semanticKey": "expense.shopping.beauty",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-object-personalCareProduct",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.personalCareProduct",
+      "semanticKey": "expense.daily.personal",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-object-hairCareProduct",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.hairCareProduct",
+      "semanticKey": "expense.daily.personal",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-object-clothing",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.clothing",
+      "semanticKey": "expense.shopping.clothing",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-object-shoe",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.shoe",
+      "semanticKey": "expense.shopping.clothing",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-object-bag",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.bag",
+      "semanticKey": "expense.shopping.clothing",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-object-homeFurnishing",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.homeFurnishing",
+      "semanticKey": "expense.shopping.home",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-object-tableware",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.tableware",
+      "semanticKey": "expense.shopping.home",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-object-storageSupply",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.storageSupply",
+      "semanticKey": "expense.shopping.home",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-object-appliance",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.appliance",
+      "semanticKey": "expense.shopping.appliance",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-object-phone",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.phone",
+      "semanticKey": "expense.digital.phone",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-object-computerHardware",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.computerHardware",
+      "semanticKey": "expense.digital.computer",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-object-photoEquipment",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.photoEquipment",
+      "semanticKey": "expense.digital.photo",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-object-digitalAccessory",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "object.digitalAccessory",
+      "semanticKey": "expense.digital.accessory",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-delivery-object-drink",
+      "leftFamily": "platform.delivery",
+      "rightFamily": "object.drink",
+      "semanticKey": "expense.food.drink",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-delivery-object-snack",
+      "leftFamily": "platform.delivery",
+      "rightFamily": "object.snack",
+      "semanticKey": "expense.food.snack",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-education-service-training",
+      "leftFamily": "platform.education",
+      "rightFamily": "service.training",
+      "semanticKey": "expense.education.course",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-education-service-membership",
+      "leftFamily": "platform.education",
+      "rightFamily": "service.membership",
+      "semanticKey": "expense.education.course",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-document-action-ship",
+      "leftFamily": "object.document",
+      "rightFamily": "action.ship",
+      "semanticKey": "expense.communication.post",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-document-service-express",
+      "leftFamily": "object.document",
+      "rightFamily": "service.express",
+      "semanticKey": "expense.communication.post",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-gift-action-ship",
+      "leftFamily": "object.gift",
+      "rightFamily": "action.ship",
+      "semanticKey": "expense.communication.post",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-gift-service-express",
+      "leftFamily": "object.gift",
+      "rightFamily": "service.express",
+      "semanticKey": "expense.communication.post",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-bag-action-ship",
+      "leftFamily": "object.bag",
+      "rightFamily": "action.ship",
+      "semanticKey": "expense.communication.post",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-bag-service-express",
+      "leftFamily": "object.bag",
+      "rightFamily": "service.express",
+      "semanticKey": "expense.communication.post",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-businessTrip-income-reimbursement",
+      "leftFamily": "context.businessTrip",
+      "rightFamily": "income.reimbursement",
+      "semanticKey": "income.reimbursement.travel",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-context-work-income-reimbursement",
+      "leftFamily": "context.work",
+      "rightFamily": "income.reimbursement",
+      "semanticKey": "income.reimbursement.work",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-wage-action-receive",
+      "leftFamily": "income.wage",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.salary.monthly",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-bonus-action-receive",
+      "leftFamily": "income.bonus",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.salary.bonus",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-allowance-context-work",
+      "leftFamily": "income.allowance",
+      "rightFamily": "context.work",
+      "semanticKey": "income.salary.allowance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-allowance-action-receive",
+      "leftFamily": "income.allowance",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.salary.allowance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-salaryPerformance-action-receive",
+      "leftFamily": "income.salaryPerformance",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.salary.overtime",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-privateOrder-platform-freelance",
+      "leftFamily": "income.privateOrder",
+      "rightFamily": "platform.freelance",
+      "semanticKey": "income.parttime.freelance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-privateOrder-action-receive",
+      "leftFamily": "income.privateOrder",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.parttime.project",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-orderIncome-platform-freelance",
+      "leftFamily": "income.orderIncome",
+      "rightFamily": "platform.freelance",
+      "semanticKey": "income.parttime.platform",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-teachingFee-action-receive",
+      "leftFamily": "income.teachingFee",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.parttime.consulting",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-authorFee-action-receive",
+      "leftFamily": "income.authorFee",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.parttime.freelance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-liveStream-action-receive",
+      "leftFamily": "income.liveStream",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.parttime.freelance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-interest-action-receive",
+      "leftFamily": "income.interest",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.investment.interest",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-dividend-action-receive",
+      "leftFamily": "income.dividend",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.investment.dividend",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-fundReturn-action-receive",
+      "leftFamily": "income.fundReturn",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.investment.fund",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-rentIncome-action-receive",
+      "leftFamily": "income.rentIncome",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.investment.rent",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-depositReturn-action-receive",
+      "leftFamily": "income.depositReturn",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.refund.deposit",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-taxRefund-action-receive",
+      "leftFamily": "income.taxRefund",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.refund.tax",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-cashback-action-receive",
+      "leftFamily": "income.cashback",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.other.reward",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-redPacket-action-receive",
+      "leftFamily": "income.redPacket",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.other.red.packet",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-compensation-action-receive",
+      "leftFamily": "income.compensation",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.other.compensation",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-subsidy-action-receive",
+      "leftFamily": "income.subsidy",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.other.general",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-prize-action-receive",
+      "leftFamily": "income.prize",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.other.reward",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-income-saleIncome-action-receive",
+      "leftFamily": "income.saleIncome",
+      "rightFamily": "action.receive",
+      "semanticKey": "income.other.general",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-secondHand-action-sell",
+      "leftFamily": "modifier.secondHand",
+      "rightFamily": "action.sell",
+      "semanticKey": "income.other.secondhand",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-modifier-secondHand-income-secondHandSale",
+      "leftFamily": "modifier.secondHand",
+      "rightFamily": "income.secondHandSale",
+      "semanticKey": "income.other.secondhand",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-secondHand-action-sell",
+      "leftFamily": "platform.secondHand",
+      "rightFamily": "action.sell",
+      "semanticKey": "income.other.secondhand",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-secondHand-income-secondHandSale",
+      "leftFamily": "platform.secondHand",
+      "rightFamily": "income.secondHandSale",
+      "semanticKey": "income.other.secondhand",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "daily-object-software-income-refund",
+      "leftFamily": "object.software",
+      "rightFamily": "income.refund",
+      "semanticKey": "income.refund.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-service-training-income-refund",
+      "leftFamily": "service.training",
+      "rightFamily": "income.refund",
+      "semanticKey": "income.refund.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-service-hotel-income-refund",
+      "leftFamily": "service.hotel",
+      "rightFamily": "income.refund",
+      "semanticKey": "income.refund.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-service-membership-income-refund",
+      "leftFamily": "service.membership",
+      "rightFamily": "income.refund",
+      "semanticKey": "income.refund.service",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "daily-platform-shopping-income-refund",
+      "leftFamily": "platform.shopping",
+      "rightFamily": "income.refund",
+      "semanticKey": "income.refund.shopping",
+      "maxDistance": 8,
+      "score": 0.94
+    },
+    {
+      "id": "component-vehicleComponent-replacePart",
+      "leftFamily": "object.vehicleComponent",
+      "rightFamily": "action.replacePart",
+      "semanticKey": "expense.transport.maintenance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "component-vehicleComponent-repair",
+      "leftFamily": "object.vehicleComponent",
+      "rightFamily": "action.repair",
+      "semanticKey": "expense.transport.maintenance",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "component-digitalComponent-replacePart",
+      "leftFamily": "object.digitalComponent",
+      "rightFamily": "action.replacePart",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "component-digitalComponent-repair",
+      "leftFamily": "object.digitalComponent",
+      "rightFamily": "action.repair",
+      "semanticKey": "expense.digital.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "component-fixtureComponent-replacePart",
+      "leftFamily": "object.fixtureComponent",
+      "rightFamily": "action.replacePart",
+      "semanticKey": "expense.housing.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    },
+    {
+      "id": "component-fixtureComponent-repair",
+      "leftFamily": "object.fixtureComponent",
+      "rightFamily": "action.repair",
+      "semanticKey": "expense.housing.repair",
+      "maxDistance": 5,
+      "score": 0.94
+    }
   ]
 }

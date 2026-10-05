@@ -23,7 +23,19 @@ class SpanConflictResolver {
           (other) =>
               !identical(candidate, other) &&
               _strictlyContains(other.range, candidate.range) &&
-              other.conceptFamily == candidate.conceptFamily,
+              other.conceptFamily.split('.').first ==
+                  candidate.conceptFamily.split('.').first &&
+              (other.conceptFamily == candidate.conceptFamily ||
+                  candidate.conceptFamily.startsWith('object.')) &&
+              candidate.conceptFamily != 'object.pet' &&
+              // Retain an atomic constituent when another concept crosses
+              // its compound: 网盘会员 still composes 网盘 + 会员.
+              !(other.conceptFamily == candidate.conceptFamily &&
+                  input.any(
+                    (part) =>
+                        part.conceptFamily != other.conceptFamily &&
+                        part.range.overlaps(other.range),
+                  )),
         ))
           candidate,
     ]);
@@ -36,7 +48,11 @@ class SpanConflictResolver {
   ) {
     final span = candidate.span;
     if (span == null || candidate.negative) return false;
-    if (familyMatches.any((match) => _strictlyContains(match.range, span))) {
+    if (familyMatches.any(
+      (match) =>
+          match.conceptFamily.startsWith('object.') &&
+          _strictlyContains(match.range, span),
+    )) {
       return true;
     }
     return all.any((other) {

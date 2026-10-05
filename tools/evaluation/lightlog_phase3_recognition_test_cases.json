@@ -1,0 +1,3730 @@
+{
+  "metadata": {
+    "name": "LightLog Phase 3 Local Recognition Test Corpus",
+    "version": 1,
+    "referenceNow": "2026-10-04T14:30:00+08:00",
+    "timezone": "UTC+08:00",
+    "daypartDefaults": {
+      "凌晨": "02:00",
+      "早上/今早": "08:00",
+      "上午": "09:00",
+      "中午": "12:00",
+      "下午": "15:00",
+      "晚上/昨晚": "20:00"
+    },
+    "priorityMeaning": {
+      "P0": "Phase 3 基础能力必须通过",
+      "P1": "鲁棒性目标；应尽量通过",
+      "P2": "压力/歧义/OCR前瞻；允许 partial/reject，但禁止错误自动确认"
+    },
+    "notes": [
+      "status=partial/reject 的核心要求是保守失败，不得生成高置信度错误正式账目。",
+      "OCR-like 样例用于提前验证纯文本解析管线，不要求 Phase 3 实现图片 OCR。",
+      "occurredAtLocal 均以 referenceNow 为基准。",
+      "若未来改用 semanticKey，应把 expected categoryId/subcategoryId 迁移为 semantic oracle，而不是改变样例语义。"
+    ],
+    "totalCases": 190
+  },
+  "cases": [
+    {
+      "id": "B001",
+      "priority": "P0",
+      "group": "basic",
+      "input": "二食堂 15",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1500,
+        "content": "二食堂",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-lunch",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "B002",
+      "priority": "P0",
+      "group": "basic",
+      "input": "星巴克32",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3200,
+        "content": "星巴克",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-drink",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "B003",
+      "priority": "P0",
+      "group": "basic",
+      "input": "打车 19.8",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1980,
+        "content": "打车",
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-taxi",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "B004",
+      "priority": "P0",
+      "group": "basic",
+      "input": "午饭 18",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1800,
+        "content": "午饭",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-lunch",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "B005",
+      "priority": "P0",
+      "group": "basic",
+      "input": "早餐 6.5",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 650,
+        "content": "早餐",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-breakfast",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "B006",
+      "priority": "P0",
+      "group": "basic",
+      "input": "晚饭麦当劳 25",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-dinner",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "B007",
+      "priority": "P0",
+      "group": "basic",
+      "input": "瑞幸咖啡 19.9",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1990,
+        "content": "瑞幸咖啡",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-drink",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "B008",
+      "priority": "P0",
+      "group": "basic",
+      "input": "地铁 4",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 400,
+        "content": "地铁",
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-public",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "B009",
+      "priority": "P0",
+      "group": "basic",
+      "input": "滴滴 26.35",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2635,
+        "content": "滴滴",
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-taxi",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "B010",
+      "priority": "P0",
+      "group": "basic",
+      "input": "买菜 36.8",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3680,
+        "content": "买菜",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-groceries",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "B011",
+      "priority": "P0",
+      "group": "basic",
+      "input": "电影 40",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4000,
+        "content": "电影",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "B012",
+      "priority": "P0",
+      "group": "basic",
+      "input": "Steam 198",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 19800,
+        "content": "Steam",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-game",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "B013",
+      "priority": "P0",
+      "group": "basic",
+      "input": "话费 50",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 5000,
+        "content": "话费",
+        "categoryId": "expense-communication",
+        "subcategoryId": "expense-communication-mobile",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "B014",
+      "priority": "P0",
+      "group": "basic",
+      "input": "房租 2200",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 220000,
+        "content": "房租",
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-rent",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "B015",
+      "priority": "P0",
+      "group": "basic",
+      "input": "理发 35",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3500,
+        "content": "理发",
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-haircut",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "M001",
+      "priority": "P0",
+      "group": "merchant_kb",
+      "input": "麦当劳 28",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2800,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M002",
+      "priority": "P0",
+      "group": "merchant_kb",
+      "input": "McDonald's 28",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2800,
+        "content": "McDonald's",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M003",
+      "priority": "P0",
+      "group": "merchant_kb",
+      "input": "MCDONALDS 28",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2800,
+        "content": "MCDONALDS",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M004",
+      "priority": "P0",
+      "group": "merchant_kb",
+      "input": "肯德基 32",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3200,
+        "content": "肯德基",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M005",
+      "priority": "P0",
+      "group": "merchant_kb",
+      "input": "KFC 32",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3200,
+        "content": "KFC",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M006",
+      "priority": "P0",
+      "group": "merchant_kb",
+      "input": "汉堡王 36",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3600,
+        "content": "汉堡王",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M007",
+      "priority": "P0",
+      "group": "merchant_kb",
+      "input": "Burger King 36",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3600,
+        "content": "Burger King",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M008",
+      "priority": "P0",
+      "group": "merchant_kb",
+      "input": "蜜雪冰城 8",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 800,
+        "content": "蜜雪冰城",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-drink",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M009",
+      "priority": "P0",
+      "group": "merchant_kb",
+      "input": "喜茶 19",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1900,
+        "content": "喜茶",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-drink",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M010",
+      "priority": "P0",
+      "group": "merchant_kb",
+      "input": "霸王茶姬 21",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2100,
+        "content": "霸王茶姬",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-drink",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M011",
+      "priority": "P1",
+      "group": "merchant_kb",
+      "input": "全家便利店 23.5",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2350,
+        "content": "全家便利店",
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M012",
+      "priority": "P1",
+      "group": "merchant_kb",
+      "input": "FamilyMart 23.5",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2350,
+        "content": "FamilyMart",
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M013",
+      "priority": "P1",
+      "group": "merchant_kb",
+      "input": "罗森 12",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1200,
+        "content": "罗森",
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M014",
+      "priority": "P1",
+      "group": "merchant_kb",
+      "input": "7-Eleven 15",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1500,
+        "content": "7-Eleven",
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M015",
+      "priority": "P1",
+      "group": "merchant_kb",
+      "input": "盒马 86.4",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8640,
+        "content": "盒马",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-groceries",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M016",
+      "priority": "P1",
+      "group": "merchant_kb",
+      "input": "沃尔玛 128.3",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12830,
+        "content": "沃尔玛",
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M017",
+      "priority": "P1",
+      "group": "merchant_kb",
+      "input": "顺丰 12",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1200,
+        "content": "顺丰",
+        "categoryId": "expense-communication",
+        "subcategoryId": "expense-communication-post",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M018",
+      "priority": "P1",
+      "group": "merchant_kb",
+      "input": "中国移动 100",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 10000,
+        "content": "中国移动",
+        "categoryId": "expense-communication",
+        "subcategoryId": "expense-communication-mobile",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M019",
+      "priority": "P1",
+      "group": "merchant_kb",
+      "input": "国家电网 126.7",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12670,
+        "content": "国家电网",
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-utilities",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M020",
+      "priority": "P1",
+      "group": "merchant_kb",
+      "input": "猫眼电影 45",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4500,
+        "content": "猫眼电影",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M021",
+      "priority": "P1",
+      "group": "merchant_kb",
+      "input": "爱奇艺会员 25",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "爱奇艺",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-subscription",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M022",
+      "priority": "P1",
+      "group": "merchant_kb",
+      "input": "网易云音乐 15",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1500,
+        "content": "网易云音乐",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-music",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M023",
+      "priority": "P1",
+      "group": "merchant_kb",
+      "input": "12306 553",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 55300,
+        "content": "12306",
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-rail",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "M024",
+      "priority": "P1",
+      "group": "merchant_kb",
+      "input": "中国国航 860",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 86000,
+        "content": "中国国航",
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-flight",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "Merchant KB canonical/alias"
+    },
+    {
+      "id": "L001",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "老王铜锅涮肉 88",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8800,
+        "content": "老王铜锅涮肉",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L002",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "幸福大药房 36",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3600,
+        "content": "幸福大药房",
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-medicine",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L003",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "星河影城 42",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4200,
+        "content": "星河影城",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L004",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "学友打印店 8",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 800,
+        "content": "学友打印店",
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-stationery",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L005",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "小陈手机维修 180",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 18000,
+        "content": "小陈手机维修",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L006",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "爱宠宠物医院 260",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 26000,
+        "content": "爱宠宠物医院",
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-medical",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L007",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "喵星人猫粮 89",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8900,
+        "content": "喵星人猫粮",
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-food",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L008",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "阳光健身房 99",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9900,
+        "content": "阳光健身房",
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-fitness",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L009",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "山野户外俱乐部 128",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12800,
+        "content": "山野户外俱乐部",
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-outdoor",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L010",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "考试报名费 210",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 21000,
+        "content": "考试报名费",
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-exam",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L011",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "宽带续费 120",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": "宽带续费",
+        "categoryId": "expense-communication",
+        "subcategoryId": "expense-communication-internet",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L012",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "水费 45.6",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4560,
+        "content": "水费",
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-utilities",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L013",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "燃气费 63",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6300,
+        "content": "燃气费",
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-gas",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L014",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "物业费 350",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 35000,
+        "content": "物业费",
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-property",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L015",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "洗衣店 25",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "洗衣店",
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L016",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "洗发水牙膏 49.9",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4990,
+        "content": "洗发水牙膏",
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-personal",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L017",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "羽毛球馆 60",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6000,
+        "content": "羽毛球馆",
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-venue",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L018",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "演唱会门票 680",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 68000,
+        "content": "演唱会门票",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L019",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "民宿 288",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 28800,
+        "content": "民宿",
+        "categoryId": "expense-travel",
+        "subcategoryId": "expense-travel-hotel",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "L020",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "景区门票 80",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": "景区门票",
+        "categoryId": "expense-travel",
+        "subcategoryId": "expense-travel-attraction",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "未知商户依靠词典泛化"
+    },
+    {
+      "id": "P001",
+      "priority": "P1",
+      "group": "fusion_conflict",
+      "input": "淘宝 iPhone手机壳 49.9",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4990,
+        "content": "iPhone手机壳",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "广义平台不能压过更具体商品语义"
+    },
+    {
+      "id": "P002",
+      "priority": "P1",
+      "group": "fusion_conflict",
+      "input": "京东 iPad 3999",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 399900,
+        "content": "iPad",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-phone",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "广义平台不能压过更具体商品语义"
+    },
+    {
+      "id": "P003",
+      "priority": "P1",
+      "group": "fusion_conflict",
+      "input": "拼多多 卫生纸 29.9",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2990,
+        "content": "卫生纸",
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-household",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "广义平台不能压过更具体商品语义"
+    },
+    {
+      "id": "P004",
+      "priority": "P1",
+      "group": "fusion_conflict",
+      "input": "美团 外卖 32",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3200,
+        "content": "美团外卖",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-takeout",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "广义平台不能压过更具体商品语义"
+    },
+    {
+      "id": "P005",
+      "priority": "P1",
+      "group": "fusion_conflict",
+      "input": "饿了么 奶茶 16",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1600,
+        "content": "奶茶",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-drink",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "广义平台不能压过更具体商品语义"
+    },
+    {
+      "id": "P006",
+      "priority": "P1",
+      "group": "fusion_conflict",
+      "input": "闲鱼 二手键盘 120",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": "二手键盘",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "广义平台不能压过更具体商品语义"
+    },
+    {
+      "id": "P007",
+      "priority": "P1",
+      "group": "fusion_conflict",
+      "input": "淘宝 猫粮 68",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6800,
+        "content": "猫粮",
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-food",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "广义平台不能压过更具体商品语义"
+    },
+    {
+      "id": "P008",
+      "priority": "P1",
+      "group": "fusion_conflict",
+      "input": "京东 电饭煲 299",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 29900,
+        "content": "电饭煲",
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-appliance",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "广义平台不能压过更具体商品语义"
+    },
+    {
+      "id": "H001",
+      "priority": "P0",
+      "group": "personal_history",
+      "input": "泉膳中国 42",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4200,
+        "content": "泉膳中国",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-lunch",
+        "occurredAtLocal": null,
+        "minConfidence": 0.9,
+        "issues": []
+      },
+      "setup": {
+        "history": [
+          {
+            "normalizedContent": "泉膳中国",
+            "categoryId": "expense-food",
+            "subcategoryId": "expense-food-lunch",
+            "hitCount": 4,
+            "correctionCount": 0
+          }
+        ]
+      },
+      "focus": "个人历史优先"
+    },
+    {
+      "id": "H002",
+      "priority": "P1",
+      "group": "personal_history",
+      "input": "Apple Services 68",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6800,
+        "content": "Apple Services",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-software",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {
+        "history": [
+          {
+            "normalizedContent": "apple services",
+            "categoryId": "expense-digital",
+            "subcategoryId": "expense-digital-software",
+            "hitCount": 6,
+            "correctionCount": 1
+          }
+        ]
+      },
+      "focus": "个人历史覆盖通用歧义"
+    },
+    {
+      "id": "H003",
+      "priority": "P1",
+      "group": "personal_history",
+      "input": "美团 35",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3500,
+        "content": "美团",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-takeout",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {
+        "history": [
+          {
+            "normalizedContent": "美团",
+            "categoryId": "expense-food",
+            "subcategoryId": "expense-food-takeout",
+            "hitCount": 12,
+            "correctionCount": 0
+          }
+        ]
+      },
+      "focus": ""
+    },
+    {
+      "id": "H004",
+      "priority": "P1",
+      "group": "personal_history",
+      "input": "星巴克 32",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3200,
+        "content": "星巴克",
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-gathering",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {
+        "history": [
+          {
+            "normalizedContent": "星巴克",
+            "categoryId": "expense-social",
+            "subcategoryId": "expense-social-gathering",
+            "hitCount": 5,
+            "correctionCount": 0
+          }
+        ]
+      },
+      "focus": "用户明确历史可覆盖 Merchant KB"
+    },
+    {
+      "id": "H005",
+      "priority": "P1",
+      "group": "personal_history",
+      "input": "老地方 50",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 5000,
+        "content": "老地方",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-hobby",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {
+        "history": [
+          {
+            "normalizedContent": "老地方",
+            "categoryId": "expense-entertainment",
+            "subcategoryId": "expense-entertainment-hobby",
+            "hitCount": 3,
+            "correctionCount": 0
+          }
+        ]
+      },
+      "focus": ""
+    },
+    {
+      "id": "T001",
+      "priority": "P0",
+      "group": "time_parser",
+      "input": "今天午饭 18",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1800,
+        "content": "午饭",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-lunch",
+        "occurredAtLocal": "2026-10-04T12:00:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "T002",
+      "priority": "P0",
+      "group": "time_parser",
+      "input": "昨天晚饭麦当劳 28",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2800,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-dinner",
+        "occurredAtLocal": "2026-10-03T20:00:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "T003",
+      "priority": "P0",
+      "group": "time_parser",
+      "input": "前天早上早餐 8",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 800,
+        "content": "早餐",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-breakfast",
+        "occurredAtLocal": "2026-10-02T08:00:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "T004",
+      "priority": "P1",
+      "group": "time_parser",
+      "input": "昨晚汉堡王 31",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3100,
+        "content": "汉堡王",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-dinner",
+        "occurredAtLocal": "2026-10-03T20:00:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "T005",
+      "priority": "P0",
+      "group": "time_parser",
+      "input": "昨天18点30滴滴 26",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2600,
+        "content": "滴滴",
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-taxi",
+        "occurredAtLocal": "2026-10-03T18:30:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "T006",
+      "priority": "P1",
+      "group": "time_parser",
+      "input": "前天下午3点20咖啡 22",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2200,
+        "content": "咖啡",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-drink",
+        "occurredAtLocal": "2026-10-02T15:20:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "T007",
+      "priority": "P1",
+      "group": "time_parser",
+      "input": "前天晚上8点半电影 40",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4000,
+        "content": "电影",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": "2026-10-02T20:30:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "T008",
+      "priority": "P1",
+      "group": "time_parser",
+      "input": "本周一中午食堂 15",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1500,
+        "content": "食堂",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-lunch",
+        "occurredAtLocal": "2026-09-28T12:00:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "T009",
+      "priority": "P1",
+      "group": "time_parser",
+      "input": "上周一上午打印 6",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 600,
+        "content": "打印",
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-stationery",
+        "occurredAtLocal": "2026-09-21T09:00:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "T010",
+      "priority": "P0",
+      "group": "time_parser",
+      "input": "上周五中午麦当劳 25",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-lunch",
+        "occurredAtLocal": "2026-09-25T12:00:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "T011",
+      "priority": "P1",
+      "group": "time_parser",
+      "input": "上周日晚上电影 35",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3500,
+        "content": "电影",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": "2026-09-27T20:00:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "T012",
+      "priority": "P1",
+      "group": "time_parser",
+      "input": "今天凌晨一点半打车 42",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4200,
+        "content": "打车",
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-taxi",
+        "occurredAtLocal": "2026-10-04T01:30:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "T013",
+      "priority": "P1",
+      "group": "time_parser",
+      "input": "今早星巴克 28",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2800,
+        "content": "星巴克",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-drink",
+        "occurredAtLocal": "2026-10-04T08:00:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "T014",
+      "priority": "P1",
+      "group": "time_parser",
+      "input": "今晚聚餐 120",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": "聚餐",
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-gathering",
+        "occurredAtLocal": "2026-10-04T20:00:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "T015",
+      "priority": "P1",
+      "group": "time_parser",
+      "input": "10月1日晚上八点半电影 50",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 5000,
+        "content": "电影",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": "2026-10-01T20:30:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "T016",
+      "priority": "P1",
+      "group": "time_parser",
+      "input": "2026年9月30日 12:15 午餐 22",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2200,
+        "content": "午餐",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-lunch",
+        "occurredAtLocal": "2026-09-30T12:15:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "T017",
+      "priority": "P2",
+      "group": "time_parser",
+      "input": "周五中午吃饭 20",
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": 2000,
+        "content": "吃饭",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-lunch",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "ambiguous_weekday"
+        ]
+      },
+      "setup": {},
+      "focus": "无本周/上周限定时应保守"
+    },
+    {
+      "id": "I001",
+      "priority": "P0",
+      "group": "income",
+      "input": "工资 +5000",
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 500000,
+        "content": "工资",
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-monthly",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "I002",
+      "priority": "P1",
+      "group": "income",
+      "input": "10月工资 8230.55",
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 823055,
+        "content": "10月工资",
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-monthly",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "I003",
+      "priority": "P0",
+      "group": "income",
+      "input": "绩效奖金 1200",
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 120000,
+        "content": "绩效奖金",
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-bonus",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "I004",
+      "priority": "P1",
+      "group": "income",
+      "input": "津贴 500",
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 50000,
+        "content": "津贴",
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-allowance",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "I005",
+      "priority": "P1",
+      "group": "income",
+      "input": "加班费 +380",
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 38000,
+        "content": "加班费",
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-overtime",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "I006",
+      "priority": "P0",
+      "group": "income",
+      "input": "差旅报销 +368.5",
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 36850,
+        "content": "差旅报销",
+        "categoryId": "income-reimbursement",
+        "subcategoryId": "income-reimbursement-travel",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "I007",
+      "priority": "P1",
+      "group": "income",
+      "input": "医疗报销 560",
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 56000,
+        "content": "医疗报销",
+        "categoryId": "income-reimbursement",
+        "subcategoryId": "income-reimbursement-medical",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "I008",
+      "priority": "P1",
+      "group": "income",
+      "input": "稿费 +800",
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 80000,
+        "content": "稿费",
+        "categoryId": "income-parttime",
+        "subcategoryId": "income-parttime-freelance",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "I009",
+      "priority": "P1",
+      "group": "income",
+      "input": "项目劳务 2500",
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 250000,
+        "content": "项目劳务",
+        "categoryId": "income-parttime",
+        "subcategoryId": "income-parttime-project",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "I010",
+      "priority": "P0",
+      "group": "income",
+      "input": "闲鱼卖旧手机 +1200",
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 120000,
+        "content": "卖旧手机",
+        "categoryId": "income-other",
+        "subcategoryId": "income-other-secondhand",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "I011",
+      "priority": "P1",
+      "group": "income",
+      "input": "微信红包 +200",
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 20000,
+        "content": "微信红包",
+        "categoryId": "income-other",
+        "subcategoryId": "income-other-red-packet",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "I012",
+      "priority": "P1",
+      "group": "income",
+      "input": "基金分红 +35.6",
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 3560,
+        "content": "基金分红",
+        "categoryId": "income-investment",
+        "subcategoryId": "income-investment-dividend",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "I013",
+      "priority": "P1",
+      "group": "income",
+      "input": "存款利息 +12.34",
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 1234,
+        "content": "存款利息",
+        "categoryId": "income-investment",
+        "subcategoryId": "income-investment-interest",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "I014",
+      "priority": "P1",
+      "group": "income",
+      "input": "租金收入 +2800",
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 280000,
+        "content": "租金收入",
+        "categoryId": "income-investment",
+        "subcategoryId": "income-investment-rent",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "N001",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "速度与激情8 20",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2000,
+        "content": "速度与激情8",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "N002",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "复仇者联盟4 35",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3500,
+        "content": "复仇者联盟4",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "N003",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "711 12.5",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1250,
+        "content": "711",
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "N004",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "7-11 15",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1500,
+        "content": "7-11",
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "N005",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "85度C 18",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1800,
+        "content": "85度C",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-drink",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "N006",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "2号线地铁 4",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 400,
+        "content": "2号线地铁",
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-public",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "N007",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "电影票2张80",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": "电影票",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "N008",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "2杯奶茶 18",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1800,
+        "content": "奶茶",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-drink",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "N009",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "3个包子 6",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 600,
+        "content": "包子",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-breakfast",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "N010",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "iPhone 17 Pro Max 手机壳 49.9",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4990,
+        "content": "iPhone 17 Pro Max 手机壳",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "N011",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "RTX 5090 15999",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1599900,
+        "content": "RTX 5090",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-computer",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "N012",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "3.5寸硬盘盒 39.9",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3990,
+        "content": "3.5寸硬盘盒",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "N013",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "会员12个月 128",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12800,
+        "content": "会员12个月",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-subscription",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "N014",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "订单号2026100312345678 麦当劳 26.5",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2650,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "N015",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "2026年10月3日麦当劳26.5",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2650,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "A001",
+      "priority": "P0",
+      "group": "amount_format",
+      "input": "麦当劳 ¥25",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "A002",
+      "priority": "P0",
+      "group": "amount_format",
+      "input": "麦当劳 25元",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "A003",
+      "priority": "P0",
+      "group": "amount_format",
+      "input": "25 麦当劳",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "A004",
+      "priority": "P1",
+      "group": "amount_format",
+      "input": "麦当劳 支付25.00",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "A005",
+      "priority": "P1",
+      "group": "amount_format",
+      "input": "麦当劳 ￥25.5",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2550,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "A006",
+      "priority": "P1",
+      "group": "amount_format",
+      "input": "麦当劳 0.01",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "A007",
+      "priority": "P1",
+      "group": "amount_format",
+      "input": "电脑 9999.99",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 999999,
+        "content": "电脑",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-computer",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "A008",
+      "priority": "P0",
+      "group": "invalid",
+      "input": "麦当劳 0",
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": null,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "invalid_amount"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "A009",
+      "priority": "P1",
+      "group": "invalid",
+      "input": "麦当劳 -25",
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": null,
+        "content": "麦当劳",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "invalid_amount"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "A010",
+      "priority": "P1",
+      "group": "invalid",
+      "input": "麦当劳 25.999",
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": null,
+        "content": "麦当劳",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "invalid_amount_precision"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "A011",
+      "priority": "P2",
+      "group": "unsupported_format",
+      "input": "二十五元 麦当劳",
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": null,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "amount_unrecognized"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "O001",
+      "priority": "P1",
+      "group": "ocr_like",
+      "input": "微信支付 支付成功 收款方：汉堡王（武汉光谷店） 商品：皇堡套餐 订单金额 ¥42.00 优惠 ¥5.00 实付 ¥37.00 交易时间：2026-10-03 19:32:18 商户单号：202610031932180001",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3700,
+        "content": "汉堡王",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-dinner",
+        "occurredAtLocal": "2026-10-03T19:32:18+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "多金额优先实付"
+    },
+    {
+      "id": "O002",
+      "priority": "P1",
+      "group": "ocr_like",
+      "input": "支付宝 交易成功 商家：瑞幸咖啡武汉大学店 商品金额 21.00 优惠券 5.00 红包 0.00 付款金额 16.00 付款时间 2026-10-04 08:42 订单号 202610040842991234",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1600,
+        "content": "瑞幸咖啡",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-drink",
+        "occurredAtLocal": "2026-10-04T08:42:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "O003",
+      "priority": "P1",
+      "group": "ocr_like",
+      "input": "微信支付 收款方 幸福大药房 支付金额 ¥36.80 当前状态 支付成功 交易时间 2026/10/02 17:06:22 交易单号 4200002515202610021234567890",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3680,
+        "content": "幸福大药房",
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-medicine",
+        "occurredAtLocal": "2026-10-02T17:06:22+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "O004",
+      "priority": "P1",
+      "group": "ocr_like",
+      "input": "铁路12306 订单支付成功 车次 G1234 武汉站-广州南站 乘车日期 2026-10-10 订单金额 463.00 实际支付 463.00 下单时间 2026-10-03 11:28",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 46300,
+        "content": "铁路12306",
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-rail",
+        "occurredAtLocal": "2026-10-03T11:28:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "乘车日期不能覆盖交易时间"
+    },
+    {
+      "id": "O005",
+      "priority": "P1",
+      "group": "ocr_like",
+      "input": "美团外卖 订单已完成 商家：麦当劳（珞珈山店） 商品小计 35.00 配送费 3.00 优惠 8.00 实付 30.00 支付时间 2026-10-03 12:11 订单号 1234567890123456789",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3000,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-lunch",
+        "occurredAtLocal": "2026-10-03T12:11:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "O006",
+      "priority": "P1",
+      "group": "ocr_like",
+      "input": "订单详情 商家 星河影城 速度与激情8 IMAX 2D 票价45.00 服务费3.00 优惠8.00 实付¥40.00 场次2026-10-05 19:30 支付时间2026-10-03 16:20 订单号810052610031620",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4000,
+        "content": "星河影城",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": "2026-10-03T16:20:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "O007",
+      "priority": "P1",
+      "group": "ocr_like",
+      "input": "京东支付 订单已完成 商品：Apple iPhone 17 Pro Max 手机壳 商品金额¥59.90 运费¥0.00 优惠¥10.00 应付¥49.90 支付金额¥49.90 支付时间2026-10-01 22:08 订单编号302610012208000123",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4990,
+        "content": "Apple iPhone 17 Pro Max 手机壳",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": "2026-10-01T22:08:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "O008",
+      "priority": "P1",
+      "group": "ocr_like",
+      "input": "中国移动 手机充值 充值号码138****1234 面额100.00 优惠2.00 实付98.00 充值成功 2026-10-04 09:01:33",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9800,
+        "content": "中国移动",
+        "categoryId": "expense-communication",
+        "subcategoryId": "expense-communication-mobile",
+        "occurredAtLocal": "2026-10-04T09:01:33+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "O009",
+      "priority": "P1",
+      "group": "ocr_like",
+      "input": "滴滴出行 行程结束 起点武汉大学 终点武汉站 里程17.8km 时长35分钟 原价36.40 优惠券6.00 实付30.40 支付成功 2026-10-02 07:52",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3040,
+        "content": "滴滴出行",
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-taxi",
+        "occurredAtLocal": "2026-10-02T07:52:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "O010",
+      "priority": "P1",
+      "group": "ocr_like",
+      "input": "微信支付 商户：爱宠宠物医院 项目：疫苗接种 总金额280.00 会员优惠20.00 支付金额260.00 支付时间2026-09-30 18:10",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 26000,
+        "content": "爱宠宠物医院",
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-medical",
+        "occurredAtLocal": "2026-09-30T18:10:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "O011",
+      "priority": "P2",
+      "group": "ocr_ambiguous",
+      "input": "订单详情 汉堡王 皇堡套餐 商品金额42.00 优惠5.00 37.00 订单号20261003193218",
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": null,
+        "content": "汉堡王",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "ambiguous_amount"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "O012",
+      "priority": "P2",
+      "group": "ocr_ambiguous",
+      "input": "支付失败 收款方：汉堡王 金额32.00 失败原因：余额不足 时间2026-10-03 18:20",
+      "expected": {
+        "status": "reject",
+        "type": "expense",
+        "amountMinor": 3200,
+        "content": "汉堡王",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "transaction_not_completed"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "O013",
+      "priority": "P2",
+      "group": "ocr_ambiguous",
+      "input": "退款成功 商家：淘宝 金额49.90 原订单20260928123456 退款时间2026-10-03 14:20",
+      "expected": {
+        "status": "partial",
+        "type": "refund",
+        "amountMinor": 4990,
+        "content": "淘宝",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "related_transaction_required"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "O014",
+      "priority": "P2",
+      "group": "ocr_ambiguous",
+      "input": "银行卡余额3250.66 可用余额3200.66 账户尾号8888",
+      "expected": {
+        "status": "reject",
+        "type": null,
+        "amountMinor": null,
+        "content": null,
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "no_transaction_evidence"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "O015",
+      "priority": "P2",
+      "group": "ocr_ambiguous",
+      "input": "优惠券 立减20 满100可用 有效期至2026-10-31",
+      "expected": {
+        "status": "reject",
+        "type": null,
+        "amountMinor": null,
+        "content": null,
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "no_transaction_evidence"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "O016",
+      "priority": "P2",
+      "group": "ocr_ambiguous",
+      "input": "订单已取消 商品金额128.00 实付0.00 取消时间2026-10-03 12:00",
+      "expected": {
+        "status": "reject",
+        "type": null,
+        "amountMinor": null,
+        "content": null,
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "transaction_cancelled"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "O017",
+      "priority": "P2",
+      "group": "ocr_ambiguous",
+      "input": "收款方：XX超市 金额88.00 时间2026-10-03 20:10 收款方：XX咖啡 金额22.00 时间2026-10-03 20:12",
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": null,
+        "content": null,
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "multiple_transactions_detected"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "O018",
+      "priority": "P2",
+      "group": "ocr_ambiguous",
+      "input": "微信支付 收款方：便利店 商品总价30.00 会员价25.00 支付金额25.00 退款5.00 当前实际支出20.00",
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": null,
+        "content": null,
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "amount_semantics_conflict"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "R001",
+      "priority": "P1",
+      "group": "redundant_natural_language",
+      "input": "今天中午在学校二食堂吃饭，一共花了15块钱",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1500,
+        "content": "二食堂",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-lunch",
+        "occurredAtLocal": "2026-10-04T12:00:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "R002",
+      "priority": "P1",
+      "group": "redundant_natural_language",
+      "input": "昨晚和朋友去星河影城看了速度与激情8，电影票20元",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2000,
+        "content": "星河影城",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": "2026-10-03T20:00:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "R003",
+      "priority": "P1",
+      "group": "redundant_natural_language",
+      "input": "前天早上赶时间打了个滴滴去学校，花了18块6",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1860,
+        "content": "滴滴",
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-taxi",
+        "occurredAtLocal": "2026-10-02T08:00:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "R004",
+      "priority": "P1",
+      "group": "redundant_natural_language",
+      "input": "上周五中午麦当劳吃了个套餐，实付25元，原价其实是32",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-lunch",
+        "occurredAtLocal": "2026-09-25T12:00:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "R005",
+      "priority": "P1",
+      "group": "redundant_natural_language",
+      "input": "今天去幸福大药房买感冒药，总共36.8元",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3680,
+        "content": "幸福大药房",
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-medicine",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "R006",
+      "priority": "P1",
+      "group": "redundant_natural_language",
+      "input": "昨天晚上在Steam买了个游戏，198块",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 19800,
+        "content": "Steam",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-game",
+        "occurredAtLocal": "2026-10-03T20:00:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "R007",
+      "priority": "P1",
+      "group": "redundant_natural_language",
+      "input": "本周一交了这个月房租2200元",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 220000,
+        "content": "房租",
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-rent",
+        "occurredAtLocal": "2026-09-28T14:30:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "R008",
+      "priority": "P1",
+      "group": "redundant_natural_language",
+      "input": "今天下午给猫买了两袋猫粮，一共89.9",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8990,
+        "content": "猫粮",
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-food",
+        "occurredAtLocal": "2026-10-04T15:00:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "C001",
+      "priority": "P1",
+      "group": "ambiguity",
+      "input": "美团 30",
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": 3000,
+        "content": "美团",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "category_low_confidence"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "C002",
+      "priority": "P1",
+      "group": "ambiguity",
+      "input": "Apple 68",
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": 6800,
+        "content": "Apple",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "category_ambiguous"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "C003",
+      "priority": "P1",
+      "group": "ambiguity",
+      "input": "医院停车 10",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1000,
+        "content": "医院停车",
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-parking",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "C004",
+      "priority": "P1",
+      "group": "ambiguity",
+      "input": "宠物医院 200",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 20000,
+        "content": "宠物医院",
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-medical",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "C005",
+      "priority": "P1",
+      "group": "ambiguity",
+      "input": "儿童医院 120",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": "儿童医院",
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-clinic",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "C006",
+      "priority": "P1",
+      "group": "ambiguity",
+      "input": "苹果维修 299",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 29900,
+        "content": "苹果维修",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "C007",
+      "priority": "P2",
+      "group": "ambiguity",
+      "input": "礼物 200",
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": 20000,
+        "content": "礼物",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "category_ambiguous"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "C008",
+      "priority": "P2",
+      "group": "ambiguity",
+      "input": "会员 30",
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": 3000,
+        "content": "会员",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "category_ambiguous"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "C009",
+      "priority": "P2",
+      "group": "ambiguity",
+      "input": "充值 100",
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": 10000,
+        "content": "充值",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "category_ambiguous"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "E001",
+      "priority": "P0",
+      "group": "invalid_input",
+      "input": "",
+      "expected": {
+        "status": "reject",
+        "type": null,
+        "amountMinor": null,
+        "content": null,
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "empty_input"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "E002",
+      "priority": "P0",
+      "group": "invalid_input",
+      "input": "   ",
+      "expected": {
+        "status": "reject",
+        "type": null,
+        "amountMinor": null,
+        "content": null,
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "empty_input"
+        ]
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "E003",
+      "priority": "P2",
+      "group": "normalization_stress",
+      "input": "麦 当 劳   2 5 . 0 0",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "异常空格；若当前设计不支持，可调整为 partial，但不得误解析其他金额"
+    },
+    {
+      "id": "E004",
+      "priority": "P1",
+      "group": "normalization_stress",
+      "input": "【微信支付】  麦当劳（武汉大学珞珈山店）   ¥25.00  ",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "E005",
+      "priority": "P1",
+      "group": "normalization_stress",
+      "input": "MCDONALD'S（WUHAN UNIVERSITY）￥25.00",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "MCDONALD'S",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "E006",
+      "priority": "P2",
+      "group": "long_input",
+      "input": "订单详情 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 无关字段 商户 汉堡王 支付成功 实付 37.00 支付时间 2026-10-03 19:32 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息 订单信息",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3700,
+        "content": "汉堡王",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-dinner",
+        "occurredAtLocal": "2026-10-03T19:32:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": "超长冗余文本性能与关键信息提取"
+    },
+    {
+      "id": "X001",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "口腔医院洗牙 299",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 29900,
+        "content": "口腔医院洗牙",
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-dental",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X002",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "驾照考试费 480",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 48000,
+        "content": "驾照考试费",
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-exam",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X003",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "云服务器续费 88",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8800,
+        "content": "云服务器续费",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-software",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X004",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "百度网盘会员 198",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 19800,
+        "content": "百度网盘会员",
+        "categoryId": "expense-communication",
+        "subcategoryId": "expense-communication-cloud",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X005",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "手机碎屏维修 499",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 49900,
+        "content": "手机碎屏维修",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X006",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "停车费 6",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 600,
+        "content": "停车费",
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-parking",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X007",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "高速过路费 45",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4500,
+        "content": "高速过路费",
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-parking",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X008",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "汽油 350",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 35000,
+        "content": "汽油",
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-fuel",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X009",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "充电桩 28.6",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2860,
+        "content": "充电桩",
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-fuel",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X010",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "车险 3200",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 320000,
+        "content": "车险",
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-insurance",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X011",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "个税 680",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 68000,
+        "content": "个税",
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-tax",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X012",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "信用卡手续费 12",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1200,
+        "content": "信用卡手续费",
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-fee",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X013",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "给爸妈生活费 1000",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 100000,
+        "content": "给爸妈生活费",
+        "categoryId": "expense-family",
+        "subcategoryId": "expense-family-elder",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X014",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "孩子补习班 1200",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 120000,
+        "content": "孩子补习班",
+        "categoryId": "expense-family",
+        "subcategoryId": "expense-family-education",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X015",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "公益捐款 100",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 10000,
+        "content": "公益捐款",
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-donation",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X016",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "朋友结婚礼金 500",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 50000,
+        "content": "朋友结婚礼金",
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-red-packet",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X017",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "摄影镜头 3999",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 399900,
+        "content": "摄影镜头",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-photo",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X018",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "跑鞋 699",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 69900,
+        "content": "跑鞋",
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-equipment",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X019",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "猫洗澡 80",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": "猫洗澡",
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-grooming",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    },
+    {
+      "id": "X020",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "宠物寄养 120",
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": "宠物寄养",
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-service",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "setup": {},
+      "focus": ""
+    }
+  ]
+}

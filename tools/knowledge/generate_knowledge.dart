@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'composition_quality.dart';
+
 import 'package:light_log/data/database/seed_data.dart';
 import 'package:light_log/features/recognition/data/knowledge_decoder.dart';
 import 'package:light_log/features/recognition/domain/compositional_matcher.dart';
@@ -116,6 +118,10 @@ void main() {
     familySource: lexicalFamilySource,
     ruleSource: compositionRuleSource,
     validSemantics: validSemantics,
+  );
+  final compositionAudit = compositionQuality(
+    lexicalFamilySource,
+    compositionRuleSource,
   );
 
   final rawEntities = <Map<String, Object?>>[
@@ -388,6 +394,7 @@ void main() {
     'lexicalFamilyTermCount': familyValidation.termCount,
     'compositionRuleCount': familyValidation.ruleCount,
     'shortHighRiskFamilyTerms': familyValidation.shortHighRiskTerms,
+    ...compositionAudit,
     'sceneSemanticCoverage': sceneCoverage,
     'requiredSceneSemanticCount': _requiredSceneSemantics.length,
     'entityKindDistribution': _counts(

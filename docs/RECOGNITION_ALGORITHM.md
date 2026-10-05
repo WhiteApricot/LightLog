@@ -175,7 +175,7 @@ ranking 仍按 Phase 4 路线处理，不为本轮 corpus 单独改写 Phase 3 c
 
 Semantic Lexicon 仍直接产生 category evidence，现有 7486 个 positive term 未重建或拆解。
 新增 lexical family 是独立 concept 类型，不与 `RecognitionEvidence.family` 的 evidence 去相关职责混用。
-当前运行时资产包含 65 个 family、246 个 term 和 55 条 rule，覆盖组合失败需要的对象、动作、
+首轮运行时资产包含 65 个 family、246 个 term 和 55 条 rule，覆盖组合失败需要的对象、动作、
 修饰和场景概念。
 
 ```text
@@ -204,4 +204,114 @@ platform_specific 100%；warning 199 / blocked 1，evaluation p95 0.954 ms。剩
 最终原 190-case regression 为 P0 40/41、P1 117/134、P2 safe rejection 100%、category 96.31%、
 high-confidence wrong 0。两个新差异是 holdout 与原 corpus 对同一表达给出相反 taxonomy oracle 的
 “儿童医院”和“给爸妈生活费”。warm 10,000-parse benchmark p95 0.786 ms，低于 5 ms。已达 Phase 3
-停止条件，不继续堆规则，不引入 n-gram。
+当时的停止条件。后续 v4 表明该结果不能外推到日常泛化；本轮结论见下节，不引入 n-gram。
+
+## Phase 3 family generalization v4
+
+2026-10-05 在 `feat/phase-3-local-recognition` 上开展候选概念精炼。知识设计阶段没有读取任何
+holdout（包括已经看过的 v2/v3）；先冻结 production、generator、旧 190-case regression 和
+benchmark，再运行 v2/v3。历史 regression 暴露一组通用 containment 回退，有限修正后重新冻结，
+首次运行 v4 并立即保存 `tools/evaluation/phase3_family_generalization_v4_initial.json`。
+冻结源的 SHA-256 记录保存在 `tools/knowledge/review/phase3_family_freeze.json` 与
+`phase3_family_v4_freeze.json`，evaluation 自身拒绝覆盖已存在的 `_initial.json`。
+
+候选 399 个 family / 5761 个唯一词 / 353 个组合提示不是标准答案。使用显式 concept allowlist、
+自然核心词审核和 production-compatible normalization diff，合并相近子类，剔除机械包装、危险短词、
+无意义组合和多义 owner；忽略候选 semantic 提示。最终生产保留候选词 1819 个、过滤 3942 个。
+保留原 65 个 family ID 与 55 条 rule，扩展后的最终资产为：
+
+- 197 个 flat family、2145 个 normalized 唯一 family terms、316 条 composition rule；
+- 组合输出覆盖 95 个 semanticKey，仍保持 447 entities / 1307 aliases / 7486 positive / 355 negative；
+- 无无效 family 引用、无效 semanticKey、重复 rule 或未解决危险共享词，unused family 为 0；
+- 医院/门诊保留经过审核的 venue/action 共享角色，其余 family term 只有一个 owner；
+- generator review samples 105/106（99.06%），换锁芯的生活服务/住房维修边界仍有分歧；
+- 四文件 FNV-1a `knowledgeHash`：initial `69d5deae`，final `40b6b94c`。
+
+Generator 报告同时包含 family 词数、kind、unused、每 family/semantic 规则数、semantic 覆盖列表、
+重复与跨 family 歧义、短词及 domain 分布。Family quality 校验在写 runtime 之前完成。Runtime 仍使用
+简单平面匹配；normalized term 在初始化时建首字索引，每次只查输入实际出现的首字。组合不重扫词库，
+不使用 hierarchy、graph、embedding、ML 或 n-gram。
+
+Span 处理保留被其他概念跨入的 atomic constituent，例如完整 compound 同时包含一个独立 service 时，
+不能丢掉组成规则需要的对象。不同 object 的长 span 仍抑制内含短对象；嵌入式 context/object、pet/supply
+和 income/income 关系允许不同 span 重叠，完全相同的 span 不充当两份独立证据。较长组合 evidence
+可以抑制它完整包含的较短组合。被长 action/income family 包含的原有语义词不被无条件删除。
+
+v4 初测未达标后只进行一次有限修复：增加三组通用车辆/数码/住房可替换部件，增加更换与检测概念，
+单字“换”必须紧邻已审核部件（换整机和远距说明不触发）；将三条桌游/剧本杀/密室词归入兴趣爱好。
+没有按 case ID、金额或整句添加规则，没有扩展 OCR/content extractor，也没有继续循环调 v4。
+
+最终普通 regression：
+
+| Corpus | Category | Type | P0 exact | P1 exact | P2 exact | P2 safe | High-confidence wrong |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| 原 190-case | 96.32% | 98.95% | 40/41 | 117/134 | 8/15 | 100% | 0 |
+| stress v2 | 88.95% | 97.37% | 13/18 | 84/133 | 18/39 | 100% | 0 |
+| compositional v3 | 97.50% | 99.50% | 25/25 | 164/170 | 5/5 | 100% | 0 |
+
+v3 的 category 比历史 98.50% 低 1 个百分点，保留真实差异，不针对旧 oracle 继续扩词。
+报告为 `phase3_family_expansion_regression.json`、`phase3_family_expansion_v2_regression.json`、
+`phase3_family_expansion_v3_regression.json`。
+
+v4 共 300 cases，覆盖全部 118 个默认二级 semanticKey：
+
+| Metric | Initial | Final |
+|---|---:|---:|
+| Category | 178/300（59.33%） | 186/300（62.00%） |
+| Overall exact | 176/300（58.67%） | 184/300（61.33%） |
+| P0 exact/category | 32/56 | 39/56 |
+| P1 exact/category | 141/235 | 142/235 |
+| P2 exact | 3/9 | 3/9 |
+| P2 category | 5/9 | 5/9 |
+| Type | 96.00% | 96.00% |
+| Amount/time | 100% / 100% | 100% / 100% |
+| P2 safe（runner 口径） | 100% | 100% |
+| High-confidence wrong | 1 | 0 |
+| 118 semantics 全部样本分类正确 | 41/118 | 41/118 |
+| p50/p95/p99（单次 evaluation） | 277/660/1362 µs | 291/680/1241 µs |
+
+Final 118 个语义中 95 个至少正确一次；“覆盖”不等同于每个语义都可靠。P2 safe 表示当前 runner 的
+安全度量，不等于所有 P2 都 exact，也不等于所有 warning 都被 blocked。
+
+各 group 均为 20 cases：
+
+| Group | Initial category | Final category |
+|---|---:|---:|
+| transport_extended | 55% | 75% |
+| digital_extended | 65% | 70% |
+| housing_home | 75% | 80% |
+| daily_personal | 70% | 70% |
+| food_extended | 55% | 55% |
+| medical_extended | 60% | 60% |
+| education_extended | 75% | 75% |
+| pets_family | 70% | 70% |
+| sports_outdoor | 55% | 55% |
+| travel_social | 50% | 50% |
+| entertainment_communication | 50% | 60% |
+| finance_extended | 60% | 60% |
+| income_extended | 65% | 65% |
+| income_refund_sale | 55% | 55% |
+| cross_domain_composition | 30% | 30% |
+
+Initial/final confirmation 均为 warning 297 / confident 1 / blocked 2；overall confidence 分布均为
+<0.5：287，0.5–0.65：9，0.65–0.8：3，≥0.8：1。低分的 warning 保留字段，但不能把词族规模
+视为高置信保障。初测唯一 high-confidence wrong 是 tabletop venue taxonomy；final 已修正。
+
+Final 剩余 116 个 exact failures，其中 114 个 category failures（75 个没有可用二级语义输出）、
+12 个 type failures。主要 failure families：孤立核心商品/服务只有 family concept 而没有可落地
+semantic evidence；购买与维修/服务之间的路由；家庭/人情/运动场景组合；收入来源及退款类型；
+娱乐、旅行、住房维修和生活服务的 taxonomy 边界。聚集最多的是 cross-domain（14）、travel/social
+（10）、income/refund/sale（11 个 exact）、food（9）和 sports/outdoor（9）。完整 failure 分析保存在
+`phase3_family_generalization_v4_initial_analysis.md` / `phase3_family_generalization_v4_final_analysis.md`。
+
+Final warm benchmark（1000 warm-up + 10000 parses）：average 207.60 µs、p50 152 µs、p95 436 µs、
+p99 516 µs、max 1619 µs；cold decode 30838 µs。Generator、format、analyze 和 89 个 tests 通过。
+
+**Phase 3 classification 未达到冻结收口条件**：v4 final category 62.00% < 90%，尽管 safety 与性能通过。
+不能用 197/2145/316/95 的规模门槛替代泛化验收。本轮停止，后续知识修复需新的独立需求与未见 corpus；
+不再对 v4 无限扩 family，不引入 n-gram。下一识别能力仍是 Phase 4 OCR structured extraction，
+但不能宣称 Phase 3 分类已经 frozen。
+
+候选与一次性初稿筛选脚本已归档至 `tools/knowledge/archive/phase3/`；根目录四个 corpus 已移入
+`tools/evaluation/`。此前 usability/absorption/composition/stress 的 superseded final reports 与 analysis
+已移入 `tools/evaluation/archive/phase3/`，历史 initial 和本轮 v4 initial 均保留，根目录无临时 JSON。

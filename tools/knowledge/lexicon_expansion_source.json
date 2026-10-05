@@ -1452,9 +1452,6 @@
         "街机游戏",
         "电玩城游戏币",
         "抓娃娃游戏币",
-        "桌游店",
-        "剧本杀",
-        "密室逃脱",
         "棋牌室",
         "游戏陪玩支出",
         "游戏代练支出",
@@ -1467,7 +1464,8 @@
         "电脑维修",
         "电竞工资",
         "儿童玩具"
-      ]
+      ],
+      "aliases": []
     },
     {
       "semanticKey": "expense.entertainment.subscription",
@@ -9551,6 +9549,20 @@
       "aliases": [],
       "negative": [],
       "sourceId": "phase3CandidateLexiconV1"
+    },
+    {
+      "semanticKey": "expense.entertainment.hobby",
+      "role": "service",
+      "specificity": "specific",
+      "keywords": [
+        "剧本杀",
+        "密室逃脱",
+        "桌游店"
+      ],
+      "aliases": [],
+      "negative": [],
+      "score": 0.9,
+      "reviewStatus": "approved"
     }
   ]
 }

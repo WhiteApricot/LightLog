@@ -6,6 +6,10 @@
 
 ### Added
 
+- Expanded the flat lexical-family production layer to 197 families, 2145 unique terms and 316 composition rules covering 95 semantics; retained the original family/rule layer and archived the untrusted candidate pool with normalized review decisions.
+- Added family distribution, ownership/conflict and coverage gates before runtime generation, immutable initial-report protection, four-asset knowledge fingerprints and per-semantic evaluation metrics.
+- Preserved family generalization v4 initial/final reports (category 59.33%/62.00%); the single limited repair removed high-confidence wrong predictions (1 → 0), with P2 safe rejection 100%. Phase 3 classification is not frozen because accuracy remains below 90%.
+
 - Initial Flutter project.
 - Initial development documentation.
 - Added the Material 3 and Riverpod application shell with a responsive ledger.
@@ -36,6 +40,9 @@
 - Added immutable initial and final reports for the 200-case Phase 3 compositional holdout; final category accuracy is 98.5% with zero high-confidence wrong predictions.
 
 ### Changed
+
+- Indexed normalized family terms once per recognizer; final warm benchmark p95 is 0.436 ms. Original/v2/v3 category regression is 96.32%/88.95%/97.50%; all 89 tests and static analysis pass. Final knowledgeHash is `40b6b94c`; detailed remaining failure families are recorded in `docs/RECOGNITION_ALGORITHM.md`.
+- Preserved atomic concept spans inside compounds and narrowly permitted embedded context/pet/income composition; constrained single-character replacement to adjacent reviewed components. Moved three tabletop/immersive entertainment lexicon terms to the hobby taxonomy while keeping 7486 positive and 355 negative terms.
 
 - Finalized the V0.1 transaction schema for transfers, refunds, positive minor-unit amounts, and UTC timestamp persistence with occurrence-time offsets.
 - Updated Android namespace/application ID, minimum API level, and package metadata for the V0.1 project baseline.

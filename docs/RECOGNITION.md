@@ -36,6 +36,7 @@ Raw Text
 → Transaction status / Natural Time / protected numeric spans
 → Amount candidates / Content span / Type evidence
 → indexed History / Local Entity KB / role-aware Category Lexicon
+→ flat LexicalFamilyMatcher / SpanConflictResolver / CompositionalMatcher
 → Evidence Fusion
 → semanticKey / CategoryResolver
 → Candidate
@@ -53,6 +54,8 @@ Raw Text
 - Candidate：汇总字段、语义、当前分类映射、每项证据、冲突、缺失项和 confidence。
 
 具体实现、数据规模、阈值和生成命令见 [RECOGNITION_ALGORITHM.md](RECOGNITION_ALGORITHM.md)。
+
+Family 是平面概念知识，不能代替完整商品的 semantic lexicon；composition 只组合当次输入中实际命中的近邻 span。词族规模与规则覆盖通过并不代表分类泛化达标。2026-10-05 的 v4 未见测试初测和一次有限修复仍未达到 90% 分类门槛，Phase 3 classification 尚未收口；不引入 n-gram，不将此 corpus 继续用作扩词目标。
 
 示例输入：
 

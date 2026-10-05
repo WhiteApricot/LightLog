@@ -3,25 +3,40 @@ import 'normalization.dart';
 import 'recognition_models.dart';
 
 class LexicalFamilyMatcher {
-  const LexicalFamilyMatcher(this.catalog);
+  LexicalFamilyMatcher(this.catalog) {
+    for (final family in catalog.lexicalFamilies) {
+      for (final raw in family.terms) {
+        final term = RecognitionNormalizer.indexKey(raw);
+        if (term.isEmpty) continue;
+        _byFirstCharacter.putIfAbsent(term[0], () => []).add((
+          family: family.id,
+          raw: raw,
+          normalized: term,
+        ));
+      }
+    }
+  }
 
   final KnowledgeCatalog catalog;
+  final _byFirstCharacter =
+      <String, List<({String family, String raw, String normalized})>>{};
 
   List<LexicalFamilyMatch> match(String matchingText) {
     final result = <LexicalFamilyMatch>[];
     final seen = <String>{};
-    for (final family in catalog.lexicalFamilies) {
-      for (final rawTerm in family.terms) {
-        final term = RecognitionNormalizer.indexKey(rawTerm);
-        if (term.isEmpty) continue;
+    for (final character in matchingText.split('').toSet()) {
+      final entries = _byFirstCharacter[character];
+      if (entries == null) continue;
+      for (final entry in entries) {
+        final term = entry.normalized;
         var start = matchingText.indexOf(term);
         while (start >= 0) {
-          final key = '${family.id}:$start:${start + term.length}';
+          final key = '${entry.family}:$start:${start + term.length}';
           if (seen.add(key)) {
             result.add(
               LexicalFamilyMatch(
-                conceptFamily: family.id,
-                term: rawTerm,
+                conceptFamily: entry.family,
+                term: entry.raw,
                 range: TextSpanRange(start: start, end: start + term.length),
               ),
             );
@@ -30,6 +45,20 @@ class LexicalFamilyMatcher {
         }
       }
     }
+    result.removeWhere(
+      (match) =>
+          match.conceptFamily == 'action.replacePart' &&
+          match.term == '换' &&
+          !result.any(
+            (part) =>
+                const {
+                  'object.vehicleComponent',
+                  'object.digitalComponent',
+                  'object.fixtureComponent',
+                }.contains(part.conceptFamily) &&
+                part.range.start == match.range.end,
+          ),
+    );
     result.sort((a, b) => b.range.length.compareTo(a.range.length));
     return List.unmodifiable(result);
   }

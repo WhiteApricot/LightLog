@@ -5,6 +5,7 @@ import 'package:light_log/features/recognition/domain/normalization.dart';
 import 'package:light_log/features/recognition/domain/recognition_models.dart';
 
 import '../recognition_tool_harness.dart';
+import 'knowledge_hash.dart';
 
 void main(List<String> args) {
   final options = _options(args);
@@ -14,6 +15,9 @@ void main(List<String> args) {
       options['report'] ?? const String.fromEnvironment('BLIND_REPORT');
   if (corpusPath.isEmpty) {
     throw StateError('Pass --corpus <corpus.json> or BLIND_CORPUS');
+  }
+  if (reportPath.endsWith('_initial.json') && File(reportPath).existsSync()) {
+    throw StateError('Initial evaluation report is immutable: $reportPath');
   }
   final root = (jsonDecode(File(corpusPath).readAsStringSync()) as Map)
       .cast<String, Object?>();
@@ -84,7 +88,7 @@ void main(List<String> args) {
     'corpus': metadata['name'],
     'corpusVersion': metadata['version'],
     'recognizerVersion': 2,
-    'knowledgeHash': _knowledgeHash(),
+    'knowledgeHash': knowledgeHash(),
     'evaluatedAt': DateTime.now().toUtc().toIso8601String(),
     'totalCases': results.length,
     'priority': {
@@ -126,6 +130,7 @@ void main(List<String> args) {
     },
     'failureReasonCounts': _failureCounts(failures),
     'groupMetrics': _groupMetrics(results),
+    'semanticMetrics': _semanticMetrics(results),
     'failures': failures,
   };
   final output = const JsonEncoder.withIndent('  ').convert(report);
@@ -313,6 +318,34 @@ Map<String, Object?> _groupMetrics(List<Map<String, Object?>> results) {
   };
 }
 
+Map<String, Object?> _semanticMetrics(List<Map<String, Object?>> results) {
+  final byId = {
+    for (final category in RecognitionToolHarness.categories)
+      category.id: category.semanticKey,
+  };
+  final grouped = <String, List<Map<String, Object?>>>{};
+  for (final result in results) {
+    final expected = result['expected']! as Map;
+    final key = byId[expected['subcategoryId'] ?? expected['categoryId']];
+    if (key != null) grouped.putIfAbsent(key, () => []).add(result);
+  }
+  return {
+    'testedSemanticKeyCount': grouped.length,
+    'fullyCorrectSemanticKeyCount': grouped.values
+        .where(
+          (items) => items.every((item) => item['categoryCorrect'] == true),
+        )
+        .length,
+    'bySemanticKey': {
+      for (final key in grouped.keys.toList()..sort())
+        key: {
+          'count': grouped[key]!.length,
+          'categoryAccuracy': _fieldAccuracy(grouped[key]!, 'categoryCorrect'),
+        },
+    },
+  };
+}
+
 Map<String, int> _counts(Iterable<String> values) {
   final result = <String, int>{};
   for (final value in values) {
@@ -400,18 +433,4 @@ DateTime _wallTime(String iso) {
     int.parse(match.group(5)!),
     int.parse(match.group(6)!),
   );
-}
-
-String _knowledgeHash() {
-  var hash = 0x811c9dc5;
-  for (final path in [
-    'assets/knowledge/merchants.json',
-    'assets/knowledge/category_lexicon.json',
-  ]) {
-    for (final byte in File(path).readAsBytesSync()) {
-      hash ^= byte;
-      hash = (hash * 0x01000193) & 0xffffffff;
-    }
-  }
-  return hash.toRadixString(16).padLeft(8, '0');
 }
