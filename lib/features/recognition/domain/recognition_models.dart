@@ -14,6 +14,7 @@ enum RecognitionEvidenceSource {
   entityKnowledge,
   categoryLexicon,
   composition,
+  familyPrior,
   context,
 }
 
@@ -211,12 +212,14 @@ class TypeDecision {
     required this.confidence,
     required this.evidence,
     this.hasConflict = false,
+    this.isDefault = false,
   });
 
   final RecognitionTransactionType? type;
   final double confidence;
   final List<RecognitionEvidence> evidence;
   final bool hasConflict;
+  final bool isDefault;
 }
 
 class EntryDraft {

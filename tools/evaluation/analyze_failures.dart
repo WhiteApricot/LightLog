@@ -7,6 +7,11 @@ void main(List<String> args) {
       'Usage: dart run tools/evaluation/analyze_failures.dart <report.json> [summary.md]',
     );
   }
+  if (args.length > 1 &&
+      args[1].endsWith('_initial_analysis.md') &&
+      File(args[1]).existsSync()) {
+    throw StateError('Initial analysis is immutable: ${args[1]}');
+  }
   final report = (jsonDecode(File(args.first).readAsStringSync()) as Map)
       .cast<String, Object?>();
   final failures = (report['failures']! as List).cast<Map<String, Object?>>();
@@ -38,6 +43,11 @@ String _summary(
     ..writeln('- Knowledge hash: `${report['knowledgeHash']}`')
     ..writeln('- Failures: ${failures.length}/${report['totalCases']}')
     ..writeln('- High-confidence wrong: ${highConfidence.length}')
+    ..writeln()
+    ..writeln('Routing failures: ${report['routingFailureBreakdown']}')
+    ..writeln(
+      'Parent accuracy: ${report['parentCategoryAccuracy']}; child: ${report['childCategoryAccuracy']}; category null: ${report['categoryNullCount']}',
+    )
     ..writeln()
     ..writeln('## By priority')
     ..writeln()

@@ -67,6 +67,15 @@ class KnowledgeDecoder {
         LexicalFamilyKnowledge(
           id: item['id']! as String,
           terms: (item['terms']! as List<Object?>).cast<String>(),
+          prior: item['prior'] == null
+              ? null
+              : (
+                  semanticKey: (item['prior'] as Map)['semanticKey'] as String,
+                  score: ((item['prior'] as Map)['score'] as num).toDouble(),
+                ),
+          requiresAdjacentFamily:
+              (item['requiresAdjacentFamily'] as List? ?? const [])
+                  .cast<String>(),
         ),
       );
     }
@@ -81,6 +90,7 @@ class KnowledgeDecoder {
           semanticKey: item['semanticKey']! as String,
           maxDistance: item['maxDistance']! as int,
           score: (item['score']! as num).toDouble(),
+          allowOverlap: item['allowOverlap'] as bool? ?? false,
         ),
       );
     }

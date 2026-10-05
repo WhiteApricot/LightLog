@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "families": [
     {
       "id": "object.pet",
@@ -30,7 +30,8 @@
         "乌龟",
         "异宠"
       ],
-      "kind": "object"
+      "kind": "object",
+      "policy": "contextualOnly"
     },
     {
       "id": "object.vehicle",
@@ -67,7 +68,12 @@
         "两轮电动车",
         "电单车"
       ],
-      "kind": "object"
+      "kind": "object",
+      "policy": "standalone",
+      "prior": {
+        "semanticKey": "expense.shopping.other",
+        "score": 0.7
+      }
     },
     {
       "id": "object.appliance",
@@ -130,7 +136,12 @@
         "理发器",
         "按摩仪"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.shopping.appliance",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.homeFurnishing",
@@ -168,7 +179,12 @@
         "枕头",
         "毯子"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.shopping.home",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.homeFixture",
@@ -200,7 +216,12 @@
         "电线",
         "板材"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.housing.repair",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.digitalDevice",
@@ -244,7 +265,8 @@
         "一体打印机",
         "家用打印机"
       ],
-      "kind": "object"
+      "kind": "object",
+      "policy": "contextualOnly"
     },
     {
       "id": "object.clothing",
@@ -273,7 +295,12 @@
         "运动内衣",
         "健身手套"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.shopping.clothing",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.shoe",
@@ -286,7 +313,12 @@
         "拖鞋",
         "凉鞋"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.shopping.clothing",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.eyewear",
@@ -296,7 +328,12 @@
         "镜框",
         "老花镜"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.shopping.other",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "modifier.child",
@@ -316,7 +353,8 @@
         "婴幼儿",
         "娃娃"
       ],
-      "kind": "modifier"
+      "kind": "modifier",
+      "policy": "contextualOnly"
     },
     {
       "id": "modifier.elder",
@@ -331,7 +369,8 @@
         "家里老人",
         "高龄"
       ],
-      "kind": "modifier"
+      "kind": "modifier",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.grooming",
@@ -345,7 +384,8 @@
         "造型",
         "剃毛"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.medical",
@@ -380,7 +420,8 @@
         "打预防针",
         "诊治"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.medicine",
@@ -391,7 +432,12 @@
         "降压药",
         "感冒药"
       ],
-      "kind": "action"
+      "kind": "action",
+      "prior": {
+        "semanticKey": "expense.medical.medicine",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "action.cleaning",
@@ -420,7 +466,8 @@
         "熨烫",
         "衣物护理"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.repair",
@@ -453,7 +500,8 @@
         "上门维修",
         "故障检修"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.maintenance",
@@ -477,7 +525,8 @@
         "检测",
         "检验"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.replacePart",
@@ -504,7 +553,13 @@
         "更换",
         "替换"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly",
+      "requiresAdjacentFamily": [
+        "object.vehicleComponent",
+        "object.digitalComponent",
+        "object.fixtureComponent"
+      ]
     },
     {
       "id": "action.alteration",
@@ -516,7 +571,8 @@
         "改衣",
         "改尺寸"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.petService",
@@ -525,7 +581,8 @@
         "托管",
         "遛狗"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.education",
@@ -547,7 +604,8 @@
         "学习课程",
         "教育课程"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.familySupport",
@@ -555,7 +613,12 @@
         "生活费",
         "赡养费"
       ],
-      "kind": "action"
+      "kind": "action",
+      "prior": {
+        "semanticKey": "expense.family.support",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "context.socialGift",
@@ -570,7 +633,8 @@
         "送人",
         "给红包"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "context.travel",
@@ -584,7 +648,8 @@
         "出去玩",
         "自由行"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "object.travelSupply",
@@ -600,7 +665,12 @@
         "洗漱包",
         "行李牌"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.travel.supplies",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "context.sport",
@@ -625,7 +695,8 @@
         "野餐",
         "越野"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "object.sportEquipment",
@@ -639,7 +710,12 @@
         "球具",
         "训练器材"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.sports.equipment",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "action.sportEvent",
@@ -651,7 +727,8 @@
         "网上报名",
         "现场报名"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "service.membership",
@@ -673,7 +750,8 @@
         "订阅制",
         "周期付费"
       ],
-      "kind": "service"
+      "kind": "service",
+      "policy": "contextualOnly"
     },
     {
       "id": "venue.supermarket",
@@ -700,7 +778,8 @@
         "菜场",
         "批发市场"
       ],
-      "kind": "venue"
+      "kind": "venue",
+      "policy": "contextualOnly"
     },
     {
       "id": "object.cloud",
@@ -718,7 +797,12 @@
         "网盘会员",
         "云服务"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.communication.cloud",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "venue.scenic",
@@ -745,7 +829,8 @@
         "游乐城",
         "欢乐谷类乐园"
       ],
-      "kind": "venue"
+      "kind": "venue",
+      "policy": "contextualOnly"
     },
     {
       "id": "venue.sport",
@@ -765,7 +850,8 @@
         "泳馆",
         "露天泳池"
       ],
-      "kind": "venue"
+      "kind": "venue",
+      "policy": "contextualOnly"
     },
     {
       "id": "service.ticket",
@@ -773,7 +859,8 @@
         "门票",
         "入场票"
       ],
-      "kind": "service"
+      "kind": "service",
+      "policy": "contextualOnly"
     },
     {
       "id": "service.insurance",
@@ -789,7 +876,8 @@
         "投保服务",
         "保险保障"
       ],
-      "kind": "service"
+      "kind": "service",
+      "policy": "contextualOnly"
     },
     {
       "id": "context.game",
@@ -802,7 +890,8 @@
         "主机游戏",
         "玩网游"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "object.computerHardware",
@@ -836,7 +925,12 @@
         "内存",
         "显示卡"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.digital.computer",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "context.photo",
@@ -847,7 +941,8 @@
         "旅拍",
         "影像创作"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "object.photoEquipment",
@@ -874,7 +969,12 @@
         "相机电池",
         "相机滤镜"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.digital.photo",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.digitalAccessory",
@@ -899,7 +999,12 @@
         "电脑支架",
         "相机保护套"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.digital.accessory",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.petSupply",
@@ -916,7 +1021,12 @@
         "航空箱",
         "宠物玩具"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.pets.supplies",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.laundryProduct",
@@ -931,7 +1041,12 @@
         "抹布",
         "垃圾袋"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.daily.household",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "modifier.refill",
@@ -939,7 +1054,8 @@
         "补充装",
         "替换装"
       ],
-      "kind": "modifier"
+      "kind": "modifier",
+      "policy": "contextualOnly"
     },
     {
       "id": "object.elderSupply",
@@ -948,7 +1064,12 @@
         "拐杖",
         "助行器"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.family.elder",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.visa",
@@ -963,7 +1084,12 @@
         "送签",
         "代办签证"
       ],
-      "kind": "service"
+      "kind": "service",
+      "policy": "standalone",
+      "prior": {
+        "semanticKey": "expense.travel.ticket",
+        "score": 0.74
+      }
     },
     {
       "id": "service.fee",
@@ -978,7 +1104,8 @@
         "汇款手续费",
         "换汇手续费"
       ],
-      "kind": "service"
+      "kind": "service",
+      "policy": "contextualOnly"
     },
     {
       "id": "income.salaryPerformance",
@@ -1002,7 +1129,12 @@
         "抽成",
         "业绩提成"
       ],
-      "kind": "income"
+      "kind": "income",
+      "prior": {
+        "semanticKey": "income.salary.bonus",
+        "score": 0.78
+      },
+      "policy": "standalone"
     },
     {
       "id": "income.wage",
@@ -1028,7 +1160,12 @@
         "薪资到账",
         "开工资"
       ],
-      "kind": "income"
+      "kind": "income",
+      "prior": {
+        "semanticKey": "income.salary.monthly",
+        "score": 0.78
+      },
+      "policy": "standalone"
     },
     {
       "id": "income.reimbursement",
@@ -1041,7 +1178,12 @@
         "垫付款报销",
         "公司返款"
       ],
-      "kind": "income"
+      "kind": "income",
+      "prior": {
+        "semanticKey": "income.reimbursement.work",
+        "score": 0.78
+      },
+      "policy": "standalone"
     },
     {
       "id": "context.medicalVenue",
@@ -1067,7 +1209,8 @@
         "卫生院",
         "社区卫生服务中心"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "context.design",
@@ -1082,7 +1225,8 @@
         "图形设计",
         "美术设计"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "income.privateOrder",
@@ -1111,7 +1255,12 @@
         "项目尾款",
         "劳务收入"
       ],
-      "kind": "income"
+      "kind": "income",
+      "prior": {
+        "semanticKey": "income.parttime.freelance",
+        "score": 0.78
+      },
+      "policy": "standalone"
     },
     {
       "id": "context.ridePlatform",
@@ -1127,7 +1276,8 @@
         "外卖骑手",
         "网约车司机"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "income.orderIncome",
@@ -1141,7 +1291,12 @@
         "订单佣金",
         "平台劳务"
       ],
-      "kind": "income"
+      "kind": "income",
+      "prior": {
+        "semanticKey": "income.parttime.project",
+        "score": 0.78
+      },
+      "policy": "standalone"
     },
     {
       "id": "context.teaching",
@@ -1155,7 +1310,8 @@
         "教学辅导",
         "教书"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "income.teachingFee",
@@ -1176,7 +1332,12 @@
         "辅导费",
         "讲师费"
       ],
-      "kind": "income"
+      "kind": "income",
+      "prior": {
+        "semanticKey": "income.parttime.freelance",
+        "score": 0.78
+      },
+      "policy": "standalone"
     },
     {
       "id": "context.shopping",
@@ -1185,7 +1346,8 @@
         "商品",
         "订单"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "income.refund",
@@ -1210,7 +1372,8 @@
         "服务费退回",
         "取消订单退款"
       ],
-      "kind": "income"
+      "kind": "income",
+      "policy": "contextualOnly"
     },
     {
       "id": "platform.shopping",
@@ -1227,7 +1390,8 @@
         "商城APP",
         "电商"
       ],
-      "kind": "platform"
+      "kind": "platform",
+      "policy": "contextualOnly"
     },
     {
       "id": "object.household",
@@ -1248,7 +1412,12 @@
         "湿巾",
         "面巾纸"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.daily.household",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "platform.delivery",
@@ -1263,7 +1432,8 @@
         "外卖渠道",
         "即时零售"
       ],
-      "kind": "platform"
+      "kind": "platform",
+      "policy": "contextualOnly"
     },
     {
       "id": "context.takeoutFood",
@@ -1280,7 +1450,8 @@
         "米粉",
         "主食"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "platform.localService",
@@ -1288,7 +1459,8 @@
         "大众点评",
         "美团"
       ],
-      "kind": "platform"
+      "kind": "platform",
+      "policy": "contextualOnly"
     },
     {
       "id": "service.massage",
@@ -1301,7 +1473,12 @@
         "精油按摩",
         "放松理疗"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.daily.service",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "platform.travel",
@@ -1318,7 +1495,8 @@
         "旅游APP",
         "OTA"
       ],
-      "kind": "platform"
+      "kind": "platform",
+      "policy": "contextualOnly"
     },
     {
       "id": "object.vehiclePart",
@@ -1340,7 +1518,12 @@
         "随车用品",
         "汽车附件"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.transport.maintenance",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.fuel",
@@ -1350,7 +1533,12 @@
         "燃油",
         "车用油"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.transport.fuel",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.parkingCredential",
@@ -1360,7 +1548,12 @@
         "车位卡",
         "停车票"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.transport.parking",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.publicTransitCard",
@@ -1371,7 +1564,12 @@
         "乘车卡",
         "交通联合卡"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.transport.public",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.railTicket",
@@ -1383,7 +1581,12 @@
         "卧铺票",
         "硬座票"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.transport.rail",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.flightTicket",
@@ -1396,7 +1599,12 @@
         "特价机票",
         "联程票"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.transport.flight",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.busTicket",
@@ -1413,7 +1621,12 @@
         "游船票",
         "客轮票"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.transport.public",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.phone",
@@ -1429,7 +1642,12 @@
         "移动手机",
         "电话机"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.digital.phone",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.software",
@@ -1448,7 +1666,12 @@
         "云主机",
         "对象存储"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.digital.software",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.gameProduct",
@@ -1458,7 +1681,12 @@
         "游戏道具",
         "游戏点卡"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.entertainment.game",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.tableware",
@@ -1469,7 +1697,12 @@
         "锅具",
         "保鲜盒"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.shopping.home",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.storageSupply",
@@ -1482,7 +1715,12 @@
         "真空袋",
         "鞋柜"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.shopping.home",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.bag",
@@ -1498,7 +1736,12 @@
         "托运行李箱",
         "拉杆箱"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.shopping.clothing",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.jewelry",
@@ -1524,7 +1767,12 @@
         "腰带",
         "配饰"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.shopping.other",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.beautyProduct",
@@ -1544,7 +1792,12 @@
         "乳液",
         "防晒霜"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.shopping.beauty",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.hairCareProduct",
@@ -1557,7 +1810,12 @@
         "头皮护理",
         "护发品"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.daily.personal",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.personalCareProduct",
@@ -1582,7 +1840,12 @@
         "安心裤",
         "卫生棉"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.daily.personal",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.medicine",
@@ -1599,7 +1862,12 @@
         "膏方",
         "中药颗粒"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.medical.medicine",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.medicalDevice",
@@ -1616,7 +1884,12 @@
         "颈托",
         "腰托"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.medical.medicine",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.foodIngredient",
@@ -1660,7 +1933,12 @@
         "香料",
         "酱料"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.food.groceries",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.fruit",
@@ -1670,7 +1948,12 @@
         "应季水果",
         "进口水果"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.food.groceries",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.dairy",
@@ -1681,7 +1964,12 @@
         "鲜奶",
         "黄油"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.food.groceries",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.snack",
@@ -1701,7 +1989,12 @@
         "甜点",
         "烘焙"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.food.snack",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.drink",
@@ -1727,7 +2020,12 @@
         "洋酒",
         "黄酒"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.food.drink",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.petFood",
@@ -1738,7 +2036,12 @@
         "宠物罐头",
         "宠物零食"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.pets.food",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.petMedicine",
@@ -1749,7 +2052,12 @@
         "宠物保健品",
         "兽药"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.pets.medical",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.babySupply",
@@ -1769,7 +2077,12 @@
         "遥控车",
         "益智玩具"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.family.child",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.schoolSupply",
@@ -1787,7 +2100,12 @@
         "工牌套",
         "便签"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.education.stationery",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.book",
@@ -1798,7 +2116,12 @@
         "读物",
         "电子书"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.education.book",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.outdoorGear",
@@ -1810,7 +2133,12 @@
         "炉具",
         "露营装备"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.sports.outdoor",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.gift",
@@ -1827,7 +2155,12 @@
         "花篮",
         "切花"
       ],
-      "kind": "object"
+      "kind": "object",
+      "prior": {
+        "semanticKey": "expense.social.gift",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.property",
@@ -1841,7 +2174,8 @@
         "新家",
         "出租屋"
       ],
-      "kind": "object"
+      "kind": "object",
+      "policy": "contextualOnly"
     },
     {
       "id": "object.financialProduct",
@@ -1853,7 +2187,8 @@
         "债券",
         "存款"
       ],
-      "kind": "object"
+      "kind": "object",
+      "policy": "contextualOnly"
     },
     {
       "id": "object.certificate",
@@ -1863,7 +2198,8 @@
         "证书",
         "执照"
       ],
-      "kind": "object"
+      "kind": "object",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.sell",
@@ -1875,7 +2211,8 @@
         "变现",
         "挂售"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.recharge",
@@ -1891,7 +2228,8 @@
         "充流量",
         "充值费"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.renew",
@@ -1909,7 +2247,8 @@
         "开会员",
         "开通权益"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.install",
@@ -1926,7 +2265,8 @@
         "安装费",
         "组装费"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.decorate",
@@ -1938,7 +2278,12 @@
         "硬装",
         "重新装修"
       ],
-      "kind": "action"
+      "kind": "action",
+      "prior": {
+        "semanticKey": "expense.housing.repair",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "action.move",
@@ -1951,7 +2296,8 @@
         "拉货",
         "上门搬运"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.rent",
@@ -1963,7 +2309,8 @@
         "长租",
         "借租"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.repay",
@@ -1976,7 +2323,8 @@
         "清偿",
         "结清欠款"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.insure",
@@ -1989,7 +2337,12 @@
         "购买保障",
         "上保险"
       ],
-      "kind": "action"
+      "kind": "action",
+      "prior": {
+        "semanticKey": "expense.finance.insurance",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "action.book",
@@ -2014,7 +2367,12 @@
         "领房卡",
         "办入住"
       ],
-      "kind": "action"
+      "kind": "action",
+      "prior": {
+        "semanticKey": "expense.education.book",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "action.ship",
@@ -2039,7 +2397,12 @@
         "快递费",
         "运费"
       ],
-      "kind": "action"
+      "kind": "action",
+      "prior": {
+        "semanticKey": "expense.communication.post",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "action.store",
@@ -2051,7 +2414,8 @@
         "临时存放",
         "代管"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.print",
@@ -2085,7 +2449,12 @@
         "打印费",
         "复印费"
       ],
-      "kind": "action"
+      "kind": "action",
+      "prior": {
+        "semanticKey": "expense.education.stationery",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "action.train",
@@ -2097,7 +2466,8 @@
         "强化训练",
         "专业训练"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.physicalExam",
@@ -2115,7 +2485,12 @@
         "体检费",
         "健康筛查"
       ],
-      "kind": "action"
+      "kind": "action",
+      "prior": {
+        "semanticKey": "expense.medical.checkup",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "action.rehabilitate",
@@ -2128,7 +2503,12 @@
         "恢复训练",
         "康复治疗"
       ],
-      "kind": "action"
+      "kind": "action",
+      "prior": {
+        "semanticKey": "expense.medical.rehab",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "action.nurse",
@@ -2145,7 +2525,8 @@
         "抚养",
         "生活照顾"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.donate",
@@ -2158,7 +2539,12 @@
         "慈善捐款",
         "爱心捐款"
       ],
-      "kind": "action"
+      "kind": "action",
+      "prior": {
+        "semanticKey": "expense.social.donation",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "action.authenticate",
@@ -2171,7 +2557,8 @@
         "办证",
         "证书认定"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.exchangeCurrency",
@@ -2184,7 +2571,8 @@
         "外币兑换",
         "买外汇"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "action.withdraw",
@@ -2197,7 +2585,8 @@
         "平台提现",
         "转出"
       ],
-      "kind": "action"
+      "kind": "action",
+      "policy": "contextualOnly"
     },
     {
       "id": "modifier.student",
@@ -2216,7 +2605,8 @@
         "返校",
         "学期"
       ],
-      "kind": "modifier"
+      "kind": "modifier",
+      "policy": "contextualOnly"
     },
     {
       "id": "modifier.secondHand",
@@ -2229,7 +2619,8 @@
         "转手",
         "非全新"
       ],
-      "kind": "modifier"
+      "kind": "modifier",
+      "policy": "contextualOnly"
     },
     {
       "id": "service.express",
@@ -2242,7 +2633,12 @@
         "文件寄送",
         "包裹寄送"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.communication.post",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.housekeeping",
@@ -2261,7 +2657,12 @@
         "住家阿姨",
         "家庭服务"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.daily.cleaning",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.moving",
@@ -2274,7 +2675,12 @@
         "货拉搬运",
         "日式搬家"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.daily.service",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.storage",
@@ -2286,7 +2692,12 @@
         "临时仓库",
         "托管服务"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.daily.service",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.photography",
@@ -2296,7 +2707,12 @@
         "证件照",
         "商业摄影"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.digital.photo",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.printing",
@@ -2305,7 +2721,12 @@
         "图文快印",
         "照片冲印"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.education.stationery",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.training",
@@ -2325,7 +2746,12 @@
         "作业辅导",
         "学科辅导"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.education.course",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.dental",
@@ -2345,7 +2771,12 @@
         "眼病诊疗",
         "视光服务"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.medical.dental",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.rehab",
@@ -2356,7 +2787,12 @@
         "语言康复",
         "理疗服务"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.medical.rehab",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.nursing",
@@ -2369,7 +2805,12 @@
         "居家护理",
         "上门护理"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.medical.clinic",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.ticketing",
@@ -2382,7 +2823,8 @@
         "改签服务",
         "购票服务"
       ],
-      "kind": "service"
+      "kind": "service",
+      "policy": "contextualOnly"
     },
     {
       "id": "service.parking",
@@ -2395,7 +2837,12 @@
         "停车场服务",
         "车位租用"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.transport.parking",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.carWash",
@@ -2407,7 +2854,12 @@
         "内饰清洗",
         "车身清洁"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.transport.maintenance",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.rideHailing",
@@ -2426,7 +2878,12 @@
         "接送服务",
         "酒后代驾"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.transport.taxi",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.travelPackage",
@@ -2446,7 +2903,12 @@
         "向导",
         "语音讲解"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.travel.package",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.hotel",
@@ -2459,7 +2921,12 @@
         "钟点房",
         "旅馆服务"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.travel.hotel",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.catering",
@@ -2472,7 +2939,12 @@
         "酒席承办",
         "食堂服务"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.food.other",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.eventPlanning",
@@ -2485,7 +2957,12 @@
         "场地布置",
         "执行服务"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.social.relationship",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.childcare",
@@ -2498,7 +2975,12 @@
         "临时看娃",
         "母婴护理"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.family.child",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.eldercare",
@@ -2511,7 +2993,12 @@
         "助餐",
         "失能护理"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.family.elder",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.homeRepair",
@@ -2531,7 +3018,12 @@
         "旧房改造",
         "装修监理"
       ],
-      "kind": "service"
+      "kind": "service",
+      "prior": {
+        "semanticKey": "expense.housing.repair",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "venue.pharmacy",
@@ -2544,7 +3036,12 @@
         "网上药房",
         "便民药店"
       ],
-      "kind": "venue"
+      "kind": "venue",
+      "prior": {
+        "semanticKey": "expense.medical.medicine",
+        "score": 0.7
+      },
+      "policy": "standalone"
     },
     {
       "id": "venue.petHospital",
@@ -2557,7 +3054,12 @@
         "兽医院",
         "宠物门诊"
       ],
-      "kind": "venue"
+      "kind": "venue",
+      "prior": {
+        "semanticKey": "expense.pets.medical",
+        "score": 0.7
+      },
+      "policy": "standalone"
     },
     {
       "id": "venue.restaurant",
@@ -2577,7 +3079,12 @@
         "粉店",
         "汉堡店"
       ],
-      "kind": "venue"
+      "kind": "venue",
+      "prior": {
+        "semanticKey": "expense.food.other",
+        "score": 0.7
+      },
+      "policy": "standalone"
     },
     {
       "id": "venue.hotel",
@@ -2597,7 +3104,12 @@
         "短租房",
         "公寓酒店"
       ],
-      "kind": "venue"
+      "kind": "venue",
+      "prior": {
+        "semanticKey": "expense.travel.hotel",
+        "score": 0.7
+      },
+      "policy": "standalone"
     },
     {
       "id": "venue.cinema",
@@ -2610,7 +3122,12 @@
         "放映厅",
         "汽车影院"
       ],
-      "kind": "venue"
+      "kind": "venue",
+      "prior": {
+        "semanticKey": "expense.entertainment.movie",
+        "score": 0.7
+      },
+      "policy": "standalone"
     },
     {
       "id": "venue.theater",
@@ -2623,7 +3140,12 @@
         "演艺中心",
         "话剧院"
       ],
-      "kind": "venue"
+      "kind": "venue",
+      "prior": {
+        "semanticKey": "expense.entertainment.music",
+        "score": 0.7
+      },
+      "policy": "standalone"
     },
     {
       "id": "venue.gameVenue",
@@ -2643,7 +3165,12 @@
         "桌游店",
         "剧本杀店"
       ],
-      "kind": "venue"
+      "kind": "venue",
+      "prior": {
+        "semanticKey": "expense.entertainment.hobby",
+        "score": 0.7
+      },
+      "policy": "standalone"
     },
     {
       "id": "venue.gym",
@@ -2655,7 +3182,12 @@
         "综合健身中心",
         "运动中心"
       ],
-      "kind": "venue"
+      "kind": "venue",
+      "prior": {
+        "semanticKey": "expense.sports.fitness",
+        "score": 0.7
+      },
+      "policy": "standalone"
     },
     {
       "id": "venue.outdoorSite",
@@ -2668,7 +3200,12 @@
         "公园营地",
         "房车营地"
       ],
-      "kind": "venue"
+      "kind": "venue",
+      "prior": {
+        "semanticKey": "expense.sports.outdoor",
+        "score": 0.7
+      },
+      "policy": "standalone"
     },
     {
       "id": "venue.school",
@@ -2684,7 +3221,8 @@
         "学习中心",
         "教育机构"
       ],
-      "kind": "venue"
+      "kind": "venue",
+      "policy": "contextualOnly"
     },
     {
       "id": "venue.library",
@@ -2704,7 +3242,8 @@
         "独立书店",
         "文创书店"
       ],
-      "kind": "venue"
+      "kind": "venue",
+      "policy": "contextualOnly"
     },
     {
       "id": "venue.bank",
@@ -2717,7 +3256,8 @@
         "柜台",
         "信用社"
       ],
-      "kind": "venue"
+      "kind": "venue",
+      "policy": "contextualOnly"
     },
     {
       "id": "context.businessTrip",
@@ -2730,7 +3270,8 @@
         "因公出行",
         "驻场"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "context.work",
@@ -2743,7 +3284,8 @@
         "职场",
         "干活"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "context.education",
@@ -2757,7 +3299,8 @@
         "升学考试",
         "认证考试"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "context.home",
@@ -2776,7 +3319,8 @@
         "家装",
         "新房装修"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "context.gathering",
@@ -2796,7 +3340,8 @@
         "饭局",
         "派对"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "context.wedding",
@@ -2820,7 +3365,8 @@
         "回礼",
         "贺礼"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "context.charity",
@@ -2831,7 +3377,8 @@
         "志愿活动",
         "公益行动"
       ],
-      "kind": "context"
+      "kind": "context",
+      "policy": "contextualOnly"
     },
     {
       "id": "platform.secondHand",
@@ -2844,7 +3391,8 @@
         "闲置交易",
         "中古平台"
       ],
-      "kind": "platform"
+      "kind": "platform",
+      "policy": "contextualOnly"
     },
     {
       "id": "platform.content",
@@ -2857,7 +3405,8 @@
         "播客平台",
         "影音APP"
       ],
-      "kind": "platform"
+      "kind": "platform",
+      "policy": "contextualOnly"
     },
     {
       "id": "platform.education",
@@ -2870,7 +3419,8 @@
         "课程平台",
         "知识付费平台"
       ],
-      "kind": "platform"
+      "kind": "platform",
+      "policy": "contextualOnly"
     },
     {
       "id": "platform.freelance",
@@ -2883,7 +3433,8 @@
         "劳务平台",
         "灵活用工平台"
       ],
-      "kind": "platform"
+      "kind": "platform",
+      "policy": "contextualOnly"
     },
     {
       "id": "income.bonus",
@@ -2895,7 +3446,12 @@
         "一次性奖金",
         "公司奖励"
       ],
-      "kind": "income"
+      "kind": "income",
+      "prior": {
+        "semanticKey": "income.salary.bonus",
+        "score": 0.78
+      },
+      "policy": "standalone"
     },
     {
       "id": "income.allowance",
@@ -2907,7 +3463,12 @@
         "餐补",
         "通讯补贴"
       ],
-      "kind": "income"
+      "kind": "income",
+      "prior": {
+        "semanticKey": "income.salary.allowance",
+        "score": 0.78
+      },
+      "policy": "standalone"
     },
     {
       "id": "income.authorFee",
@@ -2927,7 +3488,12 @@
         "知识产权收入",
         "授权收入"
       ],
-      "kind": "income"
+      "kind": "income",
+      "prior": {
+        "semanticKey": "income.parttime.freelance",
+        "score": 0.78
+      },
+      "policy": "standalone"
     },
     {
       "id": "income.liveStream",
@@ -2940,7 +3506,12 @@
         "坑位收入",
         "直播结算"
       ],
-      "kind": "income"
+      "kind": "income",
+      "prior": {
+        "semanticKey": "income.parttime.project",
+        "score": 0.78
+      },
+      "policy": "standalone"
     },
     {
       "id": "income.interest",
@@ -2952,7 +3523,12 @@
         "活期利息",
         "定期利息"
       ],
-      "kind": "income"
+      "kind": "income",
+      "prior": {
+        "semanticKey": "income.investment.interest",
+        "score": 0.78
+      },
+      "policy": "standalone"
     },
     {
       "id": "income.dividend",
@@ -2964,7 +3540,12 @@
         "公司分红",
         "派息"
       ],
-      "kind": "income"
+      "kind": "income",
+      "prior": {
+        "semanticKey": "income.investment.dividend",
+        "score": 0.78
+      },
+      "policy": "standalone"
     },
     {
       "id": "income.fundReturn",
@@ -2983,7 +3564,12 @@
         "价差收益",
         "股票到账"
       ],
-      "kind": "income"
+      "kind": "income",
+      "policy": "standalone",
+      "prior": {
+        "semanticKey": "income.investment.fund",
+        "score": 0.78
+      }
     },
     {
       "id": "income.rentIncome",
@@ -2996,7 +3582,12 @@
         "出租收入",
         "租客打款"
       ],
-      "kind": "income"
+      "kind": "income",
+      "prior": {
+        "semanticKey": "income.investment.rent",
+        "score": 0.78
+      },
+      "policy": "standalone"
     },
     {
       "id": "income.depositReturn",
@@ -3009,7 +3600,12 @@
         "押金返还",
         "退保证金"
       ],
-      "kind": "income"
+      "kind": "income",
+      "policy": "standalone",
+      "prior": {
+        "semanticKey": "income.refund.deposit",
+        "score": 0.78
+      }
     },
     {
       "id": "income.taxRefund",
@@ -3022,7 +3618,12 @@
         "退税到账",
         "个人所得税退税"
       ],
-      "kind": "income"
+      "kind": "income",
+      "policy": "standalone",
+      "prior": {
+        "semanticKey": "income.refund.tax",
+        "score": 0.78
+      }
     },
     {
       "id": "income.cashback",
@@ -3041,7 +3642,12 @@
         "新人奖励",
         "邀请奖励"
       ],
-      "kind": "income"
+      "kind": "income",
+      "policy": "standalone",
+      "prior": {
+        "semanticKey": "income.other.general",
+        "score": 0.78
+      }
     },
     {
       "id": "income.redPacket",
@@ -3058,7 +3664,12 @@
         "无偿收入",
         "馈赠收入"
       ],
-      "kind": "income"
+      "kind": "income",
+      "prior": {
+        "semanticKey": "income.other.red.packet",
+        "score": 0.78
+      },
+      "policy": "standalone"
     },
     {
       "id": "income.secondHandSale",
@@ -3071,7 +3682,12 @@
         "旧物变现",
         "二手款"
       ],
-      "kind": "income"
+      "kind": "income",
+      "prior": {
+        "semanticKey": "income.other.secondhand",
+        "score": 0.78
+      },
+      "policy": "standalone"
     },
     {
       "id": "income.compensation",
@@ -3082,7 +3698,12 @@
         "损失补偿",
         "补偿到账"
       ],
-      "kind": "income"
+      "kind": "income",
+      "prior": {
+        "semanticKey": "income.other.compensation",
+        "score": 0.78
+      },
+      "policy": "standalone"
     },
     {
       "id": "income.subsidy",
@@ -3094,7 +3715,12 @@
         "生育津贴",
         "专项补助"
       ],
-      "kind": "income"
+      "kind": "income",
+      "policy": "standalone",
+      "prior": {
+        "semanticKey": "income.salary.allowance",
+        "score": 0.78
+      }
     },
     {
       "id": "income.prize",
@@ -3106,7 +3732,12 @@
         "竞赛奖励",
         "获奖收入"
       ],
-      "kind": "income"
+      "kind": "income",
+      "policy": "standalone",
+      "prior": {
+        "semanticKey": "income.other.reward",
+        "score": 0.78
+      }
     },
     {
       "id": "income.saleIncome",
@@ -3125,7 +3756,12 @@
         "服务结算",
         "劳务服务收入"
       ],
-      "kind": "income"
+      "kind": "income",
+      "policy": "standalone",
+      "prior": {
+        "semanticKey": "income.other.general",
+        "score": 0.78
+      }
     },
     {
       "id": "object.network",
@@ -3139,7 +3775,12 @@
         "固网",
         "家用网络",
         "宽带套餐"
-      ]
+      ],
+      "prior": {
+        "semanticKey": "expense.communication.internet",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.mobilePlan",
@@ -3153,7 +3794,12 @@
         "手机卡",
         "电话费",
         "通讯套餐"
-      ]
+      ],
+      "prior": {
+        "semanticKey": "expense.communication.mobile",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.loan",
@@ -3167,7 +3813,8 @@
         "借款",
         "分期贷款",
         "住房贷款"
-      ]
+      ],
+      "policy": "contextualOnly"
     },
     {
       "id": "object.exam",
@@ -3180,7 +3827,12 @@
         "公务员考试",
         "驾照考试",
         "自考"
-      ]
+      ],
+      "prior": {
+        "semanticKey": "expense.education.exam",
+        "score": 0.76
+      },
+      "policy": "standalone"
     },
     {
       "id": "object.document",
@@ -3195,7 +3847,8 @@
         "作业",
         "试卷",
         "合同"
-      ]
+      ],
+      "policy": "contextualOnly"
     },
     {
       "id": "object.media",
@@ -3209,7 +3862,8 @@
         "有声书",
         "听书",
         "流媒体"
-      ]
+      ],
+      "policy": "contextualOnly"
     },
     {
       "id": "object.bankAccount",
@@ -3222,7 +3876,8 @@
         "储蓄账户",
         "活期账户",
         "定期账户"
-      ]
+      ],
+      "policy": "contextualOnly"
     },
     {
       "id": "action.receive",
@@ -3237,7 +3892,8 @@
         "结算收入",
         "收取",
         "收了"
-      ]
+      ],
+      "policy": "contextualOnly"
     },
     {
       "id": "service.tuition",
@@ -3249,7 +3905,12 @@
         "学年学费",
         "保教费",
         "教育费"
-      ]
+      ],
+      "prior": {
+        "semanticKey": "expense.education.tuition",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "service.exam",
@@ -3261,7 +3922,12 @@
         "认证费",
         "资格考试费",
         "证书费"
-      ]
+      ],
+      "prior": {
+        "semanticKey": "expense.education.exam",
+        "score": 0.74
+      },
+      "policy": "standalone"
     },
     {
       "id": "context.finance",
@@ -3272,7 +3938,8 @@
         "银行转账",
         "金融业务",
         "银行业务"
-      ]
+      ],
+      "policy": "contextualOnly"
     },
     {
       "id": "object.vehicleComponent",
@@ -3294,7 +3961,8 @@
         "火花塞",
         "轴承",
         "雨刷"
-      ]
+      ],
+      "policy": "contextualOnly"
     },
     {
       "id": "object.digitalComponent",
@@ -3312,7 +3980,8 @@
         "触控板",
         "散热风扇",
         "快门"
-      ]
+      ],
+      "policy": "contextualOnly"
     },
     {
       "id": "object.fixtureComponent",
@@ -3328,7 +3997,8 @@
         "开关",
         "面板",
         "密封圈"
-      ]
+      ],
+      "policy": "contextualOnly"
     }
   ]
 }

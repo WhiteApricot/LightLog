@@ -9,29 +9,18 @@ class ContextEvidenceBuilder {
     required bool timeIsExplicit,
     List<RecognitionEvidence> entityEvidence = const [],
   }) {
-    final explicitMeal = <(RegExp, String)>[
-      (RegExp(r'早餐|早点|早饭'), 'expense.food.breakfast'),
-      (RegExp(r'午餐|午饭'), 'expense.food.lunch'),
-      (RegExp(r'晚餐|晚饭|夜宵'), 'expense.food.dinner'),
-    ];
-    for (final (pattern, semanticKey) in explicitMeal) {
-      final match = pattern.firstMatch(matchingText);
-      if (match != null) {
-        return [
-          RecognitionEvidence(
-            field: 'category',
-            source: RecognitionEvidenceSource.context,
-            semanticKey: semanticKey,
-            description: '明确餐食行为“${match.group(0)}”',
-            score: 0.91,
-            role: EvidenceRole.action,
-            specificity: EvidenceSpecificity.specific,
-            matchedText: match.group(0),
-            span: TextSpanRange(start: match.start, end: match.end),
-            family: 'explicitMeal',
-          ),
-        ];
-      }
+    // Explicit meal names are owned by the semantic lexicon. Temporal
+    // evidence only refines generic meal evidence, never duplicates routing.
+    if (entityEvidence.any(
+      (e) =>
+          !e.negative &&
+          const {
+            'expense.food.breakfast',
+            'expense.food.lunch',
+            'expense.food.dinner',
+          }.contains(e.semanticKey),
+    )) {
+      return const [];
     }
     final hasMealEligibleMerchant = entityEvidence.any(
       (item) =>

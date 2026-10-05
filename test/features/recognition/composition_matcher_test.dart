@@ -1,8 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:light_log/features/recognition/domain/compositional_matcher.dart';
 import 'package:light_log/features/recognition/domain/evidence_fusion.dart';
 import 'package:light_log/features/recognition/domain/knowledge_models.dart';
-import 'package:light_log/features/recognition/domain/lexical_family_matcher.dart';
+import 'package:light_log/features/recognition/domain/family_matcher.dart';
 import 'package:light_log/features/recognition/domain/recognition_models.dart';
 import 'package:light_log/features/recognition/domain/span_conflict_resolver.dart';
 
@@ -37,8 +36,8 @@ void main() {
   );
 
   test('specific action and object compose into stronger evidence', () {
-    final matches = LexicalFamilyMatcher(catalog).match('设备维修');
-    final evidence = CompositionalMatcher(catalog).match(matches);
+    final matches = FamilyMatcher(catalog).match('设备维修');
+    final evidence = FamilyMatcher(catalog).evidence(matches);
 
     expect(evidence, hasLength(1));
     expect(evidence.single.semanticKey, 'expense.digital.repair');
@@ -47,15 +46,15 @@ void main() {
   });
 
   test('modifier plus nearby action composes', () {
-    final evidence = CompositionalMatcher(catalog)
-        .match(LexicalFamilyMatcher(catalog).match('孩子去看病'));
+    final evidence = FamilyMatcher(catalog)
+        .evidence(FamilyMatcher(catalog).match('孩子去看病'));
 
     expect(evidence.single.semanticKey, 'expense.family.health');
   });
 
   test('unrelated distant spans do not compose', () {
-    final evidence = CompositionalMatcher(catalog)
-        .match(LexicalFamilyMatcher(catalog).match('设备和其他无关说明文字之后才维修'));
+    final evidence = FamilyMatcher(catalog)
+        .evidence(FamilyMatcher(catalog).match('设备和其他无关说明文字之后才维修'));
 
     expect(evidence, isEmpty);
   });
@@ -65,12 +64,16 @@ void main() {
       entities: const [],
       lexicon: const [],
       lexicalFamilies: const [
-        LexicalFamilyKnowledge(id: 'action.replacePart', terms: ['换']),
+        LexicalFamilyKnowledge(
+          id: 'action.replacePart',
+          terms: ['换'],
+          requiresAdjacentFamily: ['object.digitalComponent'],
+        ),
         LexicalFamilyKnowledge(id: 'object.digitalComponent', terms: ['硬盘']),
         LexicalFamilyKnowledge(id: 'object.digitalDevice', terms: ['手机']),
       ],
     );
-    final matcher = LexicalFamilyMatcher(knowledge);
+    final matcher = FamilyMatcher(knowledge);
     expect(
       matcher
           .match('换手机')
@@ -98,6 +101,7 @@ void main() {
       compositionRules: const [
         CompositionRuleKnowledge(
           id: 'photo-object',
+          allowOverlap: true,
           leftFamily: 'context.photo',
           rightFamily: 'object.light',
           semanticKey: 'expense.digital.photo',
@@ -106,7 +110,7 @@ void main() {
         ),
       ],
     );
-    final evidence = CompositionalMatcher(knowledge).match(const [
+    final evidence = FamilyMatcher(knowledge).evidence(const [
       LexicalFamilyMatch(
         conceptFamily: 'context.photo',
         term: '摄影',
@@ -137,17 +141,29 @@ void main() {
       term: '会员',
       range: TextSpanRange(start: 2, end: 4),
     );
-    final result = const SpanConflictResolver().resolveFamilyMatches([
-      cloud,
-      compound,
-      membership,
-    ]);
-    expect(result, contains(cloud));
-    expect(result, contains(membership));
+    final matcher = FamilyMatcher(
+      KnowledgeCatalog(
+        entities: const [],
+        lexicon: const [],
+        lexicalFamilies: [
+          LexicalFamilyKnowledge(
+            id: cloud.conceptFamily,
+            terms: [cloud.term, compound.term],
+          ),
+          LexicalFamilyKnowledge(
+            id: membership.conceptFamily,
+            terms: [membership.term],
+          ),
+        ],
+      ),
+    );
+    final result = matcher.match('网盘会员');
+    expect(result.where((m) => m.term == cloud.term), hasLength(1));
+    expect(result.where((m) => m.term == membership.term), hasLength(1));
   });
 
   test('one nested compound cannot act as two independent concepts', () {
-    final evidence = CompositionalMatcher(catalog).match(const [
+    final evidence = FamilyMatcher(catalog).evidence(const [
       LexicalFamilyMatch(
         conceptFamily: 'object.device',
         term: '设备',
@@ -162,21 +178,36 @@ void main() {
     expect(evidence, isEmpty);
   });
 
-  test('longer object concept suppresses a contained different object', () {
-    const short = LexicalFamilyMatch(
-      conceptFamily: 'object.phone',
-      term: '手机',
-      range: TextSpanRange(start: 0, end: 2),
-    );
-    const long = LexicalFamilyMatch(
-      conceptFamily: 'object.accessory',
-      term: '手机壳',
-      range: TextSpanRange(start: 0, end: 3),
-    );
-    expect(const SpanConflictResolver().resolveFamilyMatches([short, long]), [
-      long,
-    ]);
-  });
+  test(
+    'concept matching retains nested objects until semantic replacement',
+    () {
+      const short = LexicalFamilyMatch(
+        conceptFamily: 'object.phone',
+        term: '手机',
+        range: TextSpanRange(start: 0, end: 2),
+      );
+      const long = LexicalFamilyMatch(
+        conceptFamily: 'object.accessory',
+        term: '手机壳',
+        range: TextSpanRange(start: 0, end: 3),
+      );
+      final matcher = FamilyMatcher(
+        KnowledgeCatalog(
+          entities: const [],
+          lexicon: const [],
+          lexicalFamilies: [
+            LexicalFamilyKnowledge(
+              id: short.conceptFamily,
+              terms: [short.term],
+            ),
+            LexicalFamilyKnowledge(id: long.conceptFamily, terms: [long.term]),
+          ],
+        ),
+      );
+      final matches = matcher.match('手机壳');
+      expect(matches.map((m) => m.term), containsAll([short.term, long.term]));
+    },
+  );
 
   test('contained shorter conflicting span is suppressed', () {
     const short = RecognitionEvidence(

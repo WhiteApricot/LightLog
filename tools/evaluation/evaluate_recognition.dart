@@ -87,7 +87,7 @@ void main(List<String> args) {
   final report = <String, Object?>{
     'corpus': metadata['name'],
     'corpusVersion': metadata['version'],
-    'recognizerVersion': 2,
+    'recognizerVersion': 3,
     'knowledgeHash': knowledgeHash(),
     'evaluatedAt': DateTime.now().toUtc().toIso8601String(),
     'totalCases': results.length,
@@ -102,6 +102,47 @@ void main(List<String> args) {
     'amountAccuracy': _fieldAccuracy(results, 'amountCorrect'),
     'typeAccuracy': _fieldAccuracy(results, 'typeCorrect'),
     'categoryAccuracy': _fieldAccuracy(results, 'categoryCorrect'),
+    'parentCategoryAccuracy': _fieldAccuracy(results, 'parentCorrect'),
+    'childCategoryAccuracy': _fieldAccuracy(results, 'categoryCorrect'),
+    'categoryNullCount': results
+        .where((r) => (r['actual'] as Map)['categoryId'] == null)
+        .length,
+    'wrongCategoryCount': results
+        .where(
+          (r) =>
+              r['categoryCorrect'] == false &&
+              (r['actual'] as Map)['categoryId'] != null,
+        )
+        .length,
+    'routingFailureBreakdown': {
+      'noSemanticOutput': results
+          .where(
+            (r) =>
+                r['categoryCorrect'] == false &&
+                (r['actual'] as Map)['semanticKey'] == null,
+          )
+          .length,
+      'noCategoryOutput': results
+          .where(
+            (r) =>
+                r['categoryCorrect'] == false &&
+                (r['actual'] as Map)['categoryId'] == null,
+          )
+          .length,
+      'wrongParent': results
+          .where(
+            (r) =>
+                r['parentCorrect'] == false &&
+                (r['actual'] as Map)['categoryId'] != null,
+          )
+          .length,
+      'correctParentWrongChild': results
+          .where(
+            (r) => r['parentCorrect'] == true && r['categoryCorrect'] == false,
+          )
+          .length,
+      'wrongType': results.where((r) => r['typeCorrect'] == false).length,
+    },
     'timeAccuracy': _fieldAccuracy(results, 'timeCorrect'),
     'contentAccuracy': _fieldAccuracy(results, 'contentCorrect'),
     'contentSpanAccuracy': _fieldAccuracy(results, 'contentSpanCorrect'),
@@ -221,6 +262,9 @@ Map<String, Object?> _evaluate(
     'amountCorrect': amountCorrect,
     'typeCorrect': typeCorrect,
     'categoryCorrect': categoryCorrect,
+    'parentCorrect':
+        expected['categoryId'] == null ||
+        actual.categoryId == expected['categoryId'],
     'timeCorrect': timeCorrect,
     'contentCorrect': contentCorrect,
     'contentSpanCorrect': contentSpanCorrect,
@@ -229,6 +273,7 @@ Map<String, Object?> _evaluate(
     'issuesCorrect': issuesCorrect,
     'expected': expected,
     'actual': {
+      'semanticKey': actual.semanticKey,
       'type': actual.draft.type?.value,
       'amountMinor': actual.draft.amountMinor,
       'content': actualContent,
@@ -287,6 +332,8 @@ Map<String, Object?> _priority(
     'total': subset.length,
     'correct': correct,
     'accuracy': subset.isEmpty ? 0 : correct / subset.length,
+    'categoryAccuracy': _fieldAccuracy(subset, 'categoryCorrect'),
+    'typeAccuracy': _fieldAccuracy(subset, 'typeCorrect'),
   };
 }
 
@@ -312,6 +359,7 @@ Map<String, Object?> _groupMetrics(List<Map<String, Object?>> results) {
           'amountAccuracy': _fieldAccuracy(subset, 'amountCorrect'),
           'typeAccuracy': _fieldAccuracy(subset, 'typeCorrect'),
           'categoryAccuracy': _fieldAccuracy(subset, 'categoryCorrect'),
+          'parentCategoryAccuracy': _fieldAccuracy(subset, 'parentCorrect'),
           'timeAccuracy': _fieldAccuracy(subset, 'timeCorrect'),
         };
       }(),

@@ -1,66 +1,33 @@
-import 'knowledge_models.dart';
 import 'recognition_models.dart';
 
 class SpanConflictResolver {
   const SpanConflictResolver();
 
-  List<RecognitionEvidence> resolveEvidence(
-    List<RecognitionEvidence> input, {
-    List<LexicalFamilyMatch> familyMatches = const [],
-  }) {
+  List<RecognitionEvidence> resolveEvidence(List<RecognitionEvidence> input) {
     return List.unmodifiable([
       for (final candidate in input)
-        if (!_isShadowed(candidate, input, familyMatches)) candidate,
-    ]);
-  }
-
-  List<LexicalFamilyMatch> resolveFamilyMatches(
-    List<LexicalFamilyMatch> input,
-  ) {
-    return List.unmodifiable([
-      for (final candidate in input)
-        if (!input.any(
-          (other) =>
-              !identical(candidate, other) &&
-              _strictlyContains(other.range, candidate.range) &&
-              other.conceptFamily.split('.').first ==
-                  candidate.conceptFamily.split('.').first &&
-              (other.conceptFamily == candidate.conceptFamily ||
-                  candidate.conceptFamily.startsWith('object.')) &&
-              candidate.conceptFamily != 'object.pet' &&
-              // Retain an atomic constituent when another concept crosses
-              // its compound: 网盘会员 still composes 网盘 + 会员.
-              !(other.conceptFamily == candidate.conceptFamily &&
-                  input.any(
-                    (part) =>
-                        part.conceptFamily != other.conceptFamily &&
-                        part.range.overlaps(other.range),
-                  )),
-        ))
-          candidate,
+        if (!_isShadowed(candidate, input)) candidate,
     ]);
   }
 
   static bool _isShadowed(
     RecognitionEvidence candidate,
     List<RecognitionEvidence> all,
-    List<LexicalFamilyMatch> familyMatches,
   ) {
     final span = candidate.span;
     if (span == null || candidate.negative) return false;
-    if (familyMatches.any(
-      (match) =>
-          match.conceptFamily.startsWith('object.') &&
-          _strictlyContains(match.range, span),
-    )) {
-      return true;
-    }
     return all.any((other) {
       final otherSpan = other.span;
       if (identical(candidate, other) || otherSpan == null || other.negative) {
         return false;
       }
       if (!_strictlyContains(otherSpan, span)) return false;
+      if (other.source == RecognitionEvidenceSource.familyPrior &&
+          candidate.source != RecognitionEvidenceSource.composition &&
+          otherSpan.length > span.length &&
+          other.score >= .70) {
+        return true;
+      }
       if (other.semanticKey == candidate.semanticKey) {
         return other.score >= candidate.score;
       }

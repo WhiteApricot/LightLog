@@ -39,7 +39,10 @@ class EvidenceFusion {
       bySemantic.putIfAbsent(item.semanticKey!, () => []).add(item);
     }
     final ranked = bySemantic.entries.map((entry) {
-      entry.value.sort((a, b) => _priority(b).compareTo(_priority(a)));
+      entry.value.sort((a, b) {
+        final priority = _priority(b).compareTo(_priority(a));
+        return priority != 0 ? priority : b.score.compareTo(a.score);
+      });
       final top = entry.value.first;
       final independentFamilies = entry.value
           .map((item) => item.family ?? '${item.source.name}:${item.role.name}')
@@ -50,12 +53,34 @@ class EvidenceFusion {
       return (key: entry.key, evidence: entry.value, rank: rank);
     }).toList()..sort((a, b) => b.rank.compareTo(a.rank));
 
-    final winner = ranked.first;
+    final byParent =
+        <
+          String,
+          List<({String key, List<RecognitionEvidence> evidence, double rank})>
+        >{};
+    for (final child in ranked) {
+      final parent = child.key.split('.').take(2).join('.');
+      byParent.putIfAbsent(parent, () => []).add(child);
+    }
+    final parents = byParent.entries.map((entry) {
+      final children = entry.value;
+      final families = children
+          .expand((child) => child.evidence)
+          .map((e) => e.family ?? '${e.source.name}:${e.role.name}')
+          .toSet();
+      // Maximum anchor plus bounded independent support; taxonomy size has no weight.
+      final score =
+          children.first.rank + (families.length - 1).clamp(0, 3) * .03;
+      return (children: children, score: score);
+    }).toList()..sort((a, b) => b.score.compareTo(a.score));
+    final relevantChildren = parents.first.children;
+    final winner = relevantChildren.first;
     final top = winner.evidence.first;
     final hasSpecificSupport = winner.evidence.any(
       (item) => item.specificity == EvidenceSpecificity.specific,
     );
-    if (!hasSpecificSupport &&
+    if (top.source != RecognitionEvidenceSource.familyPrior &&
+        !hasSpecificSupport &&
         (top.role == EvidenceRole.platform ||
             top.role == EvidenceRole.product ||
             (top.role == EvidenceRole.service &&
@@ -75,16 +100,18 @@ class EvidenceFusion {
             ) *
             0.025);
     final issues = <RecognitionIssueCode>{};
-    if (ranked.length > 1) {
-      final runnerUp = ranked[1];
+    final competitors = [
+      if (relevantChildren.length > 1) relevantChildren[1],
+      if (parents.length > 1) parents[1].children.first,
+    ];
+    for (final runnerUp in competitors) {
       final priorityGap = _priority(top) - _priority(runnerUp.evidence.first);
       if (priorityGap.abs() <= 8 || winner.rank - runnerUp.rank < 0.10) {
         confidence = confidence.clamp(0, 0.64);
         issues.add(RecognitionIssueCode.categoryAmbiguous);
-      } else {
-        confidence -= 0.06;
       }
     }
+    if (competitors.isNotEmpty && issues.isEmpty) confidence -= .06;
     for (final negative in negatives.where(
       (item) => item.semanticKey == winner.key,
     )) {
@@ -110,6 +137,9 @@ class EvidenceFusion {
     }
     if (top.family == 'mealDaypartClock') {
       confidence = confidence.clamp(0, 0.79);
+    }
+    if (top.source == RecognitionEvidenceSource.familyPrior) {
+      confidence = confidence.clamp(0, .79);
     }
     confidence = confidence.clamp(0, 0.99);
     if (confidence < 0.58) {
@@ -147,6 +177,7 @@ class EvidenceFusion {
       return 100;
     }
     if (evidence.source == RecognitionEvidenceSource.composition) return 96;
+    if (evidence.source == RecognitionEvidenceSource.familyPrior) return 68;
     if (evidence.role == EvidenceRole.platform) return 25;
     final specific = evidence.specificity == EvidenceSpecificity.specific;
     if (specific &&

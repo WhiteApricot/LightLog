@@ -40,4 +40,23 @@ void main() {
       File(path).writeAsStringSync('{}');
     }
   });
+
+  test('prior policy, taxonomy and bounded score are enforced', () {
+    final families = read('tools/knowledge/lexical_families_source.json');
+    final rules = read('tools/knowledge/composition_rules_source.json');
+    final family = (families['families'] as List).cast<Map>().firstWhere(
+      (f) => f['prior'] != null,
+    );
+    final prior = family['prior'] as Map;
+    final semantic = prior['semanticKey'];
+    prior['semanticKey'] = 'expense.nonexistent.child';
+    expect(() => compositionQuality(families, rules), throwsFormatException);
+    prior['semanticKey'] = semantic;
+    final score = prior['score'];
+    prior['score'] = .99;
+    expect(() => compositionQuality(families, rules), throwsFormatException);
+    prior['score'] = score;
+    family['policy'] = 'contextualOnly';
+    expect(() => compositionQuality(families, rules), throwsFormatException);
+  });
 }

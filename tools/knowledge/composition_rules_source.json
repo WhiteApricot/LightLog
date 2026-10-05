@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "rules": [
     {
       "id": "pet-grooming",
@@ -215,7 +215,8 @@
       "rightFamily": "object.travelSupply",
       "semanticKey": "expense.travel.supplies",
       "maxDistance": 6,
-      "score": 0.93
+      "score": 0.93,
+      "allowOverlap": true
     },
     {
       "id": "sport-equipment",
@@ -223,7 +224,8 @@
       "rightFamily": "object.sportEquipment",
       "semanticKey": "expense.sports.equipment",
       "maxDistance": 6,
-      "score": 0.93
+      "score": 0.93,
+      "allowOverlap": true
     },
     {
       "id": "sport-event",
@@ -295,7 +297,8 @@
       "rightFamily": "object.computerHardware",
       "semanticKey": "expense.digital.computer",
       "maxDistance": 5,
-      "score": 0.94
+      "score": 0.94,
+      "allowOverlap": true
     },
     {
       "id": "photo-equipment",
@@ -303,7 +306,8 @@
       "rightFamily": "object.photoEquipment",
       "semanticKey": "expense.digital.photo",
       "maxDistance": 5,
-      "score": 0.93
+      "score": 0.93,
+      "allowOverlap": true
     },
     {
       "id": "digital-accessory",
@@ -319,7 +323,8 @@
       "rightFamily": "object.petSupply",
       "semanticKey": "expense.pets.supplies",
       "maxDistance": 5,
-      "score": 0.94
+      "score": 0.94,
+      "allowOverlap": true
     },
     {
       "id": "laundry-refill",
@@ -359,7 +364,8 @@
       "rightFamily": "income.wage",
       "semanticKey": "income.salary.overtime",
       "maxDistance": 5,
-      "score": 0.94
+      "score": 0.94,
+      "allowOverlap": true
     },
     {
       "id": "medical-reimbursement",
@@ -367,7 +373,8 @@
       "rightFamily": "income.reimbursement",
       "semanticKey": "income.reimbursement.medical",
       "maxDistance": 8,
-      "score": 0.94
+      "score": 0.94,
+      "allowOverlap": true
     },
     {
       "id": "design-private-order",
@@ -375,7 +382,8 @@
       "rightFamily": "income.privateOrder",
       "semanticKey": "income.parttime.freelance",
       "maxDistance": 6,
-      "score": 0.94
+      "score": 0.94,
+      "allowOverlap": true
     },
     {
       "id": "platform-order-income",
@@ -383,7 +391,8 @@
       "rightFamily": "income.orderIncome",
       "semanticKey": "income.parttime.platform",
       "maxDistance": 8,
-      "score": 0.94
+      "score": 0.94,
+      "allowOverlap": true
     },
     {
       "id": "teaching-fee",
@@ -391,7 +400,8 @@
       "rightFamily": "income.teachingFee",
       "semanticKey": "income.parttime.consulting",
       "maxDistance": 6,
-      "score": 0.94
+      "score": 0.94,
+      "allowOverlap": true
     },
     {
       "id": "shopping-refund",
@@ -399,7 +409,8 @@
       "rightFamily": "income.refund",
       "semanticKey": "income.refund.shopping",
       "maxDistance": 6,
-      "score": 0.94
+      "score": 0.94,
+      "allowOverlap": true
     },
     {
       "id": "shopping-medicine",
@@ -1231,7 +1242,8 @@
       "rightFamily": "object.outdoorGear",
       "semanticKey": "expense.sports.outdoor",
       "maxDistance": 5,
-      "score": 0.94
+      "score": 0.94,
+      "allowOverlap": true
     },
     {
       "id": "daily-object-pet-action-physicalExam",
@@ -1287,7 +1299,8 @@
       "rightFamily": "object.petFood",
       "semanticKey": "expense.pets.food",
       "maxDistance": 5,
-      "score": 0.94
+      "score": 0.94,
+      "allowOverlap": true
     },
     {
       "id": "daily-object-pet-object-petMedicine",
@@ -1295,7 +1308,8 @@
       "rightFamily": "object.petMedicine",
       "semanticKey": "expense.pets.medical",
       "maxDistance": 5,
-      "score": 0.94
+      "score": 0.94,
+      "allowOverlap": true
     },
     {
       "id": "daily-object-pet-action-store",
@@ -1815,7 +1829,8 @@
       "rightFamily": "object.bag",
       "semanticKey": "expense.travel.supplies",
       "maxDistance": 5,
-      "score": 0.94
+      "score": 0.94,
+      "allowOverlap": true
     },
     {
       "id": "daily-context-wedding-object-gift",
@@ -1823,7 +1838,8 @@
       "rightFamily": "object.gift",
       "semanticKey": "expense.social.gift",
       "maxDistance": 5,
-      "score": 0.94
+      "score": 0.94,
+      "allowOverlap": true
     },
     {
       "id": "daily-context-wedding-service-eventPlanning",
@@ -1839,7 +1855,8 @@
       "rightFamily": "object.gift",
       "semanticKey": "expense.social.gift",
       "maxDistance": 5,
-      "score": 0.94
+      "score": 0.94,
+      "allowOverlap": true
     },
     {
       "id": "daily-context-socialGift-service-eventPlanning",
@@ -2215,7 +2232,8 @@
       "rightFamily": "income.reimbursement",
       "semanticKey": "income.reimbursement.travel",
       "maxDistance": 5,
-      "score": 0.94
+      "score": 0.94,
+      "allowOverlap": true
     },
     {
       "id": "daily-context-work-income-reimbursement",
@@ -2223,7 +2241,8 @@
       "rightFamily": "income.reimbursement",
       "semanticKey": "income.reimbursement.work",
       "maxDistance": 5,
-      "score": 0.94
+      "score": 0.94,
+      "allowOverlap": true
     },
     {
       "id": "daily-income-wage-action-receive",
@@ -2247,7 +2266,8 @@
       "rightFamily": "context.work",
       "semanticKey": "income.salary.allowance",
       "maxDistance": 5,
-      "score": 0.94
+      "score": 0.94,
+      "allowOverlap": true
     },
     {
       "id": "daily-income-allowance-action-receive",

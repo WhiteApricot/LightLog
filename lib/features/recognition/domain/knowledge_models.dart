@@ -55,10 +55,18 @@ class LexiconKnowledge {
 }
 
 class LexicalFamilyKnowledge {
-  const LexicalFamilyKnowledge({required this.id, required this.terms});
+  const LexicalFamilyKnowledge({
+    required this.id,
+    required this.terms,
+    this.prior,
+    this.requiresAdjacentFamily = const [],
+  });
 
   final String id;
   final List<String> terms;
+  // Absence means contextual-only. A family has at most one default meaning.
+  final ({String semanticKey, double score})? prior;
+  final List<String> requiresAdjacentFamily;
 }
 
 class CompositionRuleKnowledge {
@@ -69,6 +77,7 @@ class CompositionRuleKnowledge {
     required this.semanticKey,
     required this.maxDistance,
     required this.score,
+    this.allowOverlap = false,
   });
 
   final String id;
@@ -77,6 +86,7 @@ class CompositionRuleKnowledge {
   final String semanticKey;
   final int maxDistance;
   final double score;
+  final bool allowOverlap;
 }
 
 class LexicalFamilyMatch {

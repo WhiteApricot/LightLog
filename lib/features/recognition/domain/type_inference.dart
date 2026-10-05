@@ -3,14 +3,10 @@ import 'recognition_models.dart';
 class TypeInference {
   const TypeInference();
 
-  static final _income = RegExp(
-    r'工资|薪资|奖金|津贴|补贴|绩效|报销|稿费|劳务|兼职|私单|接单收入|讲课费|红包收入|收到红包|二手出售|卖旧|卖二手|存款利息|利息到账|分红|租金收入|返现|赔偿|押金退回|收款(?!方)|到账|收入',
-  );
-  static final _expense = RegExp(
-    r'实付|支付|付款|消费|花了|购买|买了|缴费|充值|打车|吃了|订阅|维修|房租|水费|电费|燃气费',
-  );
+  static final _income = RegExp(r'收款(?!方)|到账|收入|退回');
+  static final _expense = RegExp(r'实付|支付|付款(?!方)|消费|花了|购买|买了|缴费|充值');
 
-  TypeDecision infer({
+  TypeDecision inferPreliminary({
     required String matchingText,
     required TransactionStatus status,
     required AmountCandidate? amount,
@@ -60,19 +56,6 @@ class TypeInference {
     }
     final income = _income.hasMatch(matchingText);
     final expense = _expense.hasMatch(matchingText);
-    if (RegExp(r'给(?:家里|家人|爸妈|父母).{0,4}补贴').hasMatch(matchingText)) {
-      return const TypeDecision(
-        type: RecognitionTransactionType.expense,
-        confidence: 0.94,
-        evidence: [
-          RecognitionEvidence(
-            field: 'type',
-            description: '给家人补贴表示支出',
-            score: 0.94,
-          ),
-        ],
-      );
-    }
     if (income && expense && RegExp(r'到账|收入|退回').hasMatch(matchingText)) {
       return const TypeDecision(
         type: RecognitionTransactionType.income,
@@ -134,10 +117,54 @@ class TypeInference {
       );
       return TypeDecision(
         type: RecognitionTransactionType.expense,
+        isDefault: true,
         confidence: 0.88,
         evidence: evidence,
       );
     }
     return const TypeDecision(type: null, confidence: 0, evidence: []);
+  }
+
+  TypeDecision reconcile(
+    TypeDecision preliminary,
+    String? semanticKey,
+    List<RecognitionEvidence> winningEvidence,
+  ) {
+    if (preliminary.type == RecognitionTransactionType.refund ||
+        semanticKey == null) {
+      return preliminary;
+    }
+    final semanticType = semanticKey.startsWith('income.')
+        ? RecognitionTransactionType.income
+        : RecognitionTransactionType.expense;
+    final support = winningEvidence.where(
+      (e) => !e.negative && e.semanticKey == semanticKey,
+    );
+    final strong = support.any((e) => e.score >= .70);
+    if (!strong) return preliminary;
+    if (preliminary.isDefault ||
+        (preliminary.type == null && !preliminary.hasConflict)) {
+      return TypeDecision(
+        type: semanticType,
+        confidence: .90,
+        evidence: [
+          ...preliminary.evidence,
+          RecognitionEvidence(
+            field: 'type',
+            description: '语义证据校正初步账务方向',
+            score: .90,
+          ),
+        ],
+      );
+    }
+    if (preliminary.type != semanticType) {
+      return TypeDecision(
+        type: preliminary.type,
+        confidence: preliminary.confidence,
+        evidence: preliminary.evidence,
+        hasConflict: true,
+      );
+    }
+    return preliminary;
   }
 }

@@ -5,14 +5,10 @@ import 'composition_quality.dart';
 
 import 'package:light_log/data/database/seed_data.dart';
 import 'package:light_log/features/recognition/data/knowledge_decoder.dart';
-import 'package:light_log/features/recognition/domain/compositional_matcher.dart';
-import 'package:light_log/features/recognition/domain/entity_matcher.dart';
-import 'package:light_log/features/recognition/domain/evidence_fusion.dart';
 import 'package:light_log/features/recognition/domain/knowledge_models.dart';
-import 'package:light_log/features/recognition/domain/lexicon_matcher.dart';
-import 'package:light_log/features/recognition/domain/lexical_family_matcher.dart';
+import 'package:light_log/features/recognition/domain/recognizer.dart';
+import 'package:light_log/features/recognition/domain/recognition_models.dart';
 import 'package:light_log/features/recognition/domain/normalization.dart';
-import 'package:light_log/features/recognition/domain/span_conflict_resolver.dart';
 
 const _runtimeHardLimit = 2 * 1024 * 1024;
 const _minimumEntities = 300;
@@ -113,11 +109,6 @@ void main() {
   );
   final compositionRuleSource = _read(
     'tools/knowledge/composition_rules_source.json',
-  );
-  final familyValidation = _validateCompositionKnowledge(
-    familySource: lexicalFamilySource,
-    ruleSource: compositionRuleSource,
-    validSemantics: validSemantics,
   );
   final compositionAudit = compositionQuality(
     lexicalFamilySource,
@@ -317,10 +308,10 @@ void main() {
   final merchantRuntime = {'version': 3, 'records': runtimeEntities};
   final lexiconRuntime = {'version': 3, 'entries': runtimeLexicon};
   final familyRuntime = {
-    'version': 1,
+    'version': 2,
     'families': lexicalFamilySource['families'],
   };
-  final ruleRuntime = {'version': 1, 'rules': compositionRuleSource['rules']};
+  final ruleRuntime = {'version': 2, 'rules': compositionRuleSource['rules']};
   final sampleResult = _validateSamples(
     reviewSamples: reviewSamples,
     catalog: const KnowledgeDecoder().decode(
@@ -390,10 +381,6 @@ void main() {
     'lexiconEntryCount': runtimeLexicon.length,
     'positiveTermCount': positiveTerms.length,
     'negativeTermCount': negativeTerms.length,
-    'lexicalFamilyCount': familyValidation.familyCount,
-    'lexicalFamilyTermCount': familyValidation.termCount,
-    'compositionRuleCount': familyValidation.ruleCount,
-    'shortHighRiskFamilyTerms': familyValidation.shortHighRiskTerms,
     ...compositionAudit,
     'sceneSemanticCoverage': sceneCoverage,
     'requiredSceneSemanticCount': _requiredSceneSemantics.length,
@@ -515,30 +502,34 @@ _validateSamples({
 }) {
   final failures = <String>[];
   var correct = 0;
-  final entityMatcher = EntityMatcher(catalog);
-  final lexiconMatcher = LexiconMatcher(catalog);
-  final familyMatcher = LexicalFamilyMatcher(catalog);
-  final compositionalMatcher = CompositionalMatcher(catalog);
-  const resolver = SpanConflictResolver();
-  const fusion = EvidenceFusion();
+  final recognizer = LocalRecognizer(knowledge: catalog);
+  final categories = [
+    for (final seed in defaultCategories)
+      RecognitionCategory(
+        id: seed.id,
+        parentId: seed.parentId,
+        name: seed.name,
+        type: seed.type == 'income'
+            ? RecognitionTransactionType.income
+            : RecognitionTransactionType.expense,
+        semanticKey: seed.semanticKey,
+        isSystem: true,
+        sortOrder: seed.sortOrder,
+        isActive: true,
+      ),
+  ];
   final samples = (reviewSamples['samples']! as List).cast<Map>();
   for (final raw in samples) {
     final sample = raw.cast<String, Object?>();
-    final text = RecognitionNormalizer.normalizeCharacters(
-      sample['text']! as String,
-    );
     final expected = sample['semanticKey']! as String;
-    final familyMatches = resolver.resolveFamilyMatches(
-      familyMatcher.match(text),
+    final fused = recognizer.recognize(
+      RecognitionInput(
+        rawText: '${sample['text']} 10?',
+        nowLocal: DateTime(2026, 1, 1, 12),
+        timezoneOffsetMinutes: 480,
+        activeCategories: categories,
+      ),
     );
-    final semanticEvidence = resolver.resolveEvidence([
-      ...entityMatcher.evidence(entityMatcher.match(text)),
-      ...lexiconMatcher.match(text),
-    ], familyMatches: familyMatches);
-    final fused = fusion.fuse([
-      ...semanticEvidence,
-      ...compositionalMatcher.match(familyMatches),
-    ]);
     final matched = fused.semanticKey == expected;
     if (matched) {
       correct++;
@@ -551,82 +542,6 @@ _validateSamples({
     correct: correct,
     accuracy: samples.isEmpty ? 0 : correct / samples.length,
     failures: failures,
-  );
-}
-
-({
-  int familyCount,
-  int termCount,
-  int ruleCount,
-  List<String> shortHighRiskTerms,
-})
-_validateCompositionKnowledge({
-  required Map<String, Object?> familySource,
-  required Map<String, Object?> ruleSource,
-  required Set<String?> validSemantics,
-}) {
-  final familyIds = <String>{};
-  final normalizedTerms = <String>{};
-  final shortHighRiskTerms = <String>[];
-  var termCount = 0;
-  for (final raw in familySource['families']! as List) {
-    final family = (raw as Map).cast<String, Object?>();
-    final id = family['id'] as String?;
-    if (id == null || id.trim().isEmpty || !familyIds.add(id)) {
-      throw FormatException('词汇 family id 为空或重复: $id');
-    }
-    final terms = (family['terms'] as List? ?? const []).cast<String>();
-    if (terms.isEmpty) throw FormatException('$id family term 不得为空');
-    for (final term in terms) {
-      final normalized = _normalize(term);
-      if (normalized.isEmpty) throw FormatException('$id 包含空 family term');
-      if (!normalizedTerms.add('$id:$normalized')) {
-        throw FormatException('$id 包含重复 family term: $term');
-      }
-      if (normalized.runes.length <= 1) shortHighRiskTerms.add('$id:$term');
-      termCount++;
-    }
-  }
-  final ruleIds = <String>{};
-  final pairOwners = <String, String>{};
-  final rules = (ruleSource['rules']! as List).cast<Map>();
-  for (final raw in rules) {
-    final rule = raw.cast<String, Object?>();
-    final id = rule['id'] as String?;
-    if (id == null || id.trim().isEmpty || !ruleIds.add(id)) {
-      throw FormatException('组合 rule id 为空或重复: $id');
-    }
-    final left = rule['leftFamily']! as String;
-    final right = rule['rightFamily']! as String;
-    if (!familyIds.contains(left) || !familyIds.contains(right)) {
-      throw FormatException('$id 引用不存在的 family: $left + $right');
-    }
-    final semantic = rule['semanticKey']! as String;
-    if (!validSemantics.contains(semantic)) {
-      throw FormatException('$id 使用无效 taxonomy: $semantic');
-    }
-    final maxDistance = rule['maxDistance'] as int?;
-    final score = (rule['score'] as num?)?.toDouble();
-    if (maxDistance == null || maxDistance < 0 || maxDistance > 20) {
-      throw FormatException('$id maxDistance 超出 0..20');
-    }
-    if (score == null || score < 0.40 || score > 0.99) {
-      throw FormatException('$id score 超出 0.40..0.99');
-    }
-    final pair = [left, right]..sort();
-    final pairKey = pair.join('+');
-    final previous = pairOwners[pairKey];
-    if (previous != null) {
-      throw FormatException('重复或冲突组合 rule: $previous / $id');
-    }
-    pairOwners[pairKey] = id;
-  }
-  shortHighRiskTerms.sort();
-  return (
-    familyCount: familyIds.length,
-    termCount: termCount,
-    ruleCount: rules.length,
-    shortHighRiskTerms: shortHighRiskTerms,
   );
 }
 

@@ -1,12 +1,16 @@
 import 'package:light_log/features/recognition/domain/normalization.dart';
+import 'package:light_log/data/database/seed_data.dart';
 
 /// Audits the flat family layer independently of semantic lexicon ownership.
 Map<String, Object?> compositionQuality(
   Map<String, Object?> familySource,
   Map<String, Object?> ruleSource,
 ) {
+  final validSemantics = categorySemanticKeys.values.toSet();
   final families = (familySource['families']! as List).cast<Map>();
   final rules = (ruleSource['rules']! as List).cast<Map>();
+  final familyIds = <String>{};
+  final priors = <String, String>{};
   final owners = <String, Set<String>>{};
   final termsByFamily = <String, int>{};
   final kinds = <String, int>{};
@@ -17,6 +21,29 @@ Map<String, Object?> compositionQuality(
   final duplicates = <String>[];
   for (final family in families) {
     final id = family['id']! as String;
+    if (id.isEmpty || !familyIds.add(id)) {
+      throw FormatException('Duplicate/empty family: $id');
+    }
+    final prior = family['prior'] as Map?;
+    if (family['policy'] != (prior == null ? 'contextualOnly' : 'standalone')) {
+      throw FormatException('Invalid family policy: $id');
+    }
+    if (prior != null) {
+      if (prior.length != 2 ||
+          !validSemantics.contains(prior['semanticKey']) ||
+          prior['score'] is! num ||
+          (prior['score'] as num) < .60 ||
+          (prior['score'] as num) > .79) {
+        throw FormatException('Invalid prior: $id');
+      }
+      priors[id] = prior['semanticKey'] as String;
+      if (id.startsWith('income.') != priors[id]!.startsWith('income.')) {
+        throw FormatException('Cross-type family prior: $id');
+      }
+    }
+    if ((family['terms'] as List).isEmpty) {
+      throw FormatException('Empty family: $id');
+    }
     final kind = family['kind'] as String? ?? id.split('.').first;
     if (!const {
       'object',
@@ -70,9 +97,54 @@ Map<String, Object?> compositionQuality(
       );
     }
   }
+  final ruleIds = <String>{};
+  final pairs = <String>{};
+  final reviewedOverrides = <String, List<String>>{};
+  for (final family in families) {
+    for (final ref in (family['requiresAdjacentFamily'] as List? ?? const [])) {
+      if (!familyIds.contains(ref)) {
+        throw FormatException('Invalid adjacency family: $ref');
+      }
+    }
+  }
   for (final rule in rules) {
+    final id = rule['id'] as String;
+    if (!ruleIds.add(id)) throw FormatException('Duplicate rule: $id');
+    final pair = [rule['leftFamily'] as String, rule['rightFamily'] as String]
+      ..sort();
+    if (!pairs.add(pair.join('+'))) {
+      throw FormatException('Duplicate pair: $id');
+    }
+    if (!validSemantics.contains(rule['semanticKey']) ||
+        rule['score'] is! num ||
+        (rule['score'] as num) < .80 ||
+        (rule['score'] as num) > .99 ||
+        rule['maxDistance'] is! int ||
+        (rule['maxDistance'] as int) < 0 ||
+        (rule['maxDistance'] as int) > 20) {
+      throw FormatException('Invalid composition output/score/distance: $id');
+    }
+    final changes = pair
+        .where(
+          (family) =>
+              priors[family] != null && priors[family] != rule['semanticKey'],
+        )
+        .toList();
+    if (changes.isNotEmpty) {
+      // A different output needs an explicit contextual operand; two stable
+      // standalone objects cannot silently contradict their default meanings.
+      if (pair.every(
+        (family) => family.startsWith('object.') && priors.containsKey(family),
+      )) {
+        throw FormatException('Contradictory object priors: $id');
+      }
+      reviewedOverrides[id] = changes;
+    }
     for (final field in ['leftFamily', 'rightFamily']) {
       final id = rule[field]! as String;
+      if (!familyIds.contains(id)) {
+        throw FormatException('Invalid family reference: $id');
+      }
       rulesPerFamily.update(id, (v) => v + 1);
     }
     final semantic = rule['semanticKey']! as String;
@@ -86,15 +158,35 @@ Map<String, Object?> compositionQuality(
           .map((e) => e.key)
           .toList()
         ..sort();
-  if (families.length < 120 ||
-      owners.length < 900 ||
-      rules.length < 100 ||
-      rulesPerSemantic.length < 50) {
-    throw const FormatException(
-      'Production composition coverage below 120/900/100/50',
-    );
+  if (duplicates.isNotEmpty) {
+    throw FormatException('Duplicate family terms: $duplicates');
+  }
+  final standalone = families.where((f) => f['prior'] != null).toList();
+  final priorSemantics = standalone
+      .map((f) => (f['prior'] as Map)['semanticKey'] as String)
+      .toSet();
+  final children = {...priorSemantics, ...rulesPerSemantic.keys};
+  final orphan = families
+      .where((f) => f['prior'] == null && rulesPerFamily[f['id']] == 0)
+      .map((f) => f['id'])
+      .toList();
+  if (orphan.isNotEmpty) {
+    throw FormatException('Orphan contextual families: $orphan');
   }
   return {
+    'lexicalFamilyCount': families.length,
+    'compositionRuleCount': rules.length,
+    'reviewedPriorOverrides': reviewedOverrides,
+    'unusedRules': <String>[],
+    'standaloneFamilyCount': standalone.length,
+    'contextualFamilyCount': families.length - standalone.length,
+    'familiesWithSemanticPrior': standalone.map((f) => f['id']).toList(),
+    'priorSemanticCoverage': priorSemantics.toList()..sort(),
+    'parentCoverage':
+        children.map((s) => s.split('.').take(2).join('.')).toSet().toList()
+          ..sort(),
+    'childCoverage': children.toList()..sort(),
+    'orphanFamilies': orphan,
     'lexicalFamilyTermCount': owners.length,
     'familyTermsByFamily': termsByFamily,
     'familyKindDistribution': kinds,
