@@ -1,0 +1,3 @@
+﻿import json,struct,collections
+from pathlib import Path
+b=Path('assets/knowledge/ngram.bin').read_bytes();h=json.loads(b[8:8+struct.unpack('<I',b[4:8])[0]]);r=json.loads(Path('lightlog_phase3_104class_realworld_holdout_v7.json').read_text(encoding='utf-8-sig'));invalid=collections.Counter(x['expected'].get('semanticKey') for x in r['cases'] if x['expected'].get('semanticKey') is not None and x['expected']['semanticKey'] not in h['labels']);out={k:{'count':n,'canonical':k.replace('_','.') if k.replace('_','.') in h['labels'] else None} for k,n in invalid.items()};Path('tools/ngram/v7_validation_error.json').write_text(json.dumps(out,indent=2)+'\n',encoding='utf-8');print(json.dumps(out))

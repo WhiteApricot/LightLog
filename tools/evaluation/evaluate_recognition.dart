@@ -217,6 +217,82 @@ void main(List<String> args) {
           .length,
       'wrongType': results.where((r) => r['typeCorrect'] == false).length,
     },
+    'statisticalAcceptedCoverage': _rate(
+      results.where((r) => r['categoryCorrect'] != null),
+      (r) => r['statisticalAccepted'] == true,
+    ),
+    'statisticalAcceptedAccuracy': _rate(
+      results.where(
+        (r) => r['statisticalAccepted'] == true && r['categoryCorrect'] != null,
+      ),
+      (r) => r['categoryCorrect'] == true,
+    ),
+    'sameParentRerankAccuracy': _rate(
+      results.where(
+        (r) =>
+            r['statisticalAccepted'] == true &&
+            r['sameParentRerank'] == true &&
+            r['categoryCorrect'] != null,
+      ),
+      (r) => r['categoryCorrect'] == true,
+    ),
+    'crossParentStatisticalAccuracy': _rate(
+      results.where(
+        (r) =>
+            r['statisticalAccepted'] == true &&
+            r['sameParentRerank'] != true &&
+            r['categoryCorrect'] != null,
+      ),
+      (r) => r['categoryCorrect'] == true,
+    ),
+    'specificCategoryCoverage': _rate(
+      results.where((r) => r['categoryCorrect'] != null),
+      (r) => _specific(r),
+    ),
+    'specificCategoryAccuracy': _rate(
+      results.where((r) => r['categoryCorrect'] != null && _specific(r)),
+      (r) => r['categoryCorrect'] == true,
+    ),
+    'otherGeneralFallbackRate': _rate(
+      results.where((r) => r['categoryCorrect'] != null),
+      (r) => r['otherGeneralFallback'] == true,
+    ),
+    'otherGeneralCategoryRate': _rate(
+      results.where((r) => r['categoryCorrect'] != null),
+      (r) => _other(r),
+    ),
+    'falseFallbackRate': _rate(
+      results.where((r) => r['categoryCorrect'] != null),
+      (r) => _other(r) && r['categoryCorrect'] == false,
+    ),
+    'childConditionalAccuracy': _rate(
+      results.where((r) => r['parentCorrect'] == true),
+      (r) => r['categoryCorrect'] == true,
+    ),
+    'ordinaryValidCategoryNullCount': results
+        .where((r) => r['ordinaryValidCategoryNull'] == true)
+        .length,
+    'failureDecomposition': {
+      'otherFallbackError': results
+          .where((r) => _other(r) && r['categoryCorrect'] == false)
+          .length,
+      'wrongParent': results.where((r) => r['parentCorrect'] == false).length,
+      'correctParentWrongChild': results
+          .where(
+            (r) => r['parentCorrect'] == true && r['categoryCorrect'] == false,
+          )
+          .length,
+      'wrongType': results.where((r) => r['typeCorrect'] == false).length,
+      'mealDetection': results
+          .where(
+            (r) => r['mealOracle'] == true && r['mealRoutingApplied'] != true,
+          )
+          .length,
+      'taxonomyAmbiguity': 'unadjudicated; oracle unchanged',
+      'safety': results
+          .where((r) => r['priority'] == 'P2' && r['safe'] != true)
+          .length,
+    },
     'timeAccuracy': _fieldAccuracy(results, 'timeCorrect'),
     'contentAccuracy': _fieldAccuracy(results, 'contentCorrect'),
     'contentSpanAccuracy': _fieldAccuracy(results, 'contentSpanCorrect'),
@@ -328,6 +404,22 @@ Map<String, Object?> _evaluate(
     'otherGeneralFallback': actual.evidence.any(
       (e) => e.family == 'otherGeneralFallback',
     ),
+    'statisticalAccepted': actual.evidence.any(
+      (e) =>
+          e.source == RecognitionEvidenceSource.ngram &&
+          e.semanticKey == actual.semanticKey,
+    ),
+    'sameParentRerank': actual.evidence.any(
+      (e) =>
+          e.family == 'statisticalSameParent' &&
+          e.semanticKey == actual.semanticKey,
+    ),
+    'ordinaryValidCategoryNull':
+        (actual.draft.type == RecognitionTransactionType.expense ||
+            actual.draft.type == RecognitionTransactionType.income) &&
+        (actual.draft.amountMinor ?? 0) > 0 &&
+        !RecognitionResult.isSafetyBlocked(actual.issueCodes) &&
+        actual.categoryId == null,
     'mealOracle': ContextEvidenceBuilder.mealSemantics.contains(
       expected['semanticKey'] ??
           RecognitionToolHarness.categories
@@ -338,7 +430,8 @@ Map<String, Object?> _evaluate(
     'mealRoutingApplied': actual.evidence.any(
       (e) =>
           (e.family == 'mealByExplicitTime' ||
-              e.family == 'mealByOccurredAt') &&
+              e.family == 'mealByOccurredAt' ||
+              e.family == 'preparedMealStatistical') &&
           e.semanticKey == actual.semanticKey,
     ),
     'correct': correct,
@@ -577,3 +670,10 @@ DateTime _wallTime(String iso) {
     int.parse(match.group(6)!),
   );
 }
+
+bool _other(Map<String, Object?> r) => const {
+  'expense.other.general',
+  'income.other.general',
+}.contains((r['actual'] as Map)['semanticKey']);
+bool _specific(Map<String, Object?> r) =>
+    (r['actual'] as Map)['categoryId'] != null && !_other(r);

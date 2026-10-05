@@ -128,8 +128,9 @@ class TypeInference {
   TypeDecision reconcile(
     TypeDecision preliminary,
     String? semanticKey,
-    List<RecognitionEvidence> winningEvidence,
-  ) {
+    List<RecognitionEvidence> winningEvidence, {
+    double statisticalParentConfidence = 0,
+  }) {
     if (preliminary.type == RecognitionTransactionType.refund ||
         semanticKey == null) {
       return preliminary;
@@ -140,9 +141,15 @@ class TypeInference {
     final support = winningEvidence.where(
       (e) => !e.negative && e.semanticKey == semanticKey,
     );
-    final strong = support.any((e) => e.score >= .70);
+    final statistical = support.any(
+      (e) => e.source == RecognitionEvidenceSource.ngram,
+    );
+    final strong =
+        support.any((e) => e.score >= .70) ||
+        (statistical && statisticalParentConfidence >= .85);
     if (!strong) return preliminary;
     if (semanticKey.startsWith('income.refund.')) {
+      if (statistical) return preliminary;
       return TypeDecision(
         type: RecognitionTransactionType.refund,
         confidence: .90,
@@ -160,13 +167,13 @@ class TypeInference {
         (preliminary.type == null && !preliminary.hasConflict)) {
       return TypeDecision(
         type: semanticType,
-        confidence: .90,
+        confidence: statistical ? .69 : .90,
         evidence: [
           ...preliminary.evidence,
           RecognitionEvidence(
             field: 'type',
             description: '语义证据校正初步账务方向',
-            score: .90,
+            score: statistical ? .69 : .90,
           ),
         ],
       );

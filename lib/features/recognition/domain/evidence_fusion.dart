@@ -17,6 +17,43 @@ class EvidenceFusionResult {
 class EvidenceFusion {
   const EvidenceFusion();
 
+  /// 0 protects specific anchors; 1 protects the parent; 2 permits routing.
+  int statisticalLevel(EvidenceFusionResult result) {
+    final ambiguous = result.issueCodes.contains(
+      RecognitionIssueCode.categoryAmbiguous,
+    );
+    final specificAnchor = result.winningEvidence.any(
+      (e) =>
+          e.specificity == EvidenceSpecificity.specific &&
+          _priority(e) >= 80 &&
+          e.score >= .70,
+    );
+    if (result.winningEvidence.any(
+          (e) =>
+              e.family == 'mealByExplicitTime' ||
+              e.family == 'mealByOccurredAt',
+        ) ||
+        (!ambiguous &&
+            result.confidence >= .70 &&
+            (specificAnchor ||
+                result.winningEvidence.any(
+                  (e) =>
+                      e.source == RecognitionEvidenceSource.personalHistory ||
+                      e.source == RecognitionEvidenceSource.composition,
+                )))) {
+      return 0;
+    }
+    if (result.semanticKey == null) return 2;
+    if (specificAnchor) return 1;
+    final parentAnchor = result.winningEvidence.any(
+      (e) =>
+          e.specificity == EvidenceSpecificity.specific ||
+          e.role == EvidenceRole.merchantType ||
+          e.role == EvidenceRole.venue,
+    );
+    return parentAnchor && result.confidence >= .58 && !ambiguous ? 1 : 2;
+  }
+
   /// Product contract: a definite meal and its parsed local time outrank food
   /// subtypes. Non-food purposes and all safety gates remain untouched.
   EvidenceFusionResult withMealEvidence(
@@ -41,12 +78,10 @@ class EvidenceFusion {
   }
 
   bool needsWeakEvidence(EvidenceFusionResult deterministic) =>
-      deterministic.semanticKey == null ||
-      (deterministic.confidence < .70 &&
-          !deterministic.winningEvidence.any((e) => _priority(e) >= 80));
+      statisticalLevel(deterministic) > 0;
 
-  /// Weak fallback never displaces specific/history/composition evidence,
-  /// changes direction, resolves a safety issue, or creates high confidence.
+  /// Statistical evidence respects the selected permission level and reconciled
+  /// direction, never resolves a safety issue, and cannot create high confidence.
   EvidenceFusionResult withWeakEvidence(
     EvidenceFusionResult deterministic,
     RecognitionEvidence? weak,
@@ -54,6 +89,9 @@ class EvidenceFusion {
   ) {
     if (weak == null ||
         !needsWeakEvidence(deterministic) ||
+        (statisticalLevel(deterministic) == 1 &&
+            deterministic.semanticKey!.split('.').take(2).join('.') !=
+                weak.semanticKey!.split('.').take(2).join('.')) ||
         type == null ||
         (type != RecognitionTransactionType.expense &&
             type != RecognitionTransactionType.income) ||

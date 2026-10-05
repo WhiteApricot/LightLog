@@ -55,7 +55,16 @@ class LocalRecognizer {
     return RecognitionNormalizer.indexKey(withoutFields);
   }
 
-  RecognitionResult recognize(RecognitionInput input) {
+  RecognitionResult recognize(
+    RecognitionInput input, {
+    void Function(
+      EvidenceFusionResult,
+      TypeDecision,
+      bool,
+      RecognitionEvidence?,
+    )?
+    onSemanticDecision,
+  }) {
     final normalized = _normalizer.normalize(input.rawText);
     final entityMatches = _entityMatcher.match(normalized.matchingText);
     final rawEntityEvidence = _entityMatcher.evidence(entityMatches);
@@ -109,26 +118,57 @@ class LocalRecognizer {
       mealEvidence,
     );
     if (mealEvidence != null) semanticEvidence.add(mealEvidence);
-    final typeDecision = _typeInference.reconcile(
+    var typeDecision = _typeInference.reconcile(
       preliminaryType,
       deterministicFusion.semanticKey,
       deterministicFusion.winningEvidence,
     );
-    var weakEvidence =
+    onSemanticDecision?.call(
+      deterministicFusion,
+      preliminaryType,
+      !RecognitionResult.isSafetyBlocked(issueCodes) &&
+          typeDecision.type != RecognitionTransactionType.refund,
+      mealEvidence,
+    );
+    final routed =
         _fusion.needsWeakEvidence(deterministicFusion) &&
             (fields.status == TransactionStatus.success ||
                 fields.status == TransactionStatus.unknown) &&
             !fields.multipleTransactionsDetected &&
             fields.selectedAmount != null &&
             typeDecision.type != RecognitionTransactionType.refund
-        ? ngram?.evidence(input.rawText)
+        ? ngram?.hierarchicalEvidence(
+            input.rawText,
+            input.activeCategories,
+            level: _fusion.statisticalLevel(deterministicFusion),
+            anchor: deterministicFusion.semanticKey,
+            structuredFeatures: NgramClassifier.structuredFeatures(
+              preliminaryType,
+              deterministicFusion.winningEvidence,
+              ngram!.model.parentByChild,
+            ),
+          )
         : null;
+    var weakEvidence = routed?.evidence;
+    if (weakEvidence?.semanticKey?.startsWith('income.refund.') ?? false) {
+      weakEvidence = null;
+    }
     // A frozen model may suggest a meal label, but never determines daypart.
     if (mealEvidence == null &&
         ContextEvidenceBuilder.mealSemantics.contains(
           weakEvidence?.semanticKey,
         )) {
       weakEvidence = null;
+    }
+    if (weakEvidence != null &&
+        preliminaryType.isDefault &&
+        routed!.parentConfidence >= .85) {
+      typeDecision = _typeInference.reconcile(
+        preliminaryType,
+        weakEvidence.semanticKey,
+        [weakEvidence],
+        statisticalParentConfidence: routed.parentConfidence,
+      );
     }
     final fusion = _fusion.withWeakEvidence(
       deterministicFusion,

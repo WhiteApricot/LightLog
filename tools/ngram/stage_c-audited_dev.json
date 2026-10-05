@@ -1,0 +1,1010 @@
+{
+  "stage": "C-audited",
+  "selection": "max full pipeline dev category accuracy with accepted accuracy >=90%; ties coverage",
+  "selected": {
+    "parentThreshold": 0.4,
+    "parentMargin": 0.0,
+    "childThreshold": 0.4,
+    "childMargin": 0.05,
+    "categoryAccuracy": 0.7971854304635762,
+    "acceptedAccuracy": 0.9016806722689076,
+    "acceptedCoverage": 0.2462748344370861
+  },
+  "flatChildAccuracy": 0.8487168874172185,
+  "flatParentAccuracy": 0.9416390728476821,
+  "hierarchicalParentAccuracy": 0.9422599337748344,
+  "hierarchicalChildAccuracy": 0.8447847682119205,
+  "parentAccuracy": 0.8627897350993378,
+  "specificCategoryCoverage": 0.9252897350993378,
+  "specificCategoryAccuracy": 0.8382912100201297,
+  "fallbackRate": 0.07471026490066225,
+  "falseFallbackRate": 0.05318708609271523,
+  "childConditionalAccuracy": 0.9239625809546654,
+  "sameParentRerankAccuracy": 0.8596938775510204,
+  "sameParentRerankCount": 392,
+  "crossParentStatisticalAccuracy": 0.9223057644110275,
+  "crossParentStatisticalCount": 798,
+  "failureDecomposition": {
+    "otherFallbackError": 257,
+    "wrongParent": 663,
+    "correctParentWrongChild": 317,
+    "wrongType": 154,
+    "mealDetection": 24,
+    "taxonomyAmbiguity": "not adjudicated: no relabeling",
+    "safety": "separate historical P2 suite"
+  },
+  "trials": [
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.0,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.8056705298013245,
+      "acceptedAccuracy": 0.8647416413373861,
+      "acceptedCoverage": 0.2723509933774834
+    },
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.0,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.8038079470198676,
+      "acceptedAccuracy": 0.8780487804878049,
+      "acceptedCoverage": 0.2630380794701987
+    },
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.0,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7973923841059603,
+      "acceptedAccuracy": 0.8938500421229991,
+      "acceptedCoverage": 0.2456539735099338
+    },
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.0,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7804221854304636,
+      "acceptedAccuracy": 0.8980169971671388,
+      "acceptedCoverage": 0.2191639072847682
+    },
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.0,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7537251655629139,
+      "acceptedAccuracy": 0.9089834515366431,
+      "acceptedCoverage": 0.17508278145695363
+    },
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.0,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7257864238410596,
+      "acceptedAccuracy": 0.9263157894736842,
+      "acceptedCoverage": 0.1179635761589404
+    },
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.05,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.8042218543046358,
+      "acceptedAccuracy": 0.8704703161141095,
+      "acceptedCoverage": 0.2684188741721854
+    },
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.05,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.8021523178807947,
+      "acceptedAccuracy": 0.8813694267515924,
+      "acceptedCoverage": 0.2599337748344371
+    },
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.05,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7957367549668874,
+      "acceptedAccuracy": 0.8953191489361703,
+      "acceptedCoverage": 0.2431705298013245
+    },
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.05,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7791804635761589,
+      "acceptedAccuracy": 0.8990476190476191,
+      "acceptedCoverage": 0.21730132450331127
+    },
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.05,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7531043046357616,
+      "acceptedAccuracy": 0.9107142857142857,
+      "acceptedCoverage": 0.173841059602649
+    },
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.05,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7251655629139073,
+      "acceptedAccuracy": 0.9274336283185841,
+      "acceptedCoverage": 0.11692880794701986
+    },
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.15,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.8017384105960265,
+      "acceptedAccuracy": 0.8897827835880934,
+      "acceptedCoverage": 0.2572433774834437
+    },
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.15,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7994619205298014,
+      "acceptedAccuracy": 0.8953871499176277,
+      "acceptedCoverage": 0.25124172185430466
+    },
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.15,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7934602649006622,
+      "acceptedAccuracy": 0.9048034934497816,
+      "acceptedCoverage": 0.23696192052980133
+    },
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.15,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.777317880794702,
+      "acceptedAccuracy": 0.9055501460564752,
+      "acceptedCoverage": 0.21254139072847683
+    },
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.15,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7524834437086093,
+      "acceptedAccuracy": 0.9186893203883495,
+      "acceptedCoverage": 0.17052980132450332
+    },
+    {
+      "parentThreshold": 0.25,
+      "parentMargin": 0.15,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7251655629139073,
+      "acceptedAccuracy": 0.9351351351351351,
+      "acceptedCoverage": 0.1148592715231788
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.0,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7988410596026491,
+      "acceptedAccuracy": 0.8954732510288066,
+      "acceptedCoverage": 0.25144867549668876
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.0,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7971854304635762,
+      "acceptedAccuracy": 0.9016806722689076,
+      "acceptedCoverage": 0.2462748344370861
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.0,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7924254966887417,
+      "acceptedAccuracy": 0.9098143236074271,
+      "acceptedCoverage": 0.23406456953642385
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.0,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7771109271523179,
+      "acceptedAccuracy": 0.911504424778761,
+      "acceptedCoverage": 0.21047185430463577
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.0,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7528973509933775,
+      "acceptedAccuracy": 0.9231707317073171,
+      "acceptedCoverage": 0.1697019867549669
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.0,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7257864238410596,
+      "acceptedAccuracy": 0.9369369369369369,
+      "acceptedCoverage": 0.1148592715231788
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.05,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7978062913907285,
+      "acceptedAccuracy": 0.8950413223140495,
+      "acceptedCoverage": 0.2504139072847682
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.05,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7961506622516556,
+      "acceptedAccuracy": 0.9012658227848102,
+      "acceptedCoverage": 0.24524006622516556
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.05,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7913907284768212,
+      "acceptedAccuracy": 0.9094138543516874,
+      "acceptedCoverage": 0.23302980132450332
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.05,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7762831125827815,
+      "acceptedAccuracy": 0.9111549851924975,
+      "acceptedCoverage": 0.20964403973509935
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.05,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7522764900662252,
+      "acceptedAccuracy": 0.9228886168910648,
+      "acceptedCoverage": 0.16908112582781457
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.05,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7251655629139073,
+      "acceptedAccuracy": 0.9365942028985508,
+      "acceptedCoverage": 0.11423841059602649
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.15,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.796978476821192,
+      "acceptedAccuracy": 0.8968386023294509,
+      "acceptedCoverage": 0.24875827814569537
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.15,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7955298013245033,
+      "acceptedAccuracy": 0.9024597116200169,
+      "acceptedCoverage": 0.24399834437086093
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.15,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7907698675496688,
+      "acceptedAccuracy": 0.9107142857142857,
+      "acceptedCoverage": 0.23178807947019867
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.15,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7758692052980133,
+      "acceptedAccuracy": 0.9126984126984127,
+      "acceptedCoverage": 0.20860927152317882
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.15,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7520695364238411,
+      "acceptedAccuracy": 0.9238329238329238,
+      "acceptedCoverage": 0.16846026490066227
+    },
+    {
+      "parentThreshold": 0.4,
+      "parentMargin": 0.15,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7251655629139073,
+      "acceptedAccuracy": 0.9381818181818182,
+      "acceptedCoverage": 0.11382450331125828
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.0,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7847682119205298,
+      "acceptedAccuracy": 0.9113924050632911,
+      "acceptedCoverage": 0.22889072847682118
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.0,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7841473509933775,
+      "acceptedAccuracy": 0.91324200913242,
+      "acceptedCoverage": 0.22661423841059603
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.0,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7802152317880795,
+      "acceptedAccuracy": 0.9204980842911877,
+      "acceptedCoverage": 0.21605960264900662
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.0,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7686258278145696,
+      "acceptedAccuracy": 0.9221871713985279,
+      "acceptedCoverage": 0.19681291390728478
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.0,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7485513245033113,
+      "acceptedAccuracy": 0.9358151476251605,
+      "acceptedCoverage": 0.16121688741721854
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.0,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7243377483443708,
+      "acceptedAccuracy": 0.9529190207156308,
+      "acceptedCoverage": 0.10989238410596026
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.05,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7847682119205298,
+      "acceptedAccuracy": 0.9113924050632911,
+      "acceptedCoverage": 0.22889072847682118
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.05,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7841473509933775,
+      "acceptedAccuracy": 0.91324200913242,
+      "acceptedCoverage": 0.22661423841059603
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.05,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7802152317880795,
+      "acceptedAccuracy": 0.9204980842911877,
+      "acceptedCoverage": 0.21605960264900662
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.05,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7686258278145696,
+      "acceptedAccuracy": 0.9221871713985279,
+      "acceptedCoverage": 0.19681291390728478
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.05,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7485513245033113,
+      "acceptedAccuracy": 0.9358151476251605,
+      "acceptedCoverage": 0.16121688741721854
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.05,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7243377483443708,
+      "acceptedAccuracy": 0.9529190207156308,
+      "acceptedCoverage": 0.10989238410596026
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.15,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7847682119205298,
+      "acceptedAccuracy": 0.9113924050632911,
+      "acceptedCoverage": 0.22889072847682118
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.15,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7841473509933775,
+      "acceptedAccuracy": 0.91324200913242,
+      "acceptedCoverage": 0.22661423841059603
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.15,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7802152317880795,
+      "acceptedAccuracy": 0.9204980842911877,
+      "acceptedCoverage": 0.21605960264900662
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.15,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7686258278145696,
+      "acceptedAccuracy": 0.9221871713985279,
+      "acceptedCoverage": 0.19681291390728478
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.15,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7485513245033113,
+      "acceptedAccuracy": 0.9358151476251605,
+      "acceptedCoverage": 0.16121688741721854
+    },
+    {
+      "parentThreshold": 0.55,
+      "parentMargin": 0.15,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7243377483443708,
+      "acceptedAccuracy": 0.9529190207156308,
+      "acceptedCoverage": 0.10989238410596026
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.0,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7702814569536424,
+      "acceptedAccuracy": 0.9178217821782179,
+      "acceptedCoverage": 0.20902317880794702
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.0,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7698675496688742,
+      "acceptedAccuracy": 0.919080919080919,
+      "acceptedCoverage": 0.20716059602649006
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.0,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7667632450331126,
+      "acceptedAccuracy": 0.9257322175732218,
+      "acceptedCoverage": 0.1978476821192053
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.0,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7572433774834437,
+      "acceptedAccuracy": 0.9248291571753986,
+      "acceptedCoverage": 0.18170529801324503
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.0,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7444122516556292,
+      "acceptedAccuracy": 0.9436241610738255,
+      "acceptedCoverage": 0.15418046357615894
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.0,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7233029801324503,
+      "acceptedAccuracy": 0.9650485436893204,
+      "acceptedCoverage": 0.10658112582781457
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.05,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7702814569536424,
+      "acceptedAccuracy": 0.9178217821782179,
+      "acceptedCoverage": 0.20902317880794702
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.05,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7698675496688742,
+      "acceptedAccuracy": 0.919080919080919,
+      "acceptedCoverage": 0.20716059602649006
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.05,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7667632450331126,
+      "acceptedAccuracy": 0.9257322175732218,
+      "acceptedCoverage": 0.1978476821192053
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.05,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7572433774834437,
+      "acceptedAccuracy": 0.9248291571753986,
+      "acceptedCoverage": 0.18170529801324503
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.05,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7444122516556292,
+      "acceptedAccuracy": 0.9436241610738255,
+      "acceptedCoverage": 0.15418046357615894
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.05,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7233029801324503,
+      "acceptedAccuracy": 0.9650485436893204,
+      "acceptedCoverage": 0.10658112582781457
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.15,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7702814569536424,
+      "acceptedAccuracy": 0.9178217821782179,
+      "acceptedCoverage": 0.20902317880794702
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.15,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7698675496688742,
+      "acceptedAccuracy": 0.919080919080919,
+      "acceptedCoverage": 0.20716059602649006
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.15,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7667632450331126,
+      "acceptedAccuracy": 0.9257322175732218,
+      "acceptedCoverage": 0.1978476821192053
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.15,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7572433774834437,
+      "acceptedAccuracy": 0.9248291571753986,
+      "acceptedCoverage": 0.18170529801324503
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.15,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7444122516556292,
+      "acceptedAccuracy": 0.9436241610738255,
+      "acceptedCoverage": 0.15418046357615894
+    },
+    {
+      "parentThreshold": 0.7,
+      "parentMargin": 0.15,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7233029801324503,
+      "acceptedAccuracy": 0.9650485436893204,
+      "acceptedCoverage": 0.10658112582781457
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.0,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7551738410596026,
+      "acceptedAccuracy": 0.9198682766190999,
+      "acceptedCoverage": 0.18853476821192053
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.0,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7543460264900662,
+      "acceptedAccuracy": 0.9192477876106194,
+      "acceptedCoverage": 0.1870860927152318
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.0,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7524834437086093,
+      "acceptedAccuracy": 0.9260969976905312,
+      "acceptedCoverage": 0.17922185430463577
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.0,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7444122516556292,
+      "acceptedAccuracy": 0.9259723964868256,
+      "acceptedCoverage": 0.16494205298013245
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.0,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7348923841059603,
+      "acceptedAccuracy": 0.9432314410480349,
+      "acceptedCoverage": 0.1421771523178808
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.0,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7197847682119205,
+      "acceptedAccuracy": 0.967741935483871,
+      "acceptedCoverage": 0.10264900662251655
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.05,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7551738410596026,
+      "acceptedAccuracy": 0.9198682766190999,
+      "acceptedCoverage": 0.18853476821192053
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.05,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7543460264900662,
+      "acceptedAccuracy": 0.9192477876106194,
+      "acceptedCoverage": 0.1870860927152318
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.05,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7524834437086093,
+      "acceptedAccuracy": 0.9260969976905312,
+      "acceptedCoverage": 0.17922185430463577
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.05,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7444122516556292,
+      "acceptedAccuracy": 0.9259723964868256,
+      "acceptedCoverage": 0.16494205298013245
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.05,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7348923841059603,
+      "acceptedAccuracy": 0.9432314410480349,
+      "acceptedCoverage": 0.1421771523178808
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.05,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7197847682119205,
+      "acceptedAccuracy": 0.967741935483871,
+      "acceptedCoverage": 0.10264900662251655
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.15,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7551738410596026,
+      "acceptedAccuracy": 0.9198682766190999,
+      "acceptedCoverage": 0.18853476821192053
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.15,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7543460264900662,
+      "acceptedAccuracy": 0.9192477876106194,
+      "acceptedCoverage": 0.1870860927152318
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.15,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7524834437086093,
+      "acceptedAccuracy": 0.9260969976905312,
+      "acceptedCoverage": 0.17922185430463577
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.15,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7444122516556292,
+      "acceptedAccuracy": 0.9259723964868256,
+      "acceptedCoverage": 0.16494205298013245
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.15,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7348923841059603,
+      "acceptedAccuracy": 0.9432314410480349,
+      "acceptedCoverage": 0.1421771523178808
+    },
+    {
+      "parentThreshold": 0.85,
+      "parentMargin": 0.15,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7197847682119205,
+      "acceptedAccuracy": 0.967741935483871,
+      "acceptedCoverage": 0.10264900662251655
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.0,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7299254966887417,
+      "acceptedAccuracy": 0.9234972677595629,
+      "acceptedCoverage": 0.15149006622516556
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.0,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7299254966887417,
+      "acceptedAccuracy": 0.9231824417009602,
+      "acceptedCoverage": 0.15086920529801323
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.0,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7284768211920529,
+      "acceptedAccuracy": 0.9283667621776505,
+      "acceptedCoverage": 0.14445364238410596
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.0,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7222682119205298,
+      "acceptedAccuracy": 0.926905132192846,
+      "acceptedCoverage": 0.13307119205298013
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.0,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7181291390728477,
+      "acceptedAccuracy": 0.948943661971831,
+      "acceptedCoverage": 0.11754966887417219
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.0,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7106788079470199,
+      "acceptedAccuracy": 0.9703196347031964,
+      "acceptedCoverage": 0.09064569536423842
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.05,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7299254966887417,
+      "acceptedAccuracy": 0.9234972677595629,
+      "acceptedCoverage": 0.15149006622516556
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.05,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7299254966887417,
+      "acceptedAccuracy": 0.9231824417009602,
+      "acceptedCoverage": 0.15086920529801323
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.05,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7284768211920529,
+      "acceptedAccuracy": 0.9283667621776505,
+      "acceptedCoverage": 0.14445364238410596
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.05,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7222682119205298,
+      "acceptedAccuracy": 0.926905132192846,
+      "acceptedCoverage": 0.13307119205298013
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.05,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7181291390728477,
+      "acceptedAccuracy": 0.948943661971831,
+      "acceptedCoverage": 0.11754966887417219
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.05,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7106788079470199,
+      "acceptedAccuracy": 0.9703196347031964,
+      "acceptedCoverage": 0.09064569536423842
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.15,
+      "childThreshold": 0.25,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7299254966887417,
+      "acceptedAccuracy": 0.9234972677595629,
+      "acceptedCoverage": 0.15149006622516556
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.15,
+      "childThreshold": 0.4,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7299254966887417,
+      "acceptedAccuracy": 0.9231824417009602,
+      "acceptedCoverage": 0.15086920529801323
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.15,
+      "childThreshold": 0.55,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7284768211920529,
+      "acceptedAccuracy": 0.9283667621776505,
+      "acceptedCoverage": 0.14445364238410596
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.15,
+      "childThreshold": 0.7,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7222682119205298,
+      "acceptedAccuracy": 0.926905132192846,
+      "acceptedCoverage": 0.13307119205298013
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.15,
+      "childThreshold": 0.85,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7181291390728477,
+      "acceptedAccuracy": 0.948943661971831,
+      "acceptedCoverage": 0.11754966887417219
+    },
+    {
+      "parentThreshold": 0.95,
+      "parentMargin": 0.15,
+      "childThreshold": 0.95,
+      "childMargin": 0.05,
+      "categoryAccuracy": 0.7106788079470199,
+      "acceptedAccuracy": 0.9703196347031964,
+      "acceptedCoverage": 0.09064569536423842
+    }
+  ]
+}

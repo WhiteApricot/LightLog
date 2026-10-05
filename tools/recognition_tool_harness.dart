@@ -8,15 +8,17 @@ import 'package:light_log/features/recognition/domain/ngram_classifier.dart';
 import 'package:light_log/features/recognition/domain/ngram_model.dart';
 
 class RecognitionToolHarness {
-  RecognitionToolHarness({bool? useNgram})
+  RecognitionToolHarness({bool? useNgram, NgramClassifier? classifier})
     : recognizer = LocalRecognizer(
-        ngram: (useNgram ?? !const bool.fromEnvironment('DISABLE_NGRAM'))
-            ? NgramClassifier(
-                NgramModel.decode(
-                  File('assets/knowledge/ngram.bin').readAsBytesSync(),
-                ),
-              )
-            : null,
+        ngram:
+            classifier ??
+            ((useNgram ?? !const bool.fromEnvironment('DISABLE_NGRAM'))
+                ? NgramClassifier(
+                    NgramModel.decode(
+                      File('assets/knowledge/ngram.bin').readAsBytesSync(),
+                    ),
+                  )
+                : null),
         knowledge: const KnowledgeDecoder().decode(
           entitiesJson: File('assets/knowledge/merchants.json')
               .readAsStringSync(),

@@ -1,0 +1,152 @@
+{
+  "original190": {
+    "totalCases": 190,
+    "categoryAccuracy": 0.9473684210526315,
+    "parentCategoryAccuracy": 0.968421052631579,
+    "typeAccuracy": 1.0,
+    "highConfidenceWrongPredictionCount": 0,
+    "p2SafeRejectionRate": 1.0,
+    "otherGeneralFallbackCount": 6,
+    "otherGeneralCategoryCount": 8,
+    "mealRoutingAccuracy": 0.8947368421052632,
+    "latencyMicroseconds": {
+      "average": 369.41052631578947,
+      "p50": 276,
+      "p95": 930,
+      "p99": 1399,
+      "max": 2672
+    },
+    "routingFailureBreakdown": {
+      "noSemanticOutput": 0,
+      "noCategoryOutput": 0,
+      "wrongParent": 6,
+      "correctParentWrongChild": 4,
+      "wrongType": 0
+    }
+  },
+  "v2": {
+    "totalCases": 190,
+    "categoryAccuracy": 0.9105263157894737,
+    "parentCategoryAccuracy": 0.9368421052631579,
+    "typeAccuracy": 1.0,
+    "highConfidenceWrongPredictionCount": 0,
+    "p2SafeRejectionRate": 1.0,
+    "otherGeneralFallbackCount": 13,
+    "otherGeneralCategoryCount": 14,
+    "mealRoutingAccuracy": 0.9,
+    "latencyMicroseconds": {
+      "average": 408.9947368421053,
+      "p50": 329,
+      "p95": 912,
+      "p99": 1201,
+      "max": 1459
+    },
+    "routingFailureBreakdown": {
+      "noSemanticOutput": 0,
+      "noCategoryOutput": 0,
+      "wrongParent": 12,
+      "correctParentWrongChild": 5,
+      "wrongType": 0
+    }
+  },
+  "v3": {
+    "totalCases": 200,
+    "categoryAccuracy": 0.93,
+    "parentCategoryAccuracy": 0.96,
+    "typeAccuracy": 0.98,
+    "highConfidenceWrongPredictionCount": 0,
+    "p2SafeRejectionRate": 1.0,
+    "otherGeneralFallbackCount": 5,
+    "otherGeneralCategoryCount": 8,
+    "mealRoutingAccuracy": 1.0,
+    "latencyMicroseconds": {
+      "average": 316.875,
+      "p50": 289,
+      "p95": 630,
+      "p99": 814,
+      "max": 828
+    },
+    "routingFailureBreakdown": {
+      "noSemanticOutput": 0,
+      "noCategoryOutput": 0,
+      "wrongParent": 8,
+      "correctParentWrongChild": 6,
+      "wrongType": 4
+    }
+  },
+  "v4": {
+    "totalCases": 300,
+    "categoryAccuracy": 0.7233333333333334,
+    "parentCategoryAccuracy": 0.7966666666666666,
+    "typeAccuracy": 0.9733333333333334,
+    "highConfidenceWrongPredictionCount": 0,
+    "p2SafeRejectionRate": 1.0,
+    "otherGeneralFallbackCount": 43,
+    "otherGeneralCategoryCount": 47,
+    "mealRoutingAccuracy": 0.8,
+    "latencyMicroseconds": {
+      "average": 327.8466666666667,
+      "p50": 292,
+      "p95": 627,
+      "p99": 827,
+      "max": 1121
+    },
+    "routingFailureBreakdown": {
+      "noSemanticOutput": 0,
+      "noCategoryOutput": 0,
+      "wrongParent": 61,
+      "correctParentWrongChild": 22,
+      "wrongType": 8
+    }
+  },
+  "v5": {
+    "totalCases": 400,
+    "categoryAccuracy": 0.8,
+    "parentCategoryAccuracy": 0.8525,
+    "typeAccuracy": 0.965,
+    "highConfidenceWrongPredictionCount": 0,
+    "p2SafeRejectionRate": 1.0,
+    "otherGeneralFallbackCount": 43,
+    "otherGeneralCategoryCount": 56,
+    "mealRoutingAccuracy": 1.0,
+    "latencyMicroseconds": {
+      "average": 324.91,
+      "p50": 283,
+      "p95": 714,
+      "p99": 882,
+      "max": 1770
+    },
+    "routingFailureBreakdown": {
+      "noSemanticOutput": 0,
+      "noCategoryOutput": 0,
+      "wrongParent": 59,
+      "correctParentWrongChild": 21,
+      "wrongType": 14
+    }
+  },
+  "v6": {
+    "totalCases": 400,
+    "categoryAccuracy": 0.7825,
+    "parentCategoryAccuracy": 0.835,
+    "typeAccuracy": 0.9625,
+    "highConfidenceWrongPredictionCount": 0,
+    "p2SafeRejectionRate": 0.0,
+    "otherGeneralFallbackCount": 57,
+    "otherGeneralCategoryCount": 71,
+    "mealRoutingAccuracy": 0.76,
+    "latencyMicroseconds": {
+      "average": 427.62,
+      "p50": 372,
+      "p95": 880,
+      "p99": 1206,
+      "max": 2033
+    },
+    "routingFailureBreakdown": {
+      "noSemanticOutput": 0,
+      "noCategoryOutput": 0,
+      "wrongParent": 66,
+      "correctParentWrongChild": 21,
+      "wrongType": 15
+    }
+  }
+}

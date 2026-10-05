@@ -46,3 +46,10 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# Generated production-pipeline evidence for offline model selection
+tools/ngram/train_pipeline.jsonl
+tools/ngram/dev_pipeline.jsonl
+tools/ngram/meal_candidate.json
+tools/ngram/v7_evaluation_copy.json
+tools/ngram/acceptance_runner.log

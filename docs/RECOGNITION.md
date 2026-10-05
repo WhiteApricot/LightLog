@@ -12,11 +12,11 @@ Phase 3 本地识别器按五层证据组织：
 2. Personal History
 3. Local Entity Knowledge Base
 4. Category Lexicon
-5. Character n-gram classifier（纯 Dart 弱 fallback，confidence ceiling=0.69）
+5. Hierarchical sparse Logistic Regression（共享字符/已有结构特征，纯 Dart，confidence ceiling=0.69）
 → Evidence Fusion / Confidence
 ```
 
-当前已实现字段/span、Normalization、Personal History、审核制 Entity Knowledge Base、Category Lexicon、独立 TypeInference 和 Evidence Fusion，以及train/dev选型的字符Logistic Regression弱fallback。模型只补充无语义或弱确定性分类，不替代强证据、不改变type、不能单独高置信确认；冻结与结果见 [当前算法](RECOGNITION_ALGORITHM.md)。全部在本机运行，App 运行时不联网。Web Search 和 LLM 不属于 V0.1。
+当前已实现字段/span、Normalization、Personal History、审核制 Entity Knowledge Base、Category Lexicon、独立 TypeInference 和 Evidence Fusion，以及train/dev选型的字符Logistic Regression弱fallback。模型只补充无语义或弱确定性分类，不替代强证据，强统计父类只可校正弱默认type、不能单独高置信确认；冻结与结果见 [当前算法](RECOGNITION_ALGORITHM.md)。全部在本机运行，App 运行时不联网。Web Search 和 LLM 不属于 V0.1。
 
 任何识别来源都只能生成 `RecognitionCandidate`：
 

@@ -1,6 +1,36 @@
 # 本地语义识别算法
 
-本文描述生产结构。当前 n-gram 实现与评测见文末“Character n-gram 弱 fallback”，此前未实现状态、旧 taxonomy 分数与冻结记录保留为历史。隐私、Candidate 与确认边界见 [RECOGNITION.md](RECOGNITION.md)，数据字段见 [DATABASE.md](DATABASE.md)。
+本文描述生产结构。当前实现见“分级统计兜底”，文末“Character n-gram 弱 fallback”为已取代历史版本，此前未实现状态、旧 taxonomy 分数与冻结记录保留为历史。隐私、Candidate 与确认边界见 [RECOGNITION.md](RECOGNITION.md)，数据字段见 [DATABASE.md](DATABASE.md)。
+
+## 2026-10-06 分级统计兜底（当前生产）
+
+按A→B→C顺序完成。只复用冻结train=38,539/dev=4,832，104类、splitGroup leakage=0；语料和标签未修改、未补充任何训练数据。v6仅在各阶段源码封存后回归，v7最终生产冻结前不读取。
+
+| 完整生产dev | Category | Parent | Type | specific coverage | false fallback |
+| --- | --- | --- | --- | --- | --- |
+| A：冻结104-way posterior | 76.26% | 83.59% | 97.16% | 90.31% | 7.60% |
+| B：Parent/conditional Child LR | 78.79% | 85.87% | 97.27% | 90.83% | 7.04% |
+| C：32维subword平均池化 | 79.45% | 86.03% | 97.33% | 91.06% | 6.79% |
+
+A低于85/88%的继续门槛，故进入B；B完整pipeline仍低于85%，故进入C。C比B仅提高0.66pp（未达+2pp），且original190明显回退，因此按既定规则回退B，停止模型层。B完整dev改善2.52pp，但仍未达门槛；保留B符合C拒绝后的指定回退规则，不是全局最优证明。
+
+唯一LocalRecognizer → deterministic evidence → 唯一NgramClassifier（名称保留，backend=hierarchical-lr） → EvidenceFusion → TypeInference.reconcile → CategoryResolver → Candidate安全/确认。A的flat/top-1后端和C的embedding生产实现均已删除；仅训练实验与封存报告保留。App只加载一份ngram.bin。
+
+Shared features只提取一次：binary char 2–3 gram 16,384 vocabulary + 1,056个既有production evidence特征（preliminary type、direction-default、winning evidence source/role/family/semantic parent）。21-way Parent LR及多子类parent-specific Child LR共用该集合；单子类parent不训练头。二类LR对称展开log-odds。所有头int8、每类scale、feature-major。训练metadata直接从seed生成，运行路由从活动分类关系生成，不维护第二份手写taxonomy。
+
+EvidenceFusion.statisticalLevel统一权限：0=无冲突且可靠的具体/history/composition或明确正餐，保留；1=具体父类anchor或非冲突的具体/merchant/venue父类，只同父重排；2=只有general family/product或弱/缺失语义，父类再子类路由。统计拒答且无合法deterministic分类时，复用other.general warning兜底；存在可靠父类anchor时保留warning，不无条件抛弃parent。B在dev固定parent probability≥0.25、parent margin≥0、conditional child≥0.55、child margin≥0.05；同父路由也要求parent mass≥0.25。
+
+统计Parent≥0.85且preliminary type是弱默认时才调用既有reconcile校正方向，type/category上限0.69。强方向、type conflict与refund status/semantics优先；统计退款语义不采用，未关联退款仍阻断。不改amount/time/status/content/确认/写库；模型不能独立提供餐段。
+
+B模型独立dev Category=85.43%、Parent=93.85%，完整pipeline显著更低。受保护的deterministic错误、taxonomy/方向/餐段门禁共同限制收益，不能把独立模型分数当产品准确率。完整dev错误分解：false other=340、wrong parent=683、同父错child=342、wrong type=132、meal detection miss=24，类别/类型错误可重叠。taxonomy ambiguity未重新裁决，不编造计数。各阶段flat/hierarchical、接受率、同父/跨父、child conditional和failure分解见[selection summary](../tools/ngram/selection_summary.json)及stage_*_dev.json。
+
+PreparedMeal仅用现有早餐/午餐/晚餐标签作为positive proxy；未改标签。dev precision=100%、recall=71.52%，overall=99.11%受类别不平衡影响，不代表正餐泛化达到目标。理论union recall=99.34%，但23个新增positive都落入受保护具体食材证据；不改变安全边界时完整dev无增益，故不集成生产头/模块。见[meal dev](../tools/ngram/meal_dev.json)。该目标需要独立审核prepared-food标注与deterministic边界；本次不擅自扩充/重标数据，也不把全部误差归咎于训练覆盖。
+
+模型2,384,289 bytes（2.274MiB），全部五个runtime assets 2,784,671 bytes（2.656MiB）。host warm完整dev p50/p95/p99=0.463/0.935/1.193ms；10,000次benchmark=0.194/0.419/0.506ms。以上为Windows Dart VM，API26实机未验证。117项测试、analyze、104-label metadata与4,832条dev概率parity通过。六套历史高置信错误=0，历史P2 safe=100%；original190/v2=94.74/91.05%（原95.26/90.00%，无明显回退）。
+
+收尾规范审查修正了general family/product被错误锁父的问题（A2要求其进入Level2），只在train/dev重新校准B/C阈值，未重训、改语料或读取任何v7预测；初始结果/旧freeze保留于archive/preflight和各阶段报告。此前v7调用在oracle命名校验即退出，无预测/指标；13个red_packet命名差异等待用户确认，仅评估副本规范化，原始语料不改。实验C的float32训练预览与double解码存在微小舍入差异，parity reference已按实际导出int8/scale独立解码修正，校验容差仍1e-10。
+
+独立v7验收待最终冻结后填入。C为本任务硬停止点，无论结果如何不再调规则、阈值或加入更重模型。
 
 ## 唯一生产入口
 
@@ -120,7 +150,7 @@ Generator 强制 secondLevelTaxonomyCount=104，所有知识输出必须引用�
 
 本节取代此前“尚未实现 n-gram”的状态。唯一 LocalRecognizer 在确定性 Fusion 后有条件请求 NgramClassifier，EvidenceFusion.withWeakEvidence 决定是否采用；App Provider 从 AssetBundle 注入 NgramModel，CLI/evaluation 注入相同资产。Domain 仅依赖 Dart 标准库，无训练环境、native ML runtime、tokenizer、embedding、ONNX、Transformer 或网络。
 
-train=38,539、dev=4,832、104类，splitGroup 不交叉。八组 Logistic Regression（multinomial SAGA、seed=17）比较2–3/2–4 gram、8192/16384特征、C=0.5/2.0，以量化后的dev macro F1选型。最终2–3 gram、16384显式vocabulary特征、binary sparse presence、C=2.0；4-gram未胜出。每类scale的int8 feature-major权重，softmax输出semanticKey scores；资产1,882,814 bytes（1.796 MiB），小于2MiB。配置、每类precision/recall/F1/support和hash见 [training report](../tools/ngram/training_report.json)。
+train=38,539、dev=4,832、104类，splitGroup 不交叉。八组 Logistic Regression（multinomial SAGA、seed=17）比较2–3/2–4 gram、8192/16384特征、C=0.5/2.0，以量化后的dev macro F1选型。最终2–3 gram、16384显式vocabulary特征、binary sparse presence、C=2.0；4-gram未胜出。每类scale的int8 feature-major权重，softmax输出semanticKey scores；资产1,882,814 bytes（1.796 MiB），小于2MiB。配置、每类precision/recall/F1/support和hash见 [training report](../tools/ngram/archive/flat/training_report.json)。
 
 训练与生产直接使用原始全文，共享ascii-cjk-space-v1规则：最多前2048 Unicode codepoints；全角ASCII转半角，ASCII A–Z转小写；保留a–z及U+3400–U+9FFF，其余变空格，合并空格并trim；不调用content/字段/时间解析。连续字符窗口，重复feature只计一次；模块支持2–4，最终资产选择2–3。无有效feature时scores全零且拒识，不能用bias猜类。全部4832条dev核对离线/Dart top-1 label/probability，容差1e-10；额外测试全部类别概率、空/数字/全角/emoji输入。
 
@@ -128,7 +158,7 @@ train=38,539、dev=4,832、104类，splitGroup 不交叉。八组 Logistic Regre
 
 只在无semantic，或deterministic confidence<0.70且winning evidence无priority≥80的specific/history/composition时请求弱证据。即使强证据margin小也保持确定性结果；该保守策略不解决所有ambiguity。推理还要求合法金额、普通success/unknown、非多交易、非退款。采用的模型类别必须匹配已确定type且不能是refund semantic。TypeInference始终读取原deterministic fusion，ngram不改变type/amount/content/time/status。弱evidence ceiling=0.69，保留ambiguity及全部危险门禁；取得新分类证据时仅替代categoryLowConfidence。模型单独永远不能confident/自动确认。
 
-[freeze](../tools/ngram/freeze.json) 在本轮历史corpus评测前记录模型、配置及生产源码hash；之后未训练、调参或增加规则。唯一冻结后修复是评测工具对退役history的过滤并显式记录：原190的H003 takeout已不属于当前合法语义，处理与Repository一致。历史corpus oracle原样保留，没有重标任何失败case。before是当前104类pipeline仅关闭ngram；不能与旧taxonomy历史分数直接比较。
+[freeze](../tools/ngram/archive/flat/freeze.json) 在本轮历史corpus评测前记录模型、配置及生产源码hash；之后未训练、调参或增加规则。唯一冻结后修复是评测工具对退役history的过滤并显式记录：原190的H003 takeout已不属于当前合法语义，处理与Repository一致。历史corpus oracle原样保留，没有重标任何失败case。before是当前104类pipeline仅关闭ngram；不能与旧taxonomy历史分数直接比较。
 
 | Corpus | Category before → after | Type before → after | category=null before → after | High-confidence wrong | P2 safe |
 |---|---:|---:|---:|---:|---:|
@@ -138,7 +168,7 @@ train=38,539、dev=4,832、104类，splitGroup 不交叉。八组 Logistic Regre
 | v4 | 62.67% → 64.33% | 97.33% → 97.33% | 55 → 49 | 0 | 100% |
 | v5 | 67.75% → 69.00% | 96.50% → 96.50% | 54 → 48 | 0 | 100% |
 
-本机Dart VM warm dev ngram p50/p95/p99=0.019/0.032/0.044ms，完整LocalRecognizer=0.521/1.119/1.390ms；既有10000次warm benchmark p95=0.517ms。完整指标与逐类/分组结果见 [summary](../tools/ngram/evaluation_summary.json)、[runtime report](../tools/ngram/runtime_report.json) 和regression目录。以上为host CPU，不宣称Android/API26实机性能。
+本机Dart VM warm dev ngram p50/p95/p99=0.019/0.032/0.044ms，完整LocalRecognizer=0.521/1.119/1.390ms；既有10000次warm benchmark p95=0.517ms。完整指标与逐类/分组结果见 [summary](../tools/ngram/archive/flat/evaluation_summary.json)、[runtime report](../tools/ngram/archive/flat/runtime_report.json) 和regression目录。以上为host CPU，不宣称Android/API26实机性能。
 
 模块已冻结，分类收益有限，整个Phase3泛化收口尚未达到历史阈值；不继续调历史holdout。完整正餐时间优先级、无语义other.general fallback、OCR和新未见corpus仍是独立任务。复现命令、数据归档、依赖与资产格式见 [训练工具](../tools/ngram/README.md)。
 

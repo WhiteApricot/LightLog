@@ -68,9 +68,14 @@
 - [x] Replace destructive concept suppression, fuse parent before child, reconcile semantics with preliminary type, and remove unused interface / duplicated routing / generator validation
 - [x] Freeze before every holdout; preserve v5 immutable initial and one generic refund-safety repair final; pass 99 tests, analyzer and original 190 regression
 - [ ] Phase 3 classification frozen — **not achieved**: v5 initial/final category 75.50% < 80%; type 94.50% → 96.50%, high-confidence wrong 0, P2 safe 100%, warm benchmark p95 0.403 ms. **deterministic semantic routing insufficient**. See [final algorithm/results](RECOGNITION_ALGORITHM.md). Stop tuning v5 and expanding family/composition.
-- [x] Complete train/dev-only char 2–4 gram configuration selection, pure Dart weak fallback, parity/safety tests, compact asset and frozen original190/v2/v3/v4/v5 comparisons; high-confidence wrong 0 and P2 safe 100%. See tools/ngram/evaluation_summary.json.
+- [x] Complete train/dev-only char 2–4 gram configuration selection, pure Dart weak fallback, parity/safety tests, compact asset and frozen original190/v2/v3/v4/v5 comparisons; high-confidence wrong 0 and P2 safe 100%. See tools/ngram/archive/flat/evaluation_summary.json.
 - [ ] Further generalization evaluation requires a new unseen corpus; do not tune the frozen model on historical holdouts. Module freeze does not close Phase 3 classification.
 - [ ] Resolve remaining non-blocking content-span families and taxonomy-oracle differences without weakening the zero/high-risk amount and refund safety policy
+
+- [x] 按冻结train/dev完成A posterior → B层级sparse LR → C subword pooling逐级实验；C未达+2pp，按指定规则最终仅保留B，归档旧flat及拒绝模型。
+- [x] 同父/跨父权限、弱默认方向reconcile、104-label parity、117项测试、六套历史安全回归与host benchmark；未扩充/重标训练数据。
+- [x] 评估tiny PreparedMeal binary；保持具体食材安全边界时无完整pipeline收益，不集成生产。
+- [ ] 最终冻结后v7一次验收和Phase3判定；禁止根据v7失败继续调参。
 
 ## Future - Category management
 

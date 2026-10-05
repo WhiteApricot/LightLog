@@ -20,6 +20,10 @@ void main() {
   final offline = jsonDecode(
     File('tools/ngram/dev_predictions.json').readAsStringSync(),
   ) as List;
+  final traces = File('tools/ngram/dev_pipeline.jsonl')
+      .readAsLinesSync()
+      .map((l) => jsonDecode(l) as Map)
+      .toList();
   final now = DateTime(2026, 10, 5, 12);
   for (var i = 0; i < 2000; i++) {
     final text = dev[i % dev.length]['text'] as String;
@@ -35,7 +39,11 @@ void main() {
   };
   for (final row in dev) {
     final timer = Stopwatch()..start();
-    final scores = classifier.scores(row['text'] as String);
+    final trace = traces[ngram.length];
+    final scores = classifier.scores(
+      row['text'] as String,
+      structuredFeatures: List<String>.from(trace['features'] as List),
+    );
     timer.stop();
     ngram.add(timer.elapsedMicroseconds);
     var top = 0;
@@ -80,7 +88,7 @@ void main() {
     'recognizerMicroseconds': latency(full),
     'environment': 'Dart VM warm, host CPU; not Android device',
   };
-  File('tools/ngram/runtime_report.json').writeAsStringSync(
+  File('tools/ngram/hierarchical_runtime_report.json').writeAsStringSync(
     '${const JsonEncoder.withIndent('  ').convert(report)}\n',
   );
   stdout.writeln(jsonEncode(report));

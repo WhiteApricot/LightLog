@@ -198,15 +198,29 @@ void main() {
     () {
       final header = utf8.encode(
         jsonEncode({
-          'version': 1,
+          'version': 2,
+          'backend': 'hierarchical-lr',
           'normalization': 'ascii-cjk-space-v1',
           'grams': [2, 3],
           'labels': ['expense.food.lunch', 'expense.digital.phone'],
           'vocabulary': ['锆岫'],
-          'scales': [1, 1],
-          'bias': [0, 0],
-          'threshold': .6,
-          'margin': .15,
+          'parentByChild': {
+            'expense.food.lunch': 'expense.food',
+            'expense.digital.phone': 'expense.digital',
+          },
+          'structuredVocabulary': [],
+          'heads': [
+            {
+              'labels': ['expense.food', 'expense.digital'],
+              'offset': 0,
+              'scales': [1, 1],
+              'bias': [0, 0],
+            },
+          ],
+          'parentThreshold': .6,
+          'parentMargin': .15,
+          'childThreshold': .4,
+          'childMargin': .05,
         }),
       );
       final bytes = Uint8List(8 + header.length + 2);
@@ -215,7 +229,14 @@ void main() {
       bytes.setRange(8, 8 + header.length, header);
       bytes[bytes.length - 2] = 10;
       final classifier = NgramClassifier(NgramModel.decode(bytes));
-      expect(classifier.evidence('锆岫 23元')!.semanticKey, 'expense.food.lunch');
+      expect(
+        classifier.model.labels[classifier
+            .scores('锆岫 23元')
+            .indexOf(
+              classifier.scores('锆岫 23元').reduce((a, b) => a > b ? a : b),
+            )],
+        'expense.food.lunch',
+      );
       final result = recognize(
         '锆岫 23元',
         recognizer: LocalRecognizer(

@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+- 完成A/B/C分级统计兜底实验，保持冻结数据与零group leakage；最终生产仅保留共享char/结构特征的int8 Parent/Child LR，统一强证据保护/同父重排，强统计父类仅校正弱默认方向。删除旧flat/top-1和拒绝的pooled生产后端，保留训练/封存报告；未新增语料、规则或原生依赖。
+- 新增层级metadata/parity、权限及退款方向测试；117项测试通过，六套历史high-confidence wrong=0、P2 safe=100%；模型2.274MiB、host完整dev p95=0.935ms。v7待最终冻结后独立验收。
+
 - 完成冻结后的migrated-104与v6首次统一验收并归档SHA256：历史category为95.26/90/94/70.67/78.75%，v6为76%；全部高置信错误为0，历史P2 safe为100%，v6无P2样本。首次报告不可覆盖，未按失败修改算法；Phase3泛化暂不收口。
 
 - Implemented guarded expense/income other.general fallback after deterministic + frozen n-gram classification and active-category resolution fail, reusing Candidate safety gates and retaining warning confidence.

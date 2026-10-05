@@ -187,3 +187,5 @@ chore:
 字符分类模型训练只在离线Python环境运行，固定依赖、train/dev选型、跨语言一致性与冻结后回归命令见 [tools/ngram](../tools/ngram/README.md)。生产推理为纯Dart；普通工程检查仍使用dart format、flutter analyze、flutter test。性能报告区分host Dart VM与Android实机，不能将host测量宣称为API26设备结果。
 
 新增 package 前确认标准库或现有依赖不能合理完成、维护状态和体积可接受、且功能属于 V0.1。不得无理由升级 Flutter、Dart、AGP、Gradle、Kotlin、NDK，或修改 Maven/Flutter 国内镜像、Android SDK 路径及 package/application ID。
+
+层级分类器训练入口为 `tools/ngram/train_hierarchical.py`；`export_pipeline.dart`只从生产流水线生成train/dev evidence，生成JSONL不提交。独立验收必须先执行 `freeze_final.py`，再由 `acceptance.py`验证hash并一次运行；oracle格式冲突按AGENTS.md先确认，不能静默重标。完整命令见 [训练工具](../tools/ngram/README.md)。
