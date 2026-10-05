@@ -1,6 +1,8 @@
 # 本地知识资产维护
 
-Active source 为 merchants_source、mainland_entities_source、category_lexicon_source、lexicon_expansion_source、lexical_families_source 与 composition_rules_source JSON。assets/knowledge 的 compact JSON 是唯一 runtime 资产；quality_report.json 记录每次生成的质量检查。
+当前字符模型已经实现：训练、配置、冻结与报告见 [tools/ngram](../ngram/README.md)。唯一 LocalRecognizer 通过 EvidenceFusion 使用弱证据，confidence ceiling=0.69，不更改实体/词典/family/composition generation。运行资产新增 ngram.bin 并参与 knowledgeHash。下文“未实现”和旧 taxonomy 分数为历史状态；当前前后评测见 [算法记录](../../docs/RECOGNITION_ALGORITHM.md)。
+
+Active knowledge source 为 merchants_source、mainland_entities_source、category_lexicon_source、lexicon_expansion_source、lexical_families_source 与 composition_rules_source JSON。assets/knowledge 的 compact JSON 与 ngram.bin 是 runtime 资产；quality_report.json 记录知识生成的质量检查，字符模型报告独立维护。
 
 从仓库根目录运行 dart tools/knowledge/generate_knowledge.dart。实体、alias、semantic lexicon 的已有审核、冲突、分布、106 个 LocalRecognizer review samples、抽查和 2 MiB 包体门禁保留。Runtime 不抓取网络，也不保存用户消费数据到远端。
 

@@ -184,4 +184,6 @@ chore:
 
 ## 依赖与构建配置
 
+字符分类模型训练只在离线Python环境运行，固定依赖、train/dev选型、跨语言一致性与冻结后回归命令见 [tools/ngram](../tools/ngram/README.md)。生产推理为纯Dart；普通工程检查仍使用dart format、flutter analyze、flutter test。性能报告区分host Dart VM与Android实机，不能将host测量宣称为API26设备结果。
+
 新增 package 前确认标准库或现有依赖不能合理完成、维护状态和体积可接受、且功能属于 V0.1。不得无理由升级 Flutter、Dart、AGP、Gradle、Kotlin、NDK，或修改 Maven/Flutter 国内镜像、Android SDK 路径及 package/application ID。

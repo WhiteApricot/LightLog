@@ -4,10 +4,19 @@ import 'package:light_log/data/database/seed_data.dart';
 import 'package:light_log/features/recognition/data/knowledge_decoder.dart';
 import 'package:light_log/features/recognition/domain/recognition_models.dart';
 import 'package:light_log/features/recognition/domain/recognizer.dart';
+import 'package:light_log/features/recognition/domain/ngram_classifier.dart';
+import 'package:light_log/features/recognition/domain/ngram_model.dart';
 
 class RecognitionToolHarness {
-  RecognitionToolHarness()
+  RecognitionToolHarness({bool? useNgram})
     : recognizer = LocalRecognizer(
+        ngram: (useNgram ?? !const bool.fromEnvironment('DISABLE_NGRAM'))
+            ? NgramClassifier(
+                NgramModel.decode(
+                  File('assets/knowledge/ngram.bin').readAsBytesSync(),
+                ),
+              )
+            : null,
         knowledge: const KnowledgeDecoder().decode(
           entitiesJson: File('assets/knowledge/merchants.json')
               .readAsStringSync(),

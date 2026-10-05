@@ -1,0 +1,3171 @@
+{
+  "corpus": "LightLog Phase 3 Local Recognition Test Corpus",
+  "corpusVersion": 1,
+  "recognizerVersion": 3,
+  "ngramEnabled": false,
+  "knowledgeHash": "c8009797",
+  "evaluatedAt": "2026-10-05T13:55:07.714864Z",
+  "totalCases": 190,
+  "filteredInactiveHistory": [
+    {
+      "caseId": "H003",
+      "subcategoryId": "expense-food-takeout"
+    }
+  ],
+  "priority": {
+    "P0": {
+      "total": 41,
+      "correct": 40,
+      "accuracy": 0.975609756097561,
+      "categoryAccuracy": 1.0,
+      "typeAccuracy": 1.0
+    },
+    "P1": {
+      "total": 134,
+      "correct": 112,
+      "accuracy": 0.835820895522388,
+      "categoryAccuracy": 0.917910447761194,
+      "typeAccuracy": 1.0
+    },
+    "P2": {
+      "total": 15,
+      "correct": 8,
+      "accuracy": 0.5333333333333333,
+      "categoryAccuracy": 1.0,
+      "typeAccuracy": 1.0
+    }
+  },
+  "p2SafeRejectionRate": 1.0,
+  "amountAccuracy": 1.0,
+  "typeAccuracy": 1.0,
+  "categoryAccuracy": 0.9421052631578948,
+  "parentCategoryAccuracy": 0.9473684210526315,
+  "childCategoryAccuracy": 0.9421052631578948,
+  "categoryNullCount": 12,
+  "wrongCategoryCount": 6,
+  "routingFailureBreakdown": {
+    "noSemanticOutput": 5,
+    "noCategoryOutput": 5,
+    "wrongParent": 5,
+    "correctParentWrongChild": 1,
+    "wrongType": 0
+  },
+  "timeAccuracy": 1.0,
+  "contentAccuracy": 0.9315789473684211,
+  "contentSpanAccuracy": 0.9421052631578948,
+  "displayFormattingMismatchCount": 2,
+  "contentSpanErrorCount": 11,
+  "completeAccuracy": 0.8421052631578947,
+  "highConfidenceWrongPredictionCount": 0,
+  "confirmationLevelDistribution": {
+    "warning": 176,
+    "blocked": 10,
+    "confident": 4
+  },
+  "confidenceBuckets": {
+    "lt_0_5": {
+      "count": 134,
+      "accuracy": 0.8582089552238806,
+      "coverage": 0.7052631578947368
+    },
+    "0_5_to_0_65": {
+      "count": 40,
+      "accuracy": 0.85,
+      "coverage": 0.21052631578947367
+    },
+    "0_65_to_0_8": {
+      "count": 12,
+      "accuracy": 0.75,
+      "coverage": 0.06315789473684211
+    },
+    "gte_0_8": {
+      "count": 4,
+      "accuracy": 0.5,
+      "coverage": 0.021052631578947368
+    }
+  },
+  "latencyMicroseconds": {
+    "average": 499.14736842105265,
+    "p50": 361,
+    "p95": 1434,
+    "p99": 1802,
+    "max": 3207
+  },
+  "failureReasonCounts": {
+    "content_span_error": 11,
+    "category_or_fusion": 11,
+    "status": 5,
+    "safe_rejection_issue": 8,
+    "display_formatting_mismatch": 2
+  },
+  "groupMetrics": {
+    "ambiguity": {
+      "count": 9,
+      "overallAccuracy": 0.7777777777777778,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "parentCategoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "amount_format": {
+      "count": 7,
+      "overallAccuracy": 1.0,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "parentCategoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "basic": {
+      "count": 15,
+      "overallAccuracy": 1.0,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "parentCategoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "category_lexicon": {
+      "count": 20,
+      "overallAccuracy": 0.85,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 0.85,
+      "parentCategoryAccuracy": 0.9,
+      "timeAccuracy": 1.0
+    },
+    "fusion_conflict": {
+      "count": 8,
+      "overallAccuracy": 0.875,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 0.875,
+      "parentCategoryAccuracy": 0.875,
+      "timeAccuracy": 1.0
+    },
+    "income": {
+      "count": 14,
+      "overallAccuracy": 1.0,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "parentCategoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "invalid": {
+      "count": 3,
+      "overallAccuracy": 0.0,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "parentCategoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "invalid_input": {
+      "count": 2,
+      "overallAccuracy": 1.0,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "parentCategoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "long_input": {
+      "count": 1,
+      "overallAccuracy": 1.0,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "parentCategoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "merchant_kb": {
+      "count": 24,
+      "overallAccuracy": 0.9583333333333334,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "parentCategoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "normalization_stress": {
+      "count": 3,
+      "overallAccuracy": 0.3333333333333333,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "parentCategoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "numeric_ambiguity": {
+      "count": 15,
+      "overallAccuracy": 0.6666666666666666,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 0.8,
+      "parentCategoryAccuracy": 0.8,
+      "timeAccuracy": 1.0
+    },
+    "ocr_ambiguous": {
+      "count": 8,
+      "overallAccuracy": 0.625,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "parentCategoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "ocr_like": {
+      "count": 10,
+      "overallAccuracy": 0.7,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "parentCategoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "personal_history": {
+      "count": 5,
+      "overallAccuracy": 0.8,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 0.8,
+      "parentCategoryAccuracy": 0.8,
+      "timeAccuracy": 1.0
+    },
+    "real_world_edge": {
+      "count": 20,
+      "overallAccuracy": 0.85,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 0.85,
+      "parentCategoryAccuracy": 0.85,
+      "timeAccuracy": 1.0
+    },
+    "redundant_natural_language": {
+      "count": 8,
+      "overallAccuracy": 0.75,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "parentCategoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "time_parser": {
+      "count": 17,
+      "overallAccuracy": 1.0,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "parentCategoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "unsupported_format": {
+      "count": 1,
+      "overallAccuracy": 0.0,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "parentCategoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    }
+  },
+  "semanticMetrics": {
+    "testedSemanticKeyCount": 69,
+    "fullyCorrectSemanticKeyCount": 65,
+    "bySemanticKey": {
+      "expense.communication.cloud": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.communication.internet": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.communication.mobile": {
+        "count": 3,
+        "categoryAccuracy": 1.0
+      },
+      "expense.communication.post": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.daily.haircut": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.daily.household": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.daily.personal": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.daily.service": {
+        "count": 1,
+        "categoryAccuracy": 0.0
+      },
+      "expense.digital.accessory": {
+        "count": 5,
+        "categoryAccuracy": 1.0
+      },
+      "expense.digital.computer": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.digital.phone": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.digital.photo": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.digital.repair": {
+        "count": 3,
+        "categoryAccuracy": 1.0
+      },
+      "expense.digital.software": {
+        "count": 2,
+        "categoryAccuracy": 0.5
+      },
+      "expense.education.exam": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.education.stationery": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.entertainment.game": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.entertainment.hobby": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.entertainment.movie": {
+        "count": 12,
+        "categoryAccuracy": 0.8333333333333334
+      },
+      "expense.entertainment.music": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.entertainment.subscription": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.finance.fee": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.finance.insurance": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.finance.tax": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.food.breakfast": {
+        "count": 3,
+        "categoryAccuracy": 1.0
+      },
+      "expense.food.dinner": {
+        "count": 5,
+        "categoryAccuracy": 1.0
+      },
+      "expense.food.drink": {
+        "count": 11,
+        "categoryAccuracy": 0.9090909090909091
+      },
+      "expense.food.groceries": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.food.lunch": {
+        "count": 11,
+        "categoryAccuracy": 1.0
+      },
+      "expense.food.other": {
+        "count": 22,
+        "categoryAccuracy": 1.0
+      },
+      "expense.housing.gas": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.housing.property": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.housing.rent": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.housing.utilities": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.medical.clinic": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.medical.dental": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.medical.medicine": {
+        "count": 3,
+        "categoryAccuracy": 1.0
+      },
+      "expense.pets.food": {
+        "count": 3,
+        "categoryAccuracy": 1.0
+      },
+      "expense.pets.grooming": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.pets.medical": {
+        "count": 3,
+        "categoryAccuracy": 1.0
+      },
+      "expense.pets.service": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.shopping.appliance": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.shopping.other": {
+        "count": 7,
+        "categoryAccuracy": 1.0
+      },
+      "expense.social.donation": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.social.gathering": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.social.red.packet": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.sports.equipment": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.sports.fitness": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.sports.outdoor": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.sports.venue": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.transport.flight": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "expense.transport.fuel": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.transport.parking": {
+        "count": 3,
+        "categoryAccuracy": 1.0
+      },
+      "expense.transport.public": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.transport.rail": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "expense.transport.taxi": {
+        "count": 6,
+        "categoryAccuracy": 1.0
+      },
+      "income.investment.dividend": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.investment.interest": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.investment.rent": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.other.red.packet": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.other.secondhand": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.parttime.freelance": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.parttime.project": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.reimbursement.medical": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.reimbursement.travel": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.salary.allowance": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.salary.bonus": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      },
+      "income.salary.monthly": {
+        "count": 2,
+        "categoryAccuracy": 1.0
+      },
+      "income.salary.overtime": {
+        "count": 1,
+        "categoryAccuracy": 1.0
+      }
+    }
+  },
+  "failures": [
+    {
+      "id": "M021",
+      "priority": "P1",
+      "group": "merchant_kb",
+      "input": "爱奇艺会员 25",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": false,
+      "contentSpanCorrect": false,
+      "displayFormattingMismatch": false,
+      "contentSpanError": true,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "爱奇艺",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-subscription",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.entertainment.subscription",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "爱奇艺会员",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-subscription",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.4444444444444444,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.9,
+          "category": 0.79,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [],
+        "amountCandidates": [
+          {
+            "raw": "25",
+            "amountMinor": 2500,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "content_span_error"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "L015",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "洗衣店 25",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "洗衣店",
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.daily.cleaning",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "洗衣店",
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-cleaning",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.4444444444444444,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.9,
+          "category": 0.89,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [],
+        "amountCandidates": [
+          {
+            "raw": "25",
+            "amountMinor": 2500,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "L019",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "民宿 288",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "parentCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 28800,
+        "content": "民宿",
+        "categoryId": "expense-travel",
+        "subcategoryId": "expense-travel-hotel",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.housing.rent",
+        "type": "expense",
+        "amountMinor": 28800,
+        "content": "民宿",
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-rent",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.4444444444444444,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.9,
+          "category": 0.885,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [],
+        "amountCandidates": [
+          {
+            "raw": "288",
+            "amountMinor": 28800,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "L020",
+      "priority": "P1",
+      "group": "category_lexicon",
+      "input": "景区门票 80",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "parentCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": "景区门票",
+        "categoryId": "expense-travel",
+        "subcategoryId": "expense-travel-attraction",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.entertainment.hobby",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": "景区门票",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-hobby",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.4444444444444444,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.9,
+          "category": 0.64,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [
+          "category_ambiguous"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "80",
+            "amountMinor": 8000,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "P004",
+      "priority": "P1",
+      "group": "fusion_conflict",
+      "input": "美团 外卖 32",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "partial",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": false,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "parentCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3200,
+        "content": "美团外卖",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-takeout",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": null,
+        "type": "expense",
+        "amountMinor": 3200,
+        "content": "美团外卖",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.0,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": false,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.88,
+          "category": 0.0,
+          "time": 0.82,
+          "content": 0.94
+        },
+        "issues": [
+          "category_low_confidence"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "32",
+            "amountMinor": 3200,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "status",
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "H003",
+      "priority": "P1",
+      "group": "personal_history",
+      "input": "美团 35",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "partial",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": false,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "parentCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3500,
+        "content": "美团",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-takeout",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": null,
+        "type": "expense",
+        "amountMinor": 3500,
+        "content": "美团",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.0,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": false,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.88,
+          "category": 0.0,
+          "time": 0.82,
+          "content": 0.72
+        },
+        "issues": [
+          "category_low_confidence"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "35",
+            "amountMinor": 3500,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "status",
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "N001",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "速度与激情8 20",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "partial",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": false,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "parentCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2000,
+        "content": "速度与激情8",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": null,
+        "type": "expense",
+        "amountMinor": 2000,
+        "content": "速度与激情8",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.0,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": false,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.88,
+          "category": 0.0,
+          "time": 0.82,
+          "content": 0.72
+        },
+        "issues": [
+          "category_low_confidence"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "8",
+            "amountMinor": 800,
+            "score": -12.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": []
+          },
+          {
+            "raw": "20",
+            "amountMinor": 2000,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "status",
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "N002",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "复仇者联盟4 35",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "partial",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": false,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "parentCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3500,
+        "content": "复仇者联盟4",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": null,
+        "type": "expense",
+        "amountMinor": 3500,
+        "content": "复仇者联盟4",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.0,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": false,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.88,
+          "category": 0.0,
+          "time": 0.82,
+          "content": 0.72
+        },
+        "issues": [
+          "category_low_confidence"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "4",
+            "amountMinor": 400,
+            "score": -12.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": []
+          },
+          {
+            "raw": "35",
+            "amountMinor": 3500,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "status",
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "N005",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "85度C 18",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "partial",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": false,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "parentCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1800,
+        "content": "85度C",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-drink",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": null,
+        "type": "expense",
+        "amountMinor": 1800,
+        "content": "85度C",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.0,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": false,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.88,
+          "category": 0.0,
+          "time": 0.82,
+          "content": 0.72
+        },
+        "issues": [
+          "category_low_confidence"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "85",
+            "amountMinor": 8500,
+            "score": -32.0,
+            "role": "titleNumber",
+            "reason": "品牌名称内数字",
+            "features": []
+          },
+          {
+            "raw": "18",
+            "amountMinor": 1800,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "status",
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "N012",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "3.5寸硬盘盒 39.9",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": false,
+      "contentSpanCorrect": false,
+      "displayFormattingMismatch": false,
+      "contentSpanError": true,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3990,
+        "content": "3.5寸硬盘盒",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.digital.accessory",
+        "type": "expense",
+        "amountMinor": 3990,
+        "content": "3.5寸硬盘",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.5481481481481482,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.5481481481481482,
+          "type": 0.9,
+          "category": 0.92,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [],
+        "amountCandidates": [
+          {
+            "raw": "3.5",
+            "amountMinor": 350,
+            "score": -23.0,
+            "role": "modelVersion",
+            "reason": "数量或时长",
+            "features": [
+              "unitRole",
+              "decimal"
+            ]
+          },
+          {
+            "raw": "39.9",
+            "amountMinor": 3990,
+            "score": 74.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "decimal",
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "content_span_error"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "N013",
+      "priority": "P1",
+      "group": "numeric_ambiguity",
+      "input": "会员12个月 128",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": false,
+      "contentSpanCorrect": false,
+      "displayFormattingMismatch": false,
+      "contentSpanError": true,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12800,
+        "content": "会员12个月",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-subscription",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.entertainment.subscription",
+        "type": "expense",
+        "amountMinor": 12800,
+        "content": "会员 月",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-subscription",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.4444444444444444,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.9,
+          "category": 0.57,
+          "time": 0.82,
+          "content": 0.72
+        },
+        "issues": [
+          "category_ambiguous"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "12",
+            "amountMinor": 1200,
+            "score": -37.0,
+            "role": "quantity",
+            "reason": "数量或时长",
+            "features": [
+              "unitRole"
+            ]
+          },
+          {
+            "raw": "128",
+            "amountMinor": 12800,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "content_span_error"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "A008",
+      "priority": "P0",
+      "group": "invalid",
+      "input": "麦当劳 0",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "partial",
+      "actualStatus": "rejected",
+      "confirmationLevel": "blocked",
+      "canQuickConfirm": false,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": false,
+      "contentSpanCorrect": false,
+      "displayFormattingMismatch": false,
+      "contentSpanError": true,
+      "issuesCorrect": false,
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": null,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "invalid_amount"
+        ]
+      },
+      "actual": {
+        "semanticKey": "expense.food.other",
+        "type": "expense",
+        "amountMinor": null,
+        "content": "麦当劳 0",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.0,
+        "confirmationLevel": "blocked",
+        "canQuickConfirm": false,
+        "fieldConfidence": {
+          "amount": 0.0,
+          "type": 0.9,
+          "category": 0.72,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [
+          "amount_unrecognized"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "0",
+            "amountMinor": null,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "content_span_error",
+        "safe_rejection_issue"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "A009",
+      "priority": "P1",
+      "group": "invalid",
+      "input": "麦当劳 -25",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "partial",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": false,
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": null,
+        "content": "麦当劳",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "invalid_amount"
+        ]
+      },
+      "actual": {
+        "semanticKey": "expense.food.other",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.4444444444444444,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.98,
+          "category": 0.72,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [],
+        "amountCandidates": [
+          {
+            "raw": "-25",
+            "amountMinor": 2500,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "safe_rejection_issue"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "A010",
+      "priority": "P1",
+      "group": "invalid",
+      "input": "麦当劳 25.999",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "partial",
+      "actualStatus": "rejected",
+      "confirmationLevel": "blocked",
+      "canQuickConfirm": false,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": false,
+      "contentSpanCorrect": false,
+      "displayFormattingMismatch": false,
+      "contentSpanError": true,
+      "issuesCorrect": false,
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": null,
+        "content": "麦当劳",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "invalid_amount_precision"
+        ]
+      },
+      "actual": {
+        "semanticKey": "expense.food.other",
+        "type": "expense",
+        "amountMinor": null,
+        "content": "麦当劳 25.999",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.0,
+        "confirmationLevel": "blocked",
+        "canQuickConfirm": false,
+        "fieldConfidence": {
+          "amount": 0.0,
+          "type": 0.9,
+          "category": 0.72,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [
+          "amount_unrecognized"
+        ],
+        "amountCandidates": []
+      },
+      "failureReasons": [
+        "content_span_error",
+        "safe_rejection_issue"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "A011",
+      "priority": "P2",
+      "group": "unsupported_format",
+      "input": "二十五元 麦当劳",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "partial",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": false,
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": null,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "amount_unrecognized"
+        ]
+      },
+      "actual": {
+        "semanticKey": "expense.food.other",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.72,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.8296296296296296,
+          "type": 0.9,
+          "category": 0.72,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [],
+        "amountCandidates": [
+          {
+            "raw": "二十五元",
+            "amountMinor": 2500,
+            "score": 112.0,
+            "role": "amount",
+            "reason": "中文金额",
+            "features": [
+              "chineseAmount",
+              "currencyUnit"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "safe_rejection_issue"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "O003",
+      "priority": "P1",
+      "group": "ocr_like",
+      "input": "微信支付 收款方 幸福大药房 支付金额 ¥36.80 当前状态 支付成功 交易时间 2026/10/02 17:06:22 交易单号 4200002515202610021234567890",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "confident",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": false,
+      "contentSpanCorrect": false,
+      "displayFormattingMismatch": false,
+      "contentSpanError": true,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3680,
+        "content": "幸福大药房",
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-medicine",
+        "occurredAtLocal": "2026-10-02T17:06:22+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.medical.medicine",
+        "type": "expense",
+        "amountMinor": 3680,
+        "content": "收款方 幸福大药房 当前状态 交易时间 交易单号",
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-medicine",
+        "occurredAtLocal": "2026-10-02T17:06:22.000",
+        "confidence": 0.9,
+        "confirmationLevel": "confident",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.99,
+          "type": 0.94,
+          "category": 0.905,
+          "time": 0.96,
+          "content": 0.9
+        },
+        "issues": [],
+        "amountCandidates": [
+          {
+            "raw": "36.80",
+            "amountMinor": 3680,
+            "score": 156.0,
+            "role": "amount",
+            "reason": "实付或交易金额字段",
+            "features": [
+              "strongLabel",
+              "decimal",
+              "currencyUnit"
+            ]
+          },
+          {
+            "raw": "2026",
+            "amountMinor": 202600,
+            "score": -102.0,
+            "role": "dateTime",
+            "reason": "受保护的date数字",
+            "features": [
+              "protected:date"
+            ]
+          },
+          {
+            "raw": "10",
+            "amountMinor": 1000,
+            "score": -162.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "protected:date"
+            ]
+          },
+          {
+            "raw": "02",
+            "amountMinor": null,
+            "score": -162.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "protected:date"
+            ]
+          },
+          {
+            "raw": "17",
+            "amountMinor": 1700,
+            "score": -102.0,
+            "role": "dateTime",
+            "reason": "受保护的clock数字",
+            "features": [
+              "protected:clock"
+            ]
+          },
+          {
+            "raw": "06",
+            "amountMinor": null,
+            "score": -102.0,
+            "role": "dateTime",
+            "reason": "受保护的clock数字",
+            "features": [
+              "protected:clock"
+            ]
+          },
+          {
+            "raw": "22",
+            "amountMinor": 2200,
+            "score": -102.0,
+            "role": "dateTime",
+            "reason": "受保护的clock数字",
+            "features": [
+              "protected:clock"
+            ]
+          },
+          {
+            "raw": "4200002515202610021234567890",
+            "amountMinor": null,
+            "score": -60.0,
+            "role": "orderId",
+            "reason": "长编号",
+            "features": [
+              "longIdentifier",
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "content_span_error"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "O006",
+      "priority": "P1",
+      "group": "ocr_like",
+      "input": "订单详情 商家 星河影城 速度与激情8 IMAX 2D 票价45.00 服务费3.00 优惠8.00 实付¥40.00 场次2026-10-05 19:30 支付时间2026-10-03 16:20 订单号810052610031620",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "confident",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": false,
+      "contentSpanCorrect": false,
+      "displayFormattingMismatch": false,
+      "contentSpanError": true,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4000,
+        "content": "星河影城",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": "2026-10-03T16:20:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.entertainment.movie",
+        "type": "expense",
+        "amountMinor": 4000,
+        "content": "IMAX",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": "2026-10-03T16:20:00.000",
+        "confidence": 0.9,
+        "confirmationLevel": "confident",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.99,
+          "type": 0.94,
+          "category": 0.925,
+          "time": 0.96,
+          "content": 0.9
+        },
+        "issues": [],
+        "amountCandidates": [
+          {
+            "raw": "8",
+            "amountMinor": 800,
+            "score": -12.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": []
+          },
+          {
+            "raw": "2",
+            "amountMinor": 200,
+            "score": 48.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": []
+          },
+          {
+            "raw": "45.00",
+            "amountMinor": 4500,
+            "score": 90.0,
+            "role": "amount",
+            "reason": "金额字段",
+            "features": [
+              "weakLabel",
+              "decimal"
+            ]
+          },
+          {
+            "raw": "3.00",
+            "amountMinor": 300,
+            "score": 2.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "decimal"
+            ]
+          },
+          {
+            "raw": "8.00",
+            "amountMinor": 800,
+            "score": -103.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "negativeLabel",
+              "decimal"
+            ]
+          },
+          {
+            "raw": "40.00",
+            "amountMinor": 4000,
+            "score": 156.0,
+            "role": "amount",
+            "reason": "实付或交易金额字段",
+            "features": [
+              "strongLabel",
+              "decimal",
+              "currencyUnit"
+            ]
+          },
+          {
+            "raw": "2026",
+            "amountMinor": 202600,
+            "score": -162.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "protected:date"
+            ]
+          },
+          {
+            "raw": "10",
+            "amountMinor": 1000,
+            "score": -162.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "protected:date"
+            ]
+          },
+          {
+            "raw": "05",
+            "amountMinor": null,
+            "score": -162.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "protected:date"
+            ]
+          },
+          {
+            "raw": "19",
+            "amountMinor": 1900,
+            "score": -102.0,
+            "role": "dateTime",
+            "reason": "受保护的clock数字",
+            "features": [
+              "protected:clock"
+            ]
+          },
+          {
+            "raw": "30",
+            "amountMinor": 3000,
+            "score": -102.0,
+            "role": "dateTime",
+            "reason": "受保护的clock数字",
+            "features": [
+              "protected:clock"
+            ]
+          },
+          {
+            "raw": "2026",
+            "amountMinor": 202600,
+            "score": -162.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "protected:date"
+            ]
+          },
+          {
+            "raw": "10",
+            "amountMinor": 1000,
+            "score": -162.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "protected:date"
+            ]
+          },
+          {
+            "raw": "03",
+            "amountMinor": null,
+            "score": -162.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "protected:date"
+            ]
+          },
+          {
+            "raw": "16",
+            "amountMinor": 1600,
+            "score": -102.0,
+            "role": "dateTime",
+            "reason": "受保护的clock数字",
+            "features": [
+              "protected:clock"
+            ]
+          },
+          {
+            "raw": "20",
+            "amountMinor": 2000,
+            "score": -102.0,
+            "role": "dateTime",
+            "reason": "受保护的clock数字",
+            "features": [
+              "protected:clock"
+            ]
+          },
+          {
+            "raw": "810052610031620",
+            "amountMinor": 81005261003162000,
+            "score": -165.0,
+            "role": "orderId",
+            "reason": "长编号",
+            "features": [
+              "negativeLabel",
+              "longIdentifier",
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "content_span_error"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "O010",
+      "priority": "P1",
+      "group": "ocr_like",
+      "input": "微信支付 商户：爱宠宠物医院 项目：疫苗接种 总金额280.00 会员优惠20.00 支付金额260.00 支付时间2026-09-30 18:10",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": false,
+      "contentSpanCorrect": false,
+      "displayFormattingMismatch": false,
+      "contentSpanError": true,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 26000,
+        "content": "爱宠宠物医院",
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-medical",
+        "occurredAtLocal": "2026-09-30T18:10:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.pets.medical",
+        "type": "expense",
+        "amountMinor": 26000,
+        "content": "爱宠宠物医院 项目:疫苗接种 280.00 会员优惠20.00",
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-medical",
+        "occurredAtLocal": "2026-09-30T18:10:00.000",
+        "confidence": 0.64,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.9777777777777777,
+          "type": 0.94,
+          "category": 0.64,
+          "time": 0.96,
+          "content": 0.96
+        },
+        "issues": [
+          "category_ambiguous"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "280.00",
+            "amountMinor": 28000,
+            "score": 90.0,
+            "role": "amount",
+            "reason": "金额字段",
+            "features": [
+              "weakLabel",
+              "decimal"
+            ]
+          },
+          {
+            "raw": "20.00",
+            "amountMinor": 2000,
+            "score": -103.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "negativeLabel",
+              "decimal"
+            ]
+          },
+          {
+            "raw": "260.00",
+            "amountMinor": 26000,
+            "score": 132.0,
+            "role": "amount",
+            "reason": "实付或交易金额字段",
+            "features": [
+              "strongLabel",
+              "decimal"
+            ]
+          },
+          {
+            "raw": "2026",
+            "amountMinor": 202600,
+            "score": -162.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "protected:date"
+            ]
+          },
+          {
+            "raw": "09",
+            "amountMinor": null,
+            "score": -162.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "protected:date"
+            ]
+          },
+          {
+            "raw": "30",
+            "amountMinor": 3000,
+            "score": -162.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "protected:date"
+            ]
+          },
+          {
+            "raw": "18",
+            "amountMinor": 1800,
+            "score": -102.0,
+            "role": "dateTime",
+            "reason": "受保护的clock数字",
+            "features": [
+              "protected:clock"
+            ]
+          },
+          {
+            "raw": "10",
+            "amountMinor": 1000,
+            "score": -90.0,
+            "role": "dateTime",
+            "reason": "受保护的clock数字",
+            "features": [
+              "protected:clock",
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "content_span_error"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "O011",
+      "priority": "P2",
+      "group": "ocr_ambiguous",
+      "input": "订单详情 汉堡王 皇堡套餐 商品金额42.00 优惠5.00 37.00 订单号20261003193218",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "partial",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": false,
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": null,
+        "content": "汉堡王",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "ambiguous_amount"
+        ]
+      },
+      "actual": {
+        "semanticKey": "expense.food.other",
+        "type": "expense",
+        "amountMinor": 4200,
+        "content": "汉堡王",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.6666666666666666,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.6666666666666666,
+          "type": 0.9,
+          "category": 0.825,
+          "time": 0.82,
+          "content": 0.94
+        },
+        "issues": [],
+        "amountCandidates": [
+          {
+            "raw": "42.00",
+            "amountMinor": 4200,
+            "score": 90.0,
+            "role": "amount",
+            "reason": "金额字段",
+            "features": [
+              "weakLabel",
+              "decimal"
+            ]
+          },
+          {
+            "raw": "5.00",
+            "amountMinor": 500,
+            "score": -103.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "negativeLabel",
+              "decimal"
+            ]
+          },
+          {
+            "raw": "37.00",
+            "amountMinor": 3700,
+            "score": 62.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "decimal"
+            ]
+          },
+          {
+            "raw": "20261003193218",
+            "amountMinor": 2026100319321800,
+            "score": -165.0,
+            "role": "orderId",
+            "reason": "长编号",
+            "features": [
+              "negativeLabel",
+              "longIdentifier",
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "safe_rejection_issue"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "O013",
+      "priority": "P2",
+      "group": "ocr_ambiguous",
+      "input": "退款成功 商家：淘宝 金额49.90 原订单20260928123456 退款时间2026-10-03 14:20",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "partial",
+      "actualStatus": "rejected",
+      "confirmationLevel": "blocked",
+      "canQuickConfirm": false,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": false,
+      "contentSpanCorrect": false,
+      "displayFormattingMismatch": false,
+      "contentSpanError": true,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "partial",
+        "type": "refund",
+        "amountMinor": 4990,
+        "content": "淘宝",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "related_transaction_required"
+        ]
+      },
+      "actual": {
+        "semanticKey": "income.refund.shopping",
+        "type": "refund",
+        "amountMinor": 4990,
+        "content": "淘宝 金额49.90 原订单20260928123456",
+        "categoryId": "income-refund",
+        "subcategoryId": "income-refund-shopping",
+        "occurredAtLocal": "2026-10-03T14:20:00.000",
+        "confidence": 0.49,
+        "confirmationLevel": "blocked",
+        "canQuickConfirm": false,
+        "fieldConfidence": {
+          "amount": 0.6666666666666666,
+          "type": 0.99,
+          "category": 0.94,
+          "time": 0.96,
+          "content": 0.96
+        },
+        "issues": [
+          "related_transaction_required"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "49.90",
+            "amountMinor": 4990,
+            "score": 90.0,
+            "role": "amount",
+            "reason": "金额字段",
+            "features": [
+              "weakLabel",
+              "decimal"
+            ]
+          },
+          {
+            "raw": "20260928123456",
+            "amountMinor": 2026092812345600,
+            "score": -72.0,
+            "role": "orderId",
+            "reason": "长编号",
+            "features": [
+              "longIdentifier"
+            ]
+          },
+          {
+            "raw": "2026",
+            "amountMinor": 202600,
+            "score": -162.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "protected:date"
+            ]
+          },
+          {
+            "raw": "10",
+            "amountMinor": 1000,
+            "score": -162.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "protected:date"
+            ]
+          },
+          {
+            "raw": "03",
+            "amountMinor": null,
+            "score": -162.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "protected:date"
+            ]
+          },
+          {
+            "raw": "14",
+            "amountMinor": 1400,
+            "score": -102.0,
+            "role": "dateTime",
+            "reason": "受保护的clock数字",
+            "features": [
+              "protected:clock"
+            ]
+          },
+          {
+            "raw": "20",
+            "amountMinor": 2000,
+            "score": -90.0,
+            "role": "dateTime",
+            "reason": "受保护的clock数字",
+            "features": [
+              "protected:clock",
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "content_span_error"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "O018",
+      "priority": "P2",
+      "group": "ocr_ambiguous",
+      "input": "微信支付 收款方：便利店 商品总价30.00 会员价25.00 支付金额25.00 退款5.00 当前实际支出20.00",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "partial",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": false,
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": null,
+        "content": null,
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "amount_semantics_conflict"
+        ]
+      },
+      "actual": {
+        "semanticKey": "expense.entertainment.subscription",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "便利店",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-subscription",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.57,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.9777777777777777,
+          "type": 0.94,
+          "category": 0.57,
+          "time": 0.82,
+          "content": 0.96
+        },
+        "issues": [
+          "category_ambiguous"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "30.00",
+            "amountMinor": 3000,
+            "score": 2.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "decimal"
+            ]
+          },
+          {
+            "raw": "25.00",
+            "amountMinor": 2500,
+            "score": 2.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "decimal"
+            ]
+          },
+          {
+            "raw": "25.00",
+            "amountMinor": 2500,
+            "score": 132.0,
+            "role": "amount",
+            "reason": "实付或交易金额字段",
+            "features": [
+              "strongLabel",
+              "decimal"
+            ]
+          },
+          {
+            "raw": "5.00",
+            "amountMinor": 500,
+            "score": 2.0,
+            "role": "titleNumber",
+            "reason": "标题内数字",
+            "features": [
+              "decimal"
+            ]
+          },
+          {
+            "raw": "20.00",
+            "amountMinor": 2000,
+            "score": 74.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "decimal",
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "safe_rejection_issue"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "R007",
+      "priority": "P1",
+      "group": "redundant_natural_language",
+      "input": "本周一交了这个月房租2200元",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": false,
+      "contentSpanCorrect": false,
+      "displayFormattingMismatch": false,
+      "contentSpanError": true,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 220000,
+        "content": "房租",
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-rent",
+        "occurredAtLocal": "2026-09-28T14:30:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.housing.rent",
+        "type": "expense",
+        "amountMinor": 220000,
+        "content": "交了这个月房租",
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-rent",
+        "occurredAtLocal": "2026-09-28T14:30:00.000",
+        "confidence": 0.6222222222222222,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.6222222222222222,
+          "type": 0.9,
+          "category": 0.88,
+          "time": 0.96,
+          "content": 0.9
+        },
+        "issues": [],
+        "amountCandidates": [
+          {
+            "raw": "2200",
+            "amountMinor": 220000,
+            "score": 84.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "currencyUnit",
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "content_span_error"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "R008",
+      "priority": "P1",
+      "group": "redundant_natural_language",
+      "input": "今天下午给猫买了两袋猫粮，一共89.9",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": false,
+      "contentSpanCorrect": false,
+      "displayFormattingMismatch": false,
+      "contentSpanError": true,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8990,
+        "content": "猫粮",
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-food",
+        "occurredAtLocal": "2026-10-04T15:00:00+08:00",
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.pets.food",
+        "type": "expense",
+        "amountMinor": 8990,
+        "content": "给猫买了 猫粮,一共",
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-food",
+        "occurredAtLocal": "2026-10-04T15:00:00.000",
+        "confidence": 0.5481481481481482,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.5481481481481482,
+          "type": 0.94,
+          "category": 0.99,
+          "time": 0.96,
+          "content": 0.9
+        },
+        "issues": [],
+        "amountCandidates": [
+          {
+            "raw": "89.9",
+            "amountMinor": 8990,
+            "score": 74.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "decimal",
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "content_span_error"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "C007",
+      "priority": "P2",
+      "group": "ambiguity",
+      "input": "礼物 200",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "partial",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": false,
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": 20000,
+        "content": "礼物",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "category_ambiguous"
+        ]
+      },
+      "actual": {
+        "semanticKey": "expense.social.gift",
+        "type": "expense",
+        "amountMinor": 20000,
+        "content": "礼物",
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-gift",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.4444444444444444,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.9,
+          "category": 0.76,
+          "time": 0.82,
+          "content": 0.72
+        },
+        "issues": [],
+        "amountCandidates": [
+          {
+            "raw": "200",
+            "amountMinor": 20000,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "safe_rejection_issue"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "C009",
+      "priority": "P2",
+      "group": "ambiguity",
+      "input": "充值 100",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "partial",
+      "actualStatus": "partial",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": false,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": false,
+      "expected": {
+        "status": "partial",
+        "type": "expense",
+        "amountMinor": 10000,
+        "content": "充值",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": [
+          "category_ambiguous"
+        ]
+      },
+      "actual": {
+        "semanticKey": null,
+        "type": "expense",
+        "amountMinor": 10000,
+        "content": "充值",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.0,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": false,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.94,
+          "category": 0.0,
+          "time": 0.82,
+          "content": 0.72
+        },
+        "issues": [
+          "category_low_confidence"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "100",
+            "amountMinor": 10000,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "safe_rejection_issue"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "E003",
+      "priority": "P2",
+      "group": "normalization_stress",
+      "input": "麦 当 劳   2 5 . 0 0",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": false,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": true,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "麦当劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.food.other",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "麦 当 劳",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.5481481481481482,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.5481481481481482,
+          "type": 0.9,
+          "category": 0.72,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [],
+        "amountCandidates": [
+          {
+            "raw": "25.00",
+            "amountMinor": 2500,
+            "score": 74.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "decimal",
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "display_formatting_mismatch"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "E005",
+      "priority": "P1",
+      "group": "normalization_stress",
+      "input": "MCDONALD'S（WUHAN UNIVERSITY）￥25.00",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": true,
+      "parentCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": false,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": true,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "MCDONALD'S",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.food.other",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "McDonald's",
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.72,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.725925925925926,
+          "type": 0.9,
+          "category": 0.72,
+          "time": 0.82,
+          "content": 0.94
+        },
+        "issues": [],
+        "amountCandidates": [
+          {
+            "raw": "25.00",
+            "amountMinor": 2500,
+            "score": 98.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "decimal",
+              "currencyUnit",
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "display_formatting_mismatch"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "X003",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "云服务器续费 88",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "parentCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8800,
+        "content": "云服务器续费",
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-software",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.communication.cloud",
+        "type": "expense",
+        "amountMinor": 8800,
+        "content": "云服务器续费",
+        "categoryId": "expense-communication",
+        "subcategoryId": "expense-communication-cloud",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.4444444444444444,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.9,
+          "category": 0.64,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [
+          "category_ambiguous"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "88",
+            "amountMinor": 8800,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "X013",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "给爸妈生活费 1000",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "parentCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 100000,
+        "content": "给爸妈生活费",
+        "categoryId": "expense-family",
+        "subcategoryId": "expense-family-elder",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.other.general",
+        "type": "expense",
+        "amountMinor": 100000,
+        "content": "给爸妈生活费",
+        "categoryId": "expense-other",
+        "subcategoryId": "expense-other-general",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.4444444444444444,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.9,
+          "category": 0.965,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [],
+        "amountCandidates": [
+          {
+            "raw": "1000",
+            "amountMinor": 100000,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "X014",
+      "priority": "P1",
+      "group": "real_world_edge",
+      "input": "孩子补习班 1200",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "parentCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 120000,
+        "content": "孩子补习班",
+        "categoryId": "expense-family",
+        "subcategoryId": "expense-family-education",
+        "occurredAtLocal": null,
+        "minConfidence": null,
+        "issues": []
+      },
+      "actual": {
+        "semanticKey": "expense.education.course",
+        "type": "expense",
+        "amountMinor": 120000,
+        "content": "孩子补习班",
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-course",
+        "occurredAtLocal": "2026-10-04T14:30:00.000",
+        "confidence": 0.4444444444444444,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.9,
+          "category": 0.64,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [
+          "category_ambiguous"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "1200",
+            "amountMinor": 120000,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    }
+  ]
+}

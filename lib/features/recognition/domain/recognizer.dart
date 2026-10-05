@@ -8,16 +8,19 @@ import 'knowledge_models.dart';
 import 'lexicon_matcher.dart';
 import 'family_matcher.dart';
 import 'normalization.dart';
+import 'ngram_classifier.dart';
 import 'personal_history.dart';
 import 'recognition_models.dart';
 import 'span_conflict_resolver.dart';
 import 'type_inference.dart';
 
 class LocalRecognizer {
-  LocalRecognizer({required KnowledgeCatalog knowledge})
+  LocalRecognizer({required KnowledgeCatalog knowledge, this.ngram})
     : _entityMatcher = EntityMatcher(knowledge),
       _lexiconMatcher = LexiconMatcher(knowledge),
       _familyMatcher = FamilyMatcher(knowledge);
+
+  final NgramClassifier? ngram;
 
   final EntityMatcher _entityMatcher;
   final LexiconMatcher _lexiconMatcher;
@@ -99,12 +102,27 @@ class LocalRecognizer {
         entityEvidence: resolvedSemanticEvidence,
       ),
     ];
-    final fusion = _fusion.fuse(semanticEvidence);
+    final deterministicFusion = _fusion.fuse(semanticEvidence);
     final typeDecision = _typeInference.reconcile(
       preliminaryType,
-      fusion.semanticKey,
-      fusion.winningEvidence,
+      deterministicFusion.semanticKey,
+      deterministicFusion.winningEvidence,
     );
+    final weakEvidence =
+        _fusion.needsWeakEvidence(deterministicFusion) &&
+            (fields.status == TransactionStatus.success ||
+                fields.status == TransactionStatus.unknown) &&
+            !fields.multipleTransactionsDetected &&
+            fields.selectedAmount != null &&
+            typeDecision.type != RecognitionTransactionType.refund
+        ? ngram?.evidence(input.rawText)
+        : null;
+    final fusion = _fusion.withWeakEvidence(
+      deterministicFusion,
+      weakEvidence,
+      typeDecision.type,
+    );
+    if (weakEvidence != null) semanticEvidence.add(weakEvidence);
     if (typeDecision.hasConflict) {
       issueCodes.add(RecognitionIssueCode.typeConflict);
     }

@@ -35,7 +35,7 @@ Phase 3 大修新增轻量 `RecognitionCoordinator`：文字录入和未来 OCR 
 
 分类与账户选择 UI 分别从数据库 `Category.iconAsset`、`Account.iconAsset` 读取 SVG，不按名称维护 Widget 映射。分类使用嵌入表单滚动区的紧凑纵向网格，不创建内部横向滚动区；一级分类默认展示，点击后展开或收起其二级分类。账户使用五项图标网格点选。日期选择和可循环的 24 小时时间滚轮只修改本地墙上时间；UTC instant 与发生时 offset 的转换仍由 `OccurrenceTime` 和 Repository 负责。
 
-Phase 3 在 `features/recognition` 内实现本地混合识别器。`domain` 保存唯一 `Recognizer` 接口和 `LocalRecognizer`、字段/span、自然时间、Personal History、知识模型、Evidence Fusion、`CategoryResolver` 与 Candidate；`data` 负责共用 JSON decoder、AssetBundle adapter 和历史 Repository；`application` 负责 Coordinator 与 ledger 映射。空 n-gram 接口和旧 Parser 已删除，是否进入 n-gram 必须由失败分布另行决策。OCR 作为独立平台输入顺延到 Phase 4，识别文字后仍进入同一个 `LocalRecognizer`。
+Phase 3 在 `features/recognition` 内实现本地混合识别器。`domain` 保存唯一 `LocalRecognizer`、字段/span、自然时间、Personal History、知识模型、Evidence Fusion、`CategoryResolver` 与 Candidate，以及纯Dart `NgramClassifier` / `NgramModel`；`data` 负责共用 JSON decoder、AssetBundle adapter 和历史 Repository；`application` 负责 Coordinator 与 ledger 映射。Provider从AssetBundle加载紧凑int8资产并注入识别器，训练工具独立位于tools/ngram。模型仅由同一EvidenceFusion作为有门禁的弱fallback，不建第二条pipeline。旧 Parser、空接口已删除。OCR 作为独立平台输入顺延到 Phase 4，识别文字后仍进入同一个 `LocalRecognizer`。
 
 首页本月概览由纯领域计算 `MonthlyOverview.fromEntries` 从当前账本流派生，按每笔账保存的 offset 还原所属本地月份，合计普通 `income` / `expense`、排除转账，并依据关联原账类型冲减退款。它不引入统计模块、图表或预算持久化；预算区域当前仅是“未设置”占位。
 

@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+- Added offline train/dev-selected character n-gram Logistic Regression (16,384 features, int8 asset 1.796 MiB) with pure Dart inference as guarded weak fallback in the unique LocalRecognizer. Preserved deterministic priority, transaction type and safety gates; archived training data under tools/ngram. Dev accuracy 83.24% / macro F1 82.76%; frozen historical regression v4 category 62.67% -> 64.33%, v5 67.75% -> 69.00%, all high-confidence wrong 0 / P2 safe 100%. Added parity/safety tests and reproducible training/evaluation/performance reports.
+- Fixed evaluation-only handling of retired-category history fixtures, reporting exclusions while retaining historical expected labels.
+
 - Contracted V0.1 taxonomy to the confirmed 104 children (78 expense / 26 income) and 21 parents; removed takeout, travel/family expenses and lost/unexpected labels. Migrated existing knowledge by actual purpose without adding vocabulary; retired historical categories remain inactive with transaction references intact. Generator rejects obsolete semantic outputs. Empty-category fallback and complete meal-time priority remain pending separate implementation.
 
 ### Added

@@ -1,0 +1,39 @@
+{
+  "frozenAt": "2026-10-05T13:53:03.221159+00:00",
+  "baseCommit": "d1d78bb623cca5d2a13a0517f38c8dda81c3e80d",
+  "policy": "No training/configuration/production changes after this freeze; historical corpora only final validation; before disables only ngram on the same taxonomy and pipeline.",
+  "sha256": {
+    "assets/knowledge/ngram.bin": "4e161509b937b9125cf66676bca0a2ae5d2c17d04390ef1af44e1f6f76c2a818",
+    "lib/app/providers.dart": "2e3986c78a402fe0cbe37273e1a66bf57ed5f21528b61fc155e5a9b2d63d8df3",
+    "lib/features/recognition/domain/amount_extractor.dart": "2add788ed4eec8359ee31908418a08972d34054c945d688bf0c6cc6c8b45d542",
+    "lib/features/recognition/domain/category_resolver.dart": "1b2be97c734b2a946035971302334d2d8ba80600825dfe1a91fbaa25d818188f",
+    "lib/features/recognition/domain/confidence_calibrator.dart": "54b11bce92f28c173dfbaf7cc9f065ea01ecca6fb897a0d5ff8e9c49858e9bdb",
+    "lib/features/recognition/domain/content_extractor.dart": "065a7cf163d36adb5f6775d57df22d2bd9ca818faa5d75073d5452cd066c7a87",
+    "lib/features/recognition/domain/context_evidence.dart": "4d0b93e7a00af28064c579479f33781283c70ce2574f92d801e37bd5da847ded",
+    "lib/features/recognition/domain/entity_matcher.dart": "c2a25ea008871b89f5ebf6922e80c14246ee9ec3d6b471ce25df4b4248dadcc2",
+    "lib/features/recognition/domain/evidence_fusion.dart": "9e97835d5561bb7b3374a7e4bf67b5c710305797720a257df98cd60cc789c9b2",
+    "lib/features/recognition/domain/family_matcher.dart": "7f6d7453f10d0b8ed6a066c1145a6f0c4386d1461717063b43e7d0e35e10eb02",
+    "lib/features/recognition/domain/field_extractor.dart": "160013a86a7860f733f22f4ed6de6a46bb44a24f7480317cebd14fe557f97b64",
+    "lib/features/recognition/domain/knowledge_models.dart": "a3ad1d003136438d1965ab20ed8632ae49ba3a5edf862649ac80c9cbe4431d40",
+    "lib/features/recognition/domain/lexicon_matcher.dart": "dd9227c55affe0047389e67908b876eceecb8180d450823e5be7f552287027d4",
+    "lib/features/recognition/domain/natural_time_parser.dart": "9867c9b5c621a7b596671236b9ca94e0ed69a375dbd3daffb83717ad1b0a32c2",
+    "lib/features/recognition/domain/ngram_classifier.dart": "36bf6956bbc504de655aa51810ea4794481b127d0946fc5286bd5c6a0865ce86",
+    "lib/features/recognition/domain/ngram_model.dart": "4586d69c35d5d37905f263d8afe1eee4ff967acee9b2df8452c34cecb80261b1",
+    "lib/features/recognition/domain/normalization.dart": "d31f0f18715c8ac47e01bb28278de4185ac8805fc7e6d3b95f05b46d0ef202b4",
+    "lib/features/recognition/domain/personal_history.dart": "2ca841de677bf70c73ffa391ea6d30add01c789ecb60f92d8652b41da4251129",
+    "lib/features/recognition/domain/recognition_models.dart": "2909655e8518047af83dc59e0e6784b860dca52270903c2b3e3b6432c23f438a",
+    "lib/features/recognition/domain/recognizer.dart": "ca2c5a22318f55029fae22c2e874b5b93bb35d1c51c1737b197e76b99261ecbe",
+    "lib/features/recognition/domain/span_conflict_resolver.dart": "936b4214c6f2c5570d2722951cbfed78cdd816bab0032133c9596439927ddbd1",
+    "lib/features/recognition/domain/transaction_status_detector.dart": "aa1a683cf5320b751eb0974cb22dec5d856351826a622fa03df20dd38a67f5d4",
+    "lib/features/recognition/domain/type_inference.dart": "6ff7ffff4ba9c98e755c2bb44acca192f9c582ec7dbcf0d5a33c1df7175e56d4",
+    "tools/evaluation/evaluate_recognition.dart": "0e4a7dc6f7f95d20ee8c313c189f63fb833bd5fdafb16aeb725bfd8b02ef7ab0",
+    "tools/ngram/train.py": "876a6fa967e60220522eab72dbcf6711a5ed4b8bbd62e976d3ff660fcc37449f",
+    "tools/ngram/training_report.json": "f5959a2089d59d24bdd2066b92850c7702d8774397121ed50bac77278f3efc61",
+    "tools/recognition_tool_harness.dart": "804d7890415abcf9ddb2e1260485d203002d6d523c78796c848cf83c419017a8"
+  },
+  "evaluationOnlyRepair": {
+    "reason": "Historical fixture references retired category; filter exactly as active-category repository, record exclusions; no oracle remapping, no production/model changes.",
+    "path": "tools/evaluation/evaluate_recognition.dart",
+    "sha256": "d6dffdbd8bc83c0e82bcd0b48a7952728f0f9e477b6df114f8ee933462b1ec31"
+  }
+}

@@ -15,6 +15,7 @@ enum RecognitionEvidenceSource {
   categoryLexicon,
   composition,
   familyPrior,
+  ngram,
   context,
 }
 

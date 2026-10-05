@@ -1,0 +1,194 @@
+{
+  "model": {
+    "grams": [
+      2,
+      3
+    ],
+    "dimension": 16384,
+    "C": 2.0,
+    "accuracy": 0.8323675496688742,
+    "macroF1": 0.8275563817313338,
+    "iterations": 55
+  },
+  "assetBytes": 1882814,
+  "runtime": {
+    "devCount": 4832,
+    "accuracy": 0.8323675496688742,
+    "macroF1": 0.8275563817313335,
+    "macroAccuracy": 0.8414940367094074,
+    "ngramMicroseconds": {
+      "p50": 19,
+      "p95": 32,
+      "p99": 44
+    },
+    "recognizerMicroseconds": {
+      "p50": 521,
+      "p95": 1119,
+      "p99": 1390
+    },
+    "environment": "Dart VM warm, host CPU; not Android device"
+  },
+  "benchmark": {
+    "warmUpIterations": 1000,
+    "iterations": 10000,
+    "averageMicroseconds": 247.2928,
+    "p50Microseconds": 200,
+    "p95Microseconds": 517,
+    "p99Microseconds": 693,
+    "maxMicroseconds": 3650,
+    "coldKnowledgeDecodeMicroseconds": 42077
+  },
+  "regression": [
+    {
+      "corpus": "original190",
+      "cases": 190,
+      "categoryBefore": 0.9421052631578948,
+      "categoryAfter": 0.9421052631578948,
+      "typeBefore": 1.0,
+      "typeAfter": 1.0,
+      "nullBefore": 12,
+      "nullAfter": 12,
+      "highConfidenceWrongBefore": 0,
+      "highConfidenceWrongAfter": 0,
+      "p2SafeBefore": 1.0,
+      "p2SafeAfter": 1.0,
+      "latencyBefore": {
+        "average": 499.14736842105265,
+        "p50": 361,
+        "p95": 1434,
+        "p99": 1802,
+        "max": 3207
+      },
+      "latencyAfter": {
+        "average": 472.2842105263158,
+        "p50": 334,
+        "p95": 1237,
+        "p99": 1710,
+        "max": 3286
+      },
+      "inactiveHistory": [
+        {
+          "caseId": "H003",
+          "subcategoryId": "expense-food-takeout"
+        }
+      ]
+    },
+    {
+      "corpus": "v2",
+      "cases": 190,
+      "categoryBefore": 0.8947368421052632,
+      "categoryAfter": 0.8947368421052632,
+      "typeBefore": 1.0,
+      "typeAfter": 1.0,
+      "nullBefore": 19,
+      "nullAfter": 19,
+      "highConfidenceWrongBefore": 0,
+      "highConfidenceWrongAfter": 0,
+      "p2SafeBefore": 1.0,
+      "p2SafeAfter": 1.0,
+      "latencyBefore": {
+        "average": 460.4421052631579,
+        "p50": 334,
+        "p95": 1007,
+        "p99": 1946,
+        "max": 2210
+      },
+      "latencyAfter": {
+        "average": 450.83684210526314,
+        "p50": 330,
+        "p95": 1055,
+        "p99": 1717,
+        "max": 2870
+      },
+      "inactiveHistory": []
+    },
+    {
+      "corpus": "v3",
+      "cases": 200,
+      "categoryBefore": 0.84,
+      "categoryAfter": 0.84,
+      "typeBefore": 0.98,
+      "typeAfter": 0.98,
+      "nullBefore": 5,
+      "nullAfter": 5,
+      "highConfidenceWrongBefore": 0,
+      "highConfidenceWrongAfter": 0,
+      "p2SafeBefore": 1.0,
+      "p2SafeAfter": 1.0,
+      "latencyBefore": {
+        "average": 489.17,
+        "p50": 344,
+        "p95": 1035,
+        "p99": 1916,
+        "max": 9657
+      },
+      "latencyAfter": {
+        "average": 486.53,
+        "p50": 342,
+        "p95": 1065,
+        "p99": 2465,
+        "max": 9334
+      },
+      "inactiveHistory": []
+    },
+    {
+      "corpus": "v4",
+      "cases": 300,
+      "categoryBefore": 0.6266666666666667,
+      "categoryAfter": 0.6433333333333333,
+      "typeBefore": 0.9733333333333334,
+      "typeAfter": 0.9733333333333334,
+      "nullBefore": 55,
+      "nullAfter": 49,
+      "highConfidenceWrongBefore": 0,
+      "highConfidenceWrongAfter": 0,
+      "p2SafeBefore": 1.0,
+      "p2SafeAfter": 1.0,
+      "latencyBefore": {
+        "average": 418.1066666666667,
+        "p50": 350,
+        "p95": 877,
+        "p99": 1386,
+        "max": 2524
+      },
+      "latencyAfter": {
+        "average": 547.9566666666667,
+        "p50": 436,
+        "p95": 1094,
+        "p99": 2302,
+        "max": 3233
+      },
+      "inactiveHistory": []
+    },
+    {
+      "corpus": "v5",
+      "cases": 400,
+      "categoryBefore": 0.6775,
+      "categoryAfter": 0.69,
+      "typeBefore": 0.965,
+      "typeAfter": 0.965,
+      "nullBefore": 54,
+      "nullAfter": 48,
+      "highConfidenceWrongBefore": 0,
+      "highConfidenceWrongAfter": 0,
+      "p2SafeBefore": 1.0,
+      "p2SafeAfter": 1.0,
+      "latencyBefore": {
+        "average": 445.3475,
+        "p50": 355,
+        "p95": 919,
+        "p99": 2249,
+        "max": 3734
+      },
+      "latencyAfter": {
+        "average": 440.0875,
+        "p50": 361,
+        "p95": 939,
+        "p99": 1519,
+        "max": 4776
+      },
+      "inactiveHistory": []
+    }
+  ],
+  "oraclePolicy": "Historical corpus expected labels are unchanged; baseline is current 104-label production pipeline with only ngram disabled. Retired history is excluded as in repository, explicitly reported."
+}

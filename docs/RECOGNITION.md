@@ -12,11 +12,11 @@ Phase 3 本地识别器按五层证据组织：
 2. Personal History
 3. Local Entity Knowledge Base
 4. Category Lexicon
-5. Character n-gram classifier（尚未实现，当前也不保留空接口）
+5. Character n-gram classifier（纯 Dart 弱 fallback，confidence ceiling=0.69）
 → Evidence Fusion / Confidence
 ```
 
-当前已实现字段/span、Normalization、Personal History、审核制 Entity Knowledge Base、Category Lexicon、独立 TypeInference 和 Evidence Fusion。Character n-gram 尚未实现；只有当结构性重构后的正式 P1 明显低于 75% 且失败分析证明规则收益耗尽时，才单独决策。全部在本机运行，App 运行时不联网。Web Search 和 LLM 不属于 V0.1。
+当前已实现字段/span、Normalization、Personal History、审核制 Entity Knowledge Base、Category Lexicon、独立 TypeInference 和 Evidence Fusion，以及train/dev选型的字符Logistic Regression弱fallback。模型只补充无语义或弱确定性分类，不替代强证据、不改变type、不能单独高置信确认；冻结与结果见 [当前算法](RECOGNITION_ALGORITHM.md)。全部在本机运行，App 运行时不联网。Web Search 和 LLM 不属于 V0.1。
 
 任何识别来源都只能生成 `RecognitionCandidate`：
 
@@ -55,7 +55,7 @@ Raw Text
 
 具体实现、数据规模、阈值和生成命令见 [RECOGNITION_ALGORITHM.md](RECOGNITION_ALGORITHM.md)。
 
-Family 保持平面概念模型；稳定概念可以产生弱 standalone prior，contextual-only 概念必须等待上下文。Composition 对已命中 spans 精化/覆盖；没有实际 replacement evidence 的概念不能删除词典语义。Fusion 先选 parent，再排 child；语义可以校正弱默认类型，强类型冲突仍需确认，退款语义仍要求关联原账目。v5 initial/final category 均为 75.50%，Phase 3 classification 尚未收口；停止调 v5 和扩 family/rule，下一独立算法任务评估轻量字符分类 fallback，本轮没有实现 n-gram。
+Family 保持平面概念模型；稳定概念可以产生弱 standalone prior，contextual-only 概念必须等待上下文。Composition 对已命中 spans 精化/覆盖；没有实际 replacement evidence 的概念不能删除词典语义。Fusion 先选 parent，再排 child；确定性语义可以校正弱默认类型，强类型冲突仍需确认，退款语义仍要求关联原账目。旧taxonomy的v5 initial/final category均为75.50%，因此停止调v5和扩family/rule。当前字符模型已独立完成train/dev选型和弱fallback集成，分类泛化仍未收口，不根据历史回归继续调参。
 
 示例输入：
 
@@ -140,4 +140,4 @@ Candidate
 
 ## 当前 taxonomy 边界
 
-V0.1 固定 104 个二级 semanticKey；按真实用途分类，外卖渠道、旅行场景、家庭使用者不再输出独立支出类。默认分类和无分类 fallback 的契约与未实现边界以 [REQUIREMENTS.md](REQUIREMENTS.md) 为准，后续模型只能使用该标签体系。收入差旅报销保留。此次只迁移知识，未修改 fusion、family matching、type 参数；没有执行新的盲测。
+V0.1 固定104个二级semanticKey；按真实用途分类，外卖渠道、旅行场景、家庭使用者不再输出独立支出类。默认分类和无分类other.general fallback的契约与未实现边界以 [REQUIREMENTS.md](REQUIREMENTS.md) 为准；当前字符模型只使用该标签体系。收入差旅报销保留。taxonomy迁移时未修改fusion/type参数；后续字符模块仅增加受限弱evidence，完整前后回归与冻结见算法文档。

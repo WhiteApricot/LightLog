@@ -17,6 +17,40 @@ class EvidenceFusionResult {
 class EvidenceFusion {
   const EvidenceFusion();
 
+  bool needsWeakEvidence(EvidenceFusionResult deterministic) =>
+      deterministic.semanticKey == null ||
+      (deterministic.confidence < .70 &&
+          !deterministic.winningEvidence.any((e) => _priority(e) >= 80));
+
+  /// Weak fallback never displaces specific/history/composition evidence,
+  /// changes direction, resolves a safety issue, or creates high confidence.
+  EvidenceFusionResult withWeakEvidence(
+    EvidenceFusionResult deterministic,
+    RecognitionEvidence? weak,
+    RecognitionTransactionType? type,
+  ) {
+    if (weak == null ||
+        !needsWeakEvidence(deterministic) ||
+        type == null ||
+        (type != RecognitionTransactionType.expense &&
+            type != RecognitionTransactionType.income) ||
+        !weak.semanticKey!.startsWith('${type.value}.') ||
+        weak.semanticKey!.startsWith('income.refund.')) {
+      return deterministic;
+    }
+    return EvidenceFusionResult(
+      semanticKey: weak.semanticKey,
+      confidence: weak.score.clamp(0, .69),
+      issueCodes: {
+        ...deterministic.issueCodes.where(
+          (c) => c != RecognitionIssueCode.categoryLowConfidence,
+        ),
+        if (weak.score < .58) RecognitionIssueCode.categoryLowConfidence,
+      },
+      winningEvidence: [weak],
+    );
+  }
+
   EvidenceFusionResult fuse(List<RecognitionEvidence> evidence) {
     final negatives = evidence.where((item) => item.negative).toList();
     final positive = _deduplicate(
@@ -173,6 +207,7 @@ class EvidenceFusion {
   }
 
   static int _priority(RecognitionEvidence evidence) {
+    if (evidence.source == RecognitionEvidenceSource.ngram) return 30;
     if (evidence.source == RecognitionEvidenceSource.personalHistory) {
       return 100;
     }

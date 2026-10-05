@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:light_log/data/database/seed_data.dart';
+
 import 'package:light_log/features/recognition/domain/normalization.dart';
 import 'package:light_log/features/recognition/domain/recognition_models.dart';
 
@@ -55,13 +57,25 @@ void main(List<String> args) {
   }
 
   final results = <Map<String, Object?>>[];
+  final inactiveHistory = <Map<String, Object?>>[];
   final latencies = <int>[];
   for (final testCase in cases) {
     final setup = (testCase['setup']! as Map).cast<String, Object?>();
     final history = <PersonalHistoryRecord>[];
     for (final raw in (setup['history'] as List? ?? const [])) {
       final item = (raw as Map).cast<String, Object?>();
-      final category = categoryById[item['subcategoryId']! as String]!;
+      final historyCategoryId = item['subcategoryId']! as String;
+      final category = categoryById[historyCategoryId];
+      if (category == null) {
+        if (!retiredDefaultCategoryIds.contains(historyCategoryId)) {
+          throw StateError('Unknown history category: $historyCategoryId');
+        }
+        inactiveHistory.add({
+          'caseId': testCase['id'],
+          'subcategoryId': historyCategoryId,
+        });
+        continue;
+      }
       history.add(
         PersonalHistoryRecord(
           normalizedContent: item['normalizedContent']! as String,
@@ -88,9 +102,11 @@ void main(List<String> args) {
     'corpus': metadata['name'],
     'corpusVersion': metadata['version'],
     'recognizerVersion': 3,
+    'ngramEnabled': !const bool.fromEnvironment('DISABLE_NGRAM'),
     'knowledgeHash': knowledgeHash(),
     'evaluatedAt': DateTime.now().toUtc().toIso8601String(),
     'totalCases': results.length,
+    'filteredInactiveHistory': inactiveHistory,
     'priority': {
       for (final priority in ['P0', 'P1', 'P2'])
         priority: _priority(results, priority),

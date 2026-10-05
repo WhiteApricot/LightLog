@@ -47,7 +47,7 @@
 - [x] Layer 2: use personal confirmation/correction history as local evidence
 - [x] Layer 3: add a local Merchant Knowledge Base
 - [x] Layer 4: extract and maintain a Category Lexicon
-- [ ] Layer 5: only consider a local character n-gram classifier after a separate failure-distribution decision; no interface/model/runtime exists now
+- [x] Layer 5: offline train/dev-selected Logistic Regression, compact int8 asset, pure Dart n-gram inference and guarded weak evidence in the unique LocalRecognizer
 - [x] Add fuzzy matching with explicit thresholds and conflict handling
 - [x] Fuse implemented layer evidence into priority-based, explainable confidence
 - [x] Persist the minimum local rules needed for confirmation/correction learning
@@ -68,7 +68,8 @@
 - [x] Replace destructive concept suppression, fuse parent before child, reconcile semantics with preliminary type, and remove unused interface / duplicated routing / generator validation
 - [x] Freeze before every holdout; preserve v5 immutable initial and one generic refund-safety repair final; pass 99 tests, analyzer and original 190 regression
 - [ ] Phase 3 classification frozen — **not achieved**: v5 initial/final category 75.50% < 80%; type 94.50% → 96.50%, high-confidence wrong 0, P2 safe 100%, warm benchmark p95 0.403 ms. **deterministic semantic routing insufficient**. See [final algorithm/results](RECOGNITION_ALGORITHM.md). Stop tuning v5 and expanding family/composition.
-- [ ] Next independent algorithm evaluation: character 2–4 gram + lightweight linear classifier / Naive Bayes as low-confidence fallback evidence; preserve Candidate/safety gates and require a new unseen corpus. No n-gram implementation exists in this task.
+- [x] Complete train/dev-only char 2–4 gram configuration selection, pure Dart weak fallback, parity/safety tests, compact asset and frozen original190/v2/v3/v4/v5 comparisons; high-confidence wrong 0 and P2 safe 100%. See tools/ngram/evaluation_summary.json.
+- [ ] Further generalization evaluation requires a new unseen corpus; do not tune the frozen model on historical holdouts. Module freeze does not close Phase 3 classification.
 - [ ] Resolve remaining non-blocking content-span families and taxonomy-oracle differences without weakening the zero/high-risk amount and refund safety policy
 
 ## Future - Category management
@@ -117,4 +118,4 @@ Phase 3 and the next recognition evaluation do not require strong OCR cases to h
 - [x] Generator 校验 104 类、失效 runtime semantic 引用为零；本轮不读取或运行 holdout。
 - [ ] 在独立识别任务实现无分类证据的支出/收入 other.general fallback，完整保留所有安全门禁。
 - [ ] 在独立识别任务落实正餐文本时间 > occurredAtLocal 时间段 > 其他 food subtype；本轮只复用已有时间 routing。
-- [ ] 后续字符分类方案仅使用这 104 个标签；本轮不实现 n-gram、不开始 OCR。
+- [x] 字符模型仅使用104标签，完成训练、弱fallback集成、测试和评测；未开始OCR。

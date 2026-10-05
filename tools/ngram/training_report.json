@@ -1,0 +1,777 @@
+{
+  "train": 38539,
+  "dev": 4832,
+  "sklearn": "1.5.1",
+  "numpy": "1.26.4",
+  "selection": "highest dev macro F1, first configuration on ties; quantized inference",
+  "trials": [
+    {
+      "grams": [
+        2,
+        3
+      ],
+      "dimension": 8192,
+      "C": 0.5,
+      "accuracy": 0.7980132450331126,
+      "macroF1": 0.792449331307651,
+      "iterations": 31
+    },
+    {
+      "grams": [
+        2,
+        3
+      ],
+      "dimension": 8192,
+      "C": 2.0,
+      "accuracy": 0.7934602649006622,
+      "macroF1": 0.7889582541144139,
+      "iterations": 54
+    },
+    {
+      "grams": [
+        2,
+        3
+      ],
+      "dimension": 16384,
+      "C": 0.5,
+      "accuracy": 0.8245033112582781,
+      "macroF1": 0.8190958842410523,
+      "iterations": 31
+    },
+    {
+      "grams": [
+        2,
+        3
+      ],
+      "dimension": 16384,
+      "C": 2.0,
+      "accuracy": 0.8323675496688742,
+      "macroF1": 0.8275563817313338,
+      "iterations": 55
+    },
+    {
+      "grams": [
+        2,
+        4
+      ],
+      "dimension": 8192,
+      "C": 0.5,
+      "accuracy": 0.7777317880794702,
+      "macroF1": 0.772544153766745,
+      "iterations": 35
+    },
+    {
+      "grams": [
+        2,
+        4
+      ],
+      "dimension": 8192,
+      "C": 2.0,
+      "accuracy": 0.7727649006622517,
+      "macroF1": 0.7672893375255068,
+      "iterations": 64
+    },
+    {
+      "grams": [
+        2,
+        4
+      ],
+      "dimension": 16384,
+      "C": 0.5,
+      "accuracy": 0.7814569536423841,
+      "macroF1": 0.7851450282246556,
+      "iterations": 39
+    },
+    {
+      "grams": [
+        2,
+        4
+      ],
+      "dimension": 16384,
+      "C": 2.0,
+      "accuracy": 0.7835264900662252,
+      "macroF1": 0.7842011688371151,
+      "iterations": 62
+    }
+  ],
+  "selected": {
+    "grams": [
+      2,
+      3
+    ],
+    "dimension": 16384,
+    "C": 2.0,
+    "accuracy": 0.8323675496688742,
+    "macroF1": 0.8275563817313338,
+    "iterations": 55
+  },
+  "thresholds": [
+    {
+      "threshold": 0.45,
+      "coverage": 0.6566639072847682,
+      "accuracy": 0.9479987393633785
+    },
+    {
+      "threshold": 0.6,
+      "coverage": 0.5695364238410596,
+      "accuracy": 0.9745639534883721
+    },
+    {
+      "threshold": 0.75,
+      "coverage": 0.48344370860927155,
+      "accuracy": 0.9965753424657534
+    },
+    {
+      "threshold": 0.85,
+      "coverage": 0.40790562913907286,
+      "accuracy": 0.9979705733130391
+    }
+  ],
+  "threshold": 0.6,
+  "assetBytes": 1882814,
+  "assetSha256": "4e161509b937b9125cf66676bca0a2ae5d2c17d04390ef1af44e1f6f76c2a818",
+  "perClass": {
+    "expense.communication.cloud": {
+      "precision": 0.8983050847457628,
+      "recall": 1.0,
+      "f1-score": 0.9464285714285714,
+      "support": 53.0
+    },
+    "expense.communication.internet": {
+      "precision": 0.9818181818181818,
+      "recall": 1.0,
+      "f1-score": 0.9908256880733946,
+      "support": 54.0
+    },
+    "expense.communication.mobile": {
+      "precision": 0.9615384615384616,
+      "recall": 0.9090909090909091,
+      "f1-score": 0.9345794392523364,
+      "support": 55.0
+    },
+    "expense.communication.post": {
+      "precision": 0.8076923076923077,
+      "recall": 0.7924528301886793,
+      "f1-score": 0.8,
+      "support": 53.0
+    },
+    "expense.daily.cleaning": {
+      "precision": 0.3392857142857143,
+      "recall": 0.38,
+      "f1-score": 0.3584905660377358,
+      "support": 50.0
+    },
+    "expense.daily.haircut": {
+      "precision": 0.6578947368421053,
+      "recall": 0.5102040816326531,
+      "f1-score": 0.5747126436781609,
+      "support": 49.0
+    },
+    "expense.daily.household": {
+      "precision": 0.35658914728682173,
+      "recall": 0.8846153846153846,
+      "f1-score": 0.5082872928176796,
+      "support": 52.0
+    },
+    "expense.daily.personal": {
+      "precision": 0.9565217391304348,
+      "recall": 0.4230769230769231,
+      "f1-score": 0.5866666666666667,
+      "support": 52.0
+    },
+    "expense.daily.service": {
+      "precision": 0.9512195121951219,
+      "recall": 0.7959183673469388,
+      "f1-score": 0.8666666666666667,
+      "support": 49.0
+    },
+    "expense.digital.accessory": {
+      "precision": 0.8787878787878788,
+      "recall": 0.5,
+      "f1-score": 0.6373626373626373,
+      "support": 58.0
+    },
+    "expense.digital.computer": {
+      "precision": 0.9642857142857143,
+      "recall": 1.0,
+      "f1-score": 0.9818181818181818,
+      "support": 54.0
+    },
+    "expense.digital.phone": {
+      "precision": 0.4745762711864407,
+      "recall": 0.9655172413793104,
+      "f1-score": 0.6363636363636364,
+      "support": 29.0
+    },
+    "expense.digital.photo": {
+      "precision": 1.0,
+      "recall": 0.9642857142857143,
+      "f1-score": 0.9818181818181818,
+      "support": 28.0
+    },
+    "expense.digital.repair": {
+      "precision": 1.0,
+      "recall": 0.9629629629629629,
+      "f1-score": 0.9811320754716981,
+      "support": 54.0
+    },
+    "expense.digital.software": {
+      "precision": 1.0,
+      "recall": 0.7735849056603774,
+      "f1-score": 0.8723404255319149,
+      "support": 53.0
+    },
+    "expense.education.book": {
+      "precision": 0.9615384615384616,
+      "recall": 0.46296296296296297,
+      "f1-score": 0.625,
+      "support": 54.0
+    },
+    "expense.education.course": {
+      "precision": 1.0,
+      "recall": 0.9245283018867925,
+      "f1-score": 0.9607843137254902,
+      "support": 53.0
+    },
+    "expense.education.exam": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 54.0
+    },
+    "expense.education.stationery": {
+      "precision": 0.5230769230769231,
+      "recall": 0.6296296296296297,
+      "f1-score": 0.5714285714285714,
+      "support": 54.0
+    },
+    "expense.education.tuition": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 27.0
+    },
+    "expense.entertainment.game": {
+      "precision": 0.9818181818181818,
+      "recall": 1.0,
+      "f1-score": 0.9908256880733946,
+      "support": 54.0
+    },
+    "expense.entertainment.hobby": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 27.0
+    },
+    "expense.entertainment.movie": {
+      "precision": 0.9642857142857143,
+      "recall": 1.0,
+      "f1-score": 0.9818181818181818,
+      "support": 27.0
+    },
+    "expense.entertainment.music": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 53.0
+    },
+    "expense.entertainment.subscription": {
+      "precision": 0.509090909090909,
+      "recall": 1.0,
+      "f1-score": 0.6746987951807228,
+      "support": 28.0
+    },
+    "expense.finance.fee": {
+      "precision": 0.9473684210526315,
+      "recall": 1.0,
+      "f1-score": 0.972972972972973,
+      "support": 54.0
+    },
+    "expense.finance.insurance": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 53.0
+    },
+    "expense.finance.interest": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 27.0
+    },
+    "expense.finance.investment": {
+      "precision": 0.16279069767441862,
+      "recall": 0.1346153846153846,
+      "f1-score": 0.14736842105263157,
+      "support": 52.0
+    },
+    "expense.finance.loan": {
+      "precision": 0.5567010309278351,
+      "recall": 1.0,
+      "f1-score": 0.7152317880794702,
+      "support": 54.0
+    },
+    "expense.finance.tax": {
+      "precision": 0.9152542372881356,
+      "recall": 1.0,
+      "f1-score": 0.9557522123893806,
+      "support": 54.0
+    },
+    "expense.food.breakfast": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 51.0
+    },
+    "expense.food.dinner": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 50.0
+    },
+    "expense.food.drink": {
+      "precision": 1.0,
+      "recall": 0.8846153846153846,
+      "f1-score": 0.9387755102040817,
+      "support": 52.0
+    },
+    "expense.food.groceries": {
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1-score": 0.6666666666666666,
+      "support": 52.0
+    },
+    "expense.food.lunch": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 50.0
+    },
+    "expense.food.other": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 26.0
+    },
+    "expense.food.snack": {
+      "precision": 0.38636363636363635,
+      "recall": 1.0,
+      "f1-score": 0.5573770491803278,
+      "support": 51.0
+    },
+    "expense.housing.gas": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 28.0
+    },
+    "expense.housing.mortgage": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 53.0
+    },
+    "expense.housing.property": {
+      "precision": 0.9666666666666667,
+      "recall": 0.90625,
+      "f1-score": 0.9354838709677419,
+      "support": 32.0
+    },
+    "expense.housing.rent": {
+      "precision": 0.9791666666666666,
+      "recall": 0.8392857142857143,
+      "f1-score": 0.9038461538461539,
+      "support": 56.0
+    },
+    "expense.housing.repair": {
+      "precision": 0.8983050847457628,
+      "recall": 1.0,
+      "f1-score": 0.9464285714285714,
+      "support": 53.0
+    },
+    "expense.housing.utilities": {
+      "precision": 1.0,
+      "recall": 0.967741935483871,
+      "f1-score": 0.9836065573770492,
+      "support": 31.0
+    },
+    "expense.medical.checkup": {
+      "precision": 1.0,
+      "recall": 0.8679245283018868,
+      "f1-score": 0.9292929292929293,
+      "support": 53.0
+    },
+    "expense.medical.clinic": {
+      "precision": 0.509090909090909,
+      "recall": 1.0,
+      "f1-score": 0.6746987951807228,
+      "support": 56.0
+    },
+    "expense.medical.dental": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 54.0
+    },
+    "expense.medical.medicine": {
+      "precision": 1.0,
+      "recall": 0.8727272727272727,
+      "f1-score": 0.9320388349514563,
+      "support": 55.0
+    },
+    "expense.medical.rehab": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 52.0
+    },
+    "expense.other.general": {
+      "precision": 0.9629629629629629,
+      "recall": 0.9811320754716981,
+      "f1-score": 0.9719626168224299,
+      "support": 53.0
+    },
+    "expense.pets.food": {
+      "precision": 0.5869565217391305,
+      "recall": 1.0,
+      "f1-score": 0.7397260273972602,
+      "support": 54.0
+    },
+    "expense.pets.grooming": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 28.0
+    },
+    "expense.pets.medical": {
+      "precision": 0.5,
+      "recall": 0.25,
+      "f1-score": 0.3333333333333333,
+      "support": 28.0
+    },
+    "expense.pets.service": {
+      "precision": 0.9333333333333333,
+      "recall": 1.0,
+      "f1-score": 0.9655172413793104,
+      "support": 28.0
+    },
+    "expense.pets.supplies": {
+      "precision": 1.0,
+      "recall": 0.1111111111111111,
+      "f1-score": 0.2,
+      "support": 54.0
+    },
+    "expense.shopping.appliance": {
+      "precision": 1.0,
+      "recall": 0.03636363636363636,
+      "f1-score": 0.07017543859649122,
+      "support": 55.0
+    },
+    "expense.shopping.beauty": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 54.0
+    },
+    "expense.shopping.clothing": {
+      "precision": 0.30952380952380953,
+      "recall": 0.9285714285714286,
+      "f1-score": 0.4642857142857143,
+      "support": 56.0
+    },
+    "expense.shopping.gift": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 54.0
+    },
+    "expense.shopping.home": {
+      "precision": 0.9333333333333333,
+      "recall": 0.7777777777777778,
+      "f1-score": 0.8484848484848485,
+      "support": 54.0
+    },
+    "expense.shopping.other": {
+      "precision": 1.0,
+      "recall": 0.037037037037037035,
+      "f1-score": 0.07142857142857142,
+      "support": 54.0
+    },
+    "expense.social.donation": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 52.0
+    },
+    "expense.social.gathering": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 28.0
+    },
+    "expense.social.gift": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 54.0
+    },
+    "expense.social.red.packet": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 54.0
+    },
+    "expense.social.relationship": {
+      "precision": 0.8666666666666667,
+      "recall": 0.24074074074074073,
+      "f1-score": 0.37681159420289856,
+      "support": 54.0
+    },
+    "expense.sports.equipment": {
+      "precision": 0.7205882352941176,
+      "recall": 0.9074074074074074,
+      "f1-score": 0.8032786885245902,
+      "support": 54.0
+    },
+    "expense.sports.event": {
+      "precision": 0.782608695652174,
+      "recall": 1.0,
+      "f1-score": 0.8780487804878049,
+      "support": 54.0
+    },
+    "expense.sports.fitness": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 54.0
+    },
+    "expense.sports.outdoor": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 54.0
+    },
+    "expense.sports.venue": {
+      "precision": 0.9534883720930233,
+      "recall": 0.7735849056603774,
+      "f1-score": 0.8541666666666666,
+      "support": 53.0
+    },
+    "expense.transport.flight": {
+      "precision": 1.0,
+      "recall": 0.7222222222222222,
+      "f1-score": 0.8387096774193549,
+      "support": 54.0
+    },
+    "expense.transport.fuel": {
+      "precision": 1.0,
+      "recall": 0.4827586206896552,
+      "f1-score": 0.6511627906976745,
+      "support": 29.0
+    },
+    "expense.transport.maintenance": {
+      "precision": 0.6883116883116883,
+      "recall": 1.0,
+      "f1-score": 0.8153846153846154,
+      "support": 53.0
+    },
+    "expense.transport.parking": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 27.0
+    },
+    "expense.transport.public": {
+      "precision": 1.0,
+      "recall": 0.16,
+      "f1-score": 0.27586206896551724,
+      "support": 50.0
+    },
+    "expense.transport.rail": {
+      "precision": 1.0,
+      "recall": 0.9444444444444444,
+      "f1-score": 0.9714285714285714,
+      "support": 54.0
+    },
+    "expense.transport.taxi": {
+      "precision": 0.5466666666666666,
+      "recall": 0.82,
+      "f1-score": 0.656,
+      "support": 50.0
+    },
+    "income.investment.dividend": {
+      "precision": 0.7368421052631579,
+      "recall": 1.0,
+      "f1-score": 0.8484848484848485,
+      "support": 28.0
+    },
+    "income.investment.fund": {
+      "precision": 1.0,
+      "recall": 0.6153846153846154,
+      "f1-score": 0.7619047619047619,
+      "support": 26.0
+    },
+    "income.investment.interest": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 52.0
+    },
+    "income.investment.other": {
+      "precision": 0.7777777777777778,
+      "recall": 0.25925925925925924,
+      "f1-score": 0.3888888888888889,
+      "support": 27.0
+    },
+    "income.investment.rent": {
+      "precision": 0.8387096774193549,
+      "recall": 1.0,
+      "f1-score": 0.9122807017543859,
+      "support": 52.0
+    },
+    "income.other.compensation": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 52.0
+    },
+    "income.other.general": {
+      "precision": 1.0,
+      "recall": 0.8269230769230769,
+      "f1-score": 0.9052631578947369,
+      "support": 52.0
+    },
+    "income.other.red.packet": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 27.0
+    },
+    "income.other.reward": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 52.0
+    },
+    "income.other.secondhand": {
+      "precision": 1.0,
+      "recall": 0.9629629629629629,
+      "f1-score": 0.9811320754716981,
+      "support": 81.0
+    },
+    "income.parttime.consulting": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 28.0
+    },
+    "income.parttime.freelance": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 52.0
+    },
+    "income.parttime.platform": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 52.0
+    },
+    "income.parttime.project": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 26.0
+    },
+    "income.refund.deposit": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 27.0
+    },
+    "income.refund.service": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 27.0
+    },
+    "income.refund.shopping": {
+      "precision": 0.9818181818181818,
+      "recall": 1.0,
+      "f1-score": 0.9908256880733946,
+      "support": 54.0
+    },
+    "income.refund.tax": {
+      "precision": 1.0,
+      "recall": 0.9629629629629629,
+      "f1-score": 0.9811320754716981,
+      "support": 27.0
+    },
+    "income.reimbursement.medical": {
+      "precision": 0.9454545454545454,
+      "recall": 1.0,
+      "f1-score": 0.9719626168224299,
+      "support": 52.0
+    },
+    "income.reimbursement.other": {
+      "precision": 0.8461538461538461,
+      "recall": 0.8627450980392157,
+      "f1-score": 0.8543689320388349,
+      "support": 51.0
+    },
+    "income.reimbursement.travel": {
+      "precision": 0.9629629629629629,
+      "recall": 1.0,
+      "f1-score": 0.9811320754716981,
+      "support": 52.0
+    },
+    "income.reimbursement.work": {
+      "precision": 0.9629629629629629,
+      "recall": 1.0,
+      "f1-score": 0.9811320754716981,
+      "support": 52.0
+    },
+    "income.salary.allowance": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 27.0
+    },
+    "income.salary.bonus": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 28.0
+    },
+    "income.salary.monthly": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 53.0
+    },
+    "income.salary.overtime": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 52.0
+    },
+    "accuracy": 0.8323675496688742,
+    "macro avg": {
+      "precision": 0.8781457176487643,
+      "recall": 0.8414940367094075,
+      "f1-score": 0.8275563817313338,
+      "support": 4832.0
+    },
+    "weighted avg": {
+      "precision": 0.8719045753534596,
+      "recall": 0.8323675496688742,
+      "f1-score": 0.8175899830239444,
+      "support": 4832.0
+    }
+  },
+  "macroAccuracy": 0.8414940367094075,
+  "dataSha256": {
+    "ngram_train_v2.jsonl": "74fb53c23ece0d3f7d75d4f37aa3508f1799fb84e93fc3364df5b7e8c26d3e10",
+    "ngram_dev_v2.jsonl": "064f692db4f304bc00b669abeea657aab1b66620793a9f611222722636d25249"
+  }
+}

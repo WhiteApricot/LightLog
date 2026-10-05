@@ -5,9 +5,10 @@ const recognitionKnowledgePaths = [
   'assets/knowledge/category_lexicon.json',
   'assets/knowledge/lexical_families.json',
   'assets/knowledge/composition_rules.json',
+  'assets/knowledge/ngram.bin',
 ];
 
-/// Stable FNV-1a fingerprint of all four ordered production knowledge assets.
+/// Stable FNV-1a fingerprint of ordered production knowledge/model assets.
 String knowledgeHash({List<String> paths = recognitionKnowledgePaths}) {
   var hash = 0x811c9dc5;
   for (final path in paths) {

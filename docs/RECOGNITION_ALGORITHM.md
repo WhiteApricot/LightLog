@@ -1,6 +1,6 @@
 # 本地语义识别算法
 
-本文描述最终生产结构。隐私、Candidate 与确认边界见 [RECOGNITION.md](RECOGNITION.md)，数据字段见 [DATABASE.md](DATABASE.md)。
+本文描述生产结构。当前 n-gram 实现与评测见文末“Character n-gram 弱 fallback”，此前未实现状态、旧 taxonomy 分数与冻结记录保留为历史。隐私、Candidate 与确认边界见 [RECOGNITION.md](RECOGNITION.md)，数据字段见 [DATABASE.md](DATABASE.md)。
 
 ## 唯一生产入口
 
@@ -115,3 +115,29 @@ Phase 3 classification **未达到 freeze 条件**。v5 < 80%，结论为 **dete
 Generator 强制 secondLevelTaxonomyCount=104，所有知识输出必须引用合法二级语义，obsoleteRuntimeSemanticReferenceCount=0。逐项审核记录在 tools/knowledge/review/v01_taxonomy_migration.json（相对仓库根）；旧 semantic 仅作为历史审核来源，不参与 runtime generation。移除 36 条不稳定词条语义、4 个无输出的 contextual family 和 5 条无明确用途规则。
 
 本文此前的 corpus 分数、freeze hash 和 blind 记录属于旧 taxonomy 历史结果，不是迁移后验收。本轮仅运行生成、格式化、分析、单元测试和 diff 检查，未读取或运行任何 holdout。
+
+## Character n-gram 弱 fallback（2026-10-05）
+
+本节取代此前“尚未实现 n-gram”的状态。唯一 LocalRecognizer 在确定性 Fusion 后有条件请求 NgramClassifier，EvidenceFusion.withWeakEvidence 决定是否采用；App Provider 从 AssetBundle 注入 NgramModel，CLI/evaluation 注入相同资产。Domain 仅依赖 Dart 标准库，无训练环境、native ML runtime、tokenizer、embedding、ONNX、Transformer 或网络。
+
+train=38,539、dev=4,832、104类，splitGroup 不交叉。八组 Logistic Regression（multinomial SAGA、seed=17）比较2–3/2–4 gram、8192/16384特征、C=0.5/2.0，以量化后的dev macro F1选型。最终2–3 gram、16384显式vocabulary特征、binary sparse presence、C=2.0；4-gram未胜出。每类scale的int8 feature-major权重，softmax输出semanticKey scores；资产1,882,814 bytes（1.796 MiB），小于2MiB。配置、每类precision/recall/F1/support和hash见 [training report](../tools/ngram/training_report.json)。
+
+训练与生产直接使用原始全文，共享ascii-cjk-space-v1规则：最多前2048 Unicode codepoints；全角ASCII转半角，ASCII A–Z转小写；保留a–z及U+3400–U+9FFF，其余变空格，合并空格并trim；不调用content/字段/时间解析。连续字符窗口，重复feature只计一次；模块支持2–4，最终资产选择2–3。无有效feature时scores全零且拒识，不能用bias猜类。全部4832条dev核对离线/Dart top-1 label/probability，容差1e-10；额外测试全部类别概率、空/数字/全角/emoji输入。
+
+量化dev accuracy=83.2368%，macro recall/accuracy=84.1494%，macro F1=82.7556%。dev比较threshold=0.45/0.60/0.75/0.85，top-1/top-2 margin固定≥0.15，在accepted accuracy≥95%下选择最大覆盖，最终threshold=0.60（coverage=56.95%，accepted accuracy约97.46%）。模型概率不等于自动确认confidence。
+
+只在无semantic，或deterministic confidence<0.70且winning evidence无priority≥80的specific/history/composition时请求弱证据。即使强证据margin小也保持确定性结果；该保守策略不解决所有ambiguity。推理还要求合法金额、普通success/unknown、非多交易、非退款。采用的模型类别必须匹配已确定type且不能是refund semantic。TypeInference始终读取原deterministic fusion，ngram不改变type/amount/content/time/status。弱evidence ceiling=0.69，保留ambiguity及全部危险门禁；取得新分类证据时仅替代categoryLowConfidence。模型单独永远不能confident/自动确认。
+
+[freeze](../tools/ngram/freeze.json) 在本轮历史corpus评测前记录模型、配置及生产源码hash；之后未训练、调参或增加规则。唯一冻结后修复是评测工具对退役history的过滤并显式记录：原190的H003 takeout已不属于当前合法语义，处理与Repository一致。历史corpus oracle原样保留，没有重标任何失败case。before是当前104类pipeline仅关闭ngram；不能与旧taxonomy历史分数直接比较。
+
+| Corpus | Category before → after | Type before → after | category=null before → after | High-confidence wrong | P2 safe |
+|---|---:|---:|---:|---:|---:|
+| 原190 | 94.21% → 94.21% | 100% → 100% | 12 → 12 | 0 | 100% |
+| v2 | 89.47% → 89.47% | 100% → 100% | 19 → 19 | 0 | 100% |
+| v3 | 84.00% → 84.00% | 98% → 98% | 5 → 5 | 0 | 100% |
+| v4 | 62.67% → 64.33% | 97.33% → 97.33% | 55 → 49 | 0 | 100% |
+| v5 | 67.75% → 69.00% | 96.50% → 96.50% | 54 → 48 | 0 | 100% |
+
+本机Dart VM warm dev ngram p50/p95/p99=0.019/0.032/0.044ms，完整LocalRecognizer=0.521/1.119/1.390ms；既有10000次warm benchmark p95=0.517ms。完整指标与逐类/分组结果见 [summary](../tools/ngram/evaluation_summary.json)、[runtime report](../tools/ngram/runtime_report.json) 和regression目录。以上为host CPU，不宣称Android/API26实机性能。
+
+模块已冻结，分类收益有限，整个Phase3泛化收口尚未达到历史阈值；不继续调历史holdout。完整正餐时间优先级、无语义other.general fallback、OCR和新未见corpus仍是独立任务。复现命令、数据归档、依赖与资产格式见 [训练工具](../tools/ngram/README.md)。

@@ -8,6 +8,8 @@ import '../features/recognition/application/recognition_coordinator.dart';
 import '../features/recognition/data/knowledge_loader.dart';
 import '../features/recognition/data/recognition_repository.dart';
 import '../features/recognition/domain/recognizer.dart';
+import '../features/recognition/domain/ngram_classifier.dart';
+import '../features/recognition/domain/ngram_model.dart';
 
 final databaseProvider = Provider<AppDatabase>((ref) {
   final database = AppDatabase();
@@ -25,7 +27,15 @@ final recognitionRepositoryProvider = Provider<RecognitionRepository>((ref) {
 
 final localRecognizerProvider = FutureProvider<LocalRecognizer>((ref) async {
   final knowledge = await KnowledgeLoader(rootBundle).load();
-  return LocalRecognizer(knowledge: knowledge);
+  final bytes = await rootBundle.load('assets/knowledge/ngram.bin');
+  return LocalRecognizer(
+    knowledge: knowledge,
+    ngram: NgramClassifier(
+      NgramModel.decode(
+        bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes),
+      ),
+    ),
+  );
 });
 
 final recognitionCoordinatorProvider = FutureProvider<RecognitionCoordinator>((
