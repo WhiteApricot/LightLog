@@ -15,6 +15,7 @@ Raw text / OCR text
 → transaction status + natural-time spans
 → protected numeric spans + AmountCandidate scoring
 → entity / lexicon matches + content span
+→ lexical family matches + span conflict resolution + composition rules
 → independent TypeEvidence / TypeInference
 → Personal History + Entity + Lexicon + Context evidence
 → specificity-aware Evidence Fusion + confidence gating
@@ -169,3 +170,38 @@ content 77.37%、high-confidence wrong 0；confirmation 分布为 confident 20 /
 剩余失败主要集中在 OCR/content span（42）、category/fusion 与 taxonomy oracle（34）、status 期望差异
 （16）、safe-rejection issue code 差异（12）和 type inference（5）。OCR 商户/商品字段结构化与 content
 ranking 仍按 Phase 4 路线处理，不为本轮 corpus 单独改写 Phase 3 content extractor。
+
+## Lexical family 与 compositional holdout v3
+
+Semantic Lexicon 仍直接产生 category evidence，现有 7486 个 positive term 未重建或拆解。
+新增 lexical family 是独立 concept 类型，不与 `RecognitionEvidence.family` 的 evidence 去相关职责混用。
+当前运行时资产包含 65 个 family、246 个 term 和 55 条 rule，覆盖组合失败需要的对象、动作、
+修饰和场景概念。
+
+```text
+EntityMatcher / LexiconMatcher / LexicalFamilyMatcher
+→ SpanConflictResolver
+→ CompositionalMatcher
+→ EvidenceFusion
+```
+
+`SpanConflictResolver` 抑制被更长、更具体且不更弱的 span 完整包含的短词，family span 也可阻断
+“电动车”内部“动车”这类 substring 误命中，不影响独立多词证据。`CompositionalMatcher` 只组合
+当前输入已命中的 family span，遵守 `maxDistance`，不重扫全词库；输出带 span 和规则说明的
+普通 `RecognitionEvidence`。生成器校验 family/rule id、空 term、taxonomy 引用、重复/冲突 rule、
+距离/分数范围，并报告高风险超短 term。
+
+冻结生产代码、知识、生成器、unit tests、原 regression 和 benchmark 后，首次 200-case holdout
+报告 `phase3_compositional_holdout_v3_initial.json` 为 overall/category 65.0%、P0 76.0%、P1 63.53%、
+P2 60.0%、high-confidence wrong 0、warning 199 / blocked 1，evaluation p95 0.768 ms。
+
+仅扩展可泛化的组合概念后，`phase3_compositional_holdout_v3_final.json` 为 overall 98.0%、category
+98.5%、P0 100%、P1 97.65%、P2 100%、high-confidence wrong 0；group category 为 action_object 100%、
+close_category 100%、containment 92%、income_boundary 100%、long_tail_mixed 96%、modifier_context 100%、
+platform_specific 100%；warning 199 / blocked 1，evaluation p95 0.954 ms。剩余 4 例为 2 个 containment
+边界、1 个 refund type oracle 差异和 1 个社交礼金 taxonomy 边界。
+
+最终原 190-case regression 为 P0 40/41、P1 117/134、P2 safe rejection 100%、category 96.31%、
+high-confidence wrong 0。两个新差异是 holdout 与原 corpus 对同一表达给出相反 taxonomy oracle 的
+“儿童医院”和“给爸妈生活费”。warm 10,000-parse benchmark p95 0.786 ms，低于 5 ms。已达 Phase 3
+停止条件，不继续堆规则，不引入 n-gram。

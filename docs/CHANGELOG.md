@@ -31,6 +31,9 @@
 - Added the restored 190-case regression corpus plus immutable initial and final usability reports and failure summaries.
 - Added deterministic candidate-lexicon preparation/merge tooling, per-term review reports, and 5072 selectively reviewed positive terms covering all 118 candidate semantic keys.
 - Added an immutable first-run and final report for the 190-case Phase 3 stress holdout, including per-group field metrics.
+- Added data-driven lexical families, proximity-aware composition rules, and explainable composition evidence without rebuilding the production semantic lexicon.
+- Added span conflict resolution for contained/overlapping knowledge matches, including misleading internal substrings such as rail terms inside vehicle words.
+- Added immutable initial and final reports for the 200-case Phase 3 compositional holdout; final category accuracy is 98.5% with zero high-confidence wrong predictions.
 
 ### Changed
 

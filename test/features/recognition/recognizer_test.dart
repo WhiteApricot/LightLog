@@ -111,6 +111,40 @@ void main() {
     expect(recognizeForTest('猫咪医院绝育 800').semanticKey, 'expense.pets.medical');
   });
 
+  test(
+    'data-driven composition prefers a nearby action over a bare object',
+    () {
+      expect(
+        recognizeForTest('空调加氟 200').semanticKey,
+        'expense.housing.repair',
+      );
+      expect(
+        recognizeForTest('相机清灰 150').semanticKey,
+        'expense.digital.repair',
+      );
+      expect(
+        recognizeForTest('羽绒服干洗 80').semanticKey,
+        'expense.daily.cleaning',
+      );
+      expect(recognizeForTest('鞋子补底 35').semanticKey, 'expense.daily.service');
+      expect(recognizeForTest('孩子看病 100').semanticKey, 'expense.family.health');
+    },
+  );
+
+  test('longer containing lexicon span suppresses an internal substring', () {
+    final result = recognizeForTest('电动车 2999');
+
+    expect(result.semanticKey, isNot('expense.transport.rail'));
+    expect(
+      result.evidence.where(
+        (item) =>
+            item.semanticKey == 'expense.transport.rail' &&
+            item.matchedText == '动车',
+      ),
+      isEmpty,
+    );
+  });
+
   test('eye clinic language follows the oral and eye taxonomy boundary', () {
     expect(recognizeForTest('眼科门诊验光 70').semanticKey, 'expense.medical.dental');
   });

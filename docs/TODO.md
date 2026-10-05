@@ -61,6 +61,7 @@
 - [x] Preserve and rerun the complete 190-case corpus; final P0 is 97.56%, P1 is 88.06%, P2 safe rejection is 100%, and high-confidence wrong is 0
 - [x] Archive superseded Phase 3 plans/reports and remove the inactive n-gram/snapshot pipeline placeholders
 - [x] Selectively absorb 5072 reviewed positive terms from the candidate vocabulary pool, preserve zero unresolved owner conflicts, and validate both the original corpus and unseen stress holdout according to [the execution plan](PHASE3_LEXICON_ABSORPTION_PLAN.md)
+- [x] Add data-driven lexical families, span conflict resolution, and proximity-aware composition rules; compositional holdout v3 category accuracy is 98.5% with zero high-confidence wrong predictions
 - [ ] Resolve remaining non-blocking content-span families and taxonomy-oracle differences without weakening the zero/high-risk amount and refund safety policy
 
 ## Future - Category management

@@ -46,47 +46,7 @@ class LexiconMatcher {
         ),
       );
     }
-    result.addAll(_modifierEvidence(compact.value));
     return List.unmodifiable(result);
-  }
-
-  static List<RecognitionEvidence> _modifierEvidence(String text) {
-    final rules = <({RegExp modifier, RegExp expression, String semantic})>[
-      (
-        modifier: RegExp(r'宠物|猫|狗'),
-        expression: RegExp(r'美容|洗护|洗澡|剪毛|修毛'),
-        semantic: 'expense.pets.grooming',
-      ),
-      (
-        modifier: RegExp(r'宠物|猫|狗'),
-        expression: RegExp(r'寄养|托管|遛狗'),
-        semantic: 'expense.pets.service',
-      ),
-      (
-        modifier: RegExp(r'宠物|猫|狗'),
-        expression: RegExp(r'医院|门诊|看病|绝育|手术|疫苗|驱虫'),
-        semantic: 'expense.pets.medical',
-      ),
-      (
-        modifier: RegExp(r'汽车|车辆|轿车|爱车|车子'),
-        expression: RegExp(r'洗车|维修|保养|换机油|补胎'),
-        semantic: 'expense.transport.maintenance',
-      ),
-    ];
-    return [
-      for (final rule in rules)
-        if (rule.modifier.hasMatch(text) && rule.expression.hasMatch(text))
-          RecognitionEvidence(
-            field: 'category',
-            source: RecognitionEvidenceSource.context,
-            semanticKey: rule.semantic,
-            description: '修饰对象与行为组合语义',
-            score: 0.93,
-            role: EvidenceRole.action,
-            specificity: EvidenceSpecificity.specific,
-            family: 'modifierAction:${rule.semantic}',
-          ),
-    ];
   }
 }
 

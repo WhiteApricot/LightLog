@@ -13,6 +13,7 @@ enum RecognitionEvidenceSource {
   personalHistory,
   entityKnowledge,
   categoryLexicon,
+  composition,
   context,
 }
 

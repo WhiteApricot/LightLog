@@ -54,6 +54,43 @@ class LexiconKnowledge {
   final EvidenceSpecificity specificity;
 }
 
+class LexicalFamilyKnowledge {
+  const LexicalFamilyKnowledge({required this.id, required this.terms});
+
+  final String id;
+  final List<String> terms;
+}
+
+class CompositionRuleKnowledge {
+  const CompositionRuleKnowledge({
+    required this.id,
+    required this.leftFamily,
+    required this.rightFamily,
+    required this.semanticKey,
+    required this.maxDistance,
+    required this.score,
+  });
+
+  final String id;
+  final String leftFamily;
+  final String rightFamily;
+  final String semanticKey;
+  final int maxDistance;
+  final double score;
+}
+
+class LexicalFamilyMatch {
+  const LexicalFamilyMatch({
+    required this.conceptFamily,
+    required this.term,
+    required this.range,
+  });
+
+  final String conceptFamily;
+  final String term;
+  final TextSpanRange range;
+}
+
 class EntityAlias {
   const EntityAlias({
     required this.displayAlias,
@@ -72,6 +109,8 @@ class KnowledgeCatalog {
   factory KnowledgeCatalog({
     required List<EntityKnowledge> entities,
     required List<LexiconKnowledge> lexicon,
+    List<LexicalFamilyKnowledge> lexicalFamilies = const [],
+    List<CompositionRuleKnowledge> compositionRules = const [],
   }) {
     final aliases = <EntityAlias>[
       for (final entity in entities)
@@ -90,6 +129,8 @@ class KnowledgeCatalog {
       entities: List.unmodifiable(entities),
       aliases: List.unmodifiable(aliases),
       lexicon: List.unmodifiable(lexicon),
+      lexicalFamilies: List.unmodifiable(lexicalFamilies),
+      compositionRules: List.unmodifiable(compositionRules),
       aliasesByFirstCharacter: _indexAliases(aliases),
       lexiconByFirstCharacter: _indexLexicon(lexicon),
     );
@@ -99,6 +140,8 @@ class KnowledgeCatalog {
     required this.entities,
     required this.aliases,
     required this.lexicon,
+    required this.lexicalFamilies,
+    required this.compositionRules,
     required this.aliasesByFirstCharacter,
     required this.lexiconByFirstCharacter,
   });
@@ -109,6 +152,8 @@ class KnowledgeCatalog {
   final List<EntityKnowledge> entities;
   final List<EntityAlias> aliases;
   final List<LexiconKnowledge> lexicon;
+  final List<LexicalFamilyKnowledge> lexicalFamilies;
+  final List<CompositionRuleKnowledge> compositionRules;
   final Map<String, List<EntityAlias>> aliasesByFirstCharacter;
   final Map<String, List<LexiconKnowledge>> lexiconByFirstCharacter;
 

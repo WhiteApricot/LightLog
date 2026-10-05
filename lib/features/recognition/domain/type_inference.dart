@@ -4,7 +4,7 @@ class TypeInference {
   const TypeInference();
 
   static final _income = RegExp(
-    r'工资|薪资|奖金|津贴|绩效|报销|稿费|劳务|兼职|红包收入|收到红包|二手出售|卖旧|利息到账|分红|租金收入|返现|赔偿|收款(?!方)|到账|收入',
+    r'工资|薪资|奖金|津贴|补贴|绩效|报销|稿费|劳务|兼职|私单|接单收入|讲课费|红包收入|收到红包|二手出售|卖旧|卖二手|存款利息|利息到账|分红|租金收入|返现|赔偿|押金退回|收款(?!方)|到账|收入',
   );
   static final _expense = RegExp(
     r'实付|支付|付款|消费|花了|购买|买了|缴费|充值|打车|吃了|订阅|维修|房租|水费|电费|燃气费',
@@ -60,6 +60,32 @@ class TypeInference {
     }
     final income = _income.hasMatch(matchingText);
     final expense = _expense.hasMatch(matchingText);
+    if (RegExp(r'给(?:家里|家人|爸妈|父母).{0,4}补贴').hasMatch(matchingText)) {
+      return const TypeDecision(
+        type: RecognitionTransactionType.expense,
+        confidence: 0.94,
+        evidence: [
+          RecognitionEvidence(
+            field: 'type',
+            description: '给家人补贴表示支出',
+            score: 0.94,
+          ),
+        ],
+      );
+    }
+    if (income && expense && RegExp(r'到账|收入|退回').hasMatch(matchingText)) {
+      return const TypeDecision(
+        type: RecognitionTransactionType.income,
+        confidence: 0.94,
+        evidence: [
+          RecognitionEvidence(
+            field: 'type',
+            description: '明确入账动作优先于内容中的支出名词',
+            score: 0.94,
+          ),
+        ],
+      );
+    }
     if (income && expense) {
       return const TypeDecision(
         type: null,

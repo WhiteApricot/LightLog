@@ -146,6 +146,7 @@ class EvidenceFusion {
     if (evidence.source == RecognitionEvidenceSource.personalHistory) {
       return 100;
     }
+    if (evidence.source == RecognitionEvidenceSource.composition) return 96;
     if (evidence.role == EvidenceRole.platform) return 25;
     final specific = evidence.specificity == EvidenceSpecificity.specific;
     if (specific &&

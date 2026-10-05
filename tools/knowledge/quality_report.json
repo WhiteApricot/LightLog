@@ -4,6 +4,15 @@
   "lexiconEntryCount": 267,
   "positiveTermCount": 7486,
   "negativeTermCount": 355,
+  "lexicalFamilyCount": 65,
+  "lexicalFamilyTermCount": 246,
+  "compositionRuleCount": 55,
+  "shortHighRiskFamilyTerms": [
+    "action.cleaning:洗",
+    "action.repair:修",
+    "object.pet:狗",
+    "object.pet:猫"
+  ],
   "sceneSemanticCoverage": 1.0,
   "requiredSceneSemanticCount": 63,
   "entityKindDistribution": {
@@ -1065,5 +1074,5 @@
   "lexiconAuditRequested": 100,
   "lexiconAuditMatched": 100,
   "lexiconAuditMissing": [],
-  "runtimeAssetBytes": 281148
+  "runtimeAssetBytes": 294741
 }

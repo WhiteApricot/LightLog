@@ -1,0 +1,408 @@
+{
+  "corpus": "LightLog Phase 3 Compositional Semantics Holdout Corpus",
+  "corpusVersion": 3,
+  "recognizerVersion": 2,
+  "knowledgeHash": "76763988",
+  "evaluatedAt": "2026-10-05T05:58:38.110224Z",
+  "totalCases": 200,
+  "priority": {
+    "P0": {
+      "total": 25,
+      "correct": 25,
+      "accuracy": 1.0
+    },
+    "P1": {
+      "total": 170,
+      "correct": 166,
+      "accuracy": 0.9764705882352941
+    },
+    "P2": {
+      "total": 5,
+      "correct": 5,
+      "accuracy": 1.0
+    }
+  },
+  "p2SafeRejectionRate": 1.0,
+  "amountAccuracy": 1.0,
+  "typeAccuracy": 0.995,
+  "categoryAccuracy": 0.985,
+  "timeAccuracy": 1.0,
+  "contentAccuracy": 1.0,
+  "contentSpanAccuracy": 1.0,
+  "displayFormattingMismatchCount": 0,
+  "contentSpanErrorCount": 0,
+  "completeAccuracy": 0.98,
+  "highConfidenceWrongPredictionCount": 0,
+  "confirmationLevelDistribution": {
+    "warning": 199,
+    "blocked": 1
+  },
+  "confidenceBuckets": {
+    "lt_0_5": {
+      "count": 186,
+      "accuracy": 0.978494623655914,
+      "coverage": 0.93
+    },
+    "0_5_to_0_65": {
+      "count": 4,
+      "accuracy": 1.0,
+      "coverage": 0.02
+    },
+    "0_65_to_0_8": {
+      "count": 10,
+      "accuracy": 1.0,
+      "coverage": 0.05
+    },
+    "gte_0_8": {
+      "count": 0,
+      "accuracy": 0.0,
+      "coverage": 0.0
+    }
+  },
+  "latencyMicroseconds": {
+    "average": 610.76,
+    "p50": 556,
+    "p95": 954,
+    "p99": 1077,
+    "max": 1729
+  },
+  "failureReasonCounts": {
+    "status": 3,
+    "category_or_fusion": 3,
+    "type_inference": 1
+  },
+  "groupMetrics": {
+    "action_object": {
+      "count": 45,
+      "overallAccuracy": 1.0,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "close_category": {
+      "count": 20,
+      "overallAccuracy": 1.0,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "containment": {
+      "count": 25,
+      "overallAccuracy": 0.92,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 0.92,
+      "timeAccuracy": 1.0
+    },
+    "income_boundary": {
+      "count": 25,
+      "overallAccuracy": 0.96,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 0.96,
+      "categoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "long_tail_mixed": {
+      "count": 25,
+      "overallAccuracy": 1.0,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    },
+    "modifier_context": {
+      "count": 35,
+      "overallAccuracy": 0.9714285714285714,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 0.9714285714285714,
+      "timeAccuracy": 1.0
+    },
+    "platform_specific": {
+      "count": 25,
+      "overallAccuracy": 1.0,
+      "amountAccuracy": 1.0,
+      "typeAccuracy": 1.0,
+      "categoryAccuracy": 1.0,
+      "timeAccuracy": 1.0
+    }
+  },
+  "failures": [
+    {
+      "id": "C073",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "朋友生日送礼 300",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "partial",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": false,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 30000,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-gift",
+        "occurredAtLocal": null,
+        "issues": []
+      },
+      "actual": {
+        "type": "expense",
+        "amountMinor": 30000,
+        "content": "朋友生日送礼",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": "2026-10-05T13:20:00.000",
+        "confidence": 0.0,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": false,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.88,
+          "category": 0.0,
+          "time": 0.82,
+          "content": 0.72
+        },
+        "issues": [
+          "category_low_confidence"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "300",
+            "amountMinor": 30000,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "status",
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "C088",
+      "priority": "P1",
+      "group": "containment",
+      "input": "小米杂粮 25",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "partial",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": false,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-groceries",
+        "occurredAtLocal": null,
+        "issues": []
+      },
+      "actual": {
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": "小米杂粮",
+        "categoryId": null,
+        "subcategoryId": null,
+        "occurredAtLocal": "2026-10-05T13:20:00.000",
+        "confidence": 0.0,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": false,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.88,
+          "category": 0.0,
+          "time": 0.82,
+          "content": 0.72
+        },
+        "issues": [
+          "category_low_confidence"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "25",
+            "amountMinor": 2500,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "status",
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "C092",
+      "priority": "P1",
+      "group": "containment",
+      "input": "猫眼滴眼液 28",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "complete",
+      "confirmationLevel": "warning",
+      "canQuickConfirm": true,
+      "amountCorrect": true,
+      "typeCorrect": true,
+      "categoryCorrect": false,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2800,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-medicine",
+        "occurredAtLocal": null,
+        "issues": []
+      },
+      "actual": {
+        "type": "expense",
+        "amountMinor": 2800,
+        "content": "猫眼滴眼液",
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-movie",
+        "occurredAtLocal": "2026-10-05T13:20:00.000",
+        "confidence": 0.4444444444444444,
+        "confirmationLevel": "warning",
+        "canQuickConfirm": true,
+        "fieldConfidence": {
+          "amount": 0.4444444444444444,
+          "type": 0.88,
+          "category": 0.79,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [],
+        "amountCandidates": [
+          {
+            "raw": "28",
+            "amountMinor": 2800,
+            "score": 60.0,
+            "role": "amount",
+            "reason": "独立数字",
+            "features": [
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "category_or_fusion"
+      ],
+      "highConfidenceWrong": false
+    },
+    {
+      "id": "C151",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "购物退款到账 99",
+      "correct": false,
+      "safe": true,
+      "expectedStatus": "complete",
+      "actualStatus": "rejected",
+      "confirmationLevel": "blocked",
+      "canQuickConfirm": false,
+      "amountCorrect": true,
+      "typeCorrect": false,
+      "categoryCorrect": true,
+      "timeCorrect": true,
+      "contentCorrect": true,
+      "contentSpanCorrect": true,
+      "displayFormattingMismatch": false,
+      "contentSpanError": false,
+      "issuesCorrect": true,
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 9900,
+        "content": null,
+        "categoryId": "income-refund",
+        "subcategoryId": "income-refund-shopping",
+        "occurredAtLocal": null,
+        "issues": []
+      },
+      "actual": {
+        "type": "refund",
+        "amountMinor": 9900,
+        "content": "购物",
+        "categoryId": "income-refund",
+        "subcategoryId": "income-refund-shopping",
+        "occurredAtLocal": "2026-10-05T13:20:00.000",
+        "confidence": 0.49,
+        "confirmationLevel": "blocked",
+        "canQuickConfirm": false,
+        "fieldConfidence": {
+          "amount": 0.7777777777777778,
+          "type": 0.99,
+          "category": 0.965,
+          "time": 0.82,
+          "content": 0.9
+        },
+        "issues": [
+          "related_transaction_required"
+        ],
+        "amountCandidates": [
+          {
+            "raw": "99",
+            "amountMinor": 9900,
+            "score": 105.0,
+            "role": "amount",
+            "reason": "应付或收入字段",
+            "features": [
+              "mediumLabel",
+              "trailing"
+            ]
+          }
+        ]
+      },
+      "failureReasons": [
+        "status",
+        "type_inference"
+      ],
+      "highConfidenceWrong": false
+    }
+  ]
+}

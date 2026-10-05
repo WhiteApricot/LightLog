@@ -10,6 +10,10 @@ final testRecognizer = LocalRecognizer(
     entitiesJson: File('assets/knowledge/merchants.json').readAsStringSync(),
     lexiconJson: File('assets/knowledge/category_lexicon.json')
         .readAsStringSync(),
+    lexicalFamiliesJson: File('assets/knowledge/lexical_families.json')
+        .readAsStringSync(),
+    compositionRulesJson: File('assets/knowledge/composition_rules.json')
+        .readAsStringSync(),
   ),
 );
 

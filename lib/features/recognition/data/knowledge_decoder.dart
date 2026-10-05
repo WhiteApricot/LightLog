@@ -9,9 +9,13 @@ class KnowledgeDecoder {
   KnowledgeCatalog decode({
     required String entitiesJson,
     required String lexiconJson,
+    String lexicalFamiliesJson = '{"families":[]}',
+    String compositionRulesJson = '{"rules":[]}',
   }) {
     final entityRoot = jsonDecode(entitiesJson) as Map<String, Object?>;
     final lexiconRoot = jsonDecode(lexiconJson) as Map<String, Object?>;
+    final familyRoot = jsonDecode(lexicalFamiliesJson) as Map<String, Object?>;
+    final ruleRoot = jsonDecode(compositionRulesJson) as Map<String, Object?>;
     final entities = <EntityKnowledge>[];
     for (final raw in entityRoot['records']! as List<Object?>) {
       final item = (raw! as Map).cast<String, Object?>();
@@ -56,7 +60,36 @@ class KnowledgeDecoder {
         );
       }
     }
-    return KnowledgeCatalog(entities: entities, lexicon: lexicon);
+    final lexicalFamilies = <LexicalFamilyKnowledge>[];
+    for (final raw in familyRoot['families']! as List<Object?>) {
+      final item = (raw! as Map).cast<String, Object?>();
+      lexicalFamilies.add(
+        LexicalFamilyKnowledge(
+          id: item['id']! as String,
+          terms: (item['terms']! as List<Object?>).cast<String>(),
+        ),
+      );
+    }
+    final compositionRules = <CompositionRuleKnowledge>[];
+    for (final raw in ruleRoot['rules']! as List<Object?>) {
+      final item = (raw! as Map).cast<String, Object?>();
+      compositionRules.add(
+        CompositionRuleKnowledge(
+          id: item['id']! as String,
+          leftFamily: item['leftFamily']! as String,
+          rightFamily: item['rightFamily']! as String,
+          semanticKey: item['semanticKey']! as String,
+          maxDistance: item['maxDistance']! as int,
+          score: (item['score']! as num).toDouble(),
+        ),
+      );
+    }
+    return KnowledgeCatalog(
+      entities: entities,
+      lexicon: lexicon,
+      lexicalFamilies: lexicalFamilies,
+      compositionRules: compositionRules,
+    );
   }
 
   static EntityKind _entityKind(String? value) => switch (value) {
