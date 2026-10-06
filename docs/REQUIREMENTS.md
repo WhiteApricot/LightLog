@@ -35,41 +35,45 @@ UI 重点优化 `expense` 和 `income`，但数据模型必须能表达全部四
 `transfer` 必须记录转出和转入账户，不计入收入、支出或净收支统计。`refund` 应关联原账目，统计时按退款语义冲减原收入或支出，不机械视为普通收入或支出。时间持久化采用 UTC epoch milliseconds，并记录交易发生时的设备 UTC offset；历史账目的展示和编辑使用该 offset 还原发生时当地时间，编辑时保留原 offset，不使用当前设备时区重新解释。
 
 
-### V0.1 taxonomy contract（104 个二级语义）
+### V0.1 taxonomy contract（96 个二级语义）
 
-最终以已确认的逐项清单为准：78 个支出、26 个收入二级 semanticKey，共 104 类；21 个一级分类，共 125 个默认分类。下表中的一级前缀与二级后缀组成完整 semanticKey，是知识库和已实现字符分类模型的唯一标签体系。模型仅作完全本地、纯Dart的分级低置信语义证据；允许强统计父类校正弱默认方向；不得替代确定性强证据或绕过确认/退款等安全门禁。
+唯一最终 taxonomy 为 72 个支出、24 个收入二级 semanticKey；21 个一级分类，共 117 个活动默认分类。分类 seed 是关系事实来源，知识和模型 metadata 由其生成，不另维护标签体系。
 
 | 一级前缀 | 二级后缀 |
 | --- | --- |
-| `expense.food` | `breakfast`, `lunch`, `dinner`, `drink`, `snack`, `groceries`, `other` |
-| `expense.transport` | `public`, `taxi`, `rail`, `flight`, `fuel`, `parking`, `maintenance` |
-| `expense.shopping` | `clothing`, `beauty`, `home`, `appliance`, `gift`, `other` |
-| `expense.housing` | `rent`, `mortgage`, `property`, `utilities`, `gas`, `repair` |
-| `expense.daily` | `household`, `personal`, `cleaning`, `haircut`, `service` |
-| `expense.entertainment` | `movie`, `game`, `music`, `subscription`, `hobby` |
+| `expense.communication` | `internet`, `mobile`, `post` |
+| `expense.daily` | `cleaning`, `grooming`, `service` |
+| `expense.digital` | `accessory`, `computer`, `phone`, `photo`, `repair`, `software` |
 | `expense.education` | `book`, `course`, `exam`, `stationery`, `tuition` |
-| `expense.medical` | `clinic`, `medicine`, `dental`, `checkup`, `rehab` |
-| `expense.communication` | `mobile`, `internet`, `post`, `cloud` |
-| `expense.social` | `gathering`, `gift`, `donation`, `relationship` |
-| `expense.social.red` | `packet` |
-| `expense.sports` | `fitness`, `equipment`, `venue`, `outdoor`, `event` |
-| `expense.pets` | `food`, `medical`, `supplies`, `grooming`, `service` |
-| `expense.digital` | `phone`, `computer`, `photo`, `accessory`, `software`, `repair` |
-| `expense.finance` | `fee`, `interest`, `insurance`, `tax`, `loan`, `investment` |
+| `expense.entertainment` | `activity`, `game`, `media`, `performance` |
+| `expense.finance` | `fee`, `insurance`, `interest`, `investment`, `loan`, `tax` |
+| `expense.food` | `breakfast`, `dinner`, `drink`, `groceries`, `lunch`, `other`, `snack` |
+| `expense.housing` | `gas`, `mortgage`, `property`, `rent`, `repair`, `utilities` |
+| `expense.medical` | `checkup`, `clinic`, `dental`, `medicine`, `rehab` |
 | `expense.other` | `general` |
-| `income.salary` | `monthly`, `bonus`, `allowance`, `overtime` |
-| `income.reimbursement` | `work`, `travel`, `medical`, `other` |
-| `income.parttime` | `freelance`, `project`, `platform`, `consulting` |
-| `income.investment` | `interest`, `dividend`, `fund`, `rent`, `other` |
-| `income.refund` | `shopping`, `service`, `deposit`, `tax` |
-| `income.other.red` | `packet` |
-| `income.other` | `secondhand`, `reward`, `compensation`, `general` |
+| `expense.pets` | `food`, `grooming`, `medical`, `service`, `supplies` |
+| `expense.shopping` | `appliance`, `clothing`, `home`, `other`, `personal` |
+| `expense.social` | `donation`, `gathering`, `gift`, `red.packet` |
+| `expense.sports` | `equipment`, `event`, `fitness`, `outdoor`, `venue` |
+| `expense.transport` | `flight`, `fuel`, `maintenance`, `parking`, `public`, `rail`, `taxi` |
+| `income.investment` | `capital_gain`, `dividend`, `interest`, `other`, `rent` |
+| `income.other` | `compensation`, `general`, `red.packet`, `reward`, `secondhand` |
+| `income.parttime` | `platform`, `service` |
+| `income.refund` | `deposit`, `service`, `shopping`, `tax` |
+| `income.reimbursement` | `medical`, `other`, `travel`, `work` |
+| `income.salary` | `allowance`, `bonus`, `monthly`, `overtime` |
 
-支出按真实用途分类。“外卖”是渠道，删除 `expense.food.takeout`；删除全部 `expense.travel.*` 和 `expense.family.*`。旅行交通、保险、用品按实际用途迁移；酒店、民宿、青旅统一归入 `expense.housing.rent`；无法稳定拆分用途的旅行套餐、签证代办归入 `expense.other.general`。儿童、老人等是使用者上下文，医疗、教育、护理用品按实际用途分类，纯家庭生活补贴归入 `expense.other.general`。`income.reimbursement.travel` 保留。
+边界契约：明确送礼目的统一 social.gift，否则按物品用途；个人护理商品归 shopping.personal，人工理发/美甲/美容服务归 daily.grooming；普通家庭用品和清洁耗材归 shopping.home，固定住宅设施维修归 housing.repair，购买家电归 shopping.appliance。电影/现场演出归 entertainment.performance，游戏/DLC/点券归 game，数字影音内容及订阅归 media，其他娱乐体验归 activity。
 
-保留早餐、午餐、晚餐。明确正餐证据 + 明确文本时间 > 明确正餐证据 + occurredAtLocal 时间段 > 其他 food subtype，是食品用途分类的最高优先级原则；不能把外卖渠道整体静态映射到某一餐。该规则已在唯一LocalRecognizer中实现，时段、弱置信上限和证据边界见 [算法文档](RECOGNITION_ALGORITHM.md)。n-gram不能单独猜餐段，饮品、零食及食材本身不属于明确正餐证据。
+网络接入归 communication.internet；软件、网盘、云计算、服务器和开发工具归 digital.software。服装与鞋无论运动用途均归 shopping.clothing；球拍、头盔、球、登山杖、泳镜和健身器材归 sports.equipment。住宅贷款本金归 housing.mortgage，其他贷款本金归 finance.loan，所有明确利息归 finance.interest。学校学费归 education.tuition，单独课程/培训/辅导归 course。明确宠物对象优先使用 pets 食品/医疗/用品/洗护/寄养托运。
 
-有效金额、交易类型已识别且最终无合法semantic/活动分类映射的普通支出归入 `expense.other.general`，收入归入 `income.other.general`。该fallback已在deterministic与ngram均尝试之后实现，复用CategoryResolver；必须有可用的other.general活动分类，结果保持warning并要求复核。failed、cancelled、nontransaction、多笔交易、金额缺失、未关联退款及其他safety-blocked状态不得被fallback绕过，不得伪造缺失的分类映射。
+非平台劳务、自由职业、外包、稿费、讲课、项目及咨询收入统一 parttime.service，只有明确平台结算归 parttime.platform。基金/股票/证券价格变化产生的已实现收益归 investment.capital_gain，利息、股息、租金及其他明确投资收益分别归 interest/dividend/rent/other。红包名称固定 social.red.packet 与 income.other.red.packet。
+
+外卖只是渠道。先判断 prepared regular meal；显式饮品、零食、生鲜食材、家庭采购和夜宵/小吃不得按时刻改成正餐。只有正餐判定通过，文本餐段/时刻才优先于 occurredAtLocal；早餐 [05:00,10:00)，午餐 [10:00,17:00)，晚餐 [17:00,05:00)。PreparedMeal Head 在训练及运行时屏蔽餐段和时刻词，复用相同 vocabulary；单独食材名称不能等同明确采购意图，复合熟食内部的食材子串不能 veto 完整熟食。
+
+普通 lexicon/entity/family/composition/merchant/product/action/service 是 statistical semantic features/prior，不具有天然 veto。safety/status、退款、明确方向、可靠个人历史和明确正餐路由保持 hard lock。Direction Head 只修正默认/缺失/弱方向，不覆盖金额 +/-、明确支付/收款、退款及其他安全状态。模型结果始终要求确认，低置信 child 保留已接受 parent 内 top child 并 warning；只有 parent 无法接受或活动分类映射失败才使用 other.general，不能绕过统一安全门禁。
+
+旧旅行/家庭场景不恢复独立类别；按实际交通、住宿、医疗、教育等用途分类。已有分类合并以 schema v5 原子 remap 账目引用并 retire 旧系统类别；不删除账目。当前算法、冻结和验收见 [RECOGNITION_ALGORITHM.md](RECOGNITION_ALGORITHM.md)。
 
 ### 二级分类
 
@@ -209,3 +213,9 @@ recognitionRules
 - 投资资产管理
 - 多币种实时汇率
 - Windows、macOS、Web 正式客户端
+
+## Phase 3 最终验收门槛与状态
+
+Dev：Category≥88%、Parent≥92%、Type≥97%、false other≤3%、Meal≥90%、high-confidence wrong=0。独立v7：Category≥85%、Parent≥90%、Type≥97%、P2 safe=100%、high-confidence wrong=0、普通有效category=null=0、false other≤5%、Meal≥90%。工程：单统计资产≤4MiB、完整warm p95<5ms、analyze/test/diff通过。
+
+本轮完成96迁移、重训、Direction、F1/F2/F3、child/meal校准、freeze、六套regression和唯一v7 first-run，但v7分类/父类/类型/餐段未达标，且发现6个非P2退款关联拒答漏检，因此 **Phase 3 NOT CLOSED**。保留dev最优生产；不按曝光v7修规则或补训练。具体结果和下一阶段瓶颈见算法文档。

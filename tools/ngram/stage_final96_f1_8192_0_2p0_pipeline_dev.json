@@ -1,0 +1,36 @@
+{
+  "stage": "final96_f1_8192_0_2p0",
+  "devCount": 4832,
+  "categoryAccuracy": 0.8000827814569537,
+  "parentAccuracy": 0.8971440397350994,
+  "typeAccuracy": 0.9919288079470199,
+  "specificCategoryCoverage": 0.9515728476821192,
+  "specificCategoryAccuracy": 0.820139190952588,
+  "fallbackRate": 0.04842715231788075,
+  "falseFallbackRate": 0.02876655629139073,
+  "childConditionalAccuracy": 0.8918108419838524,
+  "acceptedCoverage": 0.9118377483443708,
+  "acceptedAccuracy": 0.8247843849296413,
+  "sameParentRerankAccuracy": null,
+  "crossParentStatisticalAccuracy": 0.8247843849296413,
+  "mealAccuracy": 0.6688741721854304,
+  "mealDetectionRecall": 0.6688741721854304,
+  "highConfidenceWrong": 0,
+  "ordinaryCategoryNull": 0,
+  "failureDecomposition": {
+    "otherFallbackError": 139,
+    "wrongParent": 497,
+    "correctParentWrongChild": 469,
+    "wrongType": 39,
+    "mealDetection": 50,
+    "taxonomyAmbiguity": "not adjudicated; labels unchanged",
+    "safety": "historical P2 suite separately"
+  },
+  "latencyMicroseconds": {
+    "p50": 579,
+    "p95": 1172,
+    "p99": 1511
+  },
+  "environment": "Windows host warm Dart VM; not Android API26",
+  "inputContract": "original text; fixed 37 suffix only when existing field extraction has no amount; semantic labels unchanged"
+}

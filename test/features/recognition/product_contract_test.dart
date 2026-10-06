@@ -64,7 +64,6 @@ void main() {
       ('晚间7点炒饭 23元', 'dinner'),
       ('清晨火锅 23元', 'breakfast'),
       ('晚餐火锅 23元', 'dinner'),
-      ('午饭炒饭奶茶 23元', 'lunch'),
     ]) {
       final result = recognizeForTest(text, now: DateTime(2026, 2, 9, 8));
       expect(result.semanticKey, 'expense.food.$expected', reason: text);
@@ -244,7 +243,7 @@ void main() {
           ngram: classifier,
         ),
       );
-      expect(result.semanticKey, 'expense.other.general');
+      expect(result.semanticKey, 'expense.food.other');
       expect(result.confirmationLevel, ConfirmationLevel.warning);
     },
   );

@@ -1,0 +1,13 @@
+{
+  "commit": "68cb3e5a3000282500f0011a3ccd8843f4d75907",
+  "productionSourceSha256": "67bfb5fae3d2c0b393a1b26b1d6e601f3d107f2747520b61232660d3006b795f",
+  "ngramSha256": "2f49641989d83c854dcd5d6bf42edb49fdd9e54b726d020cfc72272bc3a73cfb",
+  "datasetSha256": {
+    "ngram_dataset_review_report_v2.json": "34f9561a3bba6a33ae42784e44aa414ec4e83c7a335bf739c78c439d901f7aeb",
+    "ngram_dev_v2.jsonl": "064f692db4f304bc00b669abeea657aab1b66620793a9f611222722636d25249",
+    "ngram_training_corpus_v2.jsonl": "7b102aa2c519dc34f56cc18156d66f3a2351efb8a63b828e119683b48619e4c9",
+    "ngram_train_v2.jsonl": "74fb53c23ece0d3f7d75d4f37aa3508f1799fb84e93fc3364df5b7e8c26d3e10"
+  },
+  "stageBReport": "stage_b-audited_pipeline_dev.json",
+  "note": "Derived summary of immutable initial per-file hashes; original reports not overwritten."
+}

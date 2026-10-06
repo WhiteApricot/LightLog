@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+- 最终taxonomy调整为96子类（72支出/24收入）；schema v5原子合并默认类别，保留所有账目与历史，退役旧分类，覆盖升级/FK/软删除回归。
+- 在唯一纯Dart统计资产加入class-balanced Direction和masked PreparedMeal heads；普通语义知识改为soft features/prior，比较F1/F2/F3，每parent校准弱child warning并避免全局fallback。训练仍仅用既有train/dev，holdout只用于冻结后评估；最终v7 first-run Category/Parent/Type/Meal=79.38/88.25/94.75/79.41%，P2 safe=100%、高置信错误=0、普通有效null=0，但另有6个P0/P1退款关联漏检；Phase3 NOT CLOSED，生产继续保持冻结。
+
 - 完成A/B/C分级统计兜底实验，保持冻结数据与零group leakage；最终生产仅保留共享char/结构特征的int8 Parent/Child LR，统一强证据保护/同父重排，强统计父类仅校正弱默认方向。删除旧flat/top-1和拒绝的pooled生产后端，保留训练/封存报告；未新增语料、规则或原生依赖。
 - 新增层级metadata/parity、权限及退款方向测试；117项测试通过，六套历史high-confidence wrong=0、P2 safe=100%；模型2.274MiB、host完整dev p95=0.935ms。v7待最终冻结后独立验收。
 

@@ -1,60 +1,537 @@
 {
   "version": 2,
-  "policy": "Curated independently of regression and blind usability corpora; samples exercise production entity, lexicon and fusion behavior.",
+  "policy": "Curated independently of regression and blind usability corpora; samples exercise production entity, lexicon and fusion behavior.; 96 contract: prepared meal uses fixed noon; purpose-free channels use warning other; fixed housing fixtures use housing.repair.",
   "samples": [
-    {"kind":"entityExact","text":"麦当劳","semanticKey":"expense.food.other"}, {"kind":"entityAlias","text":"KFC","semanticKey":"expense.food.other"},
-    {"kind":"entityAlias","text":"Burger King","semanticKey":"expense.food.other"}, {"kind":"entityExact","text":"华莱士","semanticKey":"expense.food.other"},
-    {"kind":"entityExact","text":"海底捞","semanticKey":"expense.food.dinner"}, {"kind":"entityAlias","text":"呷哺","semanticKey":"expense.food.dinner"},
-    {"kind":"entityExact","text":"星巴克","semanticKey":"expense.food.drink"}, {"kind":"entityAlias","text":"瑞幸","semanticKey":"expense.food.drink"},
-    {"kind":"entityAlias","text":"CHAGEE","semanticKey":"expense.food.drink"}, {"kind":"entityExact","text":"美团外卖","semanticKey":null},
-    {"kind":"entityExact","text":"饿了么","semanticKey":null}, {"kind":"entityAlias","text":"滴滴","semanticKey":"expense.transport.taxi"},
-    {"kind":"entityExact","text":"曹操出行","semanticKey":"expense.transport.taxi"}, {"kind":"entityAlias","text":"12306","semanticKey":"expense.transport.rail"},
-    {"kind":"entityAlias","text":"中石化","semanticKey":"expense.transport.fuel"}, {"kind":"entityExact","text":"壳牌","semanticKey":"expense.transport.fuel"},
-    {"kind":"entityExact","text":"沃尔玛","semanticKey":"expense.shopping.other"}, {"kind":"entityAlias","text":"永辉","semanticKey":"expense.food.groceries"},
-    {"kind":"entityAlias","text":"盒马","semanticKey":"expense.food.groceries"}, {"kind":"entityAlias","text":"山姆","semanticKey":"expense.food.groceries"},
-    {"kind":"entityAlias","text":"711","semanticKey":"expense.shopping.other"}, {"kind":"entityAlias","text":"全家","semanticKey":"expense.shopping.other"},
-    {"kind":"entityAlias","text":"Lawson","semanticKey":"expense.shopping.other"}, {"kind":"entityExact","text":"淘宝","semanticKey":"expense.shopping.other"},
-    {"kind":"entityAlias","text":"PDD","semanticKey":"expense.shopping.other"}, {"kind":"entityAlias","text":"携程","semanticKey":null},
-    {"kind":"entityAlias","text":"去哪儿","semanticKey":null}, {"kind":"entityAlias","text":"汉庭","semanticKey":"expense.housing.rent"},
-    {"kind":"entityAlias","text":"亚朵","semanticKey":"expense.housing.rent"}, {"kind":"entityAlias","text":"老百姓药房","semanticKey":"expense.medical.medicine"},
-    {"kind":"entityAlias","text":"益丰药房","semanticKey":"expense.medical.medicine"}, {"kind":"entityExact","text":"同仁堂","semanticKey":"expense.medical.medicine"},
-    {"kind":"entityExact","text":"腾讯视频","semanticKey":"expense.entertainment.subscription"}, {"kind":"entityAlias","text":"B站","semanticKey":"expense.entertainment.subscription"},
-    {"kind":"entityExact","text":"网易云音乐","semanticKey":"expense.entertainment.music"}, {"kind":"entityExact","text":"Steam","semanticKey":"expense.entertainment.game"},
-    {"kind":"entityExact","text":"新华书店","semanticKey":"expense.education.book"}, {"kind":"entityExact","text":"顺丰速运","semanticKey":"expense.communication.post"},
-    {"kind":"entityExact","text":"中国移动","semanticKey":"expense.communication.mobile"}, {"kind":"entityExact","text":"国家电网","semanticKey":"expense.housing.utilities"},
-    {"kind":"entityExact","text":"途虎养车","semanticKey":"expense.transport.maintenance"}, {"kind":"entityExact","text":"北京一卡通","semanticKey":"expense.transport.public"},
-    {"kind":"entityExact","text":"中国国际航空","semanticKey":"expense.transport.flight"}, {"kind":"entityExact","text":"故宫博物院","semanticKey":"expense.entertainment.hobby"},
-    {"kind":"entityExact","text":"华西医院","semanticKey":"expense.medical.clinic"}, {"kind":"entityExact","text":"新东方","semanticKey":"expense.education.course"},
-    {"kind":"entityExact","text":"乐刻运动","semanticKey":"expense.sports.fitness"}, {"kind":"entityExact","text":"宠物家","semanticKey":"expense.pets.service"},
-    {"kind":"entityExact","text":"优剪","semanticKey":"expense.daily.haircut"}, {"kind":"entityExact","text":"中国平安保险","semanticKey":"expense.finance.insurance"},
-    {"kind":"product","text":"豆浆油条","semanticKey":"expense.food.breakfast"}, {"kind":"action","text":"工作午餐","semanticKey":"expense.food.lunch"},
-    {"kind":"action","text":"晚饭钱","semanticKey":"expense.food.dinner"}, {"kind":"service","text":"点外卖","semanticKey":null},
-    {"kind":"product","text":"美式咖啡","semanticKey":"expense.food.drink"}, {"kind":"product","text":"威化饼","semanticKey":"expense.food.snack"},
-    {"kind":"product","text":"芹菜","semanticKey":"expense.food.groceries"}, {"kind":"product","text":"牛肉","semanticKey":"expense.food.groceries"},
-    {"kind":"product","text":"食用油","semanticKey":"expense.food.groceries"}, {"kind":"product","text":"麻辣烫","semanticKey":"expense.food.other"},
-    {"kind":"service","text":"公交车费","semanticKey":"expense.transport.public"}, {"kind":"action","text":"网约车费","semanticKey":"expense.transport.taxi"},
-    {"kind":"service","text":"高铁票","semanticKey":"expense.transport.rail"}, {"kind":"service","text":"国内机票","semanticKey":"expense.transport.flight"},
-    {"kind":"service","text":"汽油费","semanticKey":"expense.transport.fuel"}, {"kind":"service","text":"停车场收费","semanticKey":"expense.transport.parking"},
-    {"kind":"product","text":"衬衫","semanticKey":"expense.shopping.clothing"}, {"kind":"product","text":"洗面奶","semanticKey":"expense.daily.personal"},
-    {"kind":"product","text":"床垫","semanticKey":"expense.shopping.home"}, {"kind":"product","text":"电饭煲","semanticKey":"expense.shopping.appliance"},
-    {"kind":"service","text":"交房租","semanticKey":"expense.housing.rent"}, {"kind":"service","text":"居民电费","semanticKey":"expense.housing.utilities"},
-    {"kind":"product","text":"湿纸巾","semanticKey":"expense.daily.household"}, {"kind":"service","text":"剪头发","semanticKey":"expense.daily.haircut"},
-    {"kind":"service","text":"换锁芯","semanticKey":"expense.daily.service"}, {"kind":"service","text":"影院购票","semanticKey":"expense.entertainment.movie"},
-    {"kind":"service","text":"手游充值","semanticKey":"expense.entertainment.game"}, {"kind":"service","text":"视频会员","semanticKey":"expense.entertainment.subscription"},
-    {"kind":"product","text":"辅导书","semanticKey":"expense.education.book"}, {"kind":"service","text":"门诊费","semanticKey":"expense.medical.clinic"},
-    {"kind":"product","text":"退烧药","semanticKey":"expense.medical.medicine"}, {"kind":"service","text":"话费缴费","semanticKey":"expense.communication.mobile"},
-    {"kind":"service","text":"宽带续费","semanticKey":"expense.communication.internet"}, {"kind":"venue","text":"酒店房费","semanticKey":"expense.housing.rent"},
-    {"kind":"service","text":"健身年卡","semanticKey":"expense.sports.fitness"}, {"kind":"product","text":"幼猫粮","semanticKey":"expense.pets.food"},
-    {"kind":"service","text":"宠物看病","semanticKey":"expense.pets.medical"}, {"kind":"product","text":"手机保护膜","semanticKey":"expense.digital.accessory"},
-    {"kind":"service","text":"办公软件订阅","semanticKey":"expense.digital.software"}, {"kind":"action","text":"手机换屏","semanticKey":"expense.digital.repair"},
-    {"kind":"income","text":"薪水","semanticKey":"income.salary.monthly"}, {"kind":"income","text":"绩效奖金","semanticKey":"income.salary.bonus"},
-    {"kind":"income","text":"公司报销","semanticKey":"income.reimbursement.work"}, {"kind":"income","text":"劳务收入","semanticKey":"income.parttime.freelance"},
-    {"kind":"income","text":"活期利息","semanticKey":"income.investment.interest"}, {"kind":"income","text":"卖闲置","semanticKey":"income.other.secondhand"},
-    {"kind":"modifierAction","text":"宠物美容","semanticKey":"expense.pets.grooming"}, {"kind":"modifierAction","text":"小狗剪毛","semanticKey":"expense.pets.grooming"},
-    {"kind":"modifierAction","text":"猫咪寄养","semanticKey":"expense.pets.service"}, {"kind":"modifierAction","text":"车辆保养","semanticKey":"expense.transport.maintenance"},
-    {"kind":"modifierAction","text":"爱车洗车","semanticKey":"expense.transport.maintenance"}, {"kind":"platformProduct","text":"淘宝 手机保护膜","semanticKey":"expense.digital.accessory"},
-    {"kind":"platformProduct","text":"京东 电饭煲","semanticKey":"expense.shopping.appliance"}, {"kind":"broadEntity","text":"淘宝","semanticKey":"expense.shopping.other"},
-    {"kind":"conflict","text":"咖啡机","semanticKey":"expense.shopping.appliance"}, {"kind":"conflict","text":"游戏鼠标","semanticKey":"expense.digital.accessory"}
+    {
+      "kind": "entityExact",
+      "text": "麦当劳",
+      "semanticKey": "expense.food.other"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "KFC",
+      "semanticKey": "expense.food.other"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "Burger King",
+      "semanticKey": "expense.food.other"
+    },
+    {
+      "kind": "entityExact",
+      "text": "华莱士",
+      "semanticKey": "expense.food.other"
+    },
+    {
+      "kind": "entityExact",
+      "text": "海底捞",
+      "semanticKey": "expense.food.lunch"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "呷哺",
+      "semanticKey": "expense.food.lunch"
+    },
+    {
+      "kind": "entityExact",
+      "text": "星巴克",
+      "semanticKey": "expense.food.drink"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "瑞幸",
+      "semanticKey": "expense.food.drink"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "CHAGEE",
+      "semanticKey": "expense.food.drink"
+    },
+    {
+      "kind": "entityExact",
+      "text": "美团外卖",
+      "semanticKey": "expense.other.general"
+    },
+    {
+      "kind": "entityExact",
+      "text": "饿了么",
+      "semanticKey": "expense.other.general"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "滴滴",
+      "semanticKey": "expense.transport.taxi"
+    },
+    {
+      "kind": "entityExact",
+      "text": "曹操出行",
+      "semanticKey": "expense.transport.taxi"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "12306",
+      "semanticKey": "expense.transport.rail"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "中石化",
+      "semanticKey": "expense.transport.fuel"
+    },
+    {
+      "kind": "entityExact",
+      "text": "壳牌",
+      "semanticKey": "expense.transport.fuel"
+    },
+    {
+      "kind": "entityExact",
+      "text": "沃尔玛",
+      "semanticKey": "expense.shopping.other"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "永辉",
+      "semanticKey": "expense.food.groceries"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "盒马",
+      "semanticKey": "expense.food.groceries"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "山姆",
+      "semanticKey": "expense.food.groceries"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "711",
+      "semanticKey": "expense.shopping.other"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "全家",
+      "semanticKey": "expense.shopping.other"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "Lawson",
+      "semanticKey": "expense.shopping.other"
+    },
+    {
+      "kind": "entityExact",
+      "text": "淘宝",
+      "semanticKey": "expense.shopping.other"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "PDD",
+      "semanticKey": "expense.shopping.other"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "携程",
+      "semanticKey": "expense.other.general"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "去哪儿",
+      "semanticKey": "expense.other.general"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "汉庭",
+      "semanticKey": "expense.housing.rent"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "亚朵",
+      "semanticKey": "expense.housing.rent"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "老百姓药房",
+      "semanticKey": "expense.medical.medicine"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "益丰药房",
+      "semanticKey": "expense.medical.medicine"
+    },
+    {
+      "kind": "entityExact",
+      "text": "同仁堂",
+      "semanticKey": "expense.medical.medicine"
+    },
+    {
+      "kind": "entityExact",
+      "text": "腾讯视频",
+      "semanticKey": "expense.entertainment.media"
+    },
+    {
+      "kind": "entityAlias",
+      "text": "B站",
+      "semanticKey": "expense.entertainment.media"
+    },
+    {
+      "kind": "entityExact",
+      "text": "网易云音乐",
+      "semanticKey": "expense.entertainment.media"
+    },
+    {
+      "kind": "entityExact",
+      "text": "Steam",
+      "semanticKey": "expense.entertainment.game"
+    },
+    {
+      "kind": "entityExact",
+      "text": "新华书店",
+      "semanticKey": "expense.education.book"
+    },
+    {
+      "kind": "entityExact",
+      "text": "顺丰速运",
+      "semanticKey": "expense.communication.post"
+    },
+    {
+      "kind": "entityExact",
+      "text": "中国移动",
+      "semanticKey": "expense.communication.mobile"
+    },
+    {
+      "kind": "entityExact",
+      "text": "国家电网",
+      "semanticKey": "expense.housing.utilities"
+    },
+    {
+      "kind": "entityExact",
+      "text": "途虎养车",
+      "semanticKey": "expense.transport.maintenance"
+    },
+    {
+      "kind": "entityExact",
+      "text": "北京一卡通",
+      "semanticKey": "expense.transport.public"
+    },
+    {
+      "kind": "entityExact",
+      "text": "中国国际航空",
+      "semanticKey": "expense.transport.flight"
+    },
+    {
+      "kind": "entityExact",
+      "text": "故宫博物院",
+      "semanticKey": "expense.entertainment.activity"
+    },
+    {
+      "kind": "entityExact",
+      "text": "华西医院",
+      "semanticKey": "expense.medical.clinic"
+    },
+    {
+      "kind": "entityExact",
+      "text": "新东方",
+      "semanticKey": "expense.education.course"
+    },
+    {
+      "kind": "entityExact",
+      "text": "乐刻运动",
+      "semanticKey": "expense.sports.fitness"
+    },
+    {
+      "kind": "entityExact",
+      "text": "宠物家",
+      "semanticKey": "expense.pets.service"
+    },
+    {
+      "kind": "entityExact",
+      "text": "优剪",
+      "semanticKey": "expense.daily.grooming"
+    },
+    {
+      "kind": "entityExact",
+      "text": "中国平安保险",
+      "semanticKey": "expense.finance.insurance"
+    },
+    {
+      "kind": "product",
+      "text": "豆浆油条",
+      "semanticKey": "expense.food.lunch"
+    },
+    {
+      "kind": "action",
+      "text": "工作午餐",
+      "semanticKey": "expense.food.lunch"
+    },
+    {
+      "kind": "action",
+      "text": "晚饭钱",
+      "semanticKey": "expense.food.dinner"
+    },
+    {
+      "kind": "service",
+      "text": "点外卖",
+      "semanticKey": "expense.other.general"
+    },
+    {
+      "kind": "product",
+      "text": "美式咖啡",
+      "semanticKey": "expense.food.drink"
+    },
+    {
+      "kind": "product",
+      "text": "威化饼",
+      "semanticKey": "expense.food.snack"
+    },
+    {
+      "kind": "product",
+      "text": "芹菜",
+      "semanticKey": "expense.food.groceries"
+    },
+    {
+      "kind": "product",
+      "text": "牛肉",
+      "semanticKey": "expense.food.groceries"
+    },
+    {
+      "kind": "product",
+      "text": "食用油",
+      "semanticKey": "expense.food.groceries"
+    },
+    {
+      "kind": "product",
+      "text": "麻辣烫",
+      "semanticKey": "expense.food.lunch"
+    },
+    {
+      "kind": "service",
+      "text": "公交车费",
+      "semanticKey": "expense.transport.public"
+    },
+    {
+      "kind": "action",
+      "text": "网约车费",
+      "semanticKey": "expense.transport.taxi"
+    },
+    {
+      "kind": "service",
+      "text": "高铁票",
+      "semanticKey": "expense.transport.rail"
+    },
+    {
+      "kind": "service",
+      "text": "国内机票",
+      "semanticKey": "expense.transport.flight"
+    },
+    {
+      "kind": "service",
+      "text": "汽油费",
+      "semanticKey": "expense.transport.fuel"
+    },
+    {
+      "kind": "service",
+      "text": "停车场收费",
+      "semanticKey": "expense.transport.parking"
+    },
+    {
+      "kind": "product",
+      "text": "衬衫",
+      "semanticKey": "expense.shopping.clothing"
+    },
+    {
+      "kind": "product",
+      "text": "洗面奶",
+      "semanticKey": "expense.shopping.personal"
+    },
+    {
+      "kind": "product",
+      "text": "床垫",
+      "semanticKey": "expense.shopping.home"
+    },
+    {
+      "kind": "product",
+      "text": "电饭煲",
+      "semanticKey": "expense.shopping.appliance"
+    },
+    {
+      "kind": "service",
+      "text": "交房租",
+      "semanticKey": "expense.housing.rent"
+    },
+    {
+      "kind": "service",
+      "text": "居民电费",
+      "semanticKey": "expense.housing.utilities"
+    },
+    {
+      "kind": "product",
+      "text": "湿纸巾",
+      "semanticKey": "expense.shopping.home"
+    },
+    {
+      "kind": "service",
+      "text": "剪头发",
+      "semanticKey": "expense.daily.grooming"
+    },
+    {
+      "kind": "service",
+      "text": "换锁芯",
+      "semanticKey": "expense.housing.repair"
+    },
+    {
+      "kind": "service",
+      "text": "影院购票",
+      "semanticKey": "expense.entertainment.performance"
+    },
+    {
+      "kind": "service",
+      "text": "手游充值",
+      "semanticKey": "expense.entertainment.game"
+    },
+    {
+      "kind": "service",
+      "text": "视频会员",
+      "semanticKey": "expense.entertainment.media"
+    },
+    {
+      "kind": "product",
+      "text": "辅导书",
+      "semanticKey": "expense.education.book"
+    },
+    {
+      "kind": "service",
+      "text": "门诊费",
+      "semanticKey": "expense.medical.clinic"
+    },
+    {
+      "kind": "product",
+      "text": "退烧药",
+      "semanticKey": "expense.medical.medicine"
+    },
+    {
+      "kind": "service",
+      "text": "话费缴费",
+      "semanticKey": "expense.communication.mobile"
+    },
+    {
+      "kind": "service",
+      "text": "宽带续费",
+      "semanticKey": "expense.communication.internet"
+    },
+    {
+      "kind": "venue",
+      "text": "酒店房费",
+      "semanticKey": "expense.housing.rent"
+    },
+    {
+      "kind": "service",
+      "text": "健身年卡",
+      "semanticKey": "expense.sports.fitness"
+    },
+    {
+      "kind": "product",
+      "text": "幼猫粮",
+      "semanticKey": "expense.pets.food"
+    },
+    {
+      "kind": "service",
+      "text": "宠物看病",
+      "semanticKey": "expense.pets.medical"
+    },
+    {
+      "kind": "product",
+      "text": "手机保护膜",
+      "semanticKey": "expense.digital.accessory"
+    },
+    {
+      "kind": "service",
+      "text": "办公软件订阅",
+      "semanticKey": "expense.digital.software"
+    },
+    {
+      "kind": "action",
+      "text": "手机换屏",
+      "semanticKey": "expense.digital.repair"
+    },
+    {
+      "kind": "income",
+      "text": "薪水",
+      "semanticKey": "income.salary.monthly"
+    },
+    {
+      "kind": "income",
+      "text": "绩效奖金",
+      "semanticKey": "income.salary.bonus"
+    },
+    {
+      "kind": "income",
+      "text": "公司报销",
+      "semanticKey": "income.reimbursement.work"
+    },
+    {
+      "kind": "income",
+      "text": "劳务收入",
+      "semanticKey": "income.parttime.service"
+    },
+    {
+      "kind": "income",
+      "text": "活期利息",
+      "semanticKey": "income.investment.interest"
+    },
+    {
+      "kind": "income",
+      "text": "卖闲置",
+      "semanticKey": "income.other.secondhand"
+    },
+    {
+      "kind": "modifierAction",
+      "text": "宠物美容",
+      "semanticKey": "expense.pets.grooming"
+    },
+    {
+      "kind": "modifierAction",
+      "text": "小狗剪毛",
+      "semanticKey": "expense.pets.grooming"
+    },
+    {
+      "kind": "modifierAction",
+      "text": "猫咪寄养",
+      "semanticKey": "expense.pets.service"
+    },
+    {
+      "kind": "modifierAction",
+      "text": "车辆保养",
+      "semanticKey": "expense.transport.maintenance"
+    },
+    {
+      "kind": "modifierAction",
+      "text": "爱车洗车",
+      "semanticKey": "expense.transport.maintenance"
+    },
+    {
+      "kind": "platformProduct",
+      "text": "淘宝 手机保护膜",
+      "semanticKey": "expense.digital.accessory"
+    },
+    {
+      "kind": "platformProduct",
+      "text": "京东 电饭煲",
+      "semanticKey": "expense.shopping.appliance"
+    },
+    {
+      "kind": "broadEntity",
+      "text": "淘宝",
+      "semanticKey": "expense.shopping.other"
+    },
+    {
+      "kind": "conflict",
+      "text": "咖啡机",
+      "semanticKey": "expense.shopping.appliance"
+    },
+    {
+      "kind": "conflict",
+      "text": "游戏鼠标",
+      "semanticKey": "expense.digital.accessory"
+    }
   ],
   "entityAudit": [
     "麦当劳",

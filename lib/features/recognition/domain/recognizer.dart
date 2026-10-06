@@ -105,14 +105,19 @@ class LocalRecognizer {
       ),
       ...resolvedSemanticEvidence,
     ];
-    final mealEvidence = _contextBuilder
-        .build(
-          matchingText: normalized.matchingText,
-          occurredHour: fields.time.value.hour,
-          timeIsExplicit: fields.time.isExplicit,
-          entityEvidence: resolvedSemanticEvidence,
-        )
-        .firstOrNull;
+    final mealEvidence =
+        (preliminaryType.type == RecognitionTransactionType.income &&
+                !preliminaryType.isDefault) ||
+            fields.status == TransactionStatus.refund
+        ? null
+        : _contextBuilder
+              .build(
+                matchingText: normalized.matchingText,
+                occurredHour: fields.time.value.hour,
+                timeIsExplicit: fields.time.isExplicit,
+                entityEvidence: resolvedSemanticEvidence,
+              )
+              .firstOrNull;
     final deterministicFusion = _fusion.withMealEvidence(
       _fusion.fuse(semanticEvidence),
       mealEvidence,
@@ -124,57 +129,125 @@ class LocalRecognizer {
       deterministicFusion.winningEvidence,
     );
     onSemanticDecision?.call(
-      deterministicFusion,
+      EvidenceFusionResult(
+        semanticKey: deterministicFusion.semanticKey,
+        confidence: deterministicFusion.confidence,
+        issueCodes: deterministicFusion.issueCodes,
+        winningEvidence: semanticEvidence
+            .where((e) => e.source != RecognitionEvidenceSource.context)
+            .toList(),
+      ),
       preliminaryType,
       !RecognitionResult.isSafetyBlocked(issueCodes) &&
           typeDecision.type != RecognitionTransactionType.refund,
       mealEvidence,
     );
-    final routed =
-        _fusion.needsWeakEvidence(deterministicFusion) &&
-            (fields.status == TransactionStatus.success ||
-                fields.status == TransactionStatus.unknown) &&
-            !fields.multipleTransactionsDetected &&
-            fields.selectedAmount != null &&
-            typeDecision.type != RecognitionTransactionType.refund
-        ? ngram?.hierarchicalEvidence(
+    final eligible =
+        (fields.status == TransactionStatus.success ||
+            fields.status == TransactionStatus.unknown ||
+            fields.status == TransactionStatus.refund) &&
+        !fields.multipleTransactionsDetected &&
+        fields.selectedAmount != null &&
+        (!RecognitionResult.isSafetyBlocked(issueCodes) ||
+            fields.status == TransactionStatus.refund);
+    final prediction = eligible
+        ? ngram?.predict(
             input.rawText,
-            input.activeCategories,
-            level: _fusion.statisticalLevel(deterministicFusion),
-            anchor: deterministicFusion.semanticKey,
             structuredFeatures: NgramClassifier.structuredFeatures(
               preliminaryType,
-              deterministicFusion.winningEvidence,
+              semanticEvidence
+                  .where((e) => e.source != RecognitionEvidenceSource.context)
+                  .toList(),
               ngram!.model.parentByChild,
             ),
           )
         : null;
-    var weakEvidence = routed?.evidence;
-    if (weakEvidence?.semanticKey?.startsWith('income.refund.') ?? false) {
-      weakEvidence = null;
-    }
-    // A frozen model may suggest a meal label, but never determines daypart.
-    if (mealEvidence == null &&
-        ContextEvidenceBuilder.mealSemantics.contains(
-          weakEvidence?.semanticKey,
-        )) {
-      weakEvidence = null;
-    }
-    if (weakEvidence != null &&
-        preliminaryType.isDefault &&
-        routed!.parentConfidence >= .85) {
-      typeDecision = _typeInference.reconcile(
+    if (prediction != null &&
+        fields.status != TransactionStatus.refund &&
+        typeDecision.type != RecognitionTransactionType.refund &&
+        _fusion.statisticalLevel(deterministicFusion) != 0) {
+      typeDecision = _typeInference.withStatisticalDirection(
         preliminaryType,
-        weakEvidence.semanticKey,
-        [weakEvidence],
-        statisticalParentConfidence: routed.parentConfidence,
+        prediction.incomeProbability,
+        ngram!.model.directionThreshold,
       );
     }
-    final fusion = _fusion.withWeakEvidence(
+    final routed =
+        prediction != null && _fusion.needsWeakEvidence(deterministicFusion)
+        ? ngram!.hierarchicalEvidence(
+            input.rawText,
+            input.activeCategories,
+            level: 2,
+            anchor: deterministicFusion.semanticKey,
+            probabilitiesOverride: prediction.scores,
+            direction: typeDecision.type == RecognitionTransactionType.refund
+                ? 'income'
+                : typeDecision.type?.value,
+            deterministicSupport: deterministicFusion.confidence,
+          )
+        : null;
+    var weakEvidence = routed?.evidence;
+    if ((weakEvidence?.semanticKey?.startsWith('income.refund.') ?? false) &&
+        fields.status != TransactionStatus.refund) {
+      weakEvidence = null;
+    }
+    if (typeDecision.type == RecognitionTransactionType.refund &&
+        !(weakEvidence?.semanticKey?.startsWith('income.refund.') ?? false)) {
+      weakEvidence = null;
+    }
+    var fusion = _fusion.withWeakEvidence(
       deterministicFusion,
       weakEvidence,
       typeDecision.type,
     );
+    final preparedMeal =
+        prediction != null &&
+        prediction.preparedMealProbability >=
+            ngram!.model.preparedMealThreshold &&
+        fusion.semanticKey?.startsWith('expense.food.') == true;
+    final finalMeal = typeDecision.type != RecognitionTransactionType.expense
+        ? null
+        : _contextBuilder
+              .build(
+                matchingText: normalized.matchingText,
+                occurredHour: fields.time.value.hour,
+                timeIsExplicit: fields.time.isExplicit,
+                entityEvidence: resolvedSemanticEvidence,
+                preparedMeal: preparedMeal,
+              )
+              .firstOrNull;
+    if (finalMeal != null) {
+      fusion = _fusion.withMealEvidence(fusion, finalMeal);
+      if (preparedMeal && mealEvidence == null) {
+        semanticEvidence.add(
+          RecognitionEvidence(
+            field: 'category',
+            description: '屏蔽餐段词的本地正餐模型（需确认）',
+            score: .69,
+            source: RecognitionEvidenceSource.ngram,
+            semanticKey: finalMeal.semanticKey,
+            family: 'preparedMealStatistical',
+          ),
+        );
+      }
+      semanticEvidence.add(finalMeal);
+    } else if (ContextEvidenceBuilder.mealSemantics.contains(
+          fusion.semanticKey,
+        ) &&
+        fusion.winningEvidence.any(
+          (e) => e.source == RecognitionEvidenceSource.ngram,
+        )) {
+      // A statistical meal child never guesses a daypart without prepared-food evidence.
+      fusion = EvidenceFusionResult(
+        semanticKey: 'expense.food.other',
+        confidence: .55,
+        issueCodes: {
+          ...fusion.issueCodes,
+          RecognitionIssueCode.categoryLowConfidence,
+        },
+        winningEvidence: fusion.winningEvidence,
+      );
+    }
     if (weakEvidence != null) semanticEvidence.add(weakEvidence);
     if (typeDecision.hasConflict) {
       issueCodes.add(RecognitionIssueCode.typeConflict);

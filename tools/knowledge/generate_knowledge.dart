@@ -21,9 +21,9 @@ const _minimumReviewSamples = 100;
 const _minimumTermsPerFrequentSemantic = 10;
 const _minimumNegativesPerFrequentSemantic = 2;
 const _conflictTermOwners = {
-  '护手霜': 'expense.daily.personal',
-  '洗手液': 'expense.daily.personal',
-  '身体乳': 'expense.daily.personal',
+  '护手霜': 'expense.shopping.personal',
+  '洗手液': 'expense.shopping.personal',
+  '身体乳': 'expense.shopping.personal',
   '皮具护理': 'expense.daily.cleaning',
   '车位管理费': 'expense.transport.parking',
 };
@@ -43,20 +43,18 @@ const _requiredSceneSemantics = {
   'expense.transport.parking',
   'expense.transport.maintenance',
   'expense.shopping.clothing',
-  'expense.shopping.beauty',
+  'expense.shopping.personal',
   'expense.shopping.home',
   'expense.shopping.appliance',
   'expense.housing.rent',
   'expense.housing.utilities',
   'expense.housing.property',
-  'expense.daily.household',
-  'expense.daily.personal',
   'expense.daily.cleaning',
-  'expense.daily.haircut',
+  'expense.daily.grooming',
   'expense.daily.service',
-  'expense.entertainment.movie',
+  'expense.entertainment.performance',
   'expense.entertainment.game',
-  'expense.entertainment.subscription',
+  'expense.entertainment.media',
   'expense.education.book',
   'expense.education.course',
   'expense.education.exam',
@@ -80,8 +78,7 @@ const _requiredSceneSemantics = {
   'income.salary.bonus',
   'income.salary.allowance',
   'income.reimbursement.work',
-  'income.parttime.freelance',
-  'income.parttime.project',
+  'income.parttime.service',
   'income.investment.interest',
   'income.investment.dividend',
   'income.investment.rent',
@@ -95,7 +92,7 @@ void main() {
       .map((item) => item.semanticKey)
       .toSet();
   final childCount = defaultCategories.where((c) => c.parentId != null).length;
-  if (childCount != 104 ||
+  if (childCount != 96 ||
       validSemantics.any(
         (s) =>
             s == 'expense.food.takeout' ||
@@ -103,7 +100,7 @@ void main() {
             s.startsWith('expense.family'),
       )) {
     throw const FormatException(
-      'V0.1 requires exactly 104 child semantics with no obsolete categories',
+      'V0.1 requires exactly 96 child semantics with no obsolete categories',
     );
   }
   final curated = _read('tools/knowledge/merchants_source.json');

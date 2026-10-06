@@ -130,3 +130,7 @@ OcrService
 - 分类为可维护的一级/二级数据，不硬编码在 UI。
 - 原始支付截图仅用于当次识别，默认不持久化。
 - V0.1 不引入 analytics、telemetry、Web Search 或 LLM。
+
+## 最终 96 类统计语义边界
+
+LocalRecognizer 保持唯一入口，普通 deterministic evidence 为 feature/prior；NgramModel 单资产共享 vocabulary，包含 Direction/Parent/Child/PreparedMeal heads。仲裁只 hard lock 安全状态、明确方向、可靠历史和正餐；CategoryResolver 继续从活动 seed 关系映射。训练/选型与冻结后验收规则见 [算法文档](RECOGNITION_ALGORITHM.md)。

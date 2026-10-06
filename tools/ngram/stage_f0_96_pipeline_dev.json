@@ -1,0 +1,36 @@
+{
+  "stage": "f0_96",
+  "devCount": 4832,
+  "categoryAccuracy": 0.7872516556291391,
+  "parentAccuracy": 0.8503725165562914,
+  "typeAccuracy": 0.9722682119205298,
+  "specificCategoryCoverage": 0.9004552980132451,
+  "specificCategoryAccuracy": 0.8501493909446104,
+  "fallbackRate": 0.09954470198675491,
+  "falseFallbackRate": 0.07781456953642384,
+  "childConditionalAccuracy": 0.9257726940861524,
+  "acceptedCoverage": 0.23344370860927152,
+  "acceptedAccuracy": 0.8953900709219859,
+  "sameParentRerankAccuracy": 0.8151898734177215,
+  "crossParentStatisticalAccuracy": 0.9386084583901774,
+  "mealAccuracy": 0.8344370860927153,
+  "mealDetectionRecall": 0.8410596026490066,
+  "highConfidenceWrong": 0,
+  "ordinaryCategoryNull": 0,
+  "failureDecomposition": {
+    "otherFallbackError": 376,
+    "wrongParent": 723,
+    "correctParentWrongChild": 305,
+    "wrongType": 134,
+    "mealDetection": 24,
+    "taxonomyAmbiguity": "not adjudicated; labels unchanged",
+    "safety": "historical P2 suite separately"
+  },
+  "latencyMicroseconds": {
+    "p50": 487,
+    "p95": 964,
+    "p99": 1209
+  },
+  "environment": "Windows host warm Dart VM; not Android API26",
+  "inputContract": "original text; fixed 37 suffix only when existing field extraction has no amount; semantic labels unchanged"
+}

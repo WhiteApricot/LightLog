@@ -188,4 +188,6 @@ chore:
 
 新增 package 前确认标准库或现有依赖不能合理完成、维护状态和体积可接受、且功能属于 V0.1。不得无理由升级 Flutter、Dart、AGP、Gradle、Kotlin、NDK，或修改 Maven/Flutter 国内镜像、Android SDK 路径及 package/application ID。
 
-层级分类器训练入口为 `tools/ngram/train_hierarchical.py`；`export_pipeline.dart`只从生产流水线生成train/dev evidence，生成JSONL不提交。独立验收必须先执行 `freeze_final.py`，再由 `acceptance.py`验证hash并一次运行；oracle格式冲突按AGENTS.md先确认，不能静默重标。完整命令见 [训练工具](../tools/ngram/README.md)。
+层级分类器训练入口为 `tools/ngram/train_final.py`；`export_pipeline.dart`只从生产流水线生成train/dev evidence，生成JSONL不提交。独立验收先用 `final_acceptance.py freeze`，随后 regression，最后唯一 v7 first-run；工具验证hash并拒绝覆盖原始验收报告。旧训练及验收工具已归档，复现旧轮使用对应commit。完整命令见 [训练工具](../tools/ngram/README.md)。
+
+最终96类工具入口为 tools/ngram/train_final.py、select_final.py、reference.py；export_pipeline.dart与runtime共用非循环特征。历史A/B/C训练工具只归档，当前不继续Stage C。最终freeze、regression和唯一v7验收使用 tools/ngram/final_acceptance.py；已有first-run文件必须拒绝覆盖。详见工具README。

@@ -14,11 +14,105 @@ import '../../../tools/ngram/archive/pooled/candidate.dart';
 import 'package:light_log/features/recognition/domain/type_inference.dart';
 
 void main() {
+  test(
+    'Direction Head corrects only weak defaults and retains explicit direction',
+    () {
+      const inference = TypeInference();
+      const weak = TypeDecision(
+        type: RecognitionTransactionType.expense,
+        confidence: .88,
+        evidence: [],
+        isDefault: true,
+      );
+      expect(
+        inference.withStatisticalDirection(weak, .99, .8).type,
+        RecognitionTransactionType.income,
+      );
+      expect(inference.withStatisticalDirection(weak, .6, .8), same(weak));
+      expect(inference.withStatisticalDirection(weak, .5, .5), same(weak));
+      for (final type in [
+        RecognitionTransactionType.expense,
+        RecognitionTransactionType.income,
+        RecognitionTransactionType.refund,
+      ]) {
+        final strong = TypeDecision(type: type, confidence: .98, evidence: []);
+        expect(
+          inference.withStatisticalDirection(strong, .99, .8),
+          same(strong),
+        );
+      }
+    },
+  );
   final bytes = File('assets/knowledge/ngram.bin').readAsBytesSync();
   final classifier = NgramClassifier(NgramModel.decode(bytes));
+  test('independent direction handles weak income and preserves signs/refund safety', () {
+    final harness = RecognitionToolHarness();
+    final now = DateTime(2026, 10, 5, 12);
+    for (final text in ['收到租金100元', '收到红包100元', '投资收益100元', '兼职收入100元']) {
+      expect(
+        harness.recognize(text, now: now).draft.type,
+        RecognitionTransactionType.income,
+        reason: text,
+      );
+    }
+    expect(
+      harness.recognize('房租 +100元', now: now).draft.type,
+      RecognitionTransactionType.income,
+    );
+    expect(
+      harness.recognize('投资收益 -100元', now: now).draft.type,
+      RecognitionTransactionType.expense,
+    );
+    expect(
+      harness.recognize('支付收益结算手续费100元', now: now).draft.type,
+      RecognitionTransactionType.expense,
+    );
+    for (final text in [
+      '退款猫粮30元',
+      '交易失败 收到租金100元',
+      '交易取消 收到红包100元',
+      '支付成功 猫粮30元\n支付成功 狗粮40元',
+    ]) {
+      final r = harness.recognize(text, now: now);
+      expect(r.confirmationLevel, ConfirmationLevel.blocked, reason: text);
+      expect(r.canQuickConfirm, isFalse);
+      expect(
+        r.evidence.any((e) => e.family == 'statisticalDirection'),
+        isFalse,
+      );
+    }
+  });
+  test(
+    'weak child retains accepted parent and warning instead of global fallback',
+    () {
+      final n = ByteData.sublistView(bytes).getUint32(4, Endian.little);
+      final header = jsonDecode(utf8.decode(bytes.sublist(8, 8 + n))) as Map;
+      header['parentThreshold'] = 0;
+      header['childCalibration'] = {
+        for (final parent in classifier.model.heads.first.labels)
+          parent: {'threshold': 1.0, 'margin': 1.0},
+      };
+      final raw = utf8.encode(jsonEncode(header));
+      final changed = Uint8List(8 + raw.length + bytes.length - 8 - n);
+      changed.setRange(0, 4, ascii.encode('LLNG'));
+      ByteData.sublistView(changed).setUint32(4, raw.length, Endian.little);
+      changed.setRange(8, 8 + raw.length, raw);
+      changed.setRange(8 + raw.length, changed.length, bytes.sublist(8 + n));
+      final c = NgramClassifier(NgramModel.decode(changed));
+      final r = c.hierarchicalEvidence(
+        '电脑办公笔记本',
+        RecognitionToolHarness.categories,
+        level: 2,
+      );
+      expect(r.evidence, isNotNull);
+      expect(r.evidence!.family, 'statisticalUncertainChild');
+      expect(r.evidence!.score, .55);
+      expect(r.evidence!.semanticKey!.endsWith('.other.general'), isFalse);
+    },
+  );
   test('offline normalization and all class probabilities agree with Dart', () {
     final vectors = jsonDecode(
-      File('tools/ngram/parity_vectors.json').readAsStringSync(),
+      File('tools/ngram/final96/parity_vectors.json').readAsStringSync(),
     ) as List;
     for (final v in vectors) {
       expect(NgramClassifier.normalize(v['text'] as String), v['normalized']);
@@ -60,7 +154,7 @@ void main() {
     expect(() => NgramModel.decode(corrupt), throwsFormatException);
   });
   test(
-    'fusion protects strong evidence and direction and caps weak evidence',
+    'fusion treats ordinary semantic evidence as soft and protects direction',
     () {
       const fusion = EvidenceFusion();
       const weak = RecognitionEvidence(
@@ -93,14 +187,13 @@ void main() {
           semanticKey: 'expense.digital.phone',
         ),
       ]);
-      expect(
-        fusion.withWeakEvidence(
-          strong,
-          weak,
-          RecognitionTransactionType.expense,
-        ),
-        same(strong),
+      final corrected = fusion.withWeakEvidence(
+        strong,
+        weak,
+        RecognitionTransactionType.expense,
       );
+      expect(corrected.semanticKey, weak.semanticKey);
+      expect(corrected.confidence, .69);
     },
   );
   test('weak fallback cannot weaken dangerous gates or change type', () {
@@ -118,7 +211,10 @@ void main() {
       final now = DateTime(2026, 10, 5, 12);
       final before = baseline.recognize(text, now: now);
       final after = withModel.recognize(text, now: now);
-      expect(after.draft.type, before.draft.type);
+      if (before.fieldConfidence.type >= .90 ||
+          before.status == TransactionStatus.refund) {
+        expect(after.draft.type, before.draft.type);
+      }
       expect(after.draft.amountMinor, before.draft.amountMinor);
       expect(after.blockingIssues, containsAll(before.blockingIssues));
       if (before.confirmationLevel == ConfirmationLevel.blocked) {
@@ -140,7 +236,7 @@ void main() {
         for (final c in categories)
           if (c.parentId != null) c.semanticKey: byId[c.parentId]!.semanticKey,
       };
-      expect(classifier.model.labels.length, 104);
+      expect(classifier.model.labels.length, 96);
       expect(classifier.model.parentByChild, actual);
       expect(classifier.model.heads.first.labels.length, 21);
       final probabilities = classifier.scores('教育培训课程');
@@ -149,7 +245,7 @@ void main() {
     },
   );
   test(
-    'permission levels protect strong evidence and same-parent boundaries',
+    'ordinary evidence permits statistical parent correction; history locks',
     () {
       const fusion = EvidenceFusion();
       const strong = RecognitionEvidence(
@@ -162,14 +258,14 @@ void main() {
         semanticKey: 'expense.digital.phone',
       );
       final protected = fusion.fuse([strong]);
-      expect(fusion.statisticalLevel(protected), 0);
+      expect(fusion.statisticalLevel(protected), 2);
       final uncertain = EvidenceFusionResult(
         semanticKey: strong.semanticKey,
         confidence: .64,
         issueCodes: const {RecognitionIssueCode.categoryAmbiguous},
         winningEvidence: const [strong],
       );
-      expect(fusion.statisticalLevel(uncertain), 1);
+      expect(fusion.statisticalLevel(uncertain), 2);
       expect(fusion.statisticalLevel(fusion.fuse([])), 2);
       for (final source in [
         RecognitionEvidenceSource.familyPrior,
@@ -204,12 +300,14 @@ void main() {
         semanticKey: 'expense.pets.food',
       );
       expect(
-        fusion.withWeakEvidence(
-          uncertain,
-          crossParent,
-          RecognitionTransactionType.expense,
-        ),
-        same(uncertain),
+        fusion
+            .withWeakEvidence(
+              uncertain,
+              crossParent,
+              RecognitionTransactionType.expense,
+            )
+            .semanticKey,
+        crossParent.semanticKey,
       );
       expect(
         fusion
@@ -222,12 +320,14 @@ void main() {
         sameParent.semanticKey,
       );
       expect(
-        fusion.withWeakEvidence(
-          protected,
-          sameParent,
-          RecognitionTransactionType.expense,
-        ),
-        same(protected),
+        fusion
+            .withWeakEvidence(
+              protected,
+              sameParent,
+              RecognitionTransactionType.expense,
+            )
+            .semanticKey,
+        sameParent.semanticKey,
       );
       final routed = classifier.hierarchicalEvidence(
         '电脑办公笔记本',

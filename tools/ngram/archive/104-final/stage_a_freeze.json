@@ -1,0 +1,16 @@
+{
+  "modelSha256": "4e161509b937b9125cf66676bca0a2ae5d2c17d04390ef1af44e1f6f76c2a818",
+  "parameters": {
+    "parentThreshold": 0.25,
+    "parentMargin": 0.0,
+    "childThreshold": 0.4,
+    "childMargin": 0.05,
+    "categoryAccuracy": 0.7667632450331126,
+    "acceptedAccuracy": 0.9117221418234442,
+    "acceptedCoverage": 0.1430049668874172
+  },
+  "dataSha256": {
+    "ngram_train_v2.jsonl": "74fb53c23ece0d3f7d75d4f37aa3508f1799fb84e93fc3364df5b7e8c26d3e10",
+    "ngram_dev_v2.jsonl": "064f692db4f304bc00b669abeea657aab1b66620793a9f611222722636d25249"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "train": 38539,
+  "dev": 4832,
+  "classes": 96,
+  "exactAndNormalizedRemoved": 0,
+  "labelConflicts": [],
+  "splitGroupLeakage": 0,
+  "normalization": "NFKC lowercase whitespace; retains numeric field text",
+  "sha256": {
+    "ngram_dev_v2.jsonl": "28211be328f5003b2122472a8d10cf05edb8e89908742509321017e2f3d58c0d",
+    "ngram_training_corpus_v2.jsonl": "becfb4fcaf6c3b7c8b96132eb96d42d87a3f44c5cf0f12a5ec6c68393be16a2f",
+    "ngram_train_v2.jsonl": "6d4cefc57dbdf31f6962635ab2e47b06c4e51a5fe67796ba2a4ed8f899005dc7"
+  },
+  "mapping": {
+    "expense.shopping.beauty": "expense.shopping.personal",
+    "expense.daily.personal": "expense.shopping.personal",
+    "expense.daily.household": "expense.shopping.home",
+    "expense.daily.haircut": "expense.daily.grooming",
+    "expense.shopping.gift": "expense.social.gift",
+    "expense.social.relationship": "expense.social.gift",
+    "expense.entertainment.movie": "expense.entertainment.performance",
+    "expense.entertainment.music": "expense.entertainment.media",
+    "expense.entertainment.subscription": "expense.entertainment.media",
+    "expense.entertainment.hobby": "expense.entertainment.activity",
+    "expense.communication.cloud": "expense.digital.software",
+    "income.parttime.freelance": "income.parttime.service",
+    "income.parttime.project": "income.parttime.service",
+    "income.parttime.consulting": "income.parttime.service",
+    "income.investment.fund": "income.investment.capital_gain",
+    "expense.social.red_packet": "expense.social.red.packet",
+    "income.other.red_packet": "income.other.red.packet"
+  }
+}

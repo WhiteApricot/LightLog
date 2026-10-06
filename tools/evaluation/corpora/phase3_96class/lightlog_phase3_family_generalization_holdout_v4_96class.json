@@ -1,0 +1,5455 @@
+{
+  "metadata": {
+    "name": "LightLog Phase 3 Family Generalization Holdout Corpus (migrated 104-class)",
+    "version": 4,
+    "referenceNow": "2026-10-05T14:30:00+08:00",
+    "timezone": "UTC+08:00",
+    "totalCases": 300,
+    "purpose": "Fresh classification-focused blind holdout emphasizing domains and compositional families that were weak or absent in the legacy 65-family knowledge layer.",
+    "evaluationFocus": "Category/type/safety generalization. expected.content and occurredAtLocal are intentionally null.",
+    "priorities": {
+      "P0": 56,
+      "P1": 235,
+      "P2": 9
+    },
+    "groups": {
+      "transport_extended": 20,
+      "digital_extended": 20,
+      "housing_home": 20,
+      "daily_personal": 20,
+      "food_extended": 20,
+      "medical_extended": 20,
+      "education_extended": 20,
+      "pets_family": 20,
+      "sports_outdoor": 20,
+      "travel_social": 20,
+      "entertainment_communication": 20,
+      "finance_extended": 20,
+      "income_extended": 20,
+      "income_refund_sale": 20,
+      "cross_domain_composition": 20
+    },
+    "blindUse": [
+      "Do not inspect this corpus until candidate-family refinement, production knowledge, matcher changes, generator gates, old regressions and benchmark are frozen.",
+      "Do not use this corpus to choose which families or terms to retain from lexical_family_candidates.json.",
+      "Save the first evaluation report unchanged.",
+      "After the first run, this corpus becomes regression data and is no longer unseen.",
+      "Any post-run repair must be generic and must preserve the initial report."
+    ],
+    "taxonomySemanticCount": 104,
+    "taxonomyCoverage": "All non-null expected semantics and history use active 104 labels",
+    "oracleMigration": "Reviewed actual use only; original inputs/type/status/amount/time/issues and all legal labels unchanged"
+  },
+  "cases": [
+    {
+      "id": "G001",
+      "priority": "P0",
+      "group": "transport_extended",
+      "input": "小电驴换刹车皮 85",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8500,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "G002",
+      "priority": "P0",
+      "group": "transport_extended",
+      "input": "山地车修变速器 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "G003",
+      "priority": "P0",
+      "group": "transport_extended",
+      "input": "摩托车换链条 160",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 16000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "G004",
+      "priority": "P0",
+      "group": "transport_extended",
+      "input": "新能源车做电池检测 99",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9900,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "G005",
+      "priority": "P0",
+      "group": "transport_extended",
+      "input": "汽车换蓄电池 480",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 48000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "G006",
+      "priority": "P1",
+      "group": "transport_extended",
+      "input": "雪地胎换四条 2200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 220000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "G007",
+      "priority": "P1",
+      "group": "transport_extended",
+      "input": "高速ETC过路费 68",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6800,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-parking",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.parking"
+      }
+    },
+    {
+      "id": "G008",
+      "priority": "P1",
+      "group": "transport_extended",
+      "input": "机场停车三天 180",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 18000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-parking",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.parking"
+      }
+    },
+    {
+      "id": "G009",
+      "priority": "P1",
+      "group": "transport_extended",
+      "input": "公交一卡通充值 100",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 10000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-public",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.public"
+      }
+    },
+    {
+      "id": "G010",
+      "priority": "P1",
+      "group": "transport_extended",
+      "input": "地铁交通卡充值50",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 5000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-public",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.public"
+      }
+    },
+    {
+      "id": "G011",
+      "priority": "P1",
+      "group": "transport_extended",
+      "input": "城际大巴票 76",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 7600,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-public",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.public"
+      }
+    },
+    {
+      "id": "G012",
+      "priority": "P1",
+      "group": "transport_extended",
+      "input": "高铁卧铺票 620",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 62000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-rail",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.rail"
+      }
+    },
+    {
+      "id": "G013",
+      "priority": "P1",
+      "group": "transport_extended",
+      "input": "夜班火车硬卧 280",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 28000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-rail",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.rail"
+      }
+    },
+    {
+      "id": "G014",
+      "priority": "P1",
+      "group": "transport_extended",
+      "input": "春秋航空机票 520",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 52000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-flight",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.flight"
+      }
+    },
+    {
+      "id": "G015",
+      "priority": "P1",
+      "group": "transport_extended",
+      "input": "机场燃油附加费 50",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 5000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-flight",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.flight"
+      }
+    },
+    {
+      "id": "G016",
+      "priority": "P1",
+      "group": "transport_extended",
+      "input": "服务区快充 42",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4200,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-fuel",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.fuel"
+      }
+    },
+    {
+      "id": "G017",
+      "priority": "P1",
+      "group": "transport_extended",
+      "input": "摩托车加95号油 70",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 7000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-fuel",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.fuel"
+      }
+    },
+    {
+      "id": "G018",
+      "priority": "P1",
+      "group": "transport_extended",
+      "input": "共享单车月卡 25",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-public",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.public"
+      }
+    },
+    {
+      "id": "G019",
+      "priority": "P1",
+      "group": "transport_extended",
+      "input": "出租车高速费另付15",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1500,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-taxi",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.taxi"
+      }
+    },
+    {
+      "id": "G020",
+      "priority": "P1",
+      "group": "transport_extended",
+      "input": "代驾回家 88",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8800,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-taxi",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.taxi"
+      }
+    },
+    {
+      "id": "G021",
+      "priority": "P0",
+      "group": "digital_extended",
+      "input": "买了个安卓平板 1299",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 129900,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-phone",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.phone"
+      }
+    },
+    {
+      "id": "G022",
+      "priority": "P0",
+      "group": "digital_extended",
+      "input": "老人智能手表 399",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 39900,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-phone",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.phone"
+      }
+    },
+    {
+      "id": "G023",
+      "priority": "P0",
+      "group": "digital_extended",
+      "input": "台式机内存条 320",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 32000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-computer",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.computer"
+      }
+    },
+    {
+      "id": "G024",
+      "priority": "P0",
+      "group": "digital_extended",
+      "input": "电脑换固态硬盘 450",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 45000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.repair"
+      }
+    },
+    {
+      "id": "G025",
+      "priority": "P1",
+      "group": "digital_extended",
+      "input": "微单镜头 2800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 280000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-photo",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.photo"
+      }
+    },
+    {
+      "id": "G026",
+      "priority": "P1",
+      "group": "digital_extended",
+      "input": "相机闪光灯 560",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 56000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-photo",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.photo"
+      }
+    },
+    {
+      "id": "G027",
+      "priority": "P1",
+      "group": "digital_extended",
+      "input": "运动相机电池 199",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 19900,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.accessory"
+      }
+    },
+    {
+      "id": "G028",
+      "priority": "P1",
+      "group": "digital_extended",
+      "input": "手机快充头 89",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8900,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.accessory"
+      }
+    },
+    {
+      "id": "G029",
+      "priority": "P1",
+      "group": "digital_extended",
+      "input": "扩展坞 239",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 23900,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.accessory"
+      }
+    },
+    {
+      "id": "G030",
+      "priority": "P1",
+      "group": "digital_extended",
+      "input": "移动硬盘 499",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 49900,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.accessory"
+      }
+    },
+    {
+      "id": "G031",
+      "priority": "P1",
+      "group": "digital_extended",
+      "input": "路由器 299",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 29900,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.accessory"
+      }
+    },
+    {
+      "id": "G032",
+      "priority": "P1",
+      "group": "digital_extended",
+      "input": "无线网卡 79",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 7900,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.accessory"
+      }
+    },
+    {
+      "id": "G033",
+      "priority": "P1",
+      "group": "digital_extended",
+      "input": "打印机上门维修 180",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 18000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.repair"
+      }
+    },
+    {
+      "id": "G034",
+      "priority": "P1",
+      "group": "digital_extended",
+      "input": "机械键盘换轴 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.repair"
+      }
+    },
+    {
+      "id": "G035",
+      "priority": "P1",
+      "group": "digital_extended",
+      "input": "正版Office年费 398",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 39800,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-software",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.software"
+      }
+    },
+    {
+      "id": "G036",
+      "priority": "P1",
+      "group": "digital_extended",
+      "input": "云服务器续费 720",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 72000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-software",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.software"
+      }
+    },
+    {
+      "id": "G037",
+      "priority": "P1",
+      "group": "digital_extended",
+      "input": "域名续费com 75",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 7500,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-software",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.software"
+      }
+    },
+    {
+      "id": "G038",
+      "priority": "P1",
+      "group": "digital_extended",
+      "input": "开发者工具订阅 98",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9800,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-software",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.software"
+      }
+    },
+    {
+      "id": "G039",
+      "priority": "P1",
+      "group": "digital_extended",
+      "input": "iCloud云空间 21",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2100,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-software",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.software"
+      }
+    },
+    {
+      "id": "G040",
+      "priority": "P1",
+      "group": "digital_extended",
+      "input": "网盘扩容一年 198",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 19800,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-software",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.software"
+      }
+    },
+    {
+      "id": "G041",
+      "priority": "P0",
+      "group": "housing_home",
+      "input": "房租续租一个月 2600",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 260000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-rent",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.rent"
+      }
+    },
+    {
+      "id": "G042",
+      "priority": "P0",
+      "group": "housing_home",
+      "input": "房贷月供 4800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 480000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-mortgage",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.mortgage"
+      }
+    },
+    {
+      "id": "G043",
+      "priority": "P0",
+      "group": "housing_home",
+      "input": "物业管理费 320",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 32000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-property",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.property"
+      }
+    },
+    {
+      "id": "G044",
+      "priority": "P0",
+      "group": "housing_home",
+      "input": "车位物业管理费 80",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-parking",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.parking"
+      }
+    },
+    {
+      "id": "G045",
+      "priority": "P0",
+      "group": "housing_home",
+      "input": "居民电费 136.5",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 13650,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-utilities",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.utilities"
+      }
+    },
+    {
+      "id": "G046",
+      "priority": "P1",
+      "group": "housing_home",
+      "input": "自来水费 46",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4600,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-utilities",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.utilities"
+      }
+    },
+    {
+      "id": "G047",
+      "priority": "P1",
+      "group": "housing_home",
+      "input": "天然气缴费 88",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8800,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-gas",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.gas"
+      }
+    },
+    {
+      "id": "G048",
+      "priority": "P1",
+      "group": "housing_home",
+      "input": "集中供暖费 1600",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 160000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-gas",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.gas"
+      }
+    },
+    {
+      "id": "G049",
+      "priority": "P1",
+      "group": "housing_home",
+      "input": "厨房水管换阀门 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "G050",
+      "priority": "P1",
+      "group": "housing_home",
+      "input": "卫生间花洒安装 90",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "G051",
+      "priority": "P1",
+      "group": "housing_home",
+      "input": "卧室墙面重新刷漆 650",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 65000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "G052",
+      "priority": "P1",
+      "group": "housing_home",
+      "input": "木地板修补 300",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 30000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "G053",
+      "priority": "P1",
+      "group": "housing_home",
+      "input": "买客厅茶几 399",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 39900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-home",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.home"
+      }
+    },
+    {
+      "id": "G054",
+      "priority": "P1",
+      "group": "housing_home",
+      "input": "买升降书桌 899",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 89900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-home",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.home"
+      }
+    },
+    {
+      "id": "G055",
+      "priority": "P1",
+      "group": "housing_home",
+      "input": "四件套 229",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 22900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-home",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.home"
+      }
+    },
+    {
+      "id": "G056",
+      "priority": "P1",
+      "group": "housing_home",
+      "input": "收纳置物架 79",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 7900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-home",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.home"
+      }
+    },
+    {
+      "id": "G057",
+      "priority": "P1",
+      "group": "housing_home",
+      "input": "新电饭煲 299",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 29900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-appliance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.appliance"
+      }
+    },
+    {
+      "id": "G058",
+      "priority": "P1",
+      "group": "housing_home",
+      "input": "扫地机器人 1599",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 159900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-appliance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.appliance"
+      }
+    },
+    {
+      "id": "G059",
+      "priority": "P1",
+      "group": "housing_home",
+      "input": "空气净化器 1299",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 129900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-appliance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.appliance"
+      }
+    },
+    {
+      "id": "G060",
+      "priority": "P1",
+      "group": "housing_home",
+      "input": "买冬季羽绒服 899",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 89900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-clothing",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.clothing"
+      }
+    },
+    {
+      "id": "G061",
+      "priority": "P0",
+      "group": "daily_personal",
+      "input": "冲牙器 199",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 19900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-personal",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.personal"
+      }
+    },
+    {
+      "id": "G062",
+      "priority": "P0",
+      "group": "daily_personal",
+      "input": "漱口水 35",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3500,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-personal",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.personal"
+      }
+    },
+    {
+      "id": "G063",
+      "priority": "P0",
+      "group": "daily_personal",
+      "input": "卫生棉条 49",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-personal",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.personal"
+      }
+    },
+    {
+      "id": "G064",
+      "priority": "P0",
+      "group": "daily_personal",
+      "input": "剃须刀刀头 89",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-personal",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.personal"
+      }
+    },
+    {
+      "id": "G065",
+      "priority": "P1",
+      "group": "daily_personal",
+      "input": "洗发水护发素套装 108",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 10800,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-personal",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.personal"
+      }
+    },
+    {
+      "id": "G066",
+      "priority": "P1",
+      "group": "daily_personal",
+      "input": "粉底液 289",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 28900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-personal",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.personal"
+      }
+    },
+    {
+      "id": "G067",
+      "priority": "P1",
+      "group": "daily_personal",
+      "input": "防晒霜 159",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 15900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-personal",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.personal"
+      }
+    },
+    {
+      "id": "G068",
+      "priority": "P1",
+      "group": "daily_personal",
+      "input": "口红 219",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 21900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-personal",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.personal"
+      }
+    },
+    {
+      "id": "G069",
+      "priority": "P1",
+      "group": "daily_personal",
+      "input": "染头发 320",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 32000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-grooming",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.grooming"
+      }
+    },
+    {
+      "id": "G070",
+      "priority": "P1",
+      "group": "daily_personal",
+      "input": "修眉 40",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-grooming",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.grooming"
+      }
+    },
+    {
+      "id": "G071",
+      "priority": "P1",
+      "group": "daily_personal",
+      "input": "美甲卸甲重做 180",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 18000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-grooming",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.grooming"
+      }
+    },
+    {
+      "id": "G072",
+      "priority": "P1",
+      "group": "daily_personal",
+      "input": "羽绒服去渍护理 65",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6500,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-cleaning",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.cleaning"
+      }
+    },
+    {
+      "id": "G073",
+      "priority": "P1",
+      "group": "daily_personal",
+      "input": "床品除螨清洗 90",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-cleaning",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.cleaning"
+      }
+    },
+    {
+      "id": "G074",
+      "priority": "P1",
+      "group": "daily_personal",
+      "input": "窗帘上门清洗 160",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 16000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-cleaning",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.cleaning"
+      }
+    },
+    {
+      "id": "G075",
+      "priority": "P1",
+      "group": "daily_personal",
+      "input": "家政深度保洁 260",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 26000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-cleaning",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.cleaning"
+      }
+    },
+    {
+      "id": "G076",
+      "priority": "P1",
+      "group": "daily_personal",
+      "input": "上门开保险柜 150",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 15000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "G077",
+      "priority": "P1",
+      "group": "daily_personal",
+      "input": "垃圾袋和保鲜膜 30",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3000,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-home",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.home"
+      }
+    },
+    {
+      "id": "G078",
+      "priority": "P1",
+      "group": "daily_personal",
+      "input": "修手表表带 60",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "G079",
+      "priority": "P1",
+      "group": "daily_personal",
+      "input": "鞋子换鞋跟 45",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4500,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "G080",
+      "priority": "P1",
+      "group": "daily_personal",
+      "input": "皮包护理翻新 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "G081",
+      "priority": "P0",
+      "group": "food_extended",
+      "input": "菜市场买西兰花 8",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 800,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-groceries",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.groceries"
+      }
+    },
+    {
+      "id": "G082",
+      "priority": "P0",
+      "group": "food_extended",
+      "input": "买一斤牛腩 46",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4600,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-groceries",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.groceries"
+      }
+    },
+    {
+      "id": "G083",
+      "priority": "P0",
+      "group": "food_extended",
+      "input": "鲜虾两斤 78",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 7800,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-groceries",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.groceries"
+      }
+    },
+    {
+      "id": "G084",
+      "priority": "P0",
+      "group": "food_extended",
+      "input": "大米10kg 65",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6500,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-groceries",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.groceries"
+      }
+    },
+    {
+      "id": "G085",
+      "priority": "P0",
+      "group": "food_extended",
+      "input": "橄榄油 88",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8800,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-groceries",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.groceries"
+      }
+    },
+    {
+      "id": "G086",
+      "priority": "P1",
+      "group": "food_extended",
+      "input": "鸡蛋30枚 32",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3200,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-groceries",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.groceries"
+      }
+    },
+    {
+      "id": "G087",
+      "priority": "P1",
+      "group": "food_extended",
+      "input": "鲜牛奶一箱 59",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 5900,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-groceries",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.groceries"
+      }
+    },
+    {
+      "id": "G088",
+      "priority": "P1",
+      "group": "food_extended",
+      "input": "酱油醋调料 25",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-groceries",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.groceries"
+      }
+    },
+    {
+      "id": "G089",
+      "priority": "P1",
+      "group": "food_extended",
+      "input": "冷冻水饺 28",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2800,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-groceries",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.groceries"
+      }
+    },
+    {
+      "id": "G090",
+      "priority": "P1",
+      "group": "food_extended",
+      "input": "超市果切 18",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1800,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-groceries",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.groceries"
+      }
+    },
+    {
+      "id": "G091",
+      "priority": "P1",
+      "group": "food_extended",
+      "input": "早上豆腐脑油条 11",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1100,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-breakfast",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.breakfast"
+      }
+    },
+    {
+      "id": "G092",
+      "priority": "P1",
+      "group": "food_extended",
+      "input": "午间盖饭 22",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2200,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-lunch",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.lunch"
+      }
+    },
+    {
+      "id": "G093",
+      "priority": "P1",
+      "group": "food_extended",
+      "input": "晚上吃日料 168",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 16800,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-dinner",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.dinner"
+      }
+    },
+    {
+      "id": "G094",
+      "priority": "P1",
+      "group": "food_extended",
+      "input": "美团叫了份便当 26",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2600,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-lunch",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.lunch"
+      }
+    },
+    {
+      "id": "G095",
+      "priority": "P1",
+      "group": "food_extended",
+      "input": "咖啡店手冲 32",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3200,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-drink",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.drink"
+      }
+    },
+    {
+      "id": "G096",
+      "priority": "P1",
+      "group": "food_extended",
+      "input": "奶茶加小料 21",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2100,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-drink",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.drink"
+      }
+    },
+    {
+      "id": "G097",
+      "priority": "P1",
+      "group": "food_extended",
+      "input": "薯片巧克力 29",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2900,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-snack",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.snack"
+      }
+    },
+    {
+      "id": "G098",
+      "priority": "P1",
+      "group": "food_extended",
+      "input": "蛋糕甜品 68",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6800,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-snack",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.snack"
+      }
+    },
+    {
+      "id": "G099",
+      "priority": "P1",
+      "group": "food_extended",
+      "input": "路边烧烤 75",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 7500,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.other"
+      }
+    },
+    {
+      "id": "G100",
+      "priority": "P1",
+      "group": "food_extended",
+      "input": "朋友约火锅AA我付88",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8800,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-dinner",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.dinner"
+      }
+    },
+    {
+      "id": "G101",
+      "priority": "P0",
+      "group": "medical_extended",
+      "input": "社区医院挂号 20",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-clinic",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.clinic"
+      }
+    },
+    {
+      "id": "G102",
+      "priority": "P0",
+      "group": "medical_extended",
+      "input": "急诊留观 360",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 36000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-clinic",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.clinic"
+      }
+    },
+    {
+      "id": "G103",
+      "priority": "P0",
+      "group": "medical_extended",
+      "input": "中药房抓药 128",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12800,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-medicine",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.medicine"
+      }
+    },
+    {
+      "id": "G104",
+      "priority": "P0",
+      "group": "medical_extended",
+      "input": "降压药一个月 75",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 7500,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-medicine",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.medicine"
+      }
+    },
+    {
+      "id": "G105",
+      "priority": "P1",
+      "group": "medical_extended",
+      "input": "口腔诊所拔智齿 900",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 90000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-dental",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.dental"
+      }
+    },
+    {
+      "id": "G106",
+      "priority": "P1",
+      "group": "medical_extended",
+      "input": "根管治疗 1600",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 160000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-dental",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.dental"
+      }
+    },
+    {
+      "id": "G107",
+      "priority": "P1",
+      "group": "medical_extended",
+      "input": "眼科验光检查 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-dental",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.dental"
+      }
+    },
+    {
+      "id": "G108",
+      "priority": "P1",
+      "group": "medical_extended",
+      "input": "年度体检套餐 699",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 69900,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-checkup",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.checkup"
+      }
+    },
+    {
+      "id": "G109",
+      "priority": "P1",
+      "group": "medical_extended",
+      "input": "入职体检 180",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 18000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-checkup",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.checkup"
+      }
+    },
+    {
+      "id": "G110",
+      "priority": "P1",
+      "group": "medical_extended",
+      "input": "核磁检查体检中心 650",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 65000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-checkup",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.checkup"
+      }
+    },
+    {
+      "id": "G111",
+      "priority": "P1",
+      "group": "medical_extended",
+      "input": "膝盖康复理疗 200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 20000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-rehab",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.rehab"
+      }
+    },
+    {
+      "id": "G112",
+      "priority": "P1",
+      "group": "medical_extended",
+      "input": "术后康复训练 300",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 30000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-rehab",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.rehab"
+      }
+    },
+    {
+      "id": "G113",
+      "priority": "P1",
+      "group": "medical_extended",
+      "input": "上门护理换药 150",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 15000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-rehab",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.rehab"
+      }
+    },
+    {
+      "id": "G114",
+      "priority": "P1",
+      "group": "medical_extended",
+      "input": "助行器 260",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 26000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-rehab",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.rehab"
+      }
+    },
+    {
+      "id": "G115",
+      "priority": "P1",
+      "group": "medical_extended",
+      "input": "血压计 189",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 18900,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-checkup",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.checkup"
+      }
+    },
+    {
+      "id": "G116",
+      "priority": "P1",
+      "group": "medical_extended",
+      "input": "医保外自费药 46",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4600,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-medicine",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.medicine"
+      }
+    },
+    {
+      "id": "G117",
+      "priority": "P1",
+      "group": "medical_extended",
+      "input": "疫苗接种服务费 35",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3500,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-clinic",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.clinic"
+      }
+    },
+    {
+      "id": "G118",
+      "priority": "P1",
+      "group": "medical_extended",
+      "input": "牙套复诊 200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 20000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-dental",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.dental"
+      }
+    },
+    {
+      "id": "G119",
+      "priority": "P1",
+      "group": "medical_extended",
+      "input": "隐形眼镜验配 380",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 38000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-dental",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.dental"
+      }
+    },
+    {
+      "id": "G120",
+      "priority": "P1",
+      "group": "medical_extended",
+      "input": "康复中心针灸理疗 180",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 18000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-rehab",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.rehab"
+      }
+    },
+    {
+      "id": "G121",
+      "priority": "P0",
+      "group": "education_extended",
+      "input": "买专业教材两本 96",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9600,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-book",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.book"
+      }
+    },
+    {
+      "id": "G122",
+      "priority": "P0",
+      "group": "education_extended",
+      "input": "二手教材 35",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3500,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-book",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.book"
+      }
+    },
+    {
+      "id": "G123",
+      "priority": "P0",
+      "group": "education_extended",
+      "input": "电子书正版 42",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4200,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-book",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.book"
+      }
+    },
+    {
+      "id": "G124",
+      "priority": "P0",
+      "group": "education_extended",
+      "input": "Python网课 299",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 29900,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-course",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.course"
+      }
+    },
+    {
+      "id": "G125",
+      "priority": "P1",
+      "group": "education_extended",
+      "input": "线下英语培训 1600",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 160000,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-course",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.course"
+      }
+    },
+    {
+      "id": "G126",
+      "priority": "P1",
+      "group": "education_extended",
+      "input": "一对一辅导课 500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 50000,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-course",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.course"
+      }
+    },
+    {
+      "id": "G127",
+      "priority": "P1",
+      "group": "education_extended",
+      "input": "驾照科目二补考费 80",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-exam",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.exam"
+      }
+    },
+    {
+      "id": "G128",
+      "priority": "P1",
+      "group": "education_extended",
+      "input": "普通话考试报名 50",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 5000,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-exam",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.exam"
+      }
+    },
+    {
+      "id": "G129",
+      "priority": "P1",
+      "group": "education_extended",
+      "input": "职业资格认证费 680",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 68000,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-exam",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.exam"
+      }
+    },
+    {
+      "id": "G130",
+      "priority": "P1",
+      "group": "education_extended",
+      "input": "研究生报名费 138",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 13800,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-exam",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.exam"
+      }
+    },
+    {
+      "id": "G131",
+      "priority": "P1",
+      "group": "education_extended",
+      "input": "打印讲义80页 24",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2400,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-stationery",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.stationery"
+      }
+    },
+    {
+      "id": "G132",
+      "priority": "P1",
+      "group": "education_extended",
+      "input": "彩印海报 36",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3600,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-stationery",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.stationery"
+      }
+    },
+    {
+      "id": "G133",
+      "priority": "P1",
+      "group": "education_extended",
+      "input": "毕业论文胶装 45",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4500,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-stationery",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.stationery"
+      }
+    },
+    {
+      "id": "G134",
+      "priority": "P1",
+      "group": "education_extended",
+      "input": "买文件夹和中性笔 28",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2800,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-stationery",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.stationery"
+      }
+    },
+    {
+      "id": "G135",
+      "priority": "P1",
+      "group": "education_extended",
+      "input": "大学学费 5200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 520000,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-tuition",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.tuition"
+      }
+    },
+    {
+      "id": "G136",
+      "priority": "P1",
+      "group": "education_extended",
+      "input": "培训班学杂费 800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 80000,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-tuition",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.tuition"
+      }
+    },
+    {
+      "id": "G137",
+      "priority": "P1",
+      "group": "education_extended",
+      "input": "在线课程会员 199",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 19900,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-course",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.course"
+      }
+    },
+    {
+      "id": "G138",
+      "priority": "P1",
+      "group": "education_extended",
+      "input": "图书馆文献复印 16",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1600,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-stationery",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.stationery"
+      }
+    },
+    {
+      "id": "G139",
+      "priority": "P1",
+      "group": "education_extended",
+      "input": "考证教材 88",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8800,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-book",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.book"
+      }
+    },
+    {
+      "id": "G140",
+      "priority": "P1",
+      "group": "education_extended",
+      "input": "论文查重服务 60",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6000,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-stationery",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.stationery"
+      }
+    },
+    {
+      "id": "G141",
+      "priority": "P0",
+      "group": "pets_family",
+      "input": "仓鼠主粮 32",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3200,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-food",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.food"
+      }
+    },
+    {
+      "id": "G142",
+      "priority": "P0",
+      "group": "pets_family",
+      "input": "兔粮一袋 58",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 5800,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-food",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.food"
+      }
+    },
+    {
+      "id": "G143",
+      "priority": "P0",
+      "group": "pets_family",
+      "input": "鹦鹉鸟粮 26",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2600,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-food",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.food"
+      }
+    },
+    {
+      "id": "G144",
+      "priority": "P0",
+      "group": "pets_family",
+      "input": "猫砂两袋 78",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 7800,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-supplies",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.supplies"
+      }
+    },
+    {
+      "id": "G145",
+      "priority": "P1",
+      "group": "pets_family",
+      "input": "乌龟晒台 36",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3600,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-supplies",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.supplies"
+      }
+    },
+    {
+      "id": "G146",
+      "priority": "P1",
+      "group": "pets_family",
+      "input": "宠物笼子 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-supplies",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.supplies"
+      }
+    },
+    {
+      "id": "G147",
+      "priority": "P1",
+      "group": "pets_family",
+      "input": "仓鼠看异宠医生 180",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 18000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-medical",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.medical"
+      }
+    },
+    {
+      "id": "G148",
+      "priority": "P1",
+      "group": "pets_family",
+      "input": "兔子驱虫 90",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-medical",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.medical"
+      }
+    },
+    {
+      "id": "G149",
+      "priority": "P1",
+      "group": "pets_family",
+      "input": "鹦鹉寄养五天 150",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 15000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.service"
+      }
+    },
+    {
+      "id": "G150",
+      "priority": "P1",
+      "group": "pets_family",
+      "input": "狗狗上门洗护 88",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8800,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-grooming",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.grooming"
+      }
+    },
+    {
+      "id": "G151",
+      "priority": "P1",
+      "group": "pets_family",
+      "input": "宝宝纸尿裤 138",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 13800,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-personal",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.personal"
+      }
+    },
+    {
+      "id": "G152",
+      "priority": "P1",
+      "group": "pets_family",
+      "input": "婴儿奶瓶 69",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-personal",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.personal"
+      }
+    },
+    {
+      "id": "G153",
+      "priority": "P1",
+      "group": "pets_family",
+      "input": "儿童玩具积木 159",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 15900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-other",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.other"
+      }
+    },
+    {
+      "id": "G154",
+      "priority": "P1",
+      "group": "pets_family",
+      "input": "孩子钢琴课 800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 80000,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-course",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.course"
+      }
+    },
+    {
+      "id": "G155",
+      "priority": "P1",
+      "group": "pets_family",
+      "input": "孩子买教辅书 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-book",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.book"
+      }
+    },
+    {
+      "id": "G156",
+      "priority": "P1",
+      "group": "pets_family",
+      "input": "给妈妈生活补贴 1000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 100000,
+        "content": null,
+        "categoryId": "expense-other",
+        "subcategoryId": "expense-other-general",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.other.general"
+      }
+    },
+    {
+      "id": "G157",
+      "priority": "P1",
+      "group": "pets_family",
+      "input": "给家里转生活费 1500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 150000,
+        "content": null,
+        "categoryId": "expense-other",
+        "subcategoryId": "expense-other-general",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.other.general"
+      }
+    },
+    {
+      "id": "G158",
+      "priority": "P1",
+      "group": "pets_family",
+      "input": "老人护理垫 76",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 7600,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-personal",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.personal"
+      }
+    },
+    {
+      "id": "G159",
+      "priority": "P1",
+      "group": "pets_family",
+      "input": "给爷爷买拐杖 180",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 18000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-rehab",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.rehab"
+      }
+    },
+    {
+      "id": "G160",
+      "priority": "P1",
+      "group": "pets_family",
+      "input": "孩子配眼镜 650",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 65000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-dental",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.dental"
+      }
+    },
+    {
+      "id": "G161",
+      "priority": "P0",
+      "group": "sports_outdoor",
+      "input": "健身房季卡 699",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 69900,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-fitness",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.fitness"
+      }
+    },
+    {
+      "id": "G162",
+      "priority": "P0",
+      "group": "sports_outdoor",
+      "input": "私教体验课 199",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 19900,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-fitness",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.fitness"
+      }
+    },
+    {
+      "id": "G163",
+      "priority": "P0",
+      "group": "sports_outdoor",
+      "input": "瑜伽月卡 399",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 39900,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-fitness",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.fitness"
+      }
+    },
+    {
+      "id": "G164",
+      "priority": "P0",
+      "group": "sports_outdoor",
+      "input": "羽毛球拍穿线 80",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-equipment",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.equipment"
+      }
+    },
+    {
+      "id": "G165",
+      "priority": "P1",
+      "group": "sports_outdoor",
+      "input": "登山鞋 499",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 49900,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-equipment",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.equipment"
+      }
+    },
+    {
+      "id": "G166",
+      "priority": "P1",
+      "group": "sports_outdoor",
+      "input": "骑行头盔 260",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 26000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-equipment",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.equipment"
+      }
+    },
+    {
+      "id": "G167",
+      "priority": "P1",
+      "group": "sports_outdoor",
+      "input": "露营睡袋 320",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 32000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-equipment",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.equipment"
+      }
+    },
+    {
+      "id": "G168",
+      "priority": "P1",
+      "group": "sports_outdoor",
+      "input": "租篮球场两小时 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-venue",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.venue"
+      }
+    },
+    {
+      "id": "G169",
+      "priority": "P1",
+      "group": "sports_outdoor",
+      "input": "游泳馆单次票 45",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4500,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-venue",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.venue"
+      }
+    },
+    {
+      "id": "G170",
+      "priority": "P1",
+      "group": "sports_outdoor",
+      "input": "羽毛球馆场地 70",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 7000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-venue",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.venue"
+      }
+    },
+    {
+      "id": "G171",
+      "priority": "P1",
+      "group": "sports_outdoor",
+      "input": "越野徒步活动 150",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 15000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-outdoor",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.outdoor"
+      }
+    },
+    {
+      "id": "G172",
+      "priority": "P1",
+      "group": "sports_outdoor",
+      "input": "露营营位费 100",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 10000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-outdoor",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.outdoor"
+      }
+    },
+    {
+      "id": "G173",
+      "priority": "P1",
+      "group": "sports_outdoor",
+      "input": "攀岩体验 128",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12800,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-outdoor",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.outdoor"
+      }
+    },
+    {
+      "id": "G174",
+      "priority": "P1",
+      "group": "sports_outdoor",
+      "input": "半程马拉松报名 180",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 18000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-event",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.event"
+      }
+    },
+    {
+      "id": "G175",
+      "priority": "P1",
+      "group": "sports_outdoor",
+      "input": "羽毛球公开赛报名 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-event",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.event"
+      }
+    },
+    {
+      "id": "G176",
+      "priority": "P1",
+      "group": "sports_outdoor",
+      "input": "骑行赛事报名 99",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9900,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-event",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.event"
+      }
+    },
+    {
+      "id": "G177",
+      "priority": "P1",
+      "group": "sports_outdoor",
+      "input": "健身手套 59",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 5900,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-equipment",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.equipment"
+      }
+    },
+    {
+      "id": "G178",
+      "priority": "P1",
+      "group": "sports_outdoor",
+      "input": "泳镜泳帽 88",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8800,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-equipment",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.equipment"
+      }
+    },
+    {
+      "id": "G179",
+      "priority": "P1",
+      "group": "sports_outdoor",
+      "input": "滑雪场雪具租赁 260",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 26000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-outdoor",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.outdoor"
+      }
+    },
+    {
+      "id": "G180",
+      "priority": "P1",
+      "group": "sports_outdoor",
+      "input": "户外俱乐部活动费 200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 20000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-outdoor",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.outdoor"
+      }
+    },
+    {
+      "id": "G181",
+      "priority": "P0",
+      "group": "travel_social",
+      "input": "民宿两晚 560",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 56000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-rent",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.rent"
+      }
+    },
+    {
+      "id": "G182",
+      "priority": "P0",
+      "group": "travel_social",
+      "input": "青旅床位 88",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8800,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-rent",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.rent"
+      }
+    },
+    {
+      "id": "G183",
+      "priority": "P0",
+      "group": "travel_social",
+      "input": "出游往返大巴 160",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 16000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-public",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.public"
+      }
+    },
+    {
+      "id": "G184",
+      "priority": "P0",
+      "group": "travel_social",
+      "input": "旅行接驳车 45",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4500,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-public",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.public"
+      }
+    },
+    {
+      "id": "G185",
+      "priority": "P1",
+      "group": "travel_social",
+      "input": "景区观光车 30",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-public",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.public"
+      }
+    },
+    {
+      "id": "G186",
+      "priority": "P1",
+      "group": "travel_social",
+      "input": "博物馆特展门票 80",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-activity",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.activity"
+      }
+    },
+    {
+      "id": "G187",
+      "priority": "P1",
+      "group": "travel_social",
+      "input": "主题乐园快速通行 299",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 29900,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-activity",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.activity"
+      }
+    },
+    {
+      "id": "G188",
+      "priority": "P1",
+      "group": "travel_social",
+      "input": "旅行社跟团尾款 1800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 180000,
+        "content": null,
+        "categoryId": "expense-other",
+        "subcategoryId": "expense-other-general",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.other.general"
+      }
+    },
+    {
+      "id": "G189",
+      "priority": "P1",
+      "group": "travel_social",
+      "input": "签证代办服务 420",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 42000,
+        "content": null,
+        "categoryId": "expense-other",
+        "subcategoryId": "expense-other-general",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.other.general"
+      }
+    },
+    {
+      "id": "G190",
+      "priority": "P1",
+      "group": "travel_social",
+      "input": "当地导游服务 300",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 30000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "G191",
+      "priority": "P1",
+      "group": "travel_social",
+      "input": "旅行收纳袋 39",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-home",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.home"
+      }
+    },
+    {
+      "id": "G192",
+      "priority": "P1",
+      "group": "travel_social",
+      "input": "行李箱绑带 25",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-home",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.home"
+      }
+    },
+    {
+      "id": "G193",
+      "priority": "P1",
+      "group": "travel_social",
+      "input": "同事聚餐AA 96",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9600,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-gathering",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.social.gathering"
+      }
+    },
+    {
+      "id": "G194",
+      "priority": "P1",
+      "group": "travel_social",
+      "input": "同学会餐费 180",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 18000,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-gathering",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.social.gathering"
+      }
+    },
+    {
+      "id": "G195",
+      "priority": "P1",
+      "group": "travel_social",
+      "input": "婚礼随份子 1000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 100000,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-red-packet",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.social.red.packet"
+      }
+    },
+    {
+      "id": "G196",
+      "priority": "P1",
+      "group": "travel_social",
+      "input": "春节给侄子红包 500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 50000,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-red-packet",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.social.red.packet"
+      }
+    },
+    {
+      "id": "G197",
+      "priority": "P1",
+      "group": "travel_social",
+      "input": "朋友乔迁送花 168",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 16800,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-gift",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.social.gift"
+      }
+    },
+    {
+      "id": "G198",
+      "priority": "P1",
+      "group": "travel_social",
+      "input": "生日买礼物 300",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 30000,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-gift",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.social.gift"
+      }
+    },
+    {
+      "id": "G199",
+      "priority": "P1",
+      "group": "travel_social",
+      "input": "公益平台捐款 100",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 10000,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-donation",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.social.donation"
+      }
+    },
+    {
+      "id": "G200",
+      "priority": "P1",
+      "group": "travel_social",
+      "input": "看望长辈人情支出 500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 50000,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-gift",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.social.gift"
+      }
+    },
+    {
+      "id": "G201",
+      "priority": "P0",
+      "group": "entertainment_communication",
+      "input": "话剧演出票 280",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 28000,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-performance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.performance"
+      }
+    },
+    {
+      "id": "G202",
+      "priority": "P0",
+      "group": "entertainment_communication",
+      "input": "音乐节门票 499",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 49900,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-performance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.performance"
+      }
+    },
+    {
+      "id": "G203",
+      "priority": "P0",
+      "group": "entertainment_communication",
+      "input": "桌游店消费 88",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8800,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-activity",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.activity"
+      }
+    },
+    {
+      "id": "G204",
+      "priority": "P0",
+      "group": "entertainment_communication",
+      "input": "密室逃脱 128",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12800,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-activity",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.activity"
+      }
+    },
+    {
+      "id": "G205",
+      "priority": "P1",
+      "group": "entertainment_communication",
+      "input": "买模型手办 399",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 39900,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-activity",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.activity"
+      }
+    },
+    {
+      "id": "G206",
+      "priority": "P1",
+      "group": "entertainment_communication",
+      "input": "手游月卡 30",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3000,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-game",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.game"
+      }
+    },
+    {
+      "id": "G207",
+      "priority": "P1",
+      "group": "entertainment_communication",
+      "input": "主机游戏DLC 88",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8800,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-game",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.game"
+      }
+    },
+    {
+      "id": "G208",
+      "priority": "P1",
+      "group": "entertainment_communication",
+      "input": "游戏战令 68",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6800,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-game",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.game"
+      }
+    },
+    {
+      "id": "G209",
+      "priority": "P1",
+      "group": "entertainment_communication",
+      "input": "音乐会员续费 15",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1500,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-media",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.media"
+      }
+    },
+    {
+      "id": "G210",
+      "priority": "P1",
+      "group": "entertainment_communication",
+      "input": "数字专辑 25",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-media",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.media"
+      }
+    },
+    {
+      "id": "G211",
+      "priority": "P1",
+      "group": "entertainment_communication",
+      "input": "视频平台季度会员 58",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 5800,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-media",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.media"
+      }
+    },
+    {
+      "id": "G212",
+      "priority": "P1",
+      "group": "entertainment_communication",
+      "input": "播客会员 30",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3000,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-media",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.media"
+      }
+    },
+    {
+      "id": "G213",
+      "priority": "P1",
+      "group": "entertainment_communication",
+      "input": "手机套餐月租 59",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 5900,
+        "content": null,
+        "categoryId": "expense-communication",
+        "subcategoryId": "expense-communication-mobile",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.communication.mobile"
+      }
+    },
+    {
+      "id": "G214",
+      "priority": "P1",
+      "group": "entertainment_communication",
+      "input": "流量加油包 20",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2000,
+        "content": null,
+        "categoryId": "expense-communication",
+        "subcategoryId": "expense-communication-mobile",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.communication.mobile"
+      }
+    },
+    {
+      "id": "G215",
+      "priority": "P1",
+      "group": "entertainment_communication",
+      "input": "家里宽带续费 600",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 60000,
+        "content": null,
+        "categoryId": "expense-communication",
+        "subcategoryId": "expense-communication-internet",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.communication.internet"
+      }
+    },
+    {
+      "id": "G216",
+      "priority": "P1",
+      "group": "entertainment_communication",
+      "input": "随身WiFi流量包 99",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9900,
+        "content": null,
+        "categoryId": "expense-communication",
+        "subcategoryId": "expense-communication-internet",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.communication.internet"
+      }
+    },
+    {
+      "id": "G217",
+      "priority": "P1",
+      "group": "entertainment_communication",
+      "input": "寄顺丰文件 18",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1800,
+        "content": null,
+        "categoryId": "expense-communication",
+        "subcategoryId": "expense-communication-post",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.communication.post"
+      }
+    },
+    {
+      "id": "G218",
+      "priority": "P1",
+      "group": "entertainment_communication",
+      "input": "国际快递邮费 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-communication",
+        "subcategoryId": "expense-communication-post",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.communication.post"
+      }
+    },
+    {
+      "id": "G219",
+      "priority": "P1",
+      "group": "entertainment_communication",
+      "input": "云盘容量续费 98",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9800,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-software",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.software"
+      }
+    },
+    {
+      "id": "G220",
+      "priority": "P1",
+      "group": "entertainment_communication",
+      "input": "对象存储月账单 46",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4600,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-software",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.software"
+      }
+    },
+    {
+      "id": "G221",
+      "priority": "P0",
+      "group": "finance_extended",
+      "input": "跨行转账手续费 5",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 500,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-fee",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.fee"
+      }
+    },
+    {
+      "id": "G222",
+      "priority": "P0",
+      "group": "finance_extended",
+      "input": "信用卡取现手续费 20",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-fee",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.fee"
+      }
+    },
+    {
+      "id": "G223",
+      "priority": "P0",
+      "group": "finance_extended",
+      "input": "贷款利息 860",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 86000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-interest",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.interest"
+      }
+    },
+    {
+      "id": "G224",
+      "priority": "P0",
+      "group": "finance_extended",
+      "input": "信用卡分期利息 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-interest",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.interest"
+      }
+    },
+    {
+      "id": "G225",
+      "priority": "P1",
+      "group": "finance_extended",
+      "input": "车险续保 3200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 320000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-insurance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.insurance"
+      }
+    },
+    {
+      "id": "G226",
+      "priority": "P1",
+      "group": "finance_extended",
+      "input": "医疗保险保费 1200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 120000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-insurance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.insurance"
+      }
+    },
+    {
+      "id": "G227",
+      "priority": "P1",
+      "group": "finance_extended",
+      "input": "旅行保险 80",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-insurance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.insurance"
+      }
+    },
+    {
+      "id": "G228",
+      "priority": "P1",
+      "group": "finance_extended",
+      "input": "个人所得税补缴 500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 50000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-tax",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.tax"
+      }
+    },
+    {
+      "id": "G229",
+      "priority": "P1",
+      "group": "finance_extended",
+      "input": "车船税 360",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 36000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-tax",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.tax"
+      }
+    },
+    {
+      "id": "G230",
+      "priority": "P1",
+      "group": "finance_extended",
+      "input": "房产税费 800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 80000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-tax",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.tax"
+      }
+    },
+    {
+      "id": "G231",
+      "priority": "P1",
+      "group": "finance_extended",
+      "input": "还同学借款 1000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 100000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-loan",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.loan"
+      }
+    },
+    {
+      "id": "G232",
+      "priority": "P1",
+      "group": "finance_extended",
+      "input": "还消费贷本金 2000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 200000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-loan",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.loan"
+      }
+    },
+    {
+      "id": "G233",
+      "priority": "P1",
+      "group": "finance_extended",
+      "input": "借款利息另付100",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 10000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-interest",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.interest"
+      }
+    },
+    {
+      "id": "G234",
+      "priority": "P1",
+      "group": "finance_extended",
+      "input": "基金定投本金 1000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 100000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-investment",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.investment"
+      }
+    },
+    {
+      "id": "G235",
+      "priority": "P1",
+      "group": "finance_extended",
+      "input": "买股票本金 5000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 500000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-investment",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.investment"
+      }
+    },
+    {
+      "id": "G236",
+      "priority": "P1",
+      "group": "finance_extended",
+      "input": "买国债 10000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1000000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-investment",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.investment"
+      }
+    },
+    {
+      "id": "G237",
+      "priority": "P1",
+      "group": "finance_extended",
+      "input": "保险退保手续费 50",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 5000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-fee",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.fee"
+      }
+    },
+    {
+      "id": "G238",
+      "priority": "P1",
+      "group": "finance_extended",
+      "input": "证券账户佣金 6",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 600,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-fee",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.fee"
+      }
+    },
+    {
+      "id": "G239",
+      "priority": "P1",
+      "group": "finance_extended",
+      "input": "缴纳契税 3000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 300000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-tax",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.tax"
+      }
+    },
+    {
+      "id": "G240",
+      "priority": "P1",
+      "group": "finance_extended",
+      "input": "助学贷款还款 800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 80000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-loan",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.loan"
+      }
+    },
+    {
+      "id": "G241",
+      "priority": "P0",
+      "group": "income_extended",
+      "input": "本月基本工资到账 8200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 820000,
+        "content": null,
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-monthly",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.salary.monthly"
+      }
+    },
+    {
+      "id": "G242",
+      "priority": "P0",
+      "group": "income_extended",
+      "input": "代发薪资 7800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 780000,
+        "content": null,
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-monthly",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.salary.monthly"
+      }
+    },
+    {
+      "id": "G243",
+      "priority": "P0",
+      "group": "income_extended",
+      "input": "年终奖金到账 12000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 1200000,
+        "content": null,
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-bonus",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.salary.bonus"
+      }
+    },
+    {
+      "id": "G244",
+      "priority": "P0",
+      "group": "income_extended",
+      "input": "销售奖金 2500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 250000,
+        "content": null,
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-bonus",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.salary.bonus"
+      }
+    },
+    {
+      "id": "G245",
+      "priority": "P0",
+      "group": "income_extended",
+      "input": "住房补贴到账 800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 80000,
+        "content": null,
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-allowance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.salary.allowance"
+      }
+    },
+    {
+      "id": "G246",
+      "priority": "P1",
+      "group": "income_extended",
+      "input": "交通津贴 300",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 30000,
+        "content": null,
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-allowance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.salary.allowance"
+      }
+    },
+    {
+      "id": "G247",
+      "priority": "P1",
+      "group": "income_extended",
+      "input": "加班绩效 1200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 120000,
+        "content": null,
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-overtime",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.salary.overtime"
+      }
+    },
+    {
+      "id": "G248",
+      "priority": "P1",
+      "group": "income_extended",
+      "input": "提成工资 1800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 180000,
+        "content": null,
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-overtime",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.salary.overtime"
+      }
+    },
+    {
+      "id": "G249",
+      "priority": "P1",
+      "group": "income_extended",
+      "input": "出差机票报销 1260",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 126000,
+        "content": null,
+        "categoryId": "income-reimbursement",
+        "subcategoryId": "income-reimbursement-travel",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.reimbursement.travel"
+      }
+    },
+    {
+      "id": "G250",
+      "priority": "P1",
+      "group": "income_extended",
+      "input": "门诊费用报销 360",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 36000,
+        "content": null,
+        "categoryId": "income-reimbursement",
+        "subcategoryId": "income-reimbursement-medical",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.reimbursement.medical"
+      }
+    },
+    {
+      "id": "G251",
+      "priority": "P1",
+      "group": "income_extended",
+      "input": "办公软件报销 299",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 29900,
+        "content": null,
+        "categoryId": "income-reimbursement",
+        "subcategoryId": "income-reimbursement-work",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.reimbursement.work"
+      }
+    },
+    {
+      "id": "G252",
+      "priority": "P1",
+      "group": "income_extended",
+      "input": "其他垫付款报销 150",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 15000,
+        "content": null,
+        "categoryId": "income-reimbursement",
+        "subcategoryId": "income-reimbursement-other",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.reimbursement.other"
+      }
+    },
+    {
+      "id": "G253",
+      "priority": "P1",
+      "group": "income_extended",
+      "input": "插画约稿收入 800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 80000,
+        "content": null,
+        "categoryId": "income-parttime",
+        "subcategoryId": "income-parttime-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.parttime.service"
+      }
+    },
+    {
+      "id": "G254",
+      "priority": "P1",
+      "group": "income_extended",
+      "input": "程序外包尾款 3500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 350000,
+        "content": null,
+        "categoryId": "income-parttime",
+        "subcategoryId": "income-parttime-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.parttime.service"
+      }
+    },
+    {
+      "id": "G255",
+      "priority": "P1",
+      "group": "income_extended",
+      "input": "项目劳务费到账 5000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 500000,
+        "content": null,
+        "categoryId": "income-parttime",
+        "subcategoryId": "income-parttime-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.parttime.service"
+      }
+    },
+    {
+      "id": "G256",
+      "priority": "P1",
+      "group": "income_extended",
+      "input": "跑腿接单收入 620",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 62000,
+        "content": null,
+        "categoryId": "income-parttime",
+        "subcategoryId": "income-parttime-platform",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.parttime.platform"
+      }
+    },
+    {
+      "id": "G257",
+      "priority": "P1",
+      "group": "income_extended",
+      "input": "咨询服务费到账 1500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 150000,
+        "content": null,
+        "categoryId": "income-parttime",
+        "subcategoryId": "income-parttime-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.parttime.service"
+      }
+    },
+    {
+      "id": "G258",
+      "priority": "P1",
+      "group": "income_extended",
+      "input": "授课课酬 900",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 90000,
+        "content": null,
+        "categoryId": "income-parttime",
+        "subcategoryId": "income-parttime-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.parttime.service"
+      }
+    },
+    {
+      "id": "G259",
+      "priority": "P1",
+      "group": "income_extended",
+      "input": "银行结息 18.6",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 1860,
+        "content": null,
+        "categoryId": "income-investment",
+        "subcategoryId": "income-investment-interest",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.investment.interest"
+      }
+    },
+    {
+      "id": "G260",
+      "priority": "P1",
+      "group": "income_extended",
+      "input": "股票现金分红 560",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 56000,
+        "content": null,
+        "categoryId": "income-investment",
+        "subcategoryId": "income-investment-dividend",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.investment.dividend"
+      }
+    },
+    {
+      "id": "G261",
+      "priority": "P1",
+      "group": "income_refund_sale",
+      "input": "基金赎回收益 860",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 86000,
+        "content": null,
+        "categoryId": "income-investment",
+        "subcategoryId": "income-investment-capital_gain",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.investment.capital_gain"
+      }
+    },
+    {
+      "id": "G262",
+      "priority": "P1",
+      "group": "income_refund_sale",
+      "input": "股票交易盈利 1200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 120000,
+        "content": null,
+        "categoryId": "income-investment",
+        "subcategoryId": "income-investment-capital_gain",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.investment.capital_gain"
+      }
+    },
+    {
+      "id": "G263",
+      "priority": "P1",
+      "group": "income_refund_sale",
+      "input": "出租车位租金收入 600",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 60000,
+        "content": null,
+        "categoryId": "income-investment",
+        "subcategoryId": "income-investment-rent",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.investment.rent"
+      }
+    },
+    {
+      "id": "G264",
+      "priority": "P1",
+      "group": "income_refund_sale",
+      "input": "房屋租金到账 3500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 350000,
+        "content": null,
+        "categoryId": "income-investment",
+        "subcategoryId": "income-investment-rent",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.investment.rent"
+      }
+    },
+    {
+      "id": "G265",
+      "priority": "P1",
+      "group": "income_refund_sale",
+      "input": "理财收益到账 88",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 8800,
+        "content": null,
+        "categoryId": "income-investment",
+        "subcategoryId": "income-investment-other",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.investment.other"
+      }
+    },
+    {
+      "id": "G266",
+      "priority": "P1",
+      "group": "income_refund_sale",
+      "input": "闲鱼卖二手相机 1600",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 160000,
+        "content": null,
+        "categoryId": "income-other",
+        "subcategoryId": "income-other-secondhand",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.other.secondhand"
+      }
+    },
+    {
+      "id": "G267",
+      "priority": "P1",
+      "group": "income_refund_sale",
+      "input": "卖旧家具收到500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 50000,
+        "content": null,
+        "categoryId": "income-other",
+        "subcategoryId": "income-other-secondhand",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.other.secondhand"
+      }
+    },
+    {
+      "id": "G268",
+      "priority": "P1",
+      "group": "income_refund_sale",
+      "input": "平台活动返现 35",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 3500,
+        "content": null,
+        "categoryId": "income-other",
+        "subcategoryId": "income-other-reward",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.other.reward"
+      }
+    },
+    {
+      "id": "G269",
+      "priority": "P1",
+      "group": "income_refund_sale",
+      "input": "银行卡消费返现 20",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 2000,
+        "content": null,
+        "categoryId": "income-other",
+        "subcategoryId": "income-other-reward",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.other.reward"
+      }
+    },
+    {
+      "id": "G270",
+      "priority": "P1",
+      "group": "income_refund_sale",
+      "input": "保险赔偿到账 1500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 150000,
+        "content": null,
+        "categoryId": "income-other",
+        "subcategoryId": "income-other-compensation",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.other.compensation"
+      }
+    },
+    {
+      "id": "G271",
+      "priority": "P1",
+      "group": "income_refund_sale",
+      "input": "快递破损赔偿 80",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 8000,
+        "content": null,
+        "categoryId": "income-other",
+        "subcategoryId": "income-other-compensation",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.other.compensation"
+      }
+    },
+    {
+      "id": "G272",
+      "priority": "P1",
+      "group": "income_refund_sale",
+      "input": "生日收到红包 500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 50000,
+        "content": null,
+        "categoryId": "income-other",
+        "subcategoryId": "income-other-red-packet",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.other.red.packet"
+      }
+    },
+    {
+      "id": "G273",
+      "priority": "P1",
+      "group": "income_refund_sale",
+      "input": "收到朋友礼金 800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 80000,
+        "content": null,
+        "categoryId": "income-other",
+        "subcategoryId": "income-other-red-packet",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.other.red.packet"
+      }
+    },
+    {
+      "id": "G274",
+      "priority": "P1",
+      "group": "income_refund_sale",
+      "input": "比赛奖金 1000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 100000,
+        "content": null,
+        "categoryId": "income-other",
+        "subcategoryId": "income-other-general",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.other.general"
+      }
+    },
+    {
+      "id": "G275",
+      "priority": "P1",
+      "group": "income_refund_sale",
+      "input": "助学金到账 2000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 200000,
+        "content": null,
+        "categoryId": "income-other",
+        "subcategoryId": "income-other-general",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.other.general"
+      }
+    },
+    {
+      "id": "G276",
+      "priority": "P2",
+      "group": "income_refund_sale",
+      "input": "购物退款到账 99",
+      "setup": {},
+      "expected": {
+        "status": "reject",
+        "type": "refund",
+        "amountMinor": 9900,
+        "content": null,
+        "categoryId": "income-refund",
+        "subcategoryId": "income-refund-shopping",
+        "occurredAtLocal": null,
+        "issues": [
+          "related_transaction_required"
+        ],
+        "semanticKey": "income.refund.shopping"
+      }
+    },
+    {
+      "id": "G277",
+      "priority": "P2",
+      "group": "income_refund_sale",
+      "input": "课程退款到账 299",
+      "setup": {},
+      "expected": {
+        "status": "reject",
+        "type": "refund",
+        "amountMinor": 29900,
+        "content": null,
+        "categoryId": "income-refund",
+        "subcategoryId": "income-refund-service",
+        "occurredAtLocal": null,
+        "issues": [
+          "related_transaction_required"
+        ],
+        "semanticKey": "income.refund.service"
+      }
+    },
+    {
+      "id": "G278",
+      "priority": "P2",
+      "group": "income_refund_sale",
+      "input": "租房押金退回 2000",
+      "setup": {},
+      "expected": {
+        "status": "reject",
+        "type": "refund",
+        "amountMinor": 200000,
+        "content": null,
+        "categoryId": "income-refund",
+        "subcategoryId": "income-refund-deposit",
+        "occurredAtLocal": null,
+        "issues": [
+          "related_transaction_required"
+        ],
+        "semanticKey": "income.refund.deposit"
+      }
+    },
+    {
+      "id": "G279",
+      "priority": "P2",
+      "group": "income_refund_sale",
+      "input": "个税退税到账 680",
+      "setup": {},
+      "expected": {
+        "status": "reject",
+        "type": "refund",
+        "amountMinor": 68000,
+        "content": null,
+        "categoryId": "income-refund",
+        "subcategoryId": "income-refund-tax",
+        "occurredAtLocal": null,
+        "issues": [
+          "related_transaction_required"
+        ],
+        "semanticKey": "income.refund.tax"
+      }
+    },
+    {
+      "id": "G280",
+      "priority": "P2",
+      "group": "income_refund_sale",
+      "input": "退款原路退回 35",
+      "setup": {},
+      "expected": {
+        "status": "reject",
+        "type": "refund",
+        "amountMinor": 3500,
+        "content": null,
+        "categoryId": "income-refund",
+        "subcategoryId": "income-refund-service",
+        "occurredAtLocal": null,
+        "issues": [
+          "related_transaction_required"
+        ],
+        "semanticKey": "income.refund.service"
+      }
+    },
+    {
+      "id": "G281",
+      "priority": "P1",
+      "group": "cross_domain_composition",
+      "input": "给对象买香水礼盒 399",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 39900,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-gift",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.social.gift"
+      }
+    },
+    {
+      "id": "G282",
+      "priority": "P1",
+      "group": "cross_domain_composition",
+      "input": "商场买点杂货 60",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6000,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-other",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.other"
+      }
+    },
+    {
+      "id": "G283",
+      "priority": "P1",
+      "group": "cross_domain_composition",
+      "input": "租婚礼礼服 300",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 30000,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-gift",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.social.gift"
+      }
+    },
+    {
+      "id": "G284",
+      "priority": "P1",
+      "group": "cross_domain_composition",
+      "input": "家里请搬家公司 600",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 60000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "G285",
+      "priority": "P1",
+      "group": "cross_domain_composition",
+      "input": "办公室搬家打包服务 500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 50000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "G286",
+      "priority": "P1",
+      "group": "cross_domain_composition",
+      "input": "新房请室内设计 1800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 180000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "G287",
+      "priority": "P1",
+      "group": "cross_domain_composition",
+      "input": "厨房装修人工费 2500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 250000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "G288",
+      "priority": "P1",
+      "group": "cross_domain_composition",
+      "input": "婚礼摄影跟拍 1200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 120000,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-gift",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.social.gift"
+      }
+    },
+    {
+      "id": "G289",
+      "priority": "P1",
+      "group": "cross_domain_composition",
+      "input": "证件照拍摄 45",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4500,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "G290",
+      "priority": "P1",
+      "group": "cross_domain_composition",
+      "input": "宠物摄影写真 299",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 29900,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.service"
+      }
+    },
+    {
+      "id": "G291",
+      "priority": "P1",
+      "group": "cross_domain_composition",
+      "input": "其他零碎支出 30",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3000,
+        "content": null,
+        "categoryId": "expense-other",
+        "subcategoryId": "expense-other-general",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.other.general"
+      }
+    },
+    {
+      "id": "G292",
+      "priority": "P1",
+      "group": "cross_domain_composition",
+      "input": "门禁卡弄丢赔了50",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 5000,
+        "content": null,
+        "categoryId": "expense-other",
+        "subcategoryId": "expense-other-general",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.other.general"
+      }
+    },
+    {
+      "id": "G293",
+      "priority": "P1",
+      "group": "cross_domain_composition",
+      "input": "临时补交一笔杂费 80",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": null,
+        "categoryId": "expense-other",
+        "subcategoryId": "expense-other-general",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.other.general"
+      }
+    },
+    {
+      "id": "G294",
+      "priority": "P1",
+      "group": "cross_domain_composition",
+      "input": "宝宝临时托管 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "G295",
+      "priority": "P1",
+      "group": "cross_domain_composition",
+      "input": "汽车美容镀晶 680",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 68000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "G296",
+      "priority": "P1",
+      "group": "cross_domain_composition",
+      "input": "手机贴膜服务 39",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3900,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.repair"
+      }
+    },
+    {
+      "id": "G297",
+      "priority": "P2",
+      "group": "cross_domain_composition",
+      "input": "衣服改腰围 35",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3500,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "G298",
+      "priority": "P2",
+      "group": "cross_domain_composition",
+      "input": "窗帘安装人工 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "G299",
+      "priority": "P2",
+      "group": "cross_domain_composition",
+      "input": "净水器安装费 100",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 10000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "G300",
+      "priority": "P2",
+      "group": "cross_domain_composition",
+      "input": "家具上门安装 160",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 16000,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-home",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.home"
+      }
+    }
+  ]
+}

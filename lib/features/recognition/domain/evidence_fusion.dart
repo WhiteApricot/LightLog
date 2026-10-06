@@ -17,41 +17,20 @@ class EvidenceFusionResult {
 class EvidenceFusion {
   const EvidenceFusion();
 
-  /// 0 protects specific anchors; 1 protects the parent; 2 permits routing.
+  /// Ordinary semantic evidence is a feature/prior. Only reliable personal
+  /// history and explicit prepared-meal routing lock semantic arbitration.
   int statisticalLevel(EvidenceFusionResult result) {
-    final ambiguous = result.issueCodes.contains(
-      RecognitionIssueCode.categoryAmbiguous,
-    );
-    final specificAnchor = result.winningEvidence.any(
+    final locked = result.winningEvidence.any(
       (e) =>
-          e.specificity == EvidenceSpecificity.specific &&
-          _priority(e) >= 80 &&
-          e.score >= .70,
+          e.family == 'mealByExplicitTime' ||
+          e.family == 'mealByOccurredAt' ||
+          (e.source == RecognitionEvidenceSource.personalHistory &&
+              e.score >= .70),
     );
-    if (result.winningEvidence.any(
-          (e) =>
-              e.family == 'mealByExplicitTime' ||
-              e.family == 'mealByOccurredAt',
-        ) ||
-        (!ambiguous &&
-            result.confidence >= .70 &&
-            (specificAnchor ||
-                result.winningEvidence.any(
-                  (e) =>
-                      e.source == RecognitionEvidenceSource.personalHistory ||
-                      e.source == RecognitionEvidenceSource.composition,
-                )))) {
-      return 0;
-    }
-    if (result.semanticKey == null) return 2;
-    if (specificAnchor) return 1;
-    final parentAnchor = result.winningEvidence.any(
-      (e) =>
-          e.specificity == EvidenceSpecificity.specific ||
-          e.role == EvidenceRole.merchantType ||
-          e.role == EvidenceRole.venue,
-    );
-    return parentAnchor && result.confidence >= .58 && !ambiguous ? 1 : 2;
+    return locked &&
+            !result.issueCodes.contains(RecognitionIssueCode.categoryAmbiguous)
+        ? 0
+        : 2;
   }
 
   /// Product contract: a definite meal and its parsed local time outrank food
@@ -94,9 +73,13 @@ class EvidenceFusion {
                 weak.semanticKey!.split('.').take(2).join('.')) ||
         type == null ||
         (type != RecognitionTransactionType.expense &&
-            type != RecognitionTransactionType.income) ||
-        !weak.semanticKey!.startsWith('${type.value}.') ||
-        weak.semanticKey!.startsWith('income.refund.')) {
+            type != RecognitionTransactionType.income &&
+            type != RecognitionTransactionType.refund) ||
+        !weak.semanticKey!.startsWith(
+          '${type == RecognitionTransactionType.refund ? 'income' : type.value}.',
+        ) ||
+        (weak.semanticKey!.startsWith('income.refund.') &&
+            type != RecognitionTransactionType.refund)) {
       return deterministic;
     }
     return EvidenceFusionResult(

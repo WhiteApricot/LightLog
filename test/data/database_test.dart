@@ -10,6 +10,105 @@ import 'package:light_log/features/ledger/domain/ledger_models.dart';
 import 'package:light_log/features/recognition/data/recognition_repository.dart';
 
 void main() {
+  test(
+    'schema v4 to v5 atomically merges defaults, ledger FKs and history',
+    () async {
+      final directory = await Directory.systemTemp.createTemp('light_log_v5_');
+      final file = File('${directory.path}/migration.sqlite');
+      var db = AppDatabase(NativeDatabase(file));
+      try {
+        await db.select(db.categories).get();
+        for (final merge in mergedDefaultCategoryIds.entries) {
+          final parent = merge.key.split('-').take(2).join('-');
+          await db
+              .into(db.categories)
+              .insert(
+                CategoriesCompanion.insert(
+                  id: merge.key,
+                  parentId: Value(parent),
+                  name: '历史默认类',
+                  type: merge.key.startsWith('income') ? 'income' : 'expense',
+                  semanticKey: Value(merge.key.replaceAll('-', '.')),
+                  isSystem: const Value(true),
+                  sortOrder: 1,
+                  createdAt: 1,
+                  updatedAt: 1,
+                ),
+              );
+          await db
+              .into(db.transactions)
+              .insert(
+                TransactionsCompanion.insert(
+                  id: merge.key,
+                  type: merge.key.startsWith('income') ? 'income' : 'expense',
+                  categoryId: parent,
+                  subcategoryId: merge.key,
+                  content: '历史账目',
+                  amountMinor: 123,
+                  occurredAt: 42,
+                  timezoneOffsetMinutes: 345,
+                  accountId: 'account-cash',
+                  deletedAt: const Value(99),
+                  createdAt: 1,
+                  updatedAt: 2,
+                ),
+              );
+          await db
+              .into(db.recognitionRules)
+              .insert(
+                RecognitionRulesCompanion.insert(
+                  id: merge.key,
+                  normalizedContent: merge.key,
+                  semanticKey: merge.key.replaceAll('-', '.'),
+                  hitCount: const Value(7),
+                  correctionCount: const Value(2),
+                  lastUsedAt: 3,
+                  createdAt: 1,
+                  updatedAt: 2,
+                ),
+              );
+        }
+        await db.customStatement('PRAGMA user_version = 4');
+        await db.close();
+        db = AppDatabase(NativeDatabase(file));
+        final entries = await db.select(db.transactions).get();
+        expect(db.schemaVersion, 5);
+        expect(entries, hasLength(mergedDefaultCategoryIds.length));
+        for (final entry in entries) {
+          final target = defaultCategories.singleWhere(
+            (c) => c.id == mergedDefaultCategoryIds[entry.id],
+          );
+          expect(entry.subcategoryId, target.id);
+          expect(entry.categoryId, target.parentId);
+          expect(entry.amountMinor, 123);
+          expect(entry.occurredAt, 42);
+          expect(entry.timezoneOffsetMinutes, 345);
+          expect(entry.deletedAt, 99);
+          expect(entry.updatedAt, 2);
+          final history = await (db.select(
+            db.recognitionRules,
+          )..where((r) => r.id.equals(entry.id))).getSingle();
+          expect(history.semanticKey, target.semanticKey);
+          expect(history.hitCount, 7);
+          expect(history.correctionCount, 2);
+        }
+        expect(
+          await db.customSelect('PRAGMA foreign_key_check').get(),
+          isEmpty,
+        );
+        final active = (await db.select(db.categories).get()).where(
+          (c) => c.isActive && c.isSystem && c.parentId != null,
+        );
+        expect(active, hasLength(96));
+        expect(active.map((c) => c.semanticKey).toSet(), hasLength(96));
+        await db.seedDefaults();
+        expect(await db.select(db.transactions).get(), entries);
+      } finally {
+        await db.close();
+        await directory.delete(recursive: true);
+      }
+    },
+  );
   late AppDatabase database;
   late LocalLedgerRepository repository;
   var databaseClosed = false;
@@ -121,7 +220,7 @@ void main() {
         hasLength(defaultAccounts.length),
       );
       final categories = await database.select(database.categories).get();
-      expect(categories, hasLength(125));
+      expect(categories, hasLength(117));
       expect(
         categories.every(
           (category) =>

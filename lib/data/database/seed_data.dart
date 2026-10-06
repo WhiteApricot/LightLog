@@ -17,10 +17,10 @@ const categorySemanticKeys = <String, String>{
   'expense-transport-maintenance': 'expense.transport.maintenance',
   'expense-shopping': 'expense.shopping',
   'expense-shopping-clothing': 'expense.shopping.clothing',
-  'expense-shopping-beauty': 'expense.shopping.beauty',
+  'expense-shopping-personal': 'expense.shopping.personal',
   'expense-shopping-home': 'expense.shopping.home',
   'expense-shopping-appliance': 'expense.shopping.appliance',
-  'expense-shopping-gift': 'expense.shopping.gift',
+  'expense-social-gift': 'expense.social.gift',
   'expense-shopping-other': 'expense.shopping.other',
   'expense-housing': 'expense.housing',
   'expense-housing-rent': 'expense.housing.rent',
@@ -30,17 +30,14 @@ const categorySemanticKeys = <String, String>{
   'expense-housing-gas': 'expense.housing.gas',
   'expense-housing-repair': 'expense.housing.repair',
   'expense-daily': 'expense.daily',
-  'expense-daily-household': 'expense.daily.household',
-  'expense-daily-personal': 'expense.daily.personal',
   'expense-daily-cleaning': 'expense.daily.cleaning',
-  'expense-daily-haircut': 'expense.daily.haircut',
+  'expense-daily-grooming': 'expense.daily.grooming',
   'expense-daily-service': 'expense.daily.service',
   'expense-entertainment': 'expense.entertainment',
-  'expense-entertainment-movie': 'expense.entertainment.movie',
+  'expense-entertainment-performance': 'expense.entertainment.performance',
   'expense-entertainment-game': 'expense.entertainment.game',
-  'expense-entertainment-music': 'expense.entertainment.music',
-  'expense-entertainment-subscription': 'expense.entertainment.subscription',
-  'expense-entertainment-hobby': 'expense.entertainment.hobby',
+  'expense-entertainment-media': 'expense.entertainment.media',
+  'expense-entertainment-activity': 'expense.entertainment.activity',
   'expense-education': 'expense.education',
   'expense-education-book': 'expense.education.book',
   'expense-education-course': 'expense.education.course',
@@ -57,13 +54,11 @@ const categorySemanticKeys = <String, String>{
   'expense-communication-mobile': 'expense.communication.mobile',
   'expense-communication-internet': 'expense.communication.internet',
   'expense-communication-post': 'expense.communication.post',
-  'expense-communication-cloud': 'expense.communication.cloud',
+  'expense-digital-software': 'expense.digital.software',
   'expense-social': 'expense.social',
   'expense-social-gathering': 'expense.social.gathering',
   'expense-social-red-packet': 'expense.social.red.packet',
-  'expense-social-gift': 'expense.social.gift',
   'expense-social-donation': 'expense.social.donation',
-  'expense-social-relationship': 'expense.social.relationship',
   'expense-sports': 'expense.sports',
   'expense-sports-fitness': 'expense.sports.fitness',
   'expense-sports-equipment': 'expense.sports.equipment',
@@ -81,7 +76,6 @@ const categorySemanticKeys = <String, String>{
   'expense-digital-computer': 'expense.digital.computer',
   'expense-digital-photo': 'expense.digital.photo',
   'expense-digital-accessory': 'expense.digital.accessory',
-  'expense-digital-software': 'expense.digital.software',
   'expense-digital-repair': 'expense.digital.repair',
   'expense-finance': 'expense.finance',
   'expense-finance-fee': 'expense.finance.fee',
@@ -103,14 +97,12 @@ const categorySemanticKeys = <String, String>{
   'income-reimbursement-medical': 'income.reimbursement.medical',
   'income-reimbursement-other': 'income.reimbursement.other',
   'income-parttime': 'income.parttime',
-  'income-parttime-freelance': 'income.parttime.freelance',
-  'income-parttime-project': 'income.parttime.project',
+  'income-parttime-service': 'income.parttime.service',
   'income-parttime-platform': 'income.parttime.platform',
-  'income-parttime-consulting': 'income.parttime.consulting',
   'income-investment': 'income.investment',
   'income-investment-interest': 'income.investment.interest',
   'income-investment-dividend': 'income.investment.dividend',
-  'income-investment-fund': 'income.investment.fund',
+  'income-investment-capital_gain': 'income.investment.capital_gain',
   'income-investment-rent': 'income.investment.rent',
   'income-investment-other': 'income.investment.other',
   'income-refund': 'income.refund',
@@ -235,7 +227,6 @@ const defaultCategories = <CategorySeed>[
     80,
     'expense-food',
   ),
-
   CategorySeed('expense-transport', '交通', 'expense', 'expense-transport', 20),
   CategorySeed(
     'expense-transport-public',
@@ -293,7 +284,6 @@ const defaultCategories = <CategorySeed>[
     70,
     'expense-transport',
   ),
-
   CategorySeed('expense-shopping', '购物', 'expense', 'expense-shopping', 30),
   CategorySeed(
     'expense-shopping-clothing',
@@ -304,8 +294,8 @@ const defaultCategories = <CategorySeed>[
     'expense-shopping',
   ),
   CategorySeed(
-    'expense-shopping-beauty',
-    '美妆护肤',
+    'expense-shopping-personal',
+    '个人护理用品',
     'expense',
     'expense-shopping-beauty',
     20,
@@ -328,12 +318,12 @@ const defaultCategories = <CategorySeed>[
     'expense-shopping',
   ),
   CategorySeed(
-    'expense-shopping-gift',
+    'expense-social-gift',
     '礼物',
     'expense',
     'expense-shopping-gift',
     50,
-    'expense-shopping',
+    'expense-social',
   ),
   CategorySeed(
     'expense-shopping-other',
@@ -343,7 +333,6 @@ const defaultCategories = <CategorySeed>[
     60,
     'expense-shopping',
   ),
-
   CategorySeed('expense-housing', '居住', 'expense', 'expense-housing', 40),
   CategorySeed(
     'expense-housing-rent',
@@ -393,24 +382,7 @@ const defaultCategories = <CategorySeed>[
     60,
     'expense-housing',
   ),
-
   CategorySeed('expense-daily', '日用', 'expense', 'expense-daily', 50),
-  CategorySeed(
-    'expense-daily-household',
-    '家庭耗材',
-    'expense',
-    'expense-daily-household',
-    10,
-    'expense-daily',
-  ),
-  CategorySeed(
-    'expense-daily-personal',
-    '个人护理',
-    'expense',
-    'expense-daily-personal',
-    20,
-    'expense-daily',
-  ),
   CategorySeed(
     'expense-daily-cleaning',
     '清洁洗护',
@@ -420,7 +392,7 @@ const defaultCategories = <CategorySeed>[
     'expense-daily',
   ),
   CategorySeed(
-    'expense-daily-haircut',
+    'expense-daily-grooming',
     '理发美容',
     'expense',
     'expense-daily-haircut',
@@ -435,7 +407,6 @@ const defaultCategories = <CategorySeed>[
     50,
     'expense-daily',
   ),
-
   CategorySeed(
     'expense-entertainment',
     '娱乐',
@@ -444,8 +415,8 @@ const defaultCategories = <CategorySeed>[
     60,
   ),
   CategorySeed(
-    'expense-entertainment-movie',
-    '电影演出',
+    'expense-entertainment-performance',
+    '电影与演出',
     'expense',
     'expense-entertainment-movie',
     10,
@@ -460,30 +431,21 @@ const defaultCategories = <CategorySeed>[
     'expense-entertainment',
   ),
   CategorySeed(
-    'expense-entertainment-music',
-    '影音音乐',
+    'expense-entertainment-media',
+    '影音内容',
     'expense',
     'expense-entertainment-music',
     30,
     'expense-entertainment',
   ),
   CategorySeed(
-    'expense-entertainment-subscription',
-    '会员订阅',
-    'expense',
-    'expense-entertainment-subscription',
-    40,
-    'expense-entertainment',
-  ),
-  CategorySeed(
-    'expense-entertainment-hobby',
-    '兴趣爱好',
+    'expense-entertainment-activity',
+    '娱乐活动',
     'expense',
     'expense-entertainment-hobby',
     50,
     'expense-entertainment',
   ),
-
   CategorySeed('expense-education', '学习', 'expense', 'expense-education', 70),
   CategorySeed(
     'expense-education-book',
@@ -525,7 +487,6 @@ const defaultCategories = <CategorySeed>[
     50,
     'expense-education',
   ),
-
   CategorySeed('expense-medical', '医疗', 'expense', 'expense-medical', 80),
   CategorySeed(
     'expense-medical-clinic',
@@ -567,7 +528,6 @@ const defaultCategories = <CategorySeed>[
     50,
     'expense-medical',
   ),
-
   CategorySeed(
     'expense-communication',
     '通讯',
@@ -600,14 +560,13 @@ const defaultCategories = <CategorySeed>[
     'expense-communication',
   ),
   CategorySeed(
-    'expense-communication-cloud',
+    'expense-digital-software',
     '云存储',
     'expense',
     'expense-communication-cloud',
     40,
-    'expense-communication',
+    'expense-digital',
   ),
-
   CategorySeed('expense-social', '社交人情', 'expense', 'expense-social', 100),
   CategorySeed(
     'expense-social-gathering',
@@ -626,14 +585,6 @@ const defaultCategories = <CategorySeed>[
     'expense-social',
   ),
   CategorySeed(
-    'expense-social-gift',
-    '送礼',
-    'expense',
-    'expense-social-gift',
-    30,
-    'expense-social',
-  ),
-  CategorySeed(
     'expense-social-donation',
     '公益捐赠',
     'expense',
@@ -641,15 +592,6 @@ const defaultCategories = <CategorySeed>[
     40,
     'expense-social',
   ),
-  CategorySeed(
-    'expense-social-relationship',
-    '人情往来',
-    'expense',
-    'expense-social-relationship',
-    50,
-    'expense-social',
-  ),
-
   CategorySeed('expense-sports', '运动', 'expense', 'expense-sports', 120),
   CategorySeed(
     'expense-sports-fitness',
@@ -661,7 +603,7 @@ const defaultCategories = <CategorySeed>[
   ),
   CategorySeed(
     'expense-sports-equipment',
-    '运动装备',
+    '运动器材',
     'expense',
     'expense-sports-equipment',
     20,
@@ -691,7 +633,6 @@ const defaultCategories = <CategorySeed>[
     50,
     'expense-sports',
   ),
-
   CategorySeed('expense-pets', '宠物', 'expense', 'expense-pets', 130),
   CategorySeed(
     'expense-pets-food',
@@ -733,7 +674,6 @@ const defaultCategories = <CategorySeed>[
     50,
     'expense-pets',
   ),
-
   CategorySeed('expense-digital', '数码', 'expense', 'expense-digital', 140),
   CategorySeed(
     'expense-digital-phone',
@@ -768,14 +708,6 @@ const defaultCategories = <CategorySeed>[
     'expense-digital',
   ),
   CategorySeed(
-    'expense-digital-software',
-    '软件应用',
-    'expense',
-    'expense-digital-software',
-    50,
-    'expense-digital',
-  ),
-  CategorySeed(
     'expense-digital-repair',
     '维修服务',
     'expense',
@@ -783,7 +715,6 @@ const defaultCategories = <CategorySeed>[
     60,
     'expense-digital',
   ),
-
   CategorySeed('expense-finance', '金融', 'expense', 'expense-finance', 150),
   CategorySeed(
     'expense-finance-fee',
@@ -833,7 +764,6 @@ const defaultCategories = <CategorySeed>[
     60,
     'expense-finance',
   ),
-
   CategorySeed('expense-other', '其他支出', 'expense', 'expense-other', 990),
   CategorySeed(
     'expense-other-general',
@@ -843,7 +773,6 @@ const defaultCategories = <CategorySeed>[
     10,
     'expense-other',
   ),
-
   CategorySeed('income-salary', '工资奖金', 'income', 'income-salary', 10),
   CategorySeed(
     'income-salary-monthly',
@@ -877,7 +806,6 @@ const defaultCategories = <CategorySeed>[
     40,
     'income-salary',
   ),
-
   CategorySeed(
     'income-reimbursement',
     '报销',
@@ -917,22 +845,13 @@ const defaultCategories = <CategorySeed>[
     40,
     'income-reimbursement',
   ),
-
   CategorySeed('income-parttime', '兼职', 'income', 'income-parttime', 30),
   CategorySeed(
-    'income-parttime-freelance',
-    '自由职业',
+    'income-parttime-service',
+    '劳务服务',
     'income',
     'income-parttime-freelance',
     10,
-    'income-parttime',
-  ),
-  CategorySeed(
-    'income-parttime-project',
-    '项目劳务',
-    'income',
-    'income-parttime-project',
-    20,
     'income-parttime',
   ),
   CategorySeed(
@@ -943,15 +862,6 @@ const defaultCategories = <CategorySeed>[
     30,
     'income-parttime',
   ),
-  CategorySeed(
-    'income-parttime-consulting',
-    '咨询授课',
-    'income',
-    'income-parttime-consulting',
-    40,
-    'income-parttime',
-  ),
-
   CategorySeed('income-investment', '投资收益', 'income', 'income-investment', 40),
   CategorySeed(
     'income-investment-interest',
@@ -970,7 +880,7 @@ const defaultCategories = <CategorySeed>[
     'income-investment',
   ),
   CategorySeed(
-    'income-investment-fund',
+    'income-investment-capital_gain',
     '基金股票',
     'income',
     'income-investment-fund',
@@ -993,7 +903,6 @@ const defaultCategories = <CategorySeed>[
     50,
     'income-investment',
   ),
-
   CategorySeed('income-refund', '退款返还', 'income', 'income-refund', 50),
   CategorySeed(
     'income-refund-shopping',
@@ -1027,7 +936,6 @@ const defaultCategories = <CategorySeed>[
     40,
     'income-refund',
   ),
-
   CategorySeed('income-other', '其他收入', 'income', 'income-other', 990),
   CategorySeed(
     'income-other-red-packet',
@@ -1078,3 +986,21 @@ const defaultAccounts = <AccountSeed>[
   AccountSeed('account-cash', '现金', 'cash', 40),
   AccountSeed('account-other', '其他', 'other', 50),
 ];
+
+const mergedDefaultCategoryIds = <String, String>{
+  'expense-shopping-beauty': 'expense-shopping-personal',
+  'expense-daily-personal': 'expense-shopping-personal',
+  'expense-daily-household': 'expense-shopping-home',
+  'expense-daily-haircut': 'expense-daily-grooming',
+  'expense-shopping-gift': 'expense-social-gift',
+  'expense-social-relationship': 'expense-social-gift',
+  'expense-entertainment-movie': 'expense-entertainment-performance',
+  'expense-entertainment-music': 'expense-entertainment-media',
+  'expense-entertainment-subscription': 'expense-entertainment-media',
+  'expense-entertainment-hobby': 'expense-entertainment-activity',
+  'expense-communication-cloud': 'expense-digital-software',
+  'income-parttime-freelance': 'income-parttime-service',
+  'income-parttime-project': 'income-parttime-service',
+  'income-parttime-consulting': 'income-parttime-service',
+  'income-investment-fund': 'income-investment-capital_gain',
+};

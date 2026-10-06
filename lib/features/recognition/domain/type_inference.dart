@@ -3,8 +3,42 @@ import 'recognition_models.dart';
 class TypeInference {
   const TypeInference();
 
-  static final _income = RegExp(r'收款(?!方)|到账|收入|退回');
+  static final _income = RegExp(r'收款(?!方)|到账|收入|退回|收益\s*[:：]?\s*[￥¥]?\s*\d');
   static final _expense = RegExp(r'实付|支付|付款(?!方)|消费|花了|购买|买了|缴费|充值');
+
+  TypeDecision withStatisticalDirection(
+    TypeDecision preliminary,
+    double incomeProbability,
+    double threshold,
+  ) {
+    if (preliminary.type == RecognitionTransactionType.refund ||
+        preliminary.hasConflict ||
+        (!preliminary.isDefault &&
+            preliminary.type != null &&
+            preliminary.confidence >= .70)) {
+      return preliminary;
+    }
+    final confidence = incomeProbability >= .5
+        ? incomeProbability
+        : 1 - incomeProbability;
+    if (confidence <= .5 || confidence < threshold) return preliminary;
+    return TypeDecision(
+      type: incomeProbability >= .5
+          ? RecognitionTransactionType.income
+          : RecognitionTransactionType.expense,
+      confidence: .69,
+      evidence: [
+        ...preliminary.evidence,
+        const RecognitionEvidence(
+          field: 'type',
+          description: '本地方向模型校正弱方向（需确认）',
+          score: .69,
+          source: RecognitionEvidenceSource.ngram,
+          family: 'statisticalDirection',
+        ),
+      ],
+    );
+  }
 
   TypeDecision inferPreliminary({
     required String matchingText,

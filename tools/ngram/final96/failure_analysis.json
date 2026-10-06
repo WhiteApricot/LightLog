@@ -1,0 +1,1683 @@
+{
+  "sourceReportSha256": "2958ca2c1b4d6690558285918c4bc2a3e310961bb7f193e2d8b5b5e504af5d4c",
+  "total": 800,
+  "failedCases": 182,
+  "categoryErrors": 165,
+  "dimensions": {
+    "correct parent / wrong child": 71,
+    "meal error": 7,
+    "taxonomy-boundary residual (pair proxy)": 65,
+    "unseen expected entity/product (vocabulary proxy)": 98,
+    "wrong parent": 94,
+    "false other.general": 20,
+    "multi-clause/context interference": 41,
+    "wrong direction/type": 42,
+    "safety failure (all priorities)": 6,
+    "merchant/platform noise": 25,
+    "meal detection miss": 2
+  },
+  "dimensionPolicy": "Counts overlap; taxonomy/unseen/context are explicitly identified static report/vocabulary proxies, not human adjudication or a second prediction run. Safety checks all priorities, unlike built-in P2-only failureDecomposition.safety.",
+  "topConfusedParents": [
+    {
+      "expected": "income-investment",
+      "actual": "expense-finance",
+      "count": 9
+    },
+    {
+      "expected": "expense-food",
+      "actual": "expense-other",
+      "count": 6
+    },
+    {
+      "expected": "income-other",
+      "actual": "expense-social",
+      "count": 5
+    },
+    {
+      "expected": "income-refund",
+      "actual": "income-other",
+      "count": 4
+    },
+    {
+      "expected": "expense-shopping",
+      "actual": "expense-daily",
+      "count": 3
+    },
+    {
+      "expected": "expense-digital",
+      "actual": "expense-education",
+      "count": 3
+    },
+    {
+      "expected": "expense-other",
+      "actual": "expense-social",
+      "count": 3
+    },
+    {
+      "expected": "income-salary",
+      "actual": "expense-other",
+      "count": 3
+    },
+    {
+      "expected": "income-other",
+      "actual": "expense-finance",
+      "count": 3
+    },
+    {
+      "expected": "expense-other",
+      "actual": "expense-finance",
+      "count": 3
+    },
+    {
+      "expected": "income-other",
+      "actual": "expense-other",
+      "count": 3
+    },
+    {
+      "expected": "expense-shopping",
+      "actual": "expense-sports",
+      "count": 2
+    },
+    {
+      "expected": "expense-daily",
+      "actual": "expense-shopping",
+      "count": 2
+    },
+    {
+      "expected": "expense-digital",
+      "actual": "expense-shopping",
+      "count": 2
+    },
+    {
+      "expected": "income-reimbursement",
+      "actual": "income-other",
+      "count": 2
+    }
+  ],
+  "topConfusedChildren": [
+    {
+      "expected": "expense.entertainment.performance",
+      "actual": "expense.entertainment.media",
+      "count": 7
+    },
+    {
+      "expected": "expense.digital.computer",
+      "actual": "expense.digital.repair",
+      "count": 7
+    },
+    {
+      "expected": "expense.daily.cleaning",
+      "actual": "expense.daily.service",
+      "count": 5
+    },
+    {
+      "expected": "expense.food.other",
+      "actual": "expense.other.general",
+      "count": 4
+    },
+    {
+      "expected": "expense.housing.gas",
+      "actual": "expense.housing.utilities",
+      "count": 4
+    },
+    {
+      "expected": "expense.entertainment.activity",
+      "actual": "expense.entertainment.media",
+      "count": 4
+    },
+    {
+      "expected": "income.investment.interest",
+      "actual": "expense.finance.interest",
+      "count": 4
+    },
+    {
+      "expected": "expense.food.other",
+      "actual": "expense.food.snack",
+      "count": 3
+    },
+    {
+      "expected": "expense.shopping.home",
+      "actual": "expense.daily.cleaning",
+      "count": 3
+    },
+    {
+      "expected": "expense.digital.computer",
+      "actual": "expense.education.stationery",
+      "count": 3
+    },
+    {
+      "expected": "expense.other.general",
+      "actual": "expense.social.donation",
+      "count": 3
+    },
+    {
+      "expected": "income.reimbursement.other",
+      "actual": "income.reimbursement.work",
+      "count": 3
+    },
+    {
+      "expected": "income.investment.other",
+      "actual": "expense.finance.investment",
+      "count": 3
+    },
+    {
+      "expected": "income.refund.service",
+      "actual": "income.refund.shopping",
+      "count": 3
+    },
+    {
+      "expected": "expense.other.general",
+      "actual": "expense.finance.investment",
+      "count": 3
+    }
+  ],
+  "worstSemanticKeys": [
+    {
+      "semanticKey": "expense.digital.computer",
+      "count": 10
+    },
+    {
+      "semanticKey": "expense.food.other",
+      "count": 8
+    },
+    {
+      "semanticKey": "expense.entertainment.performance",
+      "count": 8
+    },
+    {
+      "semanticKey": "expense.other.general",
+      "count": 7
+    },
+    {
+      "semanticKey": "income.other.reward",
+      "count": 7
+    },
+    {
+      "semanticKey": "income.other.general",
+      "count": 7
+    },
+    {
+      "semanticKey": "expense.daily.cleaning",
+      "count": 5
+    },
+    {
+      "semanticKey": "income.refund.service",
+      "count": 5
+    },
+    {
+      "semanticKey": "expense.food.breakfast",
+      "count": 4
+    },
+    {
+      "semanticKey": "expense.housing.gas",
+      "count": 4
+    },
+    {
+      "semanticKey": "expense.entertainment.activity",
+      "count": 4
+    },
+    {
+      "semanticKey": "expense.social.gift",
+      "count": 4
+    },
+    {
+      "semanticKey": "expense.sports.equipment",
+      "count": 4
+    },
+    {
+      "semanticKey": "income.investment.interest",
+      "count": 4
+    },
+    {
+      "semanticKey": "income.investment.other",
+      "count": 4
+    }
+  ],
+  "typePairs": [
+    {
+      "expected": "income",
+      "actual": "expense",
+      "count": 36
+    },
+    {
+      "expected": "refund",
+      "actual": "income",
+      "count": 4
+    },
+    {
+      "expected": "refund",
+      "actual": "expense",
+      "count": 2
+    }
+  ],
+  "incomeToExpenseTypeConfidence": {
+    "0.69": 34,
+    "0.94": 2
+  },
+  "languagePatterns": {
+    "implicit income predicates / settlement / credit": 30,
+    "return/deposit/tax with intervening modifiers": 6,
+    "receipt headings / merchant-platform wrapper": 25,
+    "time inference from scene or ambiguous clock": 7,
+    "maintenance / upgrade / accessory action": 4
+  },
+  "mealFailures": [
+    {
+      "id": "V7-0002",
+      "input": "上班前吃肠粉 12",
+      "expected": "expense.food.breakfast",
+      "actual": "expense.food.dinner",
+      "routingApplied": true
+    },
+    {
+      "id": "V7-0005",
+      "input": "午休吃一份兰州拉面 23",
+      "expected": "expense.food.lunch",
+      "actual": "expense.food.dinner",
+      "routingApplied": true
+    },
+    {
+      "id": "V7-0313",
+      "input": "支付成功\n渠道：微信支付\n商品/服务：上班前吃肠粉\n原价 1220\n优惠 20\n实付 1200\n订单号 202610060000",
+      "expected": "expense.food.breakfast",
+      "actual": "expense.food.dinner",
+      "routingApplied": true
+    },
+    {
+      "id": "V7-0599",
+      "input": "今早赶车前吃了饭团 399",
+      "expected": "expense.food.breakfast",
+      "actual": "expense.other.general",
+      "routingApplied": false
+    },
+    {
+      "id": "V7-0602",
+      "input": "早晨十点前吃一份粉 880",
+      "expected": "expense.food.breakfast",
+      "actual": "expense.other.general",
+      "routingApplied": false
+    },
+    {
+      "id": "V7-0604",
+      "input": "午休一点钟吃麻辣烫 1680",
+      "expected": "expense.food.lunch",
+      "actual": "expense.food.dinner",
+      "routingApplied": true
+    },
+    {
+      "id": "V7-0612",
+      "input": "加班到九点才吃晚餐 28",
+      "expected": "expense.food.dinner",
+      "actual": "expense.food.breakfast",
+      "routingApplied": true
+    }
+  ],
+  "taggedFailures": [
+    {
+      "id": "V7-0002",
+      "dimensions": [
+        "correct parent / wrong child",
+        "meal error",
+        "taxonomy-boundary residual (pair proxy)"
+      ]
+    },
+    {
+      "id": "V7-0005",
+      "dimensions": [
+        "correct parent / wrong child",
+        "meal error",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0011",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0013",
+      "dimensions": [
+        "wrong parent"
+      ]
+    },
+    {
+      "id": "V7-0019",
+      "dimensions": [
+        "wrong parent",
+        "false other.general",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0020",
+      "dimensions": [
+        "wrong parent",
+        "false other.general",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0021",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0024",
+      "dimensions": [
+        "correct parent / wrong child",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0025",
+      "dimensions": [
+        "correct parent / wrong child"
+      ]
+    },
+    {
+      "id": "V7-0035",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0043",
+      "dimensions": [
+        "wrong parent",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0049",
+      "dimensions": [
+        "wrong parent",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0058",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0059",
+      "dimensions": [
+        "wrong parent",
+        "false other.general",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0074",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)"
+      ]
+    },
+    {
+      "id": "V7-0080",
+      "dimensions": [
+        "wrong parent",
+        "taxonomy-boundary residual (pair proxy)"
+      ]
+    },
+    {
+      "id": "V7-0085",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)"
+      ]
+    },
+    {
+      "id": "V7-0086",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)"
+      ]
+    },
+    {
+      "id": "V7-0087",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)"
+      ]
+    },
+    {
+      "id": "V7-0092",
+      "dimensions": [
+        "wrong parent",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0095",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0096",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0106",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)"
+      ]
+    },
+    {
+      "id": "V7-0108",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)"
+      ]
+    },
+    {
+      "id": "V7-0128",
+      "dimensions": [
+        "correct parent / wrong child",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0144",
+      "dimensions": [
+        "correct parent / wrong child"
+      ]
+    },
+    {
+      "id": "V7-0153",
+      "dimensions": [
+        "correct parent / wrong child",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0159",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0164",
+      "dimensions": [
+        "wrong parent",
+        "false other.general",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0169",
+      "dimensions": [
+        "correct parent / wrong child"
+      ]
+    },
+    {
+      "id": "V7-0170",
+      "dimensions": [
+        "wrong parent",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0171",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0175",
+      "dimensions": [
+        "correct parent / wrong child"
+      ]
+    },
+    {
+      "id": "V7-0176",
+      "dimensions": [
+        "correct parent / wrong child"
+      ]
+    },
+    {
+      "id": "V7-0186",
+      "dimensions": [
+        "correct parent / wrong child",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0197",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)"
+      ]
+    },
+    {
+      "id": "V7-0198",
+      "dimensions": [
+        "wrong parent",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0199",
+      "dimensions": [
+        "wrong parent",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0200",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)"
+      ]
+    },
+    {
+      "id": "V7-0201",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)"
+      ]
+    },
+    {
+      "id": "V7-0207",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)"
+      ]
+    },
+    {
+      "id": "V7-0234",
+      "dimensions": [
+        "wrong parent"
+      ]
+    },
+    {
+      "id": "V7-0240",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "false other.general",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0241",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "false other.general"
+      ]
+    },
+    {
+      "id": "V7-0248",
+      "dimensions": [
+        "wrong parent",
+        "false other.general",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0254",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0258",
+      "dimensions": [
+        "correct parent / wrong child",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0266",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0272",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent"
+      ]
+    },
+    {
+      "id": "V7-0273",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent"
+      ]
+    },
+    {
+      "id": "V7-0278",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0279",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)"
+      ]
+    },
+    {
+      "id": "V7-0284",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0285",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent"
+      ]
+    },
+    {
+      "id": "V7-0289",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "safety failure (all priorities)"
+      ]
+    },
+    {
+      "id": "V7-0291",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0294",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "false other.general",
+        "safety failure (all priorities)"
+      ]
+    },
+    {
+      "id": "V7-0296",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "false other.general",
+        "unseen expected entity/product (vocabulary proxy)",
+        "safety failure (all priorities)"
+      ]
+    },
+    {
+      "id": "V7-0299",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0304",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent"
+      ]
+    },
+    {
+      "id": "V7-0305",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0306",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0311",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent"
+      ]
+    },
+    {
+      "id": "V7-0313",
+      "dimensions": [
+        "correct parent / wrong child",
+        "meal error",
+        "taxonomy-boundary residual (pair proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0316",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0319",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0320",
+      "dimensions": [
+        "correct parent / wrong child",
+        "unseen expected entity/product (vocabulary proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0321",
+      "dimensions": [
+        "correct parent / wrong child",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0327",
+      "dimensions": [
+        "wrong parent",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0334",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0337",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0338",
+      "dimensions": [
+        "wrong parent",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0341",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0343",
+      "dimensions": [
+        "wrong parent",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0344",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0348",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0350",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0355",
+      "dimensions": [
+        "correct parent / wrong child",
+        "unseen expected entity/product (vocabulary proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0367",
+      "dimensions": [
+        "wrong parent",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0374",
+      "dimensions": [
+        "correct parent / wrong child",
+        "unseen expected entity/product (vocabulary proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0379",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0382",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "merchant/platform noise"
+      ]
+    },
+    {
+      "id": "V7-0388",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "merchant/platform noise",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0391",
+      "dimensions": []
+    },
+    {
+      "id": "V7-0392",
+      "dimensions": []
+    },
+    {
+      "id": "V7-0393",
+      "dimensions": []
+    },
+    {
+      "id": "V7-0394",
+      "dimensions": []
+    },
+    {
+      "id": "V7-0395",
+      "dimensions": []
+    },
+    {
+      "id": "V7-0396",
+      "dimensions": []
+    },
+    {
+      "id": "V7-0397",
+      "dimensions": []
+    },
+    {
+      "id": "V7-0398",
+      "dimensions": [
+        "correct parent / wrong child",
+        "unseen expected entity/product (vocabulary proxy)",
+        "merchant/platform noise",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0399",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "merchant/platform noise",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0400",
+      "dimensions": []
+    },
+    {
+      "id": "V7-0401",
+      "dimensions": []
+    },
+    {
+      "id": "V7-0402",
+      "dimensions": []
+    },
+    {
+      "id": "V7-0403",
+      "dimensions": []
+    },
+    {
+      "id": "V7-0404",
+      "dimensions": []
+    },
+    {
+      "id": "V7-0405",
+      "dimensions": []
+    },
+    {
+      "id": "V7-0406",
+      "dimensions": []
+    },
+    {
+      "id": "V7-0407",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "merchant/platform noise",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0412",
+      "dimensions": [
+        "correct parent / wrong child",
+        "unseen expected entity/product (vocabulary proxy)",
+        "merchant/platform noise",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0413",
+      "dimensions": []
+    },
+    {
+      "id": "V7-0414",
+      "dimensions": [
+        "correct parent / wrong child",
+        "merchant/platform noise",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0415",
+      "dimensions": []
+    },
+    {
+      "id": "V7-0416",
+      "dimensions": []
+    },
+    {
+      "id": "V7-0426",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0431",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0432",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0437",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0443",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0448",
+      "dimensions": [
+        "wrong parent",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0459",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0464",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0465",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0470",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0476",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0481",
+      "dimensions": [
+        "wrong parent",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0488",
+      "dimensions": [
+        "correct parent / wrong child",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0490",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0493",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0503",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0505",
+      "dimensions": [
+        "wrong parent",
+        "false other.general",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0508",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0511",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0518",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0521",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0525",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0526",
+      "dimensions": [
+        "wrong parent"
+      ]
+    },
+    {
+      "id": "V7-0527",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0529",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0531",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0532",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0536",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0537",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0538",
+      "dimensions": [
+        "wrong parent",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0551",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0558",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0559",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)"
+      ]
+    },
+    {
+      "id": "V7-0562",
+      "dimensions": [
+        "correct parent / wrong child",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0563",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0569",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent"
+      ]
+    },
+    {
+      "id": "V7-0570",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0571",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "false other.general",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0572",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0576",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)",
+        "safety failure (all priorities)"
+      ]
+    },
+    {
+      "id": "V7-0577",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "false other.general",
+        "unseen expected entity/product (vocabulary proxy)",
+        "safety failure (all priorities)"
+      ]
+    },
+    {
+      "id": "V7-0578",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "false other.general",
+        "unseen expected entity/product (vocabulary proxy)",
+        "safety failure (all priorities)"
+      ]
+    },
+    {
+      "id": "V7-0579",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent"
+      ]
+    },
+    {
+      "id": "V7-0594",
+      "dimensions": [
+        "wrong parent",
+        "taxonomy-boundary residual (pair proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0596",
+      "dimensions": [
+        "wrong parent",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0599",
+      "dimensions": [
+        "wrong parent",
+        "false other.general",
+        "meal error",
+        "meal detection miss",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0602",
+      "dimensions": [
+        "wrong parent",
+        "false other.general",
+        "meal error",
+        "meal detection miss",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0604",
+      "dimensions": [
+        "correct parent / wrong child",
+        "meal error",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0612",
+      "dimensions": [
+        "correct parent / wrong child",
+        "meal error",
+        "taxonomy-boundary residual (pair proxy)",
+        "multi-clause/context interference"
+      ]
+    },
+    {
+      "id": "V7-0624",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0625",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0626",
+      "dimensions": [
+        "wrong parent",
+        "false other.general",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0635",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)"
+      ]
+    },
+    {
+      "id": "V7-0639",
+      "dimensions": [
+        "wrong parent",
+        "false other.general",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0647",
+      "dimensions": [
+        "wrong parent"
+      ]
+    },
+    {
+      "id": "V7-0649",
+      "dimensions": [
+        "wrong parent"
+      ]
+    },
+    {
+      "id": "V7-0654",
+      "dimensions": [
+        "wrong parent"
+      ]
+    },
+    {
+      "id": "V7-0662",
+      "dimensions": [
+        "wrong parent"
+      ]
+    },
+    {
+      "id": "V7-0664",
+      "dimensions": [
+        "wrong parent"
+      ]
+    },
+    {
+      "id": "V7-0667",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent"
+      ]
+    },
+    {
+      "id": "V7-0670",
+      "dimensions": [
+        "correct parent / wrong child"
+      ]
+    },
+    {
+      "id": "V7-0673",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "false other.general"
+      ]
+    },
+    {
+      "id": "V7-0674",
+      "dimensions": [
+        "correct parent / wrong child"
+      ]
+    },
+    {
+      "id": "V7-0678",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "false other.general"
+      ]
+    },
+    {
+      "id": "V7-0680",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "false other.general"
+      ]
+    },
+    {
+      "id": "V7-0689",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0701",
+      "dimensions": [
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0708",
+      "dimensions": [
+        "correct parent / wrong child"
+      ]
+    },
+    {
+      "id": "V7-0714",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent"
+      ]
+    },
+    {
+      "id": "V7-0717",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0720",
+      "dimensions": [
+        "wrong direction/type",
+        "wrong parent",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0754",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0756",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0757",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0759",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0760",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    },
+    {
+      "id": "V7-0762",
+      "dimensions": [
+        "correct parent / wrong child",
+        "taxonomy-boundary residual (pair proxy)",
+        "unseen expected entity/product (vocabulary proxy)"
+      ]
+    }
+  ],
+  "decision": "Phase 3 NOT CLOSED. No production/model/config/data changes after v7.",
+  "bottleneck": "Primary: train/dev style coverage and sparse representation of action/beneficiary/negation scope. Direction generalizes poorly to implicit settlement/income. Secondary: child purpose boundaries, time language coverage, refund-status scope. Some meal scene inputs are intrinsically ambiguous without an explicit clock. Taxonomy fixed; fusion is no longer the dominant parent-capacity suppression."
+}

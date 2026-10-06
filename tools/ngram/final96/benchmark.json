@@ -1,0 +1,10 @@
+{
+  "warmUpIterations": 1000,
+  "iterations": 10000,
+  "averageMicroseconds": 255.6873,
+  "p50Microseconds": 210,
+  "p95Microseconds": 486,
+  "p99Microseconds": 607,
+  "maxMicroseconds": 1451,
+  "coldKnowledgeDecodeMicroseconds": 27567
+}

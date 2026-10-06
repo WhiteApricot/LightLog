@@ -1,0 +1,32 @@
+{
+  "models": {
+    "16384_0_0.5.bin": "fa997d74619acaa100c3c8ac3bd9d22bc1a22c7a9b39df17ff8cfb50ef9f2e68",
+    "16384_0_2.0.bin": "2deb776ceb48b92f672187a87a073387cce436bb7ec9ba4fcfea5c54d4ec1444",
+    "16384_1_0.5.bin": "ae62bcfbc64d452864ee724857ee237335b0440d4f2d232a15db1da9b7d4946c",
+    "16384_1_2.0.bin": "c93de0e3ec831eb259766abfebf4070706fc0107e78e7daa672e6551e5cd1f31",
+    "8192_0_0.5.bin": "6cb65bfa68c715e8777436c9bbc02cd57b28683e1946fc097e853cf951005abc",
+    "8192_0_2.0.bin": "0eaba775d42d96794f289faac608bb53794548a2144004786b299ff58c5980b5",
+    "8192_1_0.5.bin": "551415516fb27d18f47bf35aaf0002bb1c437049315b40e969c4e5f5d9db23a5",
+    "8192_1_2.0.bin": "216d1f0944807dfc4ecf64cff7a319a0c61a0301ba7edf661918c91bc948bbe7",
+    "selected.bin": "c3a96c838da74aaa19f1b85565d8b078b3346ed1f6eb1fd5f353cc2b608376d0",
+    "corrected/16384_1_0.5.bin": "60fd13592f5993b14cd94e73966f3bf6c15a0b7f2b4ee942b07cc1fd91a67776",
+    "corrected/16384_1_2.0.bin": "b50cafa055312d3f354d017fc4e19efdd70e0eabfd45d59f87ffa504b2a10628",
+    "corrected/8192_1_0.5.bin": "d138ab2e341a73dc7dccccfd58774666a97e6971ecdc39ce35e8ed8e2f83bade",
+    "corrected/8192_1_2.0.bin": "42736cccaca2c0cade340e694a022296c9c29567a271ade350cb961883dff383",
+    "corrected/selected.bin": "40c84bac8f5fc0653beb2e595bc424c8219cc16e9a2523b4c00d48d73ce9de16",
+    "retrained/16384_0_0.5.bin": "fa997d74619acaa100c3c8ac3bd9d22bc1a22c7a9b39df17ff8cfb50ef9f2e68",
+    "retrained/16384_0_2.0.bin": "2deb776ceb48b92f672187a87a073387cce436bb7ec9ba4fcfea5c54d4ec1444",
+    "retrained/16384_1_0.5.bin": "d0ff93ae6c3e41ccd538060d06e380b81557d835ed214a797056976586e85eed",
+    "retrained/16384_1_2.0.bin": "d1ca114589c813930689dc9ada19ca2afdb95ac264e32ffd256db93dcc530d5a",
+    "retrained/8192_0_0.5.bin": "6cb65bfa68c715e8777436c9bbc02cd57b28683e1946fc097e853cf951005abc",
+    "retrained/8192_0_2.0.bin": "0eaba775d42d96794f289faac608bb53794548a2144004786b299ff58c5980b5",
+    "retrained/8192_1_0.5.bin": "83509b442914a68f3f3ee53245c84592a03e378441478f332fa26869b38bc259",
+    "retrained/8192_1_2.0.bin": "4bdf295347418d8d240b0ac8042ad69898cba6282fb67f87c5e9eba1075873c8",
+    "retrained/meal_on.bin": "fcfdd65576f212376574ece56b091b4af7f6067b0802dad13dfda04fa86fbf4b",
+    "retrained/selected.bin": "fcfdd65576f212376574ece56b091b4af7f6067b0802dad13dfda04fa86fbf4b"
+  },
+  "modelArchiveSha256": "f60ef62ce3542ebf4acb84c70530dd5ce5cf96804a9c33a84bcea8c2d18ac1f8",
+  "originalIntermediateArchiveSha256": "2e6bb27dbd4aecdf18f372c47baa281412b5084b9735ff8eb18d3ac3fa9af1d4",
+  "intermediateArchiveLocalCache": ".dart_tool/phase3_archive/final96_candidates.zip",
+  "note": "Intermediate npz arrays are generated posteriors, not acceptance reports; retained locally, excluded from Git. All first-run/report bytes preserved."
+}

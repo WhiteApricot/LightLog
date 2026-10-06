@@ -1,3 +1,9 @@
+## 当前：最终96类验收
+
+当前官方oracle位于corpora/phase3_96class，七套source/target SHA256与v7命名/标签迁移seal见../ngram/final_oracle_seal.json。旧104工具和以下旧轮说明仅为历史；当前使用 `python tools/ngram/final_acceptance.py freeze/regression/v7`，一次v7 run claim和_initial报告不可覆盖。本轮已完成唯一first-run，Phase 3 NOT CLOSED，禁止再运行v7或根据其失败修改生产。综合指标与跨priority安全漏检见../ngram/final96/final_summary.json和failure_analysis.md。原用户104类v7已按原字节移至archive/legacy_taxonomy；未覆盖历史报告。
+
+## 历史：104类产品规则验收
+
 # Phase 3 产品规则验收
 
 本轮只迁移旧oracle并实现other.general fallback与完整正餐时间路由；n-gram、训练数据、threshold/margin、特征维度和知识资产/源文件完全冻结。

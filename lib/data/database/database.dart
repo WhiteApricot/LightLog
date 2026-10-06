@@ -11,7 +11,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -115,7 +115,10 @@ class AppDatabase extends _$AppDatabase {
             updatedAt: Value(now),
           ),
         );
-    for (final category in defaultCategories) {
+    for (final category in [
+      ...defaultCategories.where((c) => c.parentId == null),
+      ...defaultCategories.where((c) => c.parentId != null),
+    ]) {
       await into(categories).insert(
         CategoriesCompanion.insert(
           id: category.id,
@@ -146,6 +149,44 @@ class AppDatabase extends _$AppDatabase {
               isSystem: const Value(true),
             ),
           );
+    }
+    // v5 data migration runs after destination seeds exist. Retain legacy rows
+    // for historical compatibility, while remapping both transaction FKs.
+    final hasTransactions = (await customSelect(
+      "SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'transactions'",
+    ).get()).isNotEmpty;
+    for (final entry in mergedDefaultCategoryIds.entries) {
+      final old =
+          await (select(
+                categories,
+              )..where((c) => c.id.equals(entry.key) & c.isSystem.equals(true)))
+              .getSingleOrNull();
+      if (old == null) continue;
+      final target = defaultCategories.singleWhere((c) => c.id == entry.value);
+      if (hasTransactions) {
+        await (update(
+          transactions,
+        )..where((t) => t.subcategoryId.equals(entry.key))).write(
+          TransactionsCompanion(
+            categoryId: Value(target.parentId!),
+            subcategoryId: Value(target.id),
+          ),
+        );
+      }
+      final oldSemantic = entry.key.replaceAll('-', '.');
+      {
+        await (update(
+          recognitionRules,
+        )..where((r) => r.semanticKey.equals(oldSemantic))).write(
+          RecognitionRulesCompanion(semanticKey: Value(target.semanticKey)),
+        );
+      }
+      await (update(categories)..where((c) => c.id.equals(entry.key))).write(
+        CategoriesCompanion(
+          isActive: const Value(false),
+          semanticKey: const Value(null),
+        ),
+      );
     }
     for (final account in defaultAccounts) {
       await into(accounts).insert(

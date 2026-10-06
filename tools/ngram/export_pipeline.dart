@@ -3,10 +3,14 @@ import 'dart:io';
 
 import 'package:light_log/features/recognition/domain/evidence_fusion.dart';
 import 'package:light_log/features/recognition/domain/recognition_models.dart';
+import 'package:light_log/features/recognition/domain/ngram_classifier.dart';
 
 import '../recognition_tool_harness.dart';
 
 void main() {
+  if (File('tools/ngram/final96/production_freeze.json').existsSync()) {
+    throw StateError('Production frozen: training feature export forbidden');
+  }
   final h = RecognitionToolHarness(useNgram: false);
   final categories = RecognitionToolHarness.categories;
   final parents = {
@@ -37,23 +41,7 @@ void main() {
         ),
         onSemanticDecision: (d, t, eligible, meal) {
           out.writeStringSync(
-            '${jsonEncode({
-              'id': row['id'],
-              'text': text,
-              'semanticKey': d.semanticKey,
-              'confidence': d.confidence,
-              'level': const EvidenceFusion().statisticalLevel(d),
-              'type': t.type?.value,
-              'defaultType': t.isDefault,
-              'typeConflict': t.hasConflict,
-              'eligible': eligible,
-              'meal': meal != null,
-              'features': [
-                'type:${t.type?.value}',
-                'direction:${t.isDefault ? 'default' : t.type?.value}',
-                for (final e in d.winningEvidence) ...['source:${e.source.name}', 'role:${e.role.name}', if (e.family != null) 'family:${e.family}', if (e.semanticKey != null) 'parent:${taxonomy[e.semanticKey]}'],
-              ],
-            })}\n',
+            '${jsonEncode({'id': row['id'], 'text': text, 'semanticKey': d.semanticKey, 'confidence': d.confidence, 'level': const EvidenceFusion().statisticalLevel(d), 'type': t.type?.value, 'defaultType': t.isDefault, 'typeConflict': t.hasConflict, 'eligible': eligible, 'meal': meal != null, 'features': NgramClassifier.structuredFeatures(t, d.winningEvidence, taxonomy)})}\n',
           );
         },
       );

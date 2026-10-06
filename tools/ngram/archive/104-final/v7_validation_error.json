@@ -1,0 +1,10 @@
+{
+  "expense.social.red_packet": {
+    "count": 5,
+    "canonical": "expense.social.red.packet"
+  },
+  "income.other.red_packet": {
+    "count": 8,
+    "canonical": "income.other.red.packet"
+  }
+}

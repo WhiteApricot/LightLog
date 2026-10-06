@@ -1,0 +1,5 @@
+{
+  "reason": "Training preview multiplied classifier scale in numpy float32, whereas exported scale/int8 contract uses double. Independent decoded-asset reference corrects small rounding differences without changing weights, predictions or tolerance.",
+  "tolerance": 1e-10,
+  "productionChanged": false
+}

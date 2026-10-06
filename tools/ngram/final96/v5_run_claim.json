@@ -1,0 +1,6 @@
+{
+  "corpus": "tools/evaluation/corpora/phase3_96class/lightlog_phase3_semantic_routing_holdout_v5_96class.json",
+  "sha256": "e788cbcd63180b91b95f4da3df98c77be968837747eb11a0553d223a1d3f4a21",
+  "frozenSha256": "ded57ca875815490e05e0cf57c35ec2b6a420cc750c42e13b71e015df68bf5d8",
+  "claimedAt": "2026-10-06T05:05:25.161496+00:00"
+}

@@ -1,0 +1,42 @@
+{
+  "train": {
+    "rows": 38539,
+    "classes": 96,
+    "exactDuplicates": 0,
+    "normalizedDuplicates": 0,
+    "metadataPreserved": true,
+    "sha256": "6d4cefc57dbdf31f6962635ab2e47b06c4e51a5fe67796ba2a4ed8f899005dc7"
+  },
+  "dev": {
+    "rows": 4832,
+    "classes": 96,
+    "exactDuplicates": 0,
+    "normalizedDuplicates": 0,
+    "metadataPreserved": true,
+    "sha256": "28211be328f5003b2122472a8d10cf05edb8e89908742509321017e2f3d58c0d"
+  },
+  "training_corpus": {
+    "rows": 43371,
+    "classes": 96,
+    "exactDuplicates": 0,
+    "normalizedDuplicates": 0,
+    "metadataPreserved": true,
+    "sha256": "becfb4fcaf6c3b7c8b96132eb96d42d87a3f44c5cf0f12a5ec6c68393be16a2f"
+  },
+  "taxonomy": {
+    "expense": 72,
+    "income": 24,
+    "total": 96,
+    "parents": 21
+  },
+  "splitGroupLeakage": 0,
+  "labelConflicts": 0,
+  "obsoleteRuntimeSemanticReferenceCount": 0,
+  "modelBytes": 2347908,
+  "modelSha256": "40c84bac8f5fc0653beb2e595bc424c8219cc16e9a2523b4c00d48d73ce9de16",
+  "auxiliaryHeads": [
+    "@direction",
+    "@meal"
+  ],
+  "structuredTypeLeakage": 0
+}

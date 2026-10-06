@@ -1,0 +1,15 @@
+{
+  "reason": "A2 general family/product must permit parent participation; corrected from task specification and mechanism test, not holdout failures",
+  "weightsUnchanged": true,
+  "weightPayloadSha256": "49876a6a4e1461827dd02ac7a2bf261bd2b5970fb9b47208118a3a783f521982",
+  "assetSha256": "2f49641989d83c854dcd5d6bf42edb49fdd9e54b726d020cfc72272bc3a73cfb",
+  "parameters": {
+    "parentThreshold": 0.25,
+    "parentMargin": 0.0,
+    "childThreshold": 0.55,
+    "childMargin": 0.05,
+    "categoryAccuracy": 0.7911837748344371,
+    "acceptedAccuracy": 0.9005102040816326,
+    "acceptedCoverage": 0.2433774834437086
+  }
+}

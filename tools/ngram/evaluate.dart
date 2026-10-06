@@ -18,7 +18,7 @@ void main() {
       .toList();
   final harness = RecognitionToolHarness();
   final offline = jsonDecode(
-    File('tools/ngram/dev_predictions.json').readAsStringSync(),
+    File('tools/ngram/final96/dev_predictions.json').readAsStringSync(),
   ) as List;
   final traces = File('tools/ngram/dev_pipeline.jsonl')
       .readAsLinesSync()
@@ -40,10 +40,11 @@ void main() {
   for (final row in dev) {
     final timer = Stopwatch()..start();
     final trace = traces[ngram.length];
-    final scores = classifier.scores(
+    final prediction = classifier.predict(
       row['text'] as String,
       structuredFeatures: List<String>.from(trace['features'] as List),
     );
+    final scores = prediction.scores;
     timer.stop();
     ngram.add(timer.elapsedMicroseconds);
     var top = 0;
@@ -56,7 +57,18 @@ void main() {
     if (reference['id'] != row['id'] ||
         reference['label'] != predicted ||
         (scores[top] - (reference['probability'] as num)).abs() > 1e-10) {
-      throw StateError('Offline/runtime parity mismatch: ${row['id']}');
+      throw StateError(
+        'Offline/runtime parity mismatch: ${row['id']} Dart=$predicted/${scores[top]} reference=${reference['label']}/${reference['probability']}',
+      );
+    }
+    if ((prediction.incomeProbability - (reference['incomeProbability'] as num))
+                .abs() >
+            1e-10 ||
+        (prediction.preparedMealProbability -
+                    (reference['preparedMealProbability'] as num))
+                .abs() >
+            1e-10) {
+      throw StateError('Auxiliary head parity mismatch: ${row['id']}');
     }
     classes[expected]!['support'] = classes[expected]!['support']! + 1;
     classes[predicted]!['predicted'] = classes[predicted]!['predicted']! + 1;
@@ -88,7 +100,7 @@ void main() {
     'recognizerMicroseconds': latency(full),
     'environment': 'Dart VM warm, host CPU; not Android device',
   };
-  File('tools/ngram/hierarchical_runtime_report.json').writeAsStringSync(
+  File('tools/ngram/final96/runtime_report.json').writeAsStringSync(
     '${const JsonEncoder.withIndent('  ').convert(report)}\n',
   );
   stdout.writeln(jsonEncode(report));

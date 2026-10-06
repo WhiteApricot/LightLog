@@ -778,7 +778,7 @@
       ],
       "kind": "object",
       "prior": {
-        "semanticKey": "expense.communication.cloud",
+        "semanticKey": "expense.digital.software",
         "score": 0.76
       },
       "policy": "standalone"
@@ -1022,7 +1022,7 @@
       ],
       "kind": "object",
       "prior": {
-        "semanticKey": "expense.daily.household",
+        "semanticKey": "expense.shopping.home",
         "score": 0.76
       },
       "policy": "standalone"
@@ -1222,7 +1222,7 @@
       ],
       "kind": "income",
       "prior": {
-        "semanticKey": "income.parttime.freelance",
+        "semanticKey": "income.parttime.service",
         "score": 0.78
       },
       "policy": "standalone"
@@ -1258,7 +1258,7 @@
       ],
       "kind": "income",
       "prior": {
-        "semanticKey": "income.parttime.project",
+        "semanticKey": "income.parttime.service",
         "score": 0.78
       },
       "policy": "standalone"
@@ -1299,7 +1299,7 @@
       ],
       "kind": "income",
       "prior": {
-        "semanticKey": "income.parttime.freelance",
+        "semanticKey": "income.parttime.service",
         "score": 0.78
       },
       "policy": "standalone"
@@ -1379,7 +1379,7 @@
       ],
       "kind": "object",
       "prior": {
-        "semanticKey": "expense.daily.household",
+        "semanticKey": "expense.shopping.home",
         "score": 0.76
       },
       "policy": "standalone"
@@ -1741,7 +1741,7 @@
       ],
       "kind": "object",
       "prior": {
-        "semanticKey": "expense.shopping.beauty",
+        "semanticKey": "expense.shopping.personal",
         "score": 0.76
       },
       "policy": "standalone"
@@ -1759,7 +1759,7 @@
       ],
       "kind": "object",
       "prior": {
-        "semanticKey": "expense.daily.personal",
+        "semanticKey": "expense.shopping.personal",
         "score": 0.76
       },
       "policy": "standalone"
@@ -1789,7 +1789,7 @@
       ],
       "kind": "object",
       "prior": {
-        "semanticKey": "expense.daily.personal",
+        "semanticKey": "expense.shopping.personal",
         "score": 0.76
       },
       "policy": "standalone"
@@ -2881,7 +2881,7 @@
       ],
       "kind": "service",
       "prior": {
-        "semanticKey": "expense.social.relationship",
+        "semanticKey": "expense.social.gift",
         "score": 0.74
       },
       "policy": "standalone"
@@ -3046,7 +3046,7 @@
       ],
       "kind": "venue",
       "prior": {
-        "semanticKey": "expense.entertainment.movie",
+        "semanticKey": "expense.entertainment.performance",
         "score": 0.7
       },
       "policy": "standalone"
@@ -3064,7 +3064,7 @@
       ],
       "kind": "venue",
       "prior": {
-        "semanticKey": "expense.entertainment.music",
+        "semanticKey": "expense.entertainment.media",
         "score": 0.7
       },
       "policy": "standalone"
@@ -3089,7 +3089,7 @@
       ],
       "kind": "venue",
       "prior": {
-        "semanticKey": "expense.entertainment.hobby",
+        "semanticKey": "expense.entertainment.activity",
         "score": 0.7
       },
       "policy": "standalone"
@@ -3412,7 +3412,7 @@
       ],
       "kind": "income",
       "prior": {
-        "semanticKey": "income.parttime.freelance",
+        "semanticKey": "income.parttime.service",
         "score": 0.78
       },
       "policy": "standalone"
@@ -3430,7 +3430,7 @@
       ],
       "kind": "income",
       "prior": {
-        "semanticKey": "income.parttime.project",
+        "semanticKey": "income.parttime.service",
         "score": 0.78
       },
       "policy": "standalone"
@@ -3489,7 +3489,7 @@
       "kind": "income",
       "policy": "standalone",
       "prior": {
-        "semanticKey": "income.investment.fund",
+        "semanticKey": "income.investment.capital_gain",
         "score": 0.78
       }
     },

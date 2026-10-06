@@ -1,0 +1,176 @@
+{
+  "original190": {
+    "totalCases": 190,
+    "categoryAccuracy": 0.8894736842105263,
+    "parentCategoryAccuracy": 0.9578947368421052,
+    "typeAccuracy": 0.9736842105263158,
+    "p2SafeRejectionRate": 1.0,
+    "highConfidenceWrongPredictionCount": 0,
+    "ordinaryValidCategoryNullCount": 0,
+    "falseFallbackRate": 0.021052631578947368,
+    "mealRoutingAccuracy": 0.9473684210526315,
+    "latencyMicroseconds": {
+      "average": 449.0052631578947,
+      "p50": 330,
+      "p95": 1031,
+      "p99": 1513,
+      "max": 3672
+    },
+    "failureDecomposition": {
+      "otherFallbackError": 4,
+      "wrongParent": 8,
+      "correctParentWrongChild": 13,
+      "wrongType": 5,
+      "mealDetection": 1,
+      "taxonomyAmbiguity": "unadjudicated; oracle unchanged",
+      "safety": 0
+    },
+    "p2Count": 15,
+    "reportSha256": "7b02bc4de461c23baf44bf224f09df4cd7671d1ca59465d8f4c104cfb1b1f4de"
+  },
+  "v2": {
+    "totalCases": 190,
+    "categoryAccuracy": 0.8473684210526315,
+    "parentCategoryAccuracy": 0.9157894736842105,
+    "typeAccuracy": 0.968421052631579,
+    "p2SafeRejectionRate": 1.0,
+    "highConfidenceWrongPredictionCount": 0,
+    "ordinaryValidCategoryNullCount": 0,
+    "falseFallbackRate": 0.031578947368421054,
+    "mealRoutingAccuracy": 0.9,
+    "latencyMicroseconds": {
+      "average": 425.5473684210526,
+      "p50": 341,
+      "p95": 976,
+      "p99": 1174,
+      "max": 1290
+    },
+    "failureDecomposition": {
+      "otherFallbackError": 6,
+      "wrongParent": 16,
+      "correctParentWrongChild": 13,
+      "wrongType": 6,
+      "mealDetection": 1,
+      "taxonomyAmbiguity": "unadjudicated; oracle unchanged",
+      "safety": 0
+    },
+    "p2Count": 39,
+    "reportSha256": "cb98a30788a43659fe450fca156afeb8d1ae0842fbfcae07f50d071776f3e628"
+  },
+  "v3": {
+    "totalCases": 200,
+    "categoryAccuracy": 0.82,
+    "parentCategoryAccuracy": 0.95,
+    "typeAccuracy": 0.96,
+    "p2SafeRejectionRate": 1.0,
+    "highConfidenceWrongPredictionCount": 0,
+    "ordinaryValidCategoryNullCount": 0,
+    "falseFallbackRate": 0.015,
+    "mealRoutingAccuracy": 1.0,
+    "latencyMicroseconds": {
+      "average": 369.065,
+      "p50": 343,
+      "p95": 625,
+      "p99": 756,
+      "max": 1005
+    },
+    "failureDecomposition": {
+      "otherFallbackError": 3,
+      "wrongParent": 10,
+      "correctParentWrongChild": 26,
+      "wrongType": 8,
+      "mealDetection": 0,
+      "taxonomyAmbiguity": "unadjudicated; oracle unchanged",
+      "safety": 0
+    },
+    "p2Count": 5,
+    "reportSha256": "f28302040568c90983c9dc65f002e452d7d28ca2c7fc643aa776ae46e5797dbc"
+  },
+  "v4": {
+    "totalCases": 300,
+    "categoryAccuracy": 0.7033333333333334,
+    "parentCategoryAccuracy": 0.8266666666666667,
+    "typeAccuracy": 0.9633333333333334,
+    "p2SafeRejectionRate": 1.0,
+    "highConfidenceWrongPredictionCount": 0,
+    "ordinaryValidCategoryNullCount": 0,
+    "falseFallbackRate": 0.04666666666666667,
+    "mealRoutingAccuracy": 0.8,
+    "latencyMicroseconds": {
+      "average": 384.30333333333334,
+      "p50": 346,
+      "p95": 693,
+      "p99": 810,
+      "max": 1240
+    },
+    "failureDecomposition": {
+      "otherFallbackError": 14,
+      "wrongParent": 52,
+      "correctParentWrongChild": 37,
+      "wrongType": 11,
+      "mealDetection": 0,
+      "taxonomyAmbiguity": "unadjudicated; oracle unchanged",
+      "safety": 0
+    },
+    "p2Count": 9,
+    "reportSha256": "cce3d7ab5468d06a1abb3b959ed0ba0d59c6f43a3e4cdfc641ad7bfc0dc9de6a"
+  },
+  "v5": {
+    "totalCases": 400,
+    "categoryAccuracy": 0.76,
+    "parentCategoryAccuracy": 0.87,
+    "typeAccuracy": 0.9375,
+    "p2SafeRejectionRate": 1.0,
+    "highConfidenceWrongPredictionCount": 0,
+    "ordinaryValidCategoryNullCount": 0,
+    "falseFallbackRate": 0.0375,
+    "mealRoutingAccuracy": 1.0,
+    "latencyMicroseconds": {
+      "average": 365.5125,
+      "p50": 318,
+      "p95": 712,
+      "p99": 918,
+      "max": 1344
+    },
+    "failureDecomposition": {
+      "otherFallbackError": 15,
+      "wrongParent": 52,
+      "correctParentWrongChild": 44,
+      "wrongType": 25,
+      "mealDetection": 0,
+      "taxonomyAmbiguity": "unadjudicated; oracle unchanged",
+      "safety": 0
+    },
+    "p2Count": 2,
+    "reportSha256": "15da1e246815d6596266317e0db823bb30a6f3f72759045d44eb45ca8c97060e"
+  },
+  "v6": {
+    "totalCases": 400,
+    "categoryAccuracy": 0.8125,
+    "parentCategoryAccuracy": 0.885,
+    "typeAccuracy": 0.9525,
+    "p2SafeRejectionRate": 0.0,
+    "highConfidenceWrongPredictionCount": 0,
+    "ordinaryValidCategoryNullCount": 0,
+    "falseFallbackRate": 0.0325,
+    "mealRoutingAccuracy": 0.88,
+    "latencyMicroseconds": {
+      "average": 377.575,
+      "p50": 338,
+      "p95": 742,
+      "p99": 915,
+      "max": 1571
+    },
+    "failureDecomposition": {
+      "otherFallbackError": 13,
+      "wrongParent": 46,
+      "correctParentWrongChild": 29,
+      "wrongType": 19,
+      "mealDetection": 3,
+      "taxonomyAmbiguity": "unadjudicated; oracle unchanged",
+      "safety": 0
+    },
+    "p2Count": 0,
+    "reportSha256": "ec3e724f9a82ded757ff93a4d4766a3a263210a0d8f1a895f9d962ceeae028bd"
+  }
+}

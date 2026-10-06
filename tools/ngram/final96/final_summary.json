@@ -1,0 +1,285 @@
+{
+  "phase3": "NOT CLOSED",
+  "taxonomy": {
+    "expense": 72,
+    "income": 24,
+    "total": 96,
+    "parents": 21
+  },
+  "train": 38539,
+  "devCount": 4832,
+  "model": "shared char 2–3 / 16384 + 1273 non-circular structured features; int8 Direction/Parent/conditional Child/masked PreparedMeal LR",
+  "fusion": "F3",
+  "directionHead": {
+    "threshold": 0.5,
+    "accuracy": 0.9995860927152318,
+    "acceptedAccuracy": 0.9995860927152318,
+    "coverage": 1.0
+  },
+  "preparedMealHead": {
+    "threshold": 0.7,
+    "precision": 0.9858156028368794,
+    "recall": 0.9205298013245033
+  },
+  "dev": {
+    "stage": "contract_direction_fields",
+    "devCount": 4832,
+    "categoryAccuracy": 0.9091473509933775,
+    "parentAccuracy": 0.9418460264900662,
+    "typeAccuracy": 0.9759933774834437,
+    "specificCategoryCoverage": 0.9735099337748344,
+    "specificCategoryAccuracy": 0.9119897959183674,
+    "fallbackRate": 0.026490066225165587,
+    "falseFallbackRate": 0.005173841059602649,
+    "childConditionalAccuracy": 0.965282355526258,
+    "acceptedCoverage": 0.9735099337748344,
+    "acceptedAccuracy": 0.9117772108843537,
+    "sameParentRerankAccuracy": null,
+    "crossParentStatisticalAccuracy": 0.9117772108843537,
+    "mealAccuracy": 1.0,
+    "mealDetectionRecall": 1.0,
+    "highConfidenceWrong": 0,
+    "ordinaryCategoryNull": 0,
+    "failureDecomposition": {
+      "otherFallbackError": 25,
+      "wrongParent": 281,
+      "correctParentWrongChild": 158,
+      "wrongType": 116,
+      "mealDetection": 0,
+      "taxonomyAmbiguity": "not adjudicated; labels unchanged",
+      "safety": "historical P2 suite separately"
+    },
+    "latencyMicroseconds": {
+      "p50": 498,
+      "p95": 979,
+      "p99": 1213
+    },
+    "environment": "Windows host warm Dart VM; not Android API26",
+    "inputContract": "original text; fixed 37 suffix only when existing field extraction has no amount; semantic labels unchanged"
+  },
+  "regression": {
+    "original190": {
+      "totalCases": 190,
+      "categoryAccuracy": 0.8894736842105263,
+      "parentCategoryAccuracy": 0.9578947368421052,
+      "typeAccuracy": 0.9736842105263158,
+      "p2SafeRejectionRate": 1.0,
+      "highConfidenceWrongPredictionCount": 0,
+      "ordinaryValidCategoryNullCount": 0,
+      "falseFallbackRate": 0.021052631578947368,
+      "mealRoutingAccuracy": 0.9473684210526315,
+      "latencyMicroseconds": {
+        "average": 449.0052631578947,
+        "p50": 330,
+        "p95": 1031,
+        "p99": 1513,
+        "max": 3672
+      },
+      "failureDecomposition": {
+        "otherFallbackError": 4,
+        "wrongParent": 8,
+        "correctParentWrongChild": 13,
+        "wrongType": 5,
+        "mealDetection": 1,
+        "taxonomyAmbiguity": "unadjudicated; oracle unchanged",
+        "safety": 0
+      },
+      "p2Count": 15,
+      "reportSha256": "7b02bc4de461c23baf44bf224f09df4cd7671d1ca59465d8f4c104cfb1b1f4de"
+    },
+    "v2": {
+      "totalCases": 190,
+      "categoryAccuracy": 0.8473684210526315,
+      "parentCategoryAccuracy": 0.9157894736842105,
+      "typeAccuracy": 0.968421052631579,
+      "p2SafeRejectionRate": 1.0,
+      "highConfidenceWrongPredictionCount": 0,
+      "ordinaryValidCategoryNullCount": 0,
+      "falseFallbackRate": 0.031578947368421054,
+      "mealRoutingAccuracy": 0.9,
+      "latencyMicroseconds": {
+        "average": 425.5473684210526,
+        "p50": 341,
+        "p95": 976,
+        "p99": 1174,
+        "max": 1290
+      },
+      "failureDecomposition": {
+        "otherFallbackError": 6,
+        "wrongParent": 16,
+        "correctParentWrongChild": 13,
+        "wrongType": 6,
+        "mealDetection": 1,
+        "taxonomyAmbiguity": "unadjudicated; oracle unchanged",
+        "safety": 0
+      },
+      "p2Count": 39,
+      "reportSha256": "cb98a30788a43659fe450fca156afeb8d1ae0842fbfcae07f50d071776f3e628"
+    },
+    "v3": {
+      "totalCases": 200,
+      "categoryAccuracy": 0.82,
+      "parentCategoryAccuracy": 0.95,
+      "typeAccuracy": 0.96,
+      "p2SafeRejectionRate": 1.0,
+      "highConfidenceWrongPredictionCount": 0,
+      "ordinaryValidCategoryNullCount": 0,
+      "falseFallbackRate": 0.015,
+      "mealRoutingAccuracy": 1.0,
+      "latencyMicroseconds": {
+        "average": 369.065,
+        "p50": 343,
+        "p95": 625,
+        "p99": 756,
+        "max": 1005
+      },
+      "failureDecomposition": {
+        "otherFallbackError": 3,
+        "wrongParent": 10,
+        "correctParentWrongChild": 26,
+        "wrongType": 8,
+        "mealDetection": 0,
+        "taxonomyAmbiguity": "unadjudicated; oracle unchanged",
+        "safety": 0
+      },
+      "p2Count": 5,
+      "reportSha256": "f28302040568c90983c9dc65f002e452d7d28ca2c7fc643aa776ae46e5797dbc"
+    },
+    "v4": {
+      "totalCases": 300,
+      "categoryAccuracy": 0.7033333333333334,
+      "parentCategoryAccuracy": 0.8266666666666667,
+      "typeAccuracy": 0.9633333333333334,
+      "p2SafeRejectionRate": 1.0,
+      "highConfidenceWrongPredictionCount": 0,
+      "ordinaryValidCategoryNullCount": 0,
+      "falseFallbackRate": 0.04666666666666667,
+      "mealRoutingAccuracy": 0.8,
+      "latencyMicroseconds": {
+        "average": 384.30333333333334,
+        "p50": 346,
+        "p95": 693,
+        "p99": 810,
+        "max": 1240
+      },
+      "failureDecomposition": {
+        "otherFallbackError": 14,
+        "wrongParent": 52,
+        "correctParentWrongChild": 37,
+        "wrongType": 11,
+        "mealDetection": 0,
+        "taxonomyAmbiguity": "unadjudicated; oracle unchanged",
+        "safety": 0
+      },
+      "p2Count": 9,
+      "reportSha256": "cce3d7ab5468d06a1abb3b959ed0ba0d59c6f43a3e4cdfc641ad7bfc0dc9de6a"
+    },
+    "v5": {
+      "totalCases": 400,
+      "categoryAccuracy": 0.76,
+      "parentCategoryAccuracy": 0.87,
+      "typeAccuracy": 0.9375,
+      "p2SafeRejectionRate": 1.0,
+      "highConfidenceWrongPredictionCount": 0,
+      "ordinaryValidCategoryNullCount": 0,
+      "falseFallbackRate": 0.0375,
+      "mealRoutingAccuracy": 1.0,
+      "latencyMicroseconds": {
+        "average": 365.5125,
+        "p50": 318,
+        "p95": 712,
+        "p99": 918,
+        "max": 1344
+      },
+      "failureDecomposition": {
+        "otherFallbackError": 15,
+        "wrongParent": 52,
+        "correctParentWrongChild": 44,
+        "wrongType": 25,
+        "mealDetection": 0,
+        "taxonomyAmbiguity": "unadjudicated; oracle unchanged",
+        "safety": 0
+      },
+      "p2Count": 2,
+      "reportSha256": "15da1e246815d6596266317e0db823bb30a6f3f72759045d44eb45ca8c97060e"
+    },
+    "v6": {
+      "totalCases": 400,
+      "categoryAccuracy": 0.8125,
+      "parentCategoryAccuracy": 0.885,
+      "typeAccuracy": 0.9525,
+      "p2SafeRejectionRate": 0.0,
+      "highConfidenceWrongPredictionCount": 0,
+      "ordinaryValidCategoryNullCount": 0,
+      "falseFallbackRate": 0.0325,
+      "mealRoutingAccuracy": 0.88,
+      "latencyMicroseconds": {
+        "average": 377.575,
+        "p50": 338,
+        "p95": 742,
+        "p99": 915,
+        "max": 1571
+      },
+      "failureDecomposition": {
+        "otherFallbackError": 13,
+        "wrongParent": 46,
+        "correctParentWrongChild": 29,
+        "wrongType": 19,
+        "mealDetection": 3,
+        "taxonomyAmbiguity": "unadjudicated; oracle unchanged",
+        "safety": 0
+      },
+      "p2Count": 0,
+      "reportSha256": "ec3e724f9a82ded757ff93a4d4766a3a263210a0d8f1a895f9d962ceeae028bd"
+    }
+  },
+  "v7": {
+    "totalCases": 800,
+    "categoryAccuracy": 0.79375,
+    "parentCategoryAccuracy": 0.8825,
+    "typeAccuracy": 0.9475,
+    "p2SafeRejectionRate": 1.0,
+    "highConfidenceWrongPredictionCount": 0,
+    "ordinaryValidCategoryNullCount": 0,
+    "falseFallbackRate": 0.025,
+    "mealRoutingAccuracy": 0.7941176470588235,
+    "latencyMicroseconds": {
+      "average": 552.85625,
+      "p50": 453,
+      "p95": 1064,
+      "p99": 1501,
+      "max": 2878
+    },
+    "failureDecomposition": {
+      "otherFallbackError": 20,
+      "wrongParent": 94,
+      "correctParentWrongChild": 71,
+      "wrongType": 42,
+      "mealDetection": 2,
+      "taxonomyAmbiguity": "unadjudicated; oracle unchanged",
+      "safety": 0
+    },
+    "p2Count": 80,
+    "reportSha256": "2958ca2c1b4d6690558285918c4bc2a3e310961bb7f193e2d8b5b5e504af5d4c"
+  },
+  "modelBytes": 2347908,
+  "benchmark": {
+    "warmUpIterations": 1000,
+    "iterations": 10000,
+    "averageMicroseconds": 255.6873,
+    "p50Microseconds": 210,
+    "p95Microseconds": 486,
+    "p99Microseconds": 607,
+    "maxMicroseconds": 1451,
+    "coldKnowledgeDecodeMicroseconds": 27567
+  },
+  "productionSourceSha256": "5851e66c20f16b7a5b61ae1d2d5be8aa780afe81083710fb1dd0625b5d8df1d0",
+  "modelSha256": "40c84bac8f5fc0653beb2e595bc424c8219cc16e9a2523b4c00d48d73ce9de16",
+  "configSha256": "4764e21bcdc2b8526ef21603fc7b2e9f694888c1e9135c7c1bd044b4fdc83428",
+  "allPrioritySafetyFailureCount": 6,
+  "productionAddedFiles": [],
+  "productionDeletedFiles": [],
+  "removedImplementation": "ordinary semantic hard veto, parent locks, global child rejection; old A/B/C training and acceptance tools archived; no production Stage C/flat classifier",
+  "noAlgorithmChangesAfterFreeze": true,
+  "noV7DrivenTuning": true
+}

@@ -1000,7 +1000,7 @@
       "aliases": []
     },
     {
-      "semanticKey": "expense.shopping.beauty",
+      "semanticKey": "expense.shopping.personal",
       "role": "product",
       "specificity": "specific",
       "score": 0.9,
@@ -1286,7 +1286,7 @@
       "aliases": []
     },
     {
-      "semanticKey": "expense.daily.household",
+      "semanticKey": "expense.shopping.home",
       "role": "product",
       "specificity": "specific",
       "score": 0.9,
@@ -1343,7 +1343,7 @@
       "aliases": []
     },
     {
-      "semanticKey": "expense.daily.haircut",
+      "semanticKey": "expense.daily.grooming",
       "role": "service",
       "specificity": "specific",
       "score": 0.92,
@@ -1457,7 +1457,7 @@
       "aliases": []
     },
     {
-      "semanticKey": "expense.entertainment.movie",
+      "semanticKey": "expense.entertainment.performance",
       "role": "service",
       "specificity": "specific",
       "score": 0.92,
@@ -1568,7 +1568,7 @@
       "aliases": []
     },
     {
-      "semanticKey": "expense.entertainment.subscription",
+      "semanticKey": "expense.entertainment.media",
       "role": "service",
       "specificity": "specific",
       "score": 0.9,
@@ -2607,7 +2607,7 @@
       "aliases": []
     },
     {
-      "semanticKey": "income.parttime.freelance",
+      "semanticKey": "income.parttime.service",
       "role": "action",
       "specificity": "specific",
       "score": 0.92,
@@ -2778,7 +2778,7 @@
       "aliases": []
     },
     {
-      "semanticKey": "expense.daily.personal",
+      "semanticKey": "expense.shopping.personal",
       "role": "product",
       "specificity": "specific",
       "score": 0.91,
@@ -2931,7 +2931,7 @@
       "aliases": []
     },
     {
-      "semanticKey": "expense.entertainment.hobby",
+      "semanticKey": "expense.entertainment.activity",
       "role": "venue",
       "specificity": "specific",
       "score": 0.89,
@@ -3256,7 +3256,7 @@
       "aliases": []
     },
     {
-      "semanticKey": "expense.daily.haircut",
+      "semanticKey": "expense.daily.grooming",
       "role": "service",
       "specificity": "specific",
       "score": 0.92,
@@ -3322,7 +3322,7 @@
       "aliases": []
     },
     {
-      "semanticKey": "income.parttime.project",
+      "semanticKey": "income.parttime.service",
       "role": "action",
       "specificity": "specific",
       "score": 0.92,
@@ -3348,7 +3348,7 @@
       "aliases": []
     },
     {
-      "semanticKey": "expense.communication.cloud",
+      "semanticKey": "expense.digital.software",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -3618,7 +3618,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.daily.haircut",
+      "semanticKey": "expense.daily.grooming",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -3665,7 +3665,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.daily.household",
+      "semanticKey": "expense.shopping.home",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -3712,7 +3712,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.daily.personal",
+      "semanticKey": "expense.shopping.personal",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -4465,7 +4465,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.entertainment.hobby",
+      "semanticKey": "expense.entertainment.activity",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -4527,7 +4527,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.entertainment.movie",
+      "semanticKey": "expense.entertainment.performance",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -4574,7 +4574,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.entertainment.music",
+      "semanticKey": "expense.entertainment.media",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -4636,7 +4636,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.entertainment.subscription",
+      "semanticKey": "expense.entertainment.media",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -4683,7 +4683,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.daily.household",
+      "semanticKey": "expense.shopping.home",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -4814,7 +4814,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.daily.personal",
+      "semanticKey": "expense.shopping.personal",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -5180,7 +5180,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.daily.household",
+      "semanticKey": "expense.shopping.home",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -5469,7 +5469,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.daily.household",
+      "semanticKey": "expense.shopping.home",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -7543,7 +7543,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.shopping.beauty",
+      "semanticKey": "expense.shopping.personal",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -7637,7 +7637,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.shopping.gift",
+      "semanticKey": "expense.social.gift",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -8024,7 +8024,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.social.relationship",
+      "semanticKey": "expense.social.gift",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -8093,55 +8093,37 @@
       "reviewStatus": "approved",
       "keywords": [
         "买瑜伽垫",
-        "买运动服",
         "买跑步机",
-        "买运动鞋",
         "运动器材",
         "运动用品",
         "买运动手表",
         "买球拍",
-        "买球鞋",
         "买篮球",
         "运动手表",
         "买护具",
-        "买跑鞋",
         "买公路车",
         "买山地车",
         "买滑雪板",
-        "买瑜伽服",
         "买筋膜枪",
-        "买篮球鞋",
         "买网球拍",
-        "买足球鞋",
-        "买轮滑鞋",
-        "买运动袜",
-        "买骑行服",
         "买乒乓球拍",
         "买动感单车",
         "买羽毛球拍",
-        "买运动内衣",
         "买运动手环",
         "瑜伽垫",
         "跑步机",
-        "专业跑鞋",
         "乒乓球包",
         "乒乓球拍",
-        "乒乓球鞋",
         "俯卧撑架",
         "健身器械",
         "护具套装",
         "棒球手套",
         "滑雪头盔",
-        "滑雪手套",
         "球拍穿线",
-        "瑜伽上衣",
         "瑜伽套装",
-        "碳板跑鞋",
-        "竞速跑鞋",
         "篮球护腕",
         "羽毛球包",
-        "羽毛球拍",
-        "越野跑鞋"
+        "羽毛球拍"
       ],
       "aliases": [],
       "negative": [],
@@ -8720,7 +8702,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.entertainment.hobby",
+      "semanticKey": "expense.entertainment.activity",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -9068,7 +9050,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.daily.household",
+      "semanticKey": "expense.shopping.home",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -9194,7 +9176,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.daily.personal",
+      "semanticKey": "expense.shopping.personal",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -9371,7 +9353,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "income.investment.fund",
+      "semanticKey": "income.investment.capital_gain",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -9885,7 +9867,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "income.parttime.consulting",
+      "semanticKey": "income.parttime.service",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -9947,7 +9929,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "income.parttime.freelance",
+      "semanticKey": "income.parttime.service",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -10056,7 +10038,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "income.parttime.project",
+      "semanticKey": "income.parttime.service",
       "role": "product",
       "specificity": "specific",
       "score": 0.8,
@@ -10807,7 +10789,7 @@
       "sourceId": "phase3CandidateLexiconV1"
     },
     {
-      "semanticKey": "expense.entertainment.hobby",
+      "semanticKey": "expense.entertainment.activity",
       "role": "service",
       "specificity": "specific",
       "keywords": [
@@ -10819,6 +10801,36 @@
       "negative": [],
       "score": 0.9,
       "reviewStatus": "approved"
+    },
+    {
+      "semanticKey": "expense.shopping.clothing",
+      "role": "product",
+      "specificity": "specific",
+      "score": 0.8,
+      "reviewStatus": "approved",
+      "keywords": [
+        "买运动服",
+        "买运动鞋",
+        "买球鞋",
+        "买跑鞋",
+        "买瑜伽服",
+        "买篮球鞋",
+        "买足球鞋",
+        "买轮滑鞋",
+        "买运动袜",
+        "买骑行服",
+        "买运动内衣",
+        "专业跑鞋",
+        "乒乓球鞋",
+        "滑雪手套",
+        "瑜伽上衣",
+        "碳板跑鞋",
+        "竞速跑鞋",
+        "越野跑鞋"
+      ],
+      "aliases": [],
+      "negative": [],
+      "sourceId": "phase3CandidateLexiconV1"
     }
   ]
 }

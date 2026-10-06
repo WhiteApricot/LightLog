@@ -1,0 +1,47 @@
+{
+  "corpora": [
+    {
+      "source": "tools/evaluation/corpora/phase3_104class/lightlog_phase3_104class_generalization_v6.json",
+      "sourceSha256": "10a5ad45a136255d9e80202ab22550446ceb23aa45e1cf1372eff13bc10232d7",
+      "target": "tools/evaluation/corpora/phase3_96class/lightlog_phase3_96class_generalization_v6.json",
+      "sha256": "f2bce8c37009bd5ec3dc9ed891108877177206b7192530dda8482d631533db1b"
+    },
+    {
+      "source": "tools/evaluation/corpora/phase3_104class/lightlog_phase3_compositional_holdout_v3_104class.json",
+      "sourceSha256": "a4094e9ffcc9fb89f65fe0cb597825618cb04b0f82f1846dd5e4c59bd0debc57",
+      "target": "tools/evaluation/corpora/phase3_96class/lightlog_phase3_compositional_holdout_v3_96class.json",
+      "sha256": "5f2e7bc55a9493b641ba3e67ab636e5069a74dcd24af324b41d5dad3ef4907c3"
+    },
+    {
+      "source": "tools/evaluation/corpora/phase3_104class/lightlog_phase3_family_generalization_holdout_v4_104class.json",
+      "sourceSha256": "b1292913e8c067a521ab3263535a6928e94421f0513415834e27a469b3241658",
+      "target": "tools/evaluation/corpora/phase3_96class/lightlog_phase3_family_generalization_holdout_v4_96class.json",
+      "sha256": "bad18924eab6d7031c37e637325e201af4357b29b1925dfc7359d2e54ce272f0"
+    },
+    {
+      "source": "tools/evaluation/corpora/phase3_104class/lightlog_phase3_recognition_test_cases_104class.json",
+      "sourceSha256": "d13b12f17dfe41ecd2e2beac9a1bb0b5f2b28949ea8f91304083ebd7ab918f07",
+      "target": "tools/evaluation/corpora/phase3_96class/lightlog_phase3_recognition_test_cases_96class.json",
+      "sha256": "9c630d771b44a7d90f185475a648b363f776f45c841004645aaf2b1e879cd345"
+    },
+    {
+      "source": "tools/evaluation/corpora/phase3_104class/lightlog_phase3_semantic_routing_holdout_v5_104class.json",
+      "sourceSha256": "023a234d74e3583e93c11b611671ad62711921b3a31f932c0a9fdb9acfbdc12d",
+      "target": "tools/evaluation/corpora/phase3_96class/lightlog_phase3_semantic_routing_holdout_v5_96class.json",
+      "sha256": "e788cbcd63180b91b95f4da3df98c77be968837747eb11a0553d223a1d3f4a21"
+    },
+    {
+      "source": "tools/evaluation/corpora/phase3_104class/lightlog_phase3_stress_holdout_v2_104class.json",
+      "sourceSha256": "865154fe3f7ab4d91879f3c88d0550f5ba3883dd6a6e415ce553152dee5f7b4a",
+      "target": "tools/evaluation/corpora/phase3_96class/lightlog_phase3_stress_holdout_v2_96class.json",
+      "sha256": "2aa7cb51215e6cfd65c99b5634803982bab749e0eae7c548b68050e83514910c"
+    },
+    {
+      "source": "lightlog_phase3_104class_realworld_holdout_v7.json",
+      "sourceSha256": "5c17782e2ed2395912f4d079574c718096b947f80cac32a5efcea172551339bc",
+      "target": "tools/evaluation/corpora/phase3_96class/lightlog_phase3_96class_realworld_holdout_v7.json",
+      "sha256": "a1248d2e22c83afbbe1fd2317f66fc78a9610b3a2560c0fa509bbad1cb872730"
+    }
+  ],
+  "protocol": "Contract-only migration. v7 sealed; no reads/search/analysis until production freeze; one acceptance first-run."
+}

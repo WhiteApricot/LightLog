@@ -63,7 +63,7 @@
 | `createdAt` | 创建时间 |
 | `updatedAt` | 最后更新时间 |
 
-V0.1 仅支持一级与二级分类，不创建更深层级。分类必须是可维护数据，不得硬编码到 UI。`iconAsset` 作为分类数据随 seed/migration 维护，Widget 不按分类名称推断图标。schema v4 默认包含 21 个一级分类和 104 个二级分类，覆盖 15 个支出一级分类与 6 个收入一级分类；每个默认分类使用按稳定 ID 命名且图形签名不同的 24×24 SVG，并带独立 `semanticKey` 和 `isSystem = true`。未来用户分类可映射到已有语义，识别知识库不得直接保存分类 ID。已有历史账目引用的分类不得物理删除，优先设置 `isActive = false`。
+V0.1 仅支持一级与二级分类，不创建更深层级。分类必须是可维护数据，不得硬编码到 UI。`iconAsset` 作为分类数据随 seed/migration 维护，Widget 不按分类名称推断图标。schema v5 默认包含 21 个一级分类和 96 个二级分类，覆盖 15 个支出一级分类与 6 个收入一级分类；每个默认分类使用图形签名不同的 24×24 SVG，并带独立 `semanticKey` 和 `isSystem = true`。合并后可复用原图标资源名称，资源名不作为语义输出。未来用户分类可映射到已有语义，识别知识库不得直接保存分类 ID。已有历史账目引用的分类不得物理删除，优先设置 `isActive = false`。
 
 ## accounts
 
@@ -127,3 +127,9 @@ schema v1 通过 Drift `MigrationStrategy` 显式创建基础表。schema v2 为
 ### V0.1 分类数据迁移
 
 本次仅在幂等 seed 中进行数据迁移，Drift schema 和 JSON 备份版本仍为 4。退役默认分类保留稳定 ID、图标和历史账目引用，设置 isActive=false、semanticKey=null；不删除、不改写历史账目分类。用户分类的失效 semantic mapping 同样清空。旧 recognition_rules 保留原始历史记录，但加载历史 evidence 时只允许现行 taxonomy；反馈也只学习活动且合法的分类。
+
+## Schema v5：最终 96 类数据迁移
+
+表结构不变，schemaVersion 显式升至5。beforeOpen 的 idempotent seed transaction 先插入全部目标父类再插入子类，然后按 seed_data.dart 的 mergedDefaultCategoryIds remap 系统旧分类：transactions.categoryId/subcategoryId 和 recognition_rules.semanticKey 一起迁移，旧默认行保留但 isActive=false、semanticKey=null。用户账目数量、金额、发生时刻/offset、soft delete、审计字段与历史 hit/correction 计数保留，不物理删分类。96子类+21父类无重复活动默认语义。自定义分类不按名字合并；此前停用无稳定映射的旅行/家庭类仍保留历史引用。
+
+未来 JSON 备份导出 schemaVersion=5；恢复旧 v4 备份时必须在同一恢复事务中应用上述显式 ID/semantic remap，再验证 FK，禁止清库或丢弃未知用户分类。Phase6 备份实现仍未完成，本条定义兼容策略而非声称已有导入器。升级与重开数据库回归见 test/data/database_test.dart。

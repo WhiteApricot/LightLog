@@ -238,7 +238,7 @@
       "id": "cloud-membership",
       "leftFamily": "object.cloud",
       "rightFamily": "service.membership",
-      "semanticKey": "expense.communication.cloud",
+      "semanticKey": "expense.digital.software",
       "maxDistance": 6,
       "score": 0.94
     },
@@ -246,7 +246,7 @@
       "id": "scenic-ticket",
       "leftFamily": "venue.scenic",
       "rightFamily": "service.ticket",
-      "semanticKey": "expense.entertainment.hobby",
+      "semanticKey": "expense.entertainment.activity",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -363,7 +363,7 @@
       "id": "design-private-order",
       "leftFamily": "context.design",
       "rightFamily": "income.privateOrder",
-      "semanticKey": "income.parttime.freelance",
+      "semanticKey": "income.parttime.service",
       "maxDistance": 6,
       "score": 0.94,
       "allowOverlap": true
@@ -381,7 +381,7 @@
       "id": "teaching-fee",
       "leftFamily": "context.teaching",
       "rightFamily": "income.teachingFee",
-      "semanticKey": "income.parttime.consulting",
+      "semanticKey": "income.parttime.service",
       "maxDistance": 6,
       "score": 0.94,
       "allowOverlap": true
@@ -407,7 +407,7 @@
       "id": "shopping-household",
       "leftFamily": "platform.shopping",
       "rightFamily": "object.household",
-      "semanticKey": "expense.daily.household",
+      "semanticKey": "expense.shopping.home",
       "maxDistance": 6,
       "score": 0.94
     },
@@ -423,7 +423,7 @@
       "id": "travel-platform-scenic",
       "leftFamily": "platform.travel",
       "rightFamily": "venue.scenic",
-      "semanticKey": "expense.entertainment.hobby",
+      "semanticKey": "expense.entertainment.activity",
       "maxDistance": 8,
       "score": 0.94
     },
@@ -991,7 +991,7 @@
       "id": "daily-object-cloud-action-renew",
       "leftFamily": "object.cloud",
       "rightFamily": "action.renew",
-      "semanticKey": "expense.communication.cloud",
+      "semanticKey": "expense.digital.software",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -999,7 +999,7 @@
       "id": "daily-object-cloud-action-recharge",
       "leftFamily": "object.cloud",
       "rightFamily": "action.recharge",
-      "semanticKey": "expense.communication.cloud",
+      "semanticKey": "expense.digital.software",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1047,7 +1047,7 @@
       "id": "daily-object-media-action-renew",
       "leftFamily": "object.media",
       "rightFamily": "action.renew",
-      "semanticKey": "expense.entertainment.subscription",
+      "semanticKey": "expense.entertainment.media",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1055,7 +1055,7 @@
       "id": "daily-object-media-service-membership",
       "leftFamily": "object.media",
       "rightFamily": "service.membership",
-      "semanticKey": "expense.entertainment.subscription",
+      "semanticKey": "expense.entertainment.media",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1063,7 +1063,7 @@
       "id": "daily-platform-content-action-renew",
       "leftFamily": "platform.content",
       "rightFamily": "action.renew",
-      "semanticKey": "expense.entertainment.subscription",
+      "semanticKey": "expense.entertainment.media",
       "maxDistance": 8,
       "score": 0.94
     },
@@ -1071,7 +1071,7 @@
       "id": "daily-platform-content-service-membership",
       "leftFamily": "platform.content",
       "rightFamily": "service.membership",
-      "semanticKey": "expense.entertainment.subscription",
+      "semanticKey": "expense.entertainment.media",
       "maxDistance": 8,
       "score": 0.94
     },
@@ -1127,7 +1127,7 @@
       "id": "daily-venue-cinema-service-ticket",
       "leftFamily": "venue.cinema",
       "rightFamily": "service.ticket",
-      "semanticKey": "expense.entertainment.movie",
+      "semanticKey": "expense.entertainment.performance",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1135,7 +1135,7 @@
       "id": "daily-venue-cinema-action-book",
       "leftFamily": "venue.cinema",
       "rightFamily": "action.book",
-      "semanticKey": "expense.entertainment.movie",
+      "semanticKey": "expense.entertainment.performance",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1143,7 +1143,7 @@
       "id": "daily-venue-theater-service-ticket",
       "leftFamily": "venue.theater",
       "rightFamily": "service.ticket",
-      "semanticKey": "expense.entertainment.music",
+      "semanticKey": "expense.entertainment.media",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1151,7 +1151,7 @@
       "id": "daily-venue-theater-action-book",
       "leftFamily": "venue.theater",
       "rightFamily": "action.book",
-      "semanticKey": "expense.entertainment.music",
+      "semanticKey": "expense.entertainment.media",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -1997,7 +1997,7 @@
       "id": "daily-platform-shopping-object-beautyProduct",
       "leftFamily": "platform.shopping",
       "rightFamily": "object.beautyProduct",
-      "semanticKey": "expense.shopping.beauty",
+      "semanticKey": "expense.shopping.personal",
       "maxDistance": 8,
       "score": 0.94
     },
@@ -2005,7 +2005,7 @@
       "id": "daily-platform-shopping-object-personalCareProduct",
       "leftFamily": "platform.shopping",
       "rightFamily": "object.personalCareProduct",
-      "semanticKey": "expense.daily.personal",
+      "semanticKey": "expense.shopping.personal",
       "maxDistance": 8,
       "score": 0.94
     },
@@ -2013,7 +2013,7 @@
       "id": "daily-platform-shopping-object-hairCareProduct",
       "leftFamily": "platform.shopping",
       "rightFamily": "object.hairCareProduct",
-      "semanticKey": "expense.daily.personal",
+      "semanticKey": "expense.shopping.personal",
       "maxDistance": 8,
       "score": 0.94
     },
@@ -2248,7 +2248,7 @@
       "id": "daily-income-privateOrder-platform-freelance",
       "leftFamily": "income.privateOrder",
       "rightFamily": "platform.freelance",
-      "semanticKey": "income.parttime.freelance",
+      "semanticKey": "income.parttime.service",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -2256,7 +2256,7 @@
       "id": "daily-income-privateOrder-action-receive",
       "leftFamily": "income.privateOrder",
       "rightFamily": "action.receive",
-      "semanticKey": "income.parttime.project",
+      "semanticKey": "income.parttime.service",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -2272,7 +2272,7 @@
       "id": "daily-income-teachingFee-action-receive",
       "leftFamily": "income.teachingFee",
       "rightFamily": "action.receive",
-      "semanticKey": "income.parttime.consulting",
+      "semanticKey": "income.parttime.service",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -2280,7 +2280,7 @@
       "id": "daily-income-authorFee-action-receive",
       "leftFamily": "income.authorFee",
       "rightFamily": "action.receive",
-      "semanticKey": "income.parttime.freelance",
+      "semanticKey": "income.parttime.service",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -2288,7 +2288,7 @@
       "id": "daily-income-liveStream-action-receive",
       "leftFamily": "income.liveStream",
       "rightFamily": "action.receive",
-      "semanticKey": "income.parttime.freelance",
+      "semanticKey": "income.parttime.service",
       "maxDistance": 5,
       "score": 0.94
     },
@@ -2312,7 +2312,7 @@
       "id": "daily-income-fundReturn-action-receive",
       "leftFamily": "income.fundReturn",
       "rightFamily": "action.receive",
-      "semanticKey": "income.investment.fund",
+      "semanticKey": "income.investment.capital_gain",
       "maxDistance": 5,
       "score": 0.94
     },

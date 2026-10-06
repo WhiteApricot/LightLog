@@ -29,7 +29,9 @@ class NgramClassifier {
   List<double> scores(
     String rawText, {
     List<String> structuredFeatures = const [],
-  }) {
+  }) => predict(rawText, structuredFeatures: structuredFeatures).scores;
+
+  Set<int> _features(String rawText, List<String> structuredFeatures) {
     final text = normalize(rawText);
     final features = <int>{};
     for (var n = model.minGram; n <= model.maxGram; n++) {
@@ -42,27 +44,49 @@ class NgramClassifier {
       final index = model.structuredVocabulary[term];
       if (index != null) features.add(index);
     }
-    if (features.isEmpty) return List.filled(model.labels.length, 0);
-    List<double> headScores(NgramHead head) {
-      final sums = List<int>.filled(head.labels.length, 0);
-      for (final feature in features) {
-        final offset = head.offset + feature * sums.length;
-        for (var c = 0; c < sums.length; c++) {
-          sums[c] += model.weights[offset + c];
-        }
+    return features;
+  }
+
+  List<double> _headScores(NgramHead head, Set<int> features) {
+    final sums = List<int>.filled(head.labels.length, 0);
+    for (final feature in features) {
+      final offset = head.offset + feature * sums.length;
+      for (var c = 0; c < sums.length; c++) {
+        sums[c] += model.weights[offset + c];
       }
-      final logits = [
-        for (var c = 0; c < sums.length; c++)
-          sums[c] * head.scales[c] + head.bias[c],
-      ];
-      final maxLogit = logits.reduce(math.max);
-      final probabilities = logits.map((v) => math.exp(v - maxLogit)).toList();
-      final total = probabilities.reduce((a, b) => a + b);
-      return probabilities.map((p) => p / total).toList();
+    }
+    final logits = [
+      for (var c = 0; c < sums.length; c++)
+        sums[c] * head.scales[c] + head.bias[c],
+    ];
+    final maxLogit = logits.reduce(math.max);
+    final probabilities = logits.map((v) => math.exp(v - maxLogit)).toList();
+    final total = probabilities.reduce((a, b) => a + b);
+    return probabilities.map((p) => p / total).toList();
+  }
+
+  static final mealTimeMask = RegExp(
+    r'早餐|午餐|晚餐|早饭|午饭|晚饭|早上|中午|晚上|清晨|早晨|上午|下午|正午|午间|晚间|凌晨|今早|昨晚|今晚|'
+    r'[零〇一二两三四五六七八九十\d]{1,3}点(?:半|[零〇一二两三四五六七八九十\d]{1,3}分)?|\d{1,2}:\d{2}',
+  );
+
+  ({
+    List<double> scores,
+    double incomeProbability,
+    double preparedMealProbability,
+  })
+  predict(String rawText, {List<String> structuredFeatures = const []}) {
+    final features = _features(rawText, structuredFeatures);
+    if (features.isEmpty) {
+      return (
+        scores: List.filled(model.labels.length, 0),
+        incomeProbability: .5,
+        preparedMealProbability: 0,
+      );
     }
 
     final parent = model.heads.first;
-    final pp = headScores(parent);
+    final pp = _headScores(parent, features);
     final joint = <String, double>{};
     for (var i = 0; i < parent.labels.length; i++) {
       final key = parent.labels[i];
@@ -73,13 +97,30 @@ class NgramClassifier {
         );
         joint[child] = pp[i];
       } else {
-        final cp = headScores(head);
+        final cp = _headScores(head, features);
         for (var j = 0; j < head.labels.length; j++) {
           joint[head.labels[j]] = pp[i] * cp[j];
         }
       }
     }
-    return [for (final label in model.labels) joint[label]!];
+    final direction = model.heads
+        .where((h) => h.parent == '@direction')
+        .firstOrNull;
+    final meal = model.heads.where((h) => h.parent == '@meal').firstOrNull;
+    final maskedFeatures = meal == null
+        ? <int>{}
+        : _features(rawText.replaceAll(mealTimeMask, ' '), const []);
+    return (
+      scores: [for (final label in model.labels) joint[label]!],
+      incomeProbability: direction == null
+          ? .5
+          : _headScores(direction, features)[direction.labels.indexOf(
+              'income',
+            )],
+      preparedMealProbability: meal == null || maskedFeatures.isEmpty
+          ? 0
+          : _headScores(meal, maskedFeatures)[meal.labels.indexOf('meal')],
+    );
   }
 
   /// One feature extraction feeds both parent aggregation and child routing.
@@ -90,6 +131,9 @@ class NgramClassifier {
     required int level,
     String? anchor,
     List<String> structuredFeatures = const [],
+    List<double>? probabilitiesOverride,
+    String? direction,
+    double deterministicSupport = 0,
   }) {
     final byId = {
       for (final c in categories)
@@ -102,15 +146,23 @@ class NgramClassifier {
         parentByChild[c.semanticKey!] = parent!.semanticKey!;
       }
     }
-    final probabilities = scores(
-      rawText,
-      structuredFeatures: structuredFeatures,
-    );
+    final probabilities =
+        probabilitiesOverride ??
+        scores(rawText, structuredFeatures: structuredFeatures);
     final parents = <String, double>{};
     for (var i = 0; i < probabilities.length; i++) {
       final parent = parentByChild[model.labels[i]];
-      if (parent != null) {
+      if (parent != null &&
+          (direction == null || parent.startsWith('$direction.'))) {
         parents[parent] = (parents[parent] ?? 0) + probabilities[i];
+      }
+    }
+    if (model.fusion == 'F2' && anchor != null) {
+      final parent = parentByChild[anchor];
+      if (parent != null && parents.containsKey(parent)) {
+        parents[parent] =
+            parents[parent]! +
+            model.parentPrior * deterministicSupport.clamp(0, 1);
       }
     }
     final ranked = parents.entries.toList()
@@ -119,7 +171,10 @@ class NgramClassifier {
       return (evidence: null, parentConfidence: 0);
     }
     final selected = level == 1 ? parentByChild[anchor] : ranked.first.key;
-    final mass = parents[selected] ?? 0;
+    final mass = [
+      for (var i = 0; i < probabilities.length; i++)
+        if (parentByChild[model.labels[i]] == selected) probabilities[i],
+    ].fold<double>(0, (a, b) => a + b);
     if (mass <= 0 ||
         mass < model.parentThreshold ||
         (level == 2 &&
@@ -137,17 +192,22 @@ class NgramClassifier {
         (probabilities[first] -
             (children.length > 1 ? probabilities[children[1]] : 0)) /
         mass;
-    if (conditional < model.childThreshold || margin < model.childMargin) {
-      return (evidence: null, parentConfidence: mass);
-    }
+    final calibration = model.childCalibration[selected];
+    final uncertainChild =
+        conditional < (calibration?['threshold'] ?? model.childThreshold) ||
+        margin < (calibration?['margin'] ?? model.childMargin);
     return (
       evidence: RecognitionEvidence(
         field: 'category',
         description: '本地层级字符模型弱证据（需确认）',
-        score: math.min(mass, conditional).clamp(.40, .69),
+        score: uncertainChild
+            ? .55
+            : math.min(mass, conditional).clamp(.40, .69),
         source: RecognitionEvidenceSource.ngram,
         semanticKey: model.labels[first],
-        family: level == 1
+        family: uncertainChild
+            ? 'statisticalUncertainChild'
+            : level == 1
             ? 'statisticalSameParent'
             : 'statisticalParentRouting',
         role: EvidenceRole.context,
@@ -161,13 +221,14 @@ class NgramClassifier {
     List<RecognitionEvidence> evidence,
     Map<String, String> taxonomy,
   ) => [
-    'type:${type.type?.value}',
-    'direction:${type.isDefault ? 'default' : type.type?.value}',
     for (final e in evidence) ...[
+      if (e.negative) 'negative:${e.semanticKey}',
       'source:${e.source.name}',
       'role:${e.role.name}',
+      'specificity:${e.specificity.name}',
       if (e.family != null) 'family:${e.family}',
       if (e.semanticKey != null) 'parent:${taxonomy[e.semanticKey]}',
+      if (e.semanticKey != null) 'semantic:${e.semanticKey}',
     ],
   ];
 }

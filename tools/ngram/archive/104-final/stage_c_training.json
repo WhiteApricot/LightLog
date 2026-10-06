@@ -1,0 +1,91 @@
+{
+  "stage": "C",
+  "selected": {
+    "embeddingDimension": 32,
+    "epoch": 4,
+    "categoryAccuracy": 0.8447847682119205,
+    "parentAccuracy": 0.9422599337748344
+  },
+  "trials": [
+    {
+      "embeddingDimension": 32,
+      "epoch": 4,
+      "categoryAccuracy": 0.8447847682119205,
+      "parentAccuracy": 0.9422599337748344
+    },
+    {
+      "embeddingDimension": 32,
+      "epoch": 8,
+      "categoryAccuracy": 0.8321605960264901,
+      "parentAccuracy": 0.9406043046357616
+    },
+    {
+      "embeddingDimension": 32,
+      "epoch": 12,
+      "categoryAccuracy": 0.8226407284768212,
+      "parentAccuracy": 0.9366721854304636
+    },
+    {
+      "embeddingDimension": 32,
+      "epoch": 16,
+      "categoryAccuracy": 0.8213990066225165,
+      "parentAccuracy": 0.9368791390728477
+    },
+    {
+      "embeddingDimension": 32,
+      "epoch": 20,
+      "categoryAccuracy": 0.8265728476821192,
+      "parentAccuracy": 0.9366721854304636
+    },
+    {
+      "embeddingDimension": 32,
+      "epoch": 24,
+      "categoryAccuracy": 0.8245033112582781,
+      "parentAccuracy": 0.9341887417218543
+    },
+    {
+      "embeddingDimension": 64,
+      "epoch": 4,
+      "categoryAccuracy": 0.8425082781456954,
+      "parentAccuracy": 0.9435016556291391
+    },
+    {
+      "embeddingDimension": 64,
+      "epoch": 8,
+      "categoryAccuracy": 0.8336092715231788,
+      "parentAccuracy": 0.9372930463576159
+    },
+    {
+      "embeddingDimension": 64,
+      "epoch": 12,
+      "categoryAccuracy": 0.8265728476821192,
+      "parentAccuracy": 0.9350165562913907
+    },
+    {
+      "embeddingDimension": 64,
+      "epoch": 16,
+      "categoryAccuracy": 0.8222268211920529,
+      "parentAccuracy": 0.933567880794702
+    },
+    {
+      "embeddingDimension": 64,
+      "epoch": 20,
+      "categoryAccuracy": 0.8224337748344371,
+      "parentAccuracy": 0.9329470198675497
+    },
+    {
+      "embeddingDimension": 64,
+      "epoch": 24,
+      "categoryAccuracy": 0.8259519867549668,
+      "parentAccuracy": 0.9325331125827815
+    }
+  ],
+  "assetBytes": 1160371,
+  "assetSha256": "0d4fb063c41a640f8631cfc09d0a5a851681fee2914d42794a19fcc31614b478",
+  "groupLeakage": 0,
+  "torch": "2.5.1+cu121",
+  "splitSha256": {
+    "ngram_train_v2.jsonl": "74fb53c23ece0d3f7d75d4f37aa3508f1799fb84e93fc3364df5b7e8c26d3e10",
+    "ngram_dev_v2.jsonl": "064f692db4f304bc00b669abeea657aab1b66620793a9f611222722636d25249"
+  }
+}

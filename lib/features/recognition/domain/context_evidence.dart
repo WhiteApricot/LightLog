@@ -44,6 +44,7 @@ class ContextEvidenceBuilder {
     required int occurredHour,
     required bool timeIsExplicit,
     List<RecognitionEvidence> entityEvidence = const [],
+    bool preparedMeal = false,
   }) {
     final hasMealEvidence = entityEvidence.any(
       (e) =>
@@ -56,16 +57,42 @@ class ContextEvidenceBuilder {
                   e.role == EvidenceRole.product &&
                   _mainDish.hasMatch(e.matchedText ?? ''))),
     );
+    final preparedProducts = entityEvidence
+        .where(
+          (e) =>
+              !e.negative &&
+              e.semanticKey == 'expense.food.other' &&
+              e.role == EvidenceRole.product &&
+              _mainDish.hasMatch(e.matchedText ?? ''),
+        )
+        .toList();
+    final groceryPurchase = RegExp(r'买|采购|购入|囤|超市|市场|食材|生鲜|家庭采购')
+        .hasMatch(matchingText);
     final hasNonMealFood = entityEvidence.any(
       (e) =>
           !e.negative &&
-          e.specificity == EvidenceSpecificity.specific &&
-          const {
-            'expense.food.drink',
-            'expense.food.snack',
-            'expense.food.groceries',
-          }.contains(e.semanticKey),
+              e.specificity == EvidenceSpecificity.specific &&
+              const {
+                'expense.food.drink',
+                'expense.food.snack',
+              }.contains(e.semanticKey) ||
+          (!e.negative &&
+              e.specificity == EvidenceSpecificity.specific &&
+              e.semanticKey == 'expense.food.groceries' &&
+              groceryPurchase &&
+              !preparedProducts.any(
+                (p) =>
+                    p.span != null &&
+                    e.span != null &&
+                    p.span!.start <= e.span!.start &&
+                    p.span!.end >= e.span!.end &&
+                    p.matchedText != e.matchedText,
+              )),
     );
+    if (hasNonMealFood ||
+        RegExp(r'夜宵|宵夜|小吃|食材|生鲜|买菜|家庭采购').hasMatch(matchingText)) {
+      return const [];
+    }
     final cafeteriaMeal = matchingText.contains('食堂') && !hasNonMealFood;
     // Preserve the existing weak restaurant + explicit transaction-time path.
     final restaurantMeal =
@@ -78,7 +105,8 @@ class ContextEvidenceBuilder {
               e.role == EvidenceRole.merchantType &&
               e.semanticKey == 'expense.food.other',
         );
-    if (!hasMealEvidence &&
+    if (!preparedMeal &&
+        !hasMealEvidence &&
         !cafeteriaMeal &&
         !restaurantMeal &&
         !_mealScene.hasMatch(matchingText) &&

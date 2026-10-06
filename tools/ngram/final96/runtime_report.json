@@ -1,0 +1,499 @@
+{
+  "devCount": 4832,
+  "accuracy": 0.9103890728476821,
+  "macroF1": 0.9136798395411568,
+  "macroAccuracy": 0.9196668427261497,
+  "perClass": {
+    "expense.communication.internet": {
+      "support": 54,
+      "tp": 54,
+      "predicted": 55
+    },
+    "expense.communication.mobile": {
+      "support": 55,
+      "tp": 55,
+      "predicted": 55
+    },
+    "expense.communication.post": {
+      "support": 53,
+      "tp": 53,
+      "predicted": 56
+    },
+    "expense.daily.cleaning": {
+      "support": 50,
+      "tp": 20,
+      "predicted": 22
+    },
+    "expense.daily.grooming": {
+      "support": 49,
+      "tp": 49,
+      "predicted": 49
+    },
+    "expense.daily.service": {
+      "support": 49,
+      "tp": 47,
+      "predicted": 47
+    },
+    "expense.digital.accessory": {
+      "support": 58,
+      "tp": 28,
+      "predicted": 31
+    },
+    "expense.digital.computer": {
+      "support": 54,
+      "tp": 51,
+      "predicted": 53
+    },
+    "expense.digital.phone": {
+      "support": 29,
+      "tp": 28,
+      "predicted": 59
+    },
+    "expense.digital.photo": {
+      "support": 28,
+      "tp": 28,
+      "predicted": 28
+    },
+    "expense.digital.repair": {
+      "support": 54,
+      "tp": 53,
+      "predicted": 53
+    },
+    "expense.digital.software": {
+      "support": 106,
+      "tp": 105,
+      "predicted": 105
+    },
+    "expense.education.book": {
+      "support": 54,
+      "tp": 30,
+      "predicted": 54
+    },
+    "expense.education.course": {
+      "support": 53,
+      "tp": 44,
+      "predicted": 45
+    },
+    "expense.education.exam": {
+      "support": 54,
+      "tp": 54,
+      "predicted": 79
+    },
+    "expense.education.stationery": {
+      "support": 54,
+      "tp": 21,
+      "predicted": 23
+    },
+    "expense.education.tuition": {
+      "support": 27,
+      "tp": 27,
+      "predicted": 27
+    },
+    "expense.entertainment.activity": {
+      "support": 27,
+      "tp": 27,
+      "predicted": 29
+    },
+    "expense.entertainment.game": {
+      "support": 54,
+      "tp": 54,
+      "predicted": 55
+    },
+    "expense.entertainment.media": {
+      "support": 81,
+      "tp": 81,
+      "predicted": 108
+    },
+    "expense.entertainment.performance": {
+      "support": 27,
+      "tp": 27,
+      "predicted": 27
+    },
+    "expense.finance.fee": {
+      "support": 54,
+      "tp": 54,
+      "predicted": 54
+    },
+    "expense.finance.insurance": {
+      "support": 53,
+      "tp": 53,
+      "predicted": 53
+    },
+    "expense.finance.interest": {
+      "support": 27,
+      "tp": 27,
+      "predicted": 27
+    },
+    "expense.finance.investment": {
+      "support": 52,
+      "tp": 40,
+      "predicted": 42
+    },
+    "expense.finance.loan": {
+      "support": 54,
+      "tp": 54,
+      "predicted": 66
+    },
+    "expense.finance.tax": {
+      "support": 54,
+      "tp": 54,
+      "predicted": 58
+    },
+    "expense.food.breakfast": {
+      "support": 51,
+      "tp": 44,
+      "predicted": 44
+    },
+    "expense.food.dinner": {
+      "support": 50,
+      "tp": 26,
+      "predicted": 26
+    },
+    "expense.food.drink": {
+      "support": 52,
+      "tp": 52,
+      "predicted": 52
+    },
+    "expense.food.groceries": {
+      "support": 52,
+      "tp": 52,
+      "predicted": 89
+    },
+    "expense.food.lunch": {
+      "support": 50,
+      "tp": 50,
+      "predicted": 50
+    },
+    "expense.food.other": {
+      "support": 26,
+      "tp": 20,
+      "predicted": 20
+    },
+    "expense.food.snack": {
+      "support": 51,
+      "tp": 51,
+      "predicted": 51
+    },
+    "expense.housing.gas": {
+      "support": 28,
+      "tp": 28,
+      "predicted": 28
+    },
+    "expense.housing.mortgage": {
+      "support": 53,
+      "tp": 53,
+      "predicted": 53
+    },
+    "expense.housing.property": {
+      "support": 32,
+      "tp": 32,
+      "predicted": 33
+    },
+    "expense.housing.rent": {
+      "support": 56,
+      "tp": 56,
+      "predicted": 56
+    },
+    "expense.housing.repair": {
+      "support": 53,
+      "tp": 53,
+      "predicted": 53
+    },
+    "expense.housing.utilities": {
+      "support": 31,
+      "tp": 30,
+      "predicted": 30
+    },
+    "expense.medical.checkup": {
+      "support": 53,
+      "tp": 53,
+      "predicted": 53
+    },
+    "expense.medical.clinic": {
+      "support": 56,
+      "tp": 56,
+      "predicted": 99
+    },
+    "expense.medical.dental": {
+      "support": 54,
+      "tp": 12,
+      "predicted": 12
+    },
+    "expense.medical.medicine": {
+      "support": 55,
+      "tp": 54,
+      "predicted": 54
+    },
+    "expense.medical.rehab": {
+      "support": 52,
+      "tp": 52,
+      "predicted": 52
+    },
+    "expense.other.general": {
+      "support": 53,
+      "tp": 51,
+      "predicted": 55
+    },
+    "expense.pets.food": {
+      "support": 54,
+      "tp": 48,
+      "predicted": 48
+    },
+    "expense.pets.grooming": {
+      "support": 28,
+      "tp": 28,
+      "predicted": 28
+    },
+    "expense.pets.medical": {
+      "support": 28,
+      "tp": 28,
+      "predicted": 28
+    },
+    "expense.pets.service": {
+      "support": 28,
+      "tp": 28,
+      "predicted": 28
+    },
+    "expense.pets.supplies": {
+      "support": 54,
+      "tp": 54,
+      "predicted": 55
+    },
+    "expense.shopping.appliance": {
+      "support": 55,
+      "tp": 55,
+      "predicted": 55
+    },
+    "expense.shopping.clothing": {
+      "support": 56,
+      "tp": 56,
+      "predicted": 57
+    },
+    "expense.shopping.home": {
+      "support": 106,
+      "tp": 105,
+      "predicted": 166
+    },
+    "expense.shopping.other": {
+      "support": 54,
+      "tp": 2,
+      "predicted": 3
+    },
+    "expense.shopping.personal": {
+      "support": 106,
+      "tp": 106,
+      "predicted": 131
+    },
+    "expense.social.donation": {
+      "support": 52,
+      "tp": 29,
+      "predicted": 36
+    },
+    "expense.social.gathering": {
+      "support": 28,
+      "tp": 28,
+      "predicted": 28
+    },
+    "expense.social.gift": {
+      "support": 162,
+      "tp": 110,
+      "predicted": 122
+    },
+    "expense.social.red.packet": {
+      "support": 54,
+      "tp": 54,
+      "predicted": 54
+    },
+    "expense.sports.equipment": {
+      "support": 54,
+      "tp": 54,
+      "predicted": 121
+    },
+    "expense.sports.event": {
+      "support": 54,
+      "tp": 54,
+      "predicted": 54
+    },
+    "expense.sports.fitness": {
+      "support": 54,
+      "tp": 54,
+      "predicted": 54
+    },
+    "expense.sports.outdoor": {
+      "support": 54,
+      "tp": 54,
+      "predicted": 54
+    },
+    "expense.sports.venue": {
+      "support": 53,
+      "tp": 53,
+      "predicted": 53
+    },
+    "expense.transport.flight": {
+      "support": 54,
+      "tp": 54,
+      "predicted": 54
+    },
+    "expense.transport.fuel": {
+      "support": 29,
+      "tp": 29,
+      "predicted": 53
+    },
+    "expense.transport.maintenance": {
+      "support": 53,
+      "tp": 26,
+      "predicted": 26
+    },
+    "expense.transport.parking": {
+      "support": 27,
+      "tp": 27,
+      "predicted": 27
+    },
+    "expense.transport.public": {
+      "support": 50,
+      "tp": 38,
+      "predicted": 38
+    },
+    "expense.transport.rail": {
+      "support": 54,
+      "tp": 32,
+      "predicted": 32
+    },
+    "expense.transport.taxi": {
+      "support": 50,
+      "tp": 50,
+      "predicted": 51
+    },
+    "income.investment.capital_gain": {
+      "support": 26,
+      "tp": 26,
+      "predicted": 27
+    },
+    "income.investment.dividend": {
+      "support": 28,
+      "tp": 28,
+      "predicted": 29
+    },
+    "income.investment.interest": {
+      "support": 52,
+      "tp": 52,
+      "predicted": 52
+    },
+    "income.investment.other": {
+      "support": 27,
+      "tp": 25,
+      "predicted": 25
+    },
+    "income.investment.rent": {
+      "support": 52,
+      "tp": 51,
+      "predicted": 51
+    },
+    "income.other.compensation": {
+      "support": 52,
+      "tp": 52,
+      "predicted": 52
+    },
+    "income.other.general": {
+      "support": 52,
+      "tp": 52,
+      "predicted": 52
+    },
+    "income.other.red.packet": {
+      "support": 27,
+      "tp": 27,
+      "predicted": 27
+    },
+    "income.other.reward": {
+      "support": 52,
+      "tp": 52,
+      "predicted": 55
+    },
+    "income.other.secondhand": {
+      "support": 81,
+      "tp": 79,
+      "predicted": 79
+    },
+    "income.parttime.platform": {
+      "support": 52,
+      "tp": 52,
+      "predicted": 52
+    },
+    "income.parttime.service": {
+      "support": 106,
+      "tp": 106,
+      "predicted": 106
+    },
+    "income.refund.deposit": {
+      "support": 27,
+      "tp": 27,
+      "predicted": 27
+    },
+    "income.refund.service": {
+      "support": 27,
+      "tp": 26,
+      "predicted": 26
+    },
+    "income.refund.shopping": {
+      "support": 54,
+      "tp": 54,
+      "predicted": 55
+    },
+    "income.refund.tax": {
+      "support": 27,
+      "tp": 27,
+      "predicted": 27
+    },
+    "income.reimbursement.medical": {
+      "support": 52,
+      "tp": 52,
+      "predicted": 52
+    },
+    "income.reimbursement.other": {
+      "support": 51,
+      "tp": 51,
+      "predicted": 51
+    },
+    "income.reimbursement.travel": {
+      "support": 52,
+      "tp": 52,
+      "predicted": 52
+    },
+    "income.reimbursement.work": {
+      "support": 52,
+      "tp": 52,
+      "predicted": 52
+    },
+    "income.salary.allowance": {
+      "support": 27,
+      "tp": 27,
+      "predicted": 27
+    },
+    "income.salary.bonus": {
+      "support": 28,
+      "tp": 25,
+      "predicted": 25
+    },
+    "income.salary.monthly": {
+      "support": 53,
+      "tp": 53,
+      "predicted": 53
+    },
+    "income.salary.overtime": {
+      "support": 52,
+      "tp": 52,
+      "predicted": 52
+    }
+  },
+  "ngramMicroseconds": {
+    "p50": 45,
+    "p95": 70,
+    "p99": 95
+  },
+  "recognizerMicroseconds": {
+    "p50": 476,
+    "p95": 965,
+    "p99": 1169
+  },
+  "environment": "Dart VM warm, host CPU; not Android device"
+}

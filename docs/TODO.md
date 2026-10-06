@@ -117,7 +117,7 @@ Phase 3 and the next recognition evaluation do not require strong OCR cases to h
 - [ ] Harden advanced local rule governance and correction/undo feedback
 - [ ] Resolve release-blocking TBD items and prepare V0.1 checklist
 
-## V0.1 taxonomy 收缩
+## 历史：V0.1 104类 taxonomy 收缩
 
 - [x] 按用户确认冻结 104 个二级语义，迁移 seed、mapping、已有知识和 review oracle；退役历史分类停用，历史账目不改写。
 - [x] Generator 校验 104 类、失效 runtime semantic 引用为零；本轮不读取或运行 holdout。
@@ -126,3 +126,14 @@ Phase 3 and the next recognition evaluation do not require strong OCR cases to h
 - [x] 逐条迁移五套历史失效taxonomy oracle，原始数据归档，104-class校验和SHA256封存后停止访问内容，生产完成前保持v6 blind。
 - [x] 生产冻结后统一评测五套migrated-104与v6 immutable first-run，记录失败，禁止继续调本轮算法。v6 category=76%、meal=76%、high-confidence wrong=0；无P2样本。v5/v6未达80%，Phase3整体暂不收口，结果见RECOGNITION_ALGORITHM.md。
 - [x] 字符模型仅使用104标签，完成训练、弱fallback集成、测试和评测；未开始OCR。
+
+## Phase 3 最终 96 类收尾（2026-10-06）
+
+- [x] 归档104类源码/模型/数据/指标，冻结96类契约及七套oracle；v7 seal 后保持 blind。
+- [x] seed/知识/训练/测试/UI映射迁移；schema v5原子remap及FK/历史/软删除测试。
+- [x] train/dev-only Stage-B重训、Direction、F0/F1/F2/F3探索、每parent child校准及Meal必要修复。
+- [x] 最终format/analyze/test/parity/dataset/taxonomy/benchmark后freeze；121项测试通过。
+- [x] 六套历史regression及v7唯一first-run已完成；Phase 3 NOT CLOSED，保留F3，禁止v7驱动调参。
+- [x] 清理、文档与最终结果归档；采用聚焦commit/push交付feature branch，不merge main（实际提交与远端状态以Git为准）。
+
+后续独立任务：审计真实方向/用途语言与训练模板分布、改进作用域表示、复核通用退款关联门禁和口语时间；不得复用本次v7调参/补训练。6个P0/P1退款关联漏检是剩余安全风险，详见冻结后失败分析。

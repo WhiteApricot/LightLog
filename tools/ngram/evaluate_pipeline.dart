@@ -2,17 +2,12 @@ import 'dart:convert';
 import 'dart:io';
 
 import '../recognition_tool_harness.dart';
-import 'archive/pooled/candidate.dart';
 
 import 'package:light_log/features/recognition/domain/recognition_models.dart';
 
 void main(List<String> args) {
   final stage = args.first;
-  final h = RecognitionToolHarness(
-    classifier: args.length > 1 && args[1] == 'pooled'
-        ? PooledCandidate.load()
-        : null,
-  );
+  final h = RecognitionToolHarness();
   final rows = File('tools/ngram/data/ngram_dev_v2.jsonl')
       .readAsLinesSync()
       .map((s) => jsonDecode(s) as Map)
@@ -42,6 +37,14 @@ void main(List<String> args) {
     final label = rows[i]['semanticKey'];
     final pred = r.semanticKey;
     result.add({
+      'id': rows[i]['id'],
+      'text': traces[i]['text'],
+      'expected': label,
+      'actual': pred,
+      'expectedType': rows[i]['type'],
+      'actualType': r.draft.type?.value,
+      'deterministic': traces[i]['semanticKey'],
+      'issues': r.issueCodes.map((c) => c.name).toList(),
       'correct': pred == label,
       'parentCorrect': tax[pred] == tax[label],
       'typeCorrect': r.draft.type?.value == rows[i]['type'],
@@ -140,5 +143,7 @@ void main(List<String> args) {
       .writeAsStringSync(
         '${const JsonEncoder.withIndent('  ').convert(report)}\n',
       );
+  File('tools/ngram/final96/${stage.toLowerCase()}_dev_rows.json')
+      .writeAsStringSync(jsonEncode(result));
   stdout.writeln(jsonEncode(report));
 }

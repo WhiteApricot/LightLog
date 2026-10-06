@@ -1,0 +1,102 @@
+{
+  "stage": "B",
+  "selected": {
+    "dimension": 16384,
+    "structured": true,
+    "structuredCount": 1056,
+    "C": 2.0,
+    "parentAccuracy": 0.9385347682119205,
+    "categoryAccuracy": 0.8543046357615894,
+    "weightBytes": 2162560,
+    "seconds": 6.5
+  },
+  "trials": [
+    {
+      "dimension": 8192,
+      "structured": false,
+      "structuredCount": 0,
+      "C": 0.5,
+      "parentAccuracy": 0.8851407284768212,
+      "categoryAccuracy": 0.8060844370860927,
+      "weightBytes": 1015808,
+      "seconds": 3.1089999999967404
+    },
+    {
+      "dimension": 8192,
+      "structured": false,
+      "structuredCount": 0,
+      "C": 2.0,
+      "parentAccuracy": 0.8805877483443708,
+      "categoryAccuracy": 0.8081539735099338,
+      "weightBytes": 1015808,
+      "seconds": 5.219000000011874
+    },
+    {
+      "dimension": 8192,
+      "structured": true,
+      "structuredCount": 1056,
+      "C": 0.5,
+      "parentAccuracy": 0.9192880794701986,
+      "categoryAccuracy": 0.8334023178807947,
+      "weightBytes": 1146752,
+      "seconds": 3.6559999999881256
+    },
+    {
+      "dimension": 8192,
+      "structured": true,
+      "structuredCount": 1056,
+      "C": 2.0,
+      "parentAccuracy": 0.9215645695364238,
+      "categoryAccuracy": 0.8379552980132451,
+      "weightBytes": 1146752,
+      "seconds": 5.76500000001397
+    },
+    {
+      "dimension": 16384,
+      "structured": false,
+      "structuredCount": 0,
+      "C": 0.5,
+      "parentAccuracy": 0.9081125827814569,
+      "categoryAccuracy": 0.8311258278145696,
+      "weightBytes": 2031616,
+      "seconds": 3.5160000000032596
+    },
+    {
+      "dimension": 16384,
+      "structured": false,
+      "structuredCount": 0,
+      "C": 2.0,
+      "parentAccuracy": 0.9170115894039735,
+      "categoryAccuracy": 0.8396109271523179,
+      "weightBytes": 2031616,
+      "seconds": 5.7189999999827705
+    },
+    {
+      "dimension": 16384,
+      "structured": true,
+      "structuredCount": 1056,
+      "C": 0.5,
+      "parentAccuracy": 0.9321192052980133,
+      "categoryAccuracy": 0.8468543046357616,
+      "weightBytes": 2162560,
+      "seconds": 4.23399999999674
+    },
+    {
+      "dimension": 16384,
+      "structured": true,
+      "structuredCount": 1056,
+      "C": 2.0,
+      "parentAccuracy": 0.9385347682119205,
+      "categoryAccuracy": 0.8543046357615894,
+      "weightBytes": 2162560,
+      "seconds": 6.5
+    }
+  ],
+  "assetBytes": 2384288,
+  "assetSha256": "5963f514331dabcf500dbccd860c5970cf8c18881a50ee3afe90dafbde316939",
+  "groupLeakage": 0,
+  "splitSha256": {
+    "ngram_train_v2.jsonl": "74fb53c23ece0d3f7d75d4f37aa3508f1799fb84e93fc3364df5b7e8c26d3e10",
+    "ngram_dev_v2.jsonl": "064f692db4f304bc00b669abeea657aab1b66620793a9f611222722636d25249"
+  }
+}

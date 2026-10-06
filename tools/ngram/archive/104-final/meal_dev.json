@@ -1,0 +1,117 @@
+{
+  "labelContract": "positive iff existing oracle is breakfast/lunch/dinner; other food labels remain negative; no relabeling",
+  "positiveTrain": 1202,
+  "positiveDev": 151,
+  "trials": [
+    {
+      "C": 0.5,
+      "threshold": 0.5,
+      "precision": 1.0,
+      "recall": 0.7086092715231788,
+      "balancedAccuracy": 0.8543046357615893,
+      "accuracy": 0.9908940397350994
+    },
+    {
+      "C": 0.5,
+      "threshold": 0.6,
+      "precision": 1.0,
+      "recall": 0.6423841059602649,
+      "balancedAccuracy": 0.8211920529801324,
+      "accuracy": 0.9888245033112583
+    },
+    {
+      "C": 0.5,
+      "threshold": 0.7,
+      "precision": 1.0,
+      "recall": 0.5761589403973509,
+      "balancedAccuracy": 0.7880794701986755,
+      "accuracy": 0.9867549668874173
+    },
+    {
+      "C": 0.5,
+      "threshold": 0.8,
+      "precision": 1.0,
+      "recall": 0.48344370860927155,
+      "balancedAccuracy": 0.7417218543046358,
+      "accuracy": 0.9838576158940397
+    },
+    {
+      "C": 0.5,
+      "threshold": 0.9,
+      "precision": 1.0,
+      "recall": 0.33774834437086093,
+      "balancedAccuracy": 0.6688741721854304,
+      "accuracy": 0.9793046357615894
+    },
+    {
+      "C": 0.5,
+      "threshold": 0.95,
+      "precision": 1.0,
+      "recall": 0.19205298013245034,
+      "balancedAccuracy": 0.5960264900662252,
+      "accuracy": 0.9747516556291391
+    },
+    {
+      "C": 2.0,
+      "threshold": 0.5,
+      "precision": 1.0,
+      "recall": 0.7152317880794702,
+      "balancedAccuracy": 0.8576158940397351,
+      "accuracy": 0.9911009933774835
+    },
+    {
+      "C": 2.0,
+      "threshold": 0.6,
+      "precision": 1.0,
+      "recall": 0.6556291390728477,
+      "balancedAccuracy": 0.8278145695364238,
+      "accuracy": 0.9892384105960265
+    },
+    {
+      "C": 2.0,
+      "threshold": 0.7,
+      "precision": 1.0,
+      "recall": 0.5894039735099338,
+      "balancedAccuracy": 0.794701986754967,
+      "accuracy": 0.9871688741721855
+    },
+    {
+      "C": 2.0,
+      "threshold": 0.8,
+      "precision": 1.0,
+      "recall": 0.5562913907284768,
+      "balancedAccuracy": 0.7781456953642384,
+      "accuracy": 0.9861341059602649
+    },
+    {
+      "C": 2.0,
+      "threshold": 0.9,
+      "precision": 1.0,
+      "recall": 0.44370860927152317,
+      "balancedAccuracy": 0.7218543046357616,
+      "accuracy": 0.9826158940397351
+    },
+    {
+      "C": 2.0,
+      "threshold": 0.95,
+      "precision": 1.0,
+      "recall": 0.31788079470198677,
+      "balancedAccuracy": 0.6589403973509934,
+      "accuracy": 0.9786837748344371
+    }
+  ],
+  "selected": {
+    "C": 2.0,
+    "threshold": 0.5,
+    "precision": 1.0,
+    "recall": 0.7152317880794702,
+    "balancedAccuracy": 0.8576158940397351,
+    "accuracy": 0.9911009933774835
+  },
+  "additionalWeightBytes": 16384,
+  "assetBytes": 2400769,
+  "decision": "Rejected: with existing specific ingredient safety boundary, full pipeline adds zero correct meals and category accuracy is unchanged. Binary label is only a daypart proxy, not independently reviewed prepared-food ground truth.",
+  "theoreticalUnionRecall": 0.9933774834437086,
+  "blockedNewPositives": 23,
+  "productionIntegrated": false
+}

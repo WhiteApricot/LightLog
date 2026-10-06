@@ -12,11 +12,11 @@ Phase 3 本地识别器按五层证据组织：
 2. Personal History
 3. Local Entity Knowledge Base
 4. Category Lexicon
-5. Hierarchical sparse Logistic Regression（共享字符/已有结构特征，纯 Dart，confidence ceiling=0.69）
+5. ONE statistical model：Direction / Parent / Child / masked PreparedMeal（共享字符/已有结构特征，纯 Dart，confidence ceiling=0.69）
 → Evidence Fusion / Confidence
 ```
 
-当前已实现字段/span、Normalization、Personal History、审核制 Entity Knowledge Base、Category Lexicon、独立 TypeInference 和 Evidence Fusion，以及train/dev选型的字符Logistic Regression弱fallback。模型只补充无语义或弱确定性分类，不替代强证据，强统计父类只可校正弱默认type、不能单独高置信确认；冻结与结果见 [当前算法](RECOGNITION_ALGORITHM.md)。全部在本机运行，App 运行时不联网。Web Search 和 LLM 不属于 V0.1。
+当前已实现字段/span、Normalization、Personal History、审核制 Entity Knowledge Base、Category Lexicon、独立 TypeInference 和 Evidence Fusion，以及train/dev选型的字符Logistic Regression弱fallback。普通语义证据作为共享 sparse features/prior；统计模型作为主要语义分类，安全状态、明确方向、可靠个人历史和正餐路由保持 hard lock；独立 Direction Head 只修正弱方向、不能单独高置信确认；冻结与结果见 [当前算法](RECOGNITION_ALGORITHM.md)。全部在本机运行，App 运行时不联网。Web Search 和 LLM 不属于 V0.1。
 
 任何识别来源都只能生成 `RecognitionCandidate`：
 
@@ -140,4 +140,4 @@ Candidate
 
 ## 当前 taxonomy 边界
 
-V0.1固定104个二级semanticKey；外卖渠道、旅行场景、家庭使用者不再输出独立支出类，收入差旅报销保留。字符模型完全冻结。普通有效收支在所有证据及映射失败后使用other.general低置信fallback，复用Candidate同一危险门禁和CategoryResolver；可用分类缺失时继续返回不完整结果。104-class历史oracle迁移、封存协议、生产冻结及最终评测见算法文档。
+V0.1固定96个二级semanticKey；外卖渠道、旅行场景、家庭使用者不再输出独立支出类，收入差旅报销保留。模型及融合只使用train/dev选择，production冻结后禁止调参。普通有效收支在所有证据及映射失败后使用other.general低置信fallback，复用Candidate同一危险门禁和CategoryResolver；可用分类缺失时继续返回不完整结果。96-class oracle迁移、封存协议、生产冻结及最终评测见算法文档。

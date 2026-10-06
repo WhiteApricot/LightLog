@@ -16,6 +16,11 @@ class NgramModel {
     this.parentMargin,
     this.childThreshold,
     this.childMargin,
+    this.directionThreshold,
+    this.preparedMealThreshold,
+    this.childCalibration,
+    this.fusion,
+    this.parentPrior,
   );
   factory NgramModel.decode(Uint8List bytes) {
     if (bytes.length < 8 || ascii.decode(bytes.sublist(0, 4)) != 'LLNG') {
@@ -56,9 +61,52 @@ class NgramModel {
       }
       expected += dimension * head.labels.length;
     }
-    final childLabels = heads.skip(1).expand((h) => h.labels).toList();
+    final childHeads = heads
+        .skip(1)
+        .where((h) => h.parent?.startsWith('@') != true)
+        .toList();
+    final childLabels = childHeads.expand((h) => h.labels).toList();
     final children = childLabels.toSet();
     final parentClasses = parents.values.toSet();
+    final auxiliary = heads
+        .where((h) => h.parent?.startsWith('@') == true)
+        .toList();
+    final directionThreshold = (h['directionThreshold'] as num? ?? .95)
+        .toDouble();
+    final mealThreshold = (h['preparedMealThreshold'] as num? ?? 1).toDouble();
+    final prior = (h['parentPrior'] as num? ?? 0).toDouble();
+    final calibration = <String, Map<String, double>>{
+      for (final e in (h['childCalibration'] as Map? ?? {}).entries)
+        e.key as String: {
+          for (final p in (e.value as Map).entries)
+            p.key as String: (p.value as num).toDouble(),
+        },
+    };
+    if (![
+          directionThreshold,
+          mealThreshold,
+          prior,
+        ].every((p) => p.isFinite && p >= 0 && p <= 1) ||
+        !const {'F0', 'F1', 'F2', 'F3'}.contains(h['fusion'] ?? 'F0') ||
+        auxiliary.map((h) => h.parent).toSet().length != auxiliary.length ||
+        auxiliary.any(
+          (head) => switch (head.parent) {
+            '@direction' => head.labels.join(',') != 'expense,income',
+            '@meal' => head.labels.join(',') != 'meal,nonmeal',
+            _ => true,
+          },
+        ) ||
+        calibration.entries.any(
+          (e) =>
+              !parentClasses.contains(e.key) ||
+              e.value.keys.toSet().difference({
+                'threshold',
+                'margin',
+              }).isNotEmpty ||
+              e.value.values.any((p) => !p.isFinite || p < 0 || p > 1),
+        )) {
+      throw const FormatException('Invalid auxiliary heads or calibration');
+    }
     if (labels.isEmpty ||
         labels.toSet().length != labels.length ||
         terms.toSet().length != terms.length ||
@@ -72,15 +120,13 @@ class NgramModel {
         heads.first.parent != null ||
         heads.first.labels.toSet().length != parentClasses.length ||
         !heads.first.labels.every(parentClasses.contains) ||
-        heads
-            .skip(1)
-            .any(
-              (h) =>
-                  h.parent == null ||
-                  h.labels.length < 2 ||
-                  h.labels.any((l) => parents[l] != h.parent),
-            ) ||
-        heads.skip(1).map((h) => h.parent).toSet().length != heads.length - 1 ||
+        childHeads.any(
+          (h) =>
+              h.parent == null ||
+              h.labels.length < 2 ||
+              h.labels.any((l) => parents[l] != h.parent),
+        ) ||
+        childHeads.map((h) => h.parent).toSet().length != childHeads.length ||
         labels.any(
           (l) =>
               !children.contains(l) &&
@@ -110,6 +156,14 @@ class NgramModel {
       parameters[1],
       parameters[2],
       parameters[3],
+      directionThreshold,
+      mealThreshold,
+      Map<String, Map<String, double>>.unmodifiable({
+        for (final e in calibration.entries)
+          e.key: Map<String, double>.unmodifiable(e.value),
+      }),
+      h['fusion'] as String? ?? 'F0',
+      prior,
     );
   }
   final List<String> labels;
@@ -119,6 +173,9 @@ class NgramModel {
   final Int8List weights;
   final int minGram, maxGram;
   final double parentThreshold, parentMargin, childThreshold, childMargin;
+  final double directionThreshold, preparedMealThreshold, parentPrior;
+  final Map<String, Map<String, double>> childCalibration;
+  final String fusion;
 }
 
 class NgramHead {

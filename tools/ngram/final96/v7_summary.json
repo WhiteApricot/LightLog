@@ -1,0 +1,29 @@
+{
+  "totalCases": 800,
+  "categoryAccuracy": 0.79375,
+  "parentCategoryAccuracy": 0.8825,
+  "typeAccuracy": 0.9475,
+  "p2SafeRejectionRate": 1.0,
+  "highConfidenceWrongPredictionCount": 0,
+  "ordinaryValidCategoryNullCount": 0,
+  "falseFallbackRate": 0.025,
+  "mealRoutingAccuracy": 0.7941176470588235,
+  "latencyMicroseconds": {
+    "average": 552.85625,
+    "p50": 453,
+    "p95": 1064,
+    "p99": 1501,
+    "max": 2878
+  },
+  "failureDecomposition": {
+    "otherFallbackError": 20,
+    "wrongParent": 94,
+    "correctParentWrongChild": 71,
+    "wrongType": 42,
+    "mealDetection": 2,
+    "taxonomyAmbiguity": "unadjudicated; oracle unchanged",
+    "safety": 0
+  },
+  "p2Count": 80,
+  "reportSha256": "2958ca2c1b4d6690558285918c4bc2a3e310961bb7f193e2d8b5b5e504af5d4c"
+}

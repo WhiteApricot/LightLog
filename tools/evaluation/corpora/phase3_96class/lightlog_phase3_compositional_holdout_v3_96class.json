@@ -1,0 +1,3642 @@
+{
+  "metadata": {
+    "name": "LightLog Phase 3 Compositional Semantics Holdout Corpus (migrated 104-class)",
+    "version": 3,
+    "referenceNow": "2026-10-05T13:20:00+08:00",
+    "timezone": "UTC+08:00",
+    "totalCases": 200,
+    "purpose": "Fresh classification-focused blind holdout for compositional semantics, span containment and close daily-life category boundaries.",
+    "evaluationFocus": "Category correctness. expected.content and expected.occurredAtLocal are intentionally null so content extraction and time formatting do not affect correctness.",
+    "priorityMeaning": {
+      "P0": "Deterministic compositional daily case; expected to pass after the small compositional refactor.",
+      "P1": "Confusing but still classifiable everyday case; main robustness target.",
+      "P2": "Long-tail edge case; should not produce a confident wrong category."
+    },
+    "groups": {
+      "action_object": 45,
+      "modifier_context": 35,
+      "containment": 25,
+      "platform_specific": 25,
+      "income_boundary": 25,
+      "close_category": 20,
+      "long_tail_mixed": 25
+    },
+    "priorities": {
+      "P0": 25,
+      "P1": 170,
+      "P2": 5
+    },
+    "blindUse": [
+      "Keep this file outside the repository until the compositional matcher, span resolver and knowledge changes are frozen.",
+      "Do not grep/search/open/parse individual cases before the first evaluation.",
+      "Save the first-run report unchanged.",
+      "After the first run this corpus becomes regression data and must no longer be called unseen.",
+      "Do not hard-code exact case strings."
+    ],
+    "taxonomySemanticCount": 104,
+    "taxonomyCoverage": "All non-null expected semantics and history use active 104 labels",
+    "oracleMigration": "Reviewed actual use only; original inputs/type/status/amount/time/issues and all legal labels unchanged"
+  },
+  "cases": [
+    {
+      "id": "C001",
+      "priority": "P0",
+      "group": "action_object",
+      "input": "羽绒服干洗 45",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4500,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-cleaning",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.cleaning"
+      }
+    },
+    {
+      "id": "C002",
+      "priority": "P0",
+      "group": "action_object",
+      "input": "大衣送去干洗 68",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6800,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-cleaning",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.cleaning"
+      }
+    },
+    {
+      "id": "C003",
+      "priority": "P0",
+      "group": "action_object",
+      "input": "沙发清洗 180",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 18000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-cleaning",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.cleaning"
+      }
+    },
+    {
+      "id": "C004",
+      "priority": "P0",
+      "group": "action_object",
+      "input": "地毯清洗 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-cleaning",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.cleaning"
+      }
+    },
+    {
+      "id": "C005",
+      "priority": "P0",
+      "group": "action_object",
+      "input": "床垫除螨 99",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9900,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-cleaning",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.cleaning"
+      }
+    },
+    {
+      "id": "C006",
+      "priority": "P0",
+      "group": "action_object",
+      "input": "油烟机清洗 150",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 15000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-cleaning",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.cleaning"
+      }
+    },
+    {
+      "id": "C007",
+      "priority": "P0",
+      "group": "action_object",
+      "input": "空调清洗 160",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 16000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-cleaning",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.cleaning"
+      }
+    },
+    {
+      "id": "C008",
+      "priority": "P0",
+      "group": "action_object",
+      "input": "洗衣机清洗 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-cleaning",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.cleaning"
+      }
+    },
+    {
+      "id": "C009",
+      "priority": "P0",
+      "group": "action_object",
+      "input": "皮鞋保养 35",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3500,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "C010",
+      "priority": "P0",
+      "group": "action_object",
+      "input": "鞋子补底 30",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "C011",
+      "priority": "P0",
+      "group": "action_object",
+      "input": "皮包修拉链 40",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "C012",
+      "priority": "P0",
+      "group": "action_object",
+      "input": "裤子改短 18",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1800,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "C013",
+      "priority": "P0",
+      "group": "action_object",
+      "input": "西装改袖长 35",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3500,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "C014",
+      "priority": "P0",
+      "group": "action_object",
+      "input": "菜刀磨刀 12",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1200,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "C015",
+      "priority": "P0",
+      "group": "action_object",
+      "input": "配门钥匙 15",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1500,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "C016",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "手表换电池 25",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "C017",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "眼镜换鼻托 10",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "C018",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "空调加氟 220",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 22000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "C019",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "冰箱上门维修 180",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 18000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "C020",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "洗衣机换排水泵 260",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 26000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "C021",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "热水器维修 150",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 15000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "C022",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "马桶疏通 80",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "C023",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "水管漏水维修 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "C024",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "门锁维修 60",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "C025",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "墙面补漆 300",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 30000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "C026",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "相机清灰 150",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 15000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.repair"
+      }
+    },
+    {
+      "id": "C027",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "相机换快门 480",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 48000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.repair"
+      }
+    },
+    {
+      "id": "C028",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "笔记本清灰 100",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 10000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.repair"
+      }
+    },
+    {
+      "id": "C029",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "笔记本换风扇 220",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 22000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.repair"
+      }
+    },
+    {
+      "id": "C030",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "手机换屏 699",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 69900,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.repair"
+      }
+    },
+    {
+      "id": "C031",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "平板换电池 399",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 39900,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.repair"
+      }
+    },
+    {
+      "id": "C032",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "耳机维修 80",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.repair"
+      }
+    },
+    {
+      "id": "C033",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "游戏机修摇杆 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.repair"
+      }
+    },
+    {
+      "id": "C034",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "汽车补胎 30",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "C035",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "汽车换雨刷 75",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 7500,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "C036",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "车子换刹车片 520",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 52000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "C037",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "摩托车换机油 80",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "C038",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "电动车换胎 90",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "C039",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "自行车补胎 20",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "C040",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "汽车抛光 200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 20000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "C041",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "汽车内饰清洗 160",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 16000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "C042",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "牙齿补牙 300",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 30000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-dental",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.dental"
+      }
+    },
+    {
+      "id": "C043",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "眼镜验光配镜 480",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 48000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-dental",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.dental"
+      }
+    },
+    {
+      "id": "C044",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "打印论文装订 42",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4200,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-stationery",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.stationery"
+      }
+    },
+    {
+      "id": "C045",
+      "priority": "P1",
+      "group": "action_object",
+      "input": "教材复印 28",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2800,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-stationery",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.stationery"
+      }
+    },
+    {
+      "id": "C046",
+      "priority": "P0",
+      "group": "modifier_context",
+      "input": "狗狗洗澡 60",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-grooming",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.grooming"
+      }
+    },
+    {
+      "id": "C047",
+      "priority": "P0",
+      "group": "modifier_context",
+      "input": "猫咪美容 80",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-grooming",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.grooming"
+      }
+    },
+    {
+      "id": "C048",
+      "priority": "P0",
+      "group": "modifier_context",
+      "input": "宠物剪毛 70",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 7000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-grooming",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.grooming"
+      }
+    },
+    {
+      "id": "C049",
+      "priority": "P0",
+      "group": "modifier_context",
+      "input": "狗狗修毛 55",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 5500,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-grooming",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.grooming"
+      }
+    },
+    {
+      "id": "C050",
+      "priority": "P0",
+      "group": "modifier_context",
+      "input": "猫咪洗护套餐 99",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9900,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-grooming",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.grooming"
+      }
+    },
+    {
+      "id": "C051",
+      "priority": "P0",
+      "group": "modifier_context",
+      "input": "宠物店洗澡 68",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6800,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-grooming",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.grooming"
+      }
+    },
+    {
+      "id": "C052",
+      "priority": "P0",
+      "group": "modifier_context",
+      "input": "狗狗看病 260",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 26000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-medical",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.medical"
+      }
+    },
+    {
+      "id": "C053",
+      "priority": "P0",
+      "group": "modifier_context",
+      "input": "猫咪打疫苗 180",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 18000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-medical",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.medical"
+      }
+    },
+    {
+      "id": "C054",
+      "priority": "P0",
+      "group": "modifier_context",
+      "input": "宠物绝育 800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 80000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-medical",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.medical"
+      }
+    },
+    {
+      "id": "C055",
+      "priority": "P0",
+      "group": "modifier_context",
+      "input": "狗狗驱虫 90",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-medical",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.medical"
+      }
+    },
+    {
+      "id": "C056",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "猫咪住院 600",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 60000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-medical",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.medical"
+      }
+    },
+    {
+      "id": "C057",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "宠物寄养三天 240",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 24000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.service"
+      }
+    },
+    {
+      "id": "C058",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "狗狗托管 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.service"
+      }
+    },
+    {
+      "id": "C059",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "猫咪寄养 150",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 15000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.service"
+      }
+    },
+    {
+      "id": "C060",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "孩子看病 200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 20000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-clinic",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.clinic"
+      }
+    },
+    {
+      "id": "C061",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "宝宝打疫苗 100",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 10000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-clinic",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.clinic"
+      }
+    },
+    {
+      "id": "C062",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "给孩子买药 60",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-medicine",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.medicine"
+      }
+    },
+    {
+      "id": "C063",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "老人看病 300",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 30000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-clinic",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.clinic"
+      }
+    },
+    {
+      "id": "C064",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "给爸妈买药 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-medicine",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.medicine"
+      }
+    },
+    {
+      "id": "C065",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "孩子补课 600",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 60000,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-course",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.course"
+      }
+    },
+    {
+      "id": "C066",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "宝宝早教课 1200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 120000,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-course",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.course"
+      }
+    },
+    {
+      "id": "C067",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "孩子兴趣班 800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 80000,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-course",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.course"
+      }
+    },
+    {
+      "id": "C068",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "给爸妈生活费 1000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 100000,
+        "content": null,
+        "categoryId": "expense-other",
+        "subcategoryId": "expense-other-general",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.other.general"
+      }
+    },
+    {
+      "id": "C069",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "给家里补贴 1500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 150000,
+        "content": null,
+        "categoryId": "expense-other",
+        "subcategoryId": "expense-other-general",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.other.general"
+      }
+    },
+    {
+      "id": "C070",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "赡养费 2000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 200000,
+        "content": null,
+        "categoryId": "expense-other",
+        "subcategoryId": "expense-other-general",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.other.general"
+      }
+    },
+    {
+      "id": "C071",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "公司团建聚餐 180",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 18000,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-gathering",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.social.gathering"
+      }
+    },
+    {
+      "id": "C072",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "同事结婚份子钱 800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 80000,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-red-packet",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.social.red.packet"
+      }
+    },
+    {
+      "id": "C073",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "朋友生日送礼 300",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 30000,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-gift",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.social.gift"
+      }
+    },
+    {
+      "id": "C074",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "公益捐款 100",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 10000,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-donation",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.social.donation"
+      }
+    },
+    {
+      "id": "C075",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "旅行买转换插头 35",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3500,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.accessory"
+      }
+    },
+    {
+      "id": "C076",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "旅行买行李锁 25",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-home",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.home"
+      }
+    },
+    {
+      "id": "C077",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "登山买登山杖 160",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 16000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-equipment",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.equipment"
+      }
+    },
+    {
+      "id": "C078",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "羽毛球馆场地费 80",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-venue",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.venue"
+      }
+    },
+    {
+      "id": "C079",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "马拉松报名费 200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 20000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-event",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.event"
+      }
+    },
+    {
+      "id": "C080",
+      "priority": "P1",
+      "group": "modifier_context",
+      "input": "露营营地费 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-outdoor",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.outdoor"
+      }
+    },
+    {
+      "id": "C081",
+      "priority": "P1",
+      "group": "containment",
+      "input": "电动车维修 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "C082",
+      "priority": "P1",
+      "group": "containment",
+      "input": "动车票 320",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 32000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-rail",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.rail"
+      }
+    },
+    {
+      "id": "C083",
+      "priority": "P1",
+      "group": "containment",
+      "input": "停车场缴费 18",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1800,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-parking",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.parking"
+      }
+    },
+    {
+      "id": "C084",
+      "priority": "P1",
+      "group": "containment",
+      "input": "停车位管理费 80",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-parking",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.parking"
+      }
+    },
+    {
+      "id": "C085",
+      "priority": "P1",
+      "group": "containment",
+      "input": "苹果手机壳 39",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3900,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.accessory"
+      }
+    },
+    {
+      "id": "C086",
+      "priority": "P1",
+      "group": "containment",
+      "input": "苹果水果 18",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1800,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-groceries",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.groceries"
+      }
+    },
+    {
+      "id": "C087",
+      "priority": "P1",
+      "group": "containment",
+      "input": "小米14手机膜 20",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.accessory"
+      }
+    },
+    {
+      "id": "C088",
+      "priority": "P1",
+      "group": "containment",
+      "input": "小米杂粮 25",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-groceries",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.groceries"
+      }
+    },
+    {
+      "id": "C089",
+      "priority": "P1",
+      "group": "containment",
+      "input": "笔记本电脑支架 89",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8900,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.accessory"
+      }
+    },
+    {
+      "id": "C090",
+      "priority": "P1",
+      "group": "containment",
+      "input": "笔记本作业本 12",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1200,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-stationery",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.stationery"
+      }
+    },
+    {
+      "id": "C091",
+      "priority": "P1",
+      "group": "containment",
+      "input": "猫眼电影票 46",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4600,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-performance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.performance"
+      }
+    },
+    {
+      "id": "C092",
+      "priority": "P1",
+      "group": "containment",
+      "input": "猫眼滴眼液 28",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2800,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-medicine",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.medicine"
+      }
+    },
+    {
+      "id": "C093",
+      "priority": "P1",
+      "group": "containment",
+      "input": "美团洗车 30",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "C094",
+      "priority": "P1",
+      "group": "containment",
+      "input": "美团外卖 25",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-other",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.other"
+      }
+    },
+    {
+      "id": "C095",
+      "priority": "P1",
+      "group": "containment",
+      "input": "百度网盘会员 198",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 19800,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-software",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.software"
+      }
+    },
+    {
+      "id": "C096",
+      "priority": "P1",
+      "group": "containment",
+      "input": "百度网课 99",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9900,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-course",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.course"
+      }
+    },
+    {
+      "id": "C097",
+      "priority": "P1",
+      "group": "containment",
+      "input": "腾讯视频会员 25",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-media",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.media"
+      }
+    },
+    {
+      "id": "C098",
+      "priority": "P1",
+      "group": "containment",
+      "input": "腾讯云服务器 600",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 60000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-software",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.software"
+      }
+    },
+    {
+      "id": "C099",
+      "priority": "P1",
+      "group": "containment",
+      "input": "华为云主机 500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 50000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-software",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.software"
+      }
+    },
+    {
+      "id": "C100",
+      "priority": "P1",
+      "group": "containment",
+      "input": "华为手机维修 220",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 22000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.repair"
+      }
+    },
+    {
+      "id": "C101",
+      "priority": "P1",
+      "group": "containment",
+      "input": "携程酒店 399",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 39900,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-rent",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.rent"
+      }
+    },
+    {
+      "id": "C102",
+      "priority": "P1",
+      "group": "containment",
+      "input": "携程机票 860",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 86000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-flight",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.flight"
+      }
+    },
+    {
+      "id": "C103",
+      "priority": "P1",
+      "group": "containment",
+      "input": "猫粮罐头 88",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8800,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-food",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.food"
+      }
+    },
+    {
+      "id": "C104",
+      "priority": "P1",
+      "group": "containment",
+      "input": "猫砂盆 45",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4500,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-supplies",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.supplies"
+      }
+    },
+    {
+      "id": "C105",
+      "priority": "P1",
+      "group": "containment",
+      "input": "洗衣液补充装 28",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2800,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-cleaning",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.cleaning"
+      }
+    },
+    {
+      "id": "C106",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "淘宝洗面奶 69",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-personal",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.personal"
+      }
+    },
+    {
+      "id": "C107",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "淘宝牙膏 18",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 1800,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-personal",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.personal"
+      }
+    },
+    {
+      "id": "C108",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "淘宝窗帘 260",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 26000,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-home",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.home"
+      }
+    },
+    {
+      "id": "C109",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "淘宝电饭煲 299",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 29900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-appliance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.appliance"
+      }
+    },
+    {
+      "id": "C110",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "京东显卡 3299",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 329900,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-computer",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.computer"
+      }
+    },
+    {
+      "id": "C111",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "京东键盘 399",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 39900,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-accessory",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.accessory"
+      }
+    },
+    {
+      "id": "C112",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "京东猫粮 139",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 13900,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-food",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.food"
+      }
+    },
+    {
+      "id": "C113",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "京东药品 58",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 5800,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-medicine",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.medicine"
+      }
+    },
+    {
+      "id": "C114",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "拼多多纸巾 24",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2400,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-home",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.home"
+      }
+    },
+    {
+      "id": "C115",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "拼多多拖把 36",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3600,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-home",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.home"
+      }
+    },
+    {
+      "id": "C116",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "拼多多运动鞋 159",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 15900,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-clothing",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.clothing"
+      }
+    },
+    {
+      "id": "C117",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "美团洗车 35",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3500,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "C118",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "美团外卖麻辣烫 32",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3200,
+        "content": null,
+        "categoryId": "expense-food",
+        "subcategoryId": "expense-food-lunch",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.food.lunch"
+      }
+    },
+    {
+      "id": "C119",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "美团电影票 45",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4500,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-performance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.performance"
+      }
+    },
+    {
+      "id": "C120",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "大众点评按摩 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "C121",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "闲鱼卖旧相机 1200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 120000,
+        "content": null,
+        "categoryId": "income-other",
+        "subcategoryId": "income-other-secondhand",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.other.secondhand"
+      }
+    },
+    {
+      "id": "C122",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "闲鱼卖旧书 80",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 8000,
+        "content": null,
+        "categoryId": "income-other",
+        "subcategoryId": "income-other-secondhand",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.other.secondhand"
+      }
+    },
+    {
+      "id": "C123",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "飞猪酒店 450",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 45000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-rent",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.rent"
+      }
+    },
+    {
+      "id": "C124",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "飞猪机票 730",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 73000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-flight",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.flight"
+      }
+    },
+    {
+      "id": "C125",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "携程景区门票 160",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 16000,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-activity",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.activity"
+      }
+    },
+    {
+      "id": "C126",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "滴滴机场打车 95",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9500,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-taxi",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.taxi"
+      }
+    },
+    {
+      "id": "C127",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "支付宝宽带缴费 300",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 30000,
+        "content": null,
+        "categoryId": "expense-communication",
+        "subcategoryId": "expense-communication-internet",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.communication.internet"
+      }
+    },
+    {
+      "id": "C128",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "微信话费充值 100",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 10000,
+        "content": null,
+        "categoryId": "expense-communication",
+        "subcategoryId": "expense-communication-mobile",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.communication.mobile"
+      }
+    },
+    {
+      "id": "C129",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "云闪付水费 86",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8600,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-utilities",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.utilities"
+      }
+    },
+    {
+      "id": "C130",
+      "priority": "P1",
+      "group": "platform_specific",
+      "input": "小红书课程 199",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 19900,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-course",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.course"
+      }
+    },
+    {
+      "id": "C131",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "工资到账 8500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 850000,
+        "content": null,
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-monthly",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.salary.monthly"
+      }
+    },
+    {
+      "id": "C132",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "薪水到账 8200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 820000,
+        "content": null,
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-monthly",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.salary.monthly"
+      }
+    },
+    {
+      "id": "C133",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "十三薪到账 9000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 900000,
+        "content": null,
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-monthly",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.salary.monthly"
+      }
+    },
+    {
+      "id": "C134",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "年终奖到账 12000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 1200000,
+        "content": null,
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-bonus",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.salary.bonus"
+      }
+    },
+    {
+      "id": "C135",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "季度奖金 3000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 300000,
+        "content": null,
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-bonus",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.salary.bonus"
+      }
+    },
+    {
+      "id": "C136",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "岗位津贴到账 600",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 60000,
+        "content": null,
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-allowance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.salary.allowance"
+      }
+    },
+    {
+      "id": "C137",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "交通补贴 300",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 30000,
+        "content": null,
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-allowance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.salary.allowance"
+      }
+    },
+    {
+      "id": "C138",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "加班费到账 880",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 88000,
+        "content": null,
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-overtime",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.salary.overtime"
+      }
+    },
+    {
+      "id": "C139",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "绩效工资 1500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 150000,
+        "content": null,
+        "categoryId": "income-salary",
+        "subcategoryId": "income-salary-overtime",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.salary.overtime"
+      }
+    },
+    {
+      "id": "C140",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "差旅报销到账 1280",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 128000,
+        "content": null,
+        "categoryId": "income-reimbursement",
+        "subcategoryId": "income-reimbursement-travel",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.reimbursement.travel"
+      }
+    },
+    {
+      "id": "C141",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "医院报销到账 460",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 46000,
+        "content": null,
+        "categoryId": "income-reimbursement",
+        "subcategoryId": "income-reimbursement-medical",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.reimbursement.medical"
+      }
+    },
+    {
+      "id": "C142",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "办公费报销 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "income-reimbursement",
+        "subcategoryId": "income-reimbursement-work",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.reimbursement.work"
+      }
+    },
+    {
+      "id": "C143",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "稿费到账 1500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 150000,
+        "content": null,
+        "categoryId": "income-parttime",
+        "subcategoryId": "income-parttime-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.parttime.service"
+      }
+    },
+    {
+      "id": "C144",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "设计私单 2500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 250000,
+        "content": null,
+        "categoryId": "income-parttime",
+        "subcategoryId": "income-parttime-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.parttime.service"
+      }
+    },
+    {
+      "id": "C145",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "项目劳务费 5000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 500000,
+        "content": null,
+        "categoryId": "income-parttime",
+        "subcategoryId": "income-parttime-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.parttime.service"
+      }
+    },
+    {
+      "id": "C146",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "网约车接单收入 680",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 68000,
+        "content": null,
+        "categoryId": "income-parttime",
+        "subcategoryId": "income-parttime-platform",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.parttime.platform"
+      }
+    },
+    {
+      "id": "C147",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "讲课费到账 1200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 120000,
+        "content": null,
+        "categoryId": "income-parttime",
+        "subcategoryId": "income-parttime-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.parttime.service"
+      }
+    },
+    {
+      "id": "C148",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "存款利息 32",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 3200,
+        "content": null,
+        "categoryId": "income-investment",
+        "subcategoryId": "income-investment-interest",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.investment.interest"
+      }
+    },
+    {
+      "id": "C149",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "股票分红 800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 80000,
+        "content": null,
+        "categoryId": "income-investment",
+        "subcategoryId": "income-investment-dividend",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.investment.dividend"
+      }
+    },
+    {
+      "id": "C150",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "出租房租金到账 3500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 350000,
+        "content": null,
+        "categoryId": "income-investment",
+        "subcategoryId": "income-investment-rent",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.investment.rent"
+      }
+    },
+    {
+      "id": "C151",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "购物退款到账 99",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 9900,
+        "content": null,
+        "categoryId": "income-refund",
+        "subcategoryId": "income-refund-shopping",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.refund.shopping"
+      }
+    },
+    {
+      "id": "C152",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "押金退回 500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 50000,
+        "content": null,
+        "categoryId": "income-refund",
+        "subcategoryId": "income-refund-deposit",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.refund.deposit"
+      }
+    },
+    {
+      "id": "C153",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "退税到账 260",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 26000,
+        "content": null,
+        "categoryId": "income-refund",
+        "subcategoryId": "income-refund-tax",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.refund.tax"
+      }
+    },
+    {
+      "id": "C154",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "卖二手手机 1800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 180000,
+        "content": null,
+        "categoryId": "income-other",
+        "subcategoryId": "income-other-secondhand",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.other.secondhand"
+      }
+    },
+    {
+      "id": "C155",
+      "priority": "P1",
+      "group": "income_boundary",
+      "input": "平台返现到账 50",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "income",
+        "amountMinor": 5000,
+        "content": null,
+        "categoryId": "income-other",
+        "subcategoryId": "income-other-reward",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "income.other.reward"
+      }
+    },
+    {
+      "id": "C156",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "健身年卡 1800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 180000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-fitness",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.fitness"
+      }
+    },
+    {
+      "id": "C157",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "腾讯视频年卡 198",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 19800,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-media",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.media"
+      }
+    },
+    {
+      "id": "C158",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "超市会员卡年费 260",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 26000,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-other",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.other"
+      }
+    },
+    {
+      "id": "C159",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "网盘会员 198",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 19800,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-software",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.software"
+      }
+    },
+    {
+      "id": "C160",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "软件订阅年费 299",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 29900,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-software",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.software"
+      }
+    },
+    {
+      "id": "C161",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "电影票 50",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 5000,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-performance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.performance"
+      }
+    },
+    {
+      "id": "C162",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "景区门票 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-entertainment",
+        "subcategoryId": "expense-entertainment-activity",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.entertainment.activity"
+      }
+    },
+    {
+      "id": "C163",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "球馆门票 60",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-venue",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.venue"
+      }
+    },
+    {
+      "id": "C164",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "汽车保险 3500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 350000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-insurance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.insurance"
+      }
+    },
+    {
+      "id": "C165",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "宠物保险 800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 80000,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-insurance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.insurance"
+      }
+    },
+    {
+      "id": "C166",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "手机碎屏险 299",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 29900,
+        "content": null,
+        "categoryId": "expense-finance",
+        "subcategoryId": "expense-finance-insurance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.finance.insurance"
+      }
+    },
+    {
+      "id": "C167",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "房屋维修 400",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 40000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "C168",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "手机维修 300",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 30000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.repair"
+      }
+    },
+    {
+      "id": "C169",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "汽车维修 800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 80000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "C170",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "宠物医院 260",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 26000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-medical",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.medical"
+      }
+    },
+    {
+      "id": "C171",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "口腔医院 500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 50000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-dental",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.dental"
+      }
+    },
+    {
+      "id": "C172",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "儿童医院 380",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 38000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-clinic",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.clinic"
+      }
+    },
+    {
+      "id": "C173",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "家用冰箱 2800",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 280000,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-appliance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.appliance"
+      }
+    },
+    {
+      "id": "C174",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "游戏主机 3200",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 320000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-computer",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.computer"
+      }
+    },
+    {
+      "id": "C175",
+      "priority": "P1",
+      "group": "close_category",
+      "input": "摄影灯 450",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 45000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-photo",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.photo"
+      }
+    },
+    {
+      "id": "C176",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "给车做四轮定位 180",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 18000,
+        "content": null,
+        "categoryId": "expense-transport",
+        "subcategoryId": "expense-transport-maintenance",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.transport.maintenance"
+      }
+    },
+    {
+      "id": "C177",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "给狗剪指甲 35",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 3500,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-grooming",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.grooming"
+      }
+    },
+    {
+      "id": "C178",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "猫咪体内驱虫 68",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6800,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-medical",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.medical"
+      }
+    },
+    {
+      "id": "C179",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "孩子配眼镜 600",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 60000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-dental",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.dental"
+      }
+    },
+    {
+      "id": "C180",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "给爸爸买降压药 90",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 9000,
+        "content": null,
+        "categoryId": "expense-medical",
+        "subcategoryId": "expense-medical-medicine",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.medical.medicine"
+      }
+    },
+    {
+      "id": "C181",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "家里换门锁 280",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 28000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "C182",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "租房换灯泡 25",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2500,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.repair"
+      }
+    },
+    {
+      "id": "C183",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "修电脑键盘 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.repair"
+      }
+    },
+    {
+      "id": "C184",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "修相机镜头 500",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 50000,
+        "content": null,
+        "categoryId": "expense-digital",
+        "subcategoryId": "expense-digital-repair",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.digital.repair"
+      }
+    },
+    {
+      "id": "C185",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "洗羽绒服两件 80",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-cleaning",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.cleaning"
+      }
+    },
+    {
+      "id": "C186",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "鞋子护理 45",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 4500,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.service"
+      }
+    },
+    {
+      "id": "C187",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "上门保洁两小时 160",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 16000,
+        "content": null,
+        "categoryId": "expense-daily",
+        "subcategoryId": "expense-daily-cleaning",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.daily.cleaning"
+      }
+    },
+    {
+      "id": "C188",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "宠物托运 300",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 30000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-service",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.service"
+      }
+    },
+    {
+      "id": "C189",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "狗粮寄存柜 20",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2000,
+        "content": null,
+        "categoryId": "expense-pets",
+        "subcategoryId": "expense-pets-supplies",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.pets.supplies"
+      }
+    },
+    {
+      "id": "C190",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "宝宝纸尿裤 120",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 12000,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-personal",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.personal"
+      }
+    },
+    {
+      "id": "C191",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "儿童绘本 80",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8000,
+        "content": null,
+        "categoryId": "expense-education",
+        "subcategoryId": "expense-education-book",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.education.book"
+      }
+    },
+    {
+      "id": "C192",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "老人护理垫 65",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6500,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-personal",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.personal"
+      }
+    },
+    {
+      "id": "C193",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "朋友婚礼礼金 1000",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 100000,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-red-packet",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.social.red.packet"
+      }
+    },
+    {
+      "id": "C194",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "同学聚餐AA 88",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 8800,
+        "content": null,
+        "categoryId": "expense-social",
+        "subcategoryId": "expense-social-gathering",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.social.gathering"
+      }
+    },
+    {
+      "id": "C195",
+      "priority": "P1",
+      "group": "long_tail_mixed",
+      "input": "报名羽毛球比赛 100",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 10000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-event",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.event"
+      }
+    },
+    {
+      "id": "C196",
+      "priority": "P2",
+      "group": "long_tail_mixed",
+      "input": "租羽毛球场 60",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 6000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-venue",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.venue"
+      }
+    },
+    {
+      "id": "C197",
+      "priority": "P2",
+      "group": "long_tail_mixed",
+      "input": "露营租帐篷 150",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 15000,
+        "content": null,
+        "categoryId": "expense-sports",
+        "subcategoryId": "expense-sports-outdoor",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.sports.outdoor"
+      }
+    },
+    {
+      "id": "C198",
+      "priority": "P2",
+      "group": "long_tail_mixed",
+      "input": "旅游买雨衣 20",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 2000,
+        "content": null,
+        "categoryId": "expense-shopping",
+        "subcategoryId": "expense-shopping-clothing",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.shopping.clothing"
+      }
+    },
+    {
+      "id": "C199",
+      "priority": "P2",
+      "group": "long_tail_mixed",
+      "input": "出差酒店住宿 520",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 52000,
+        "content": null,
+        "categoryId": "expense-housing",
+        "subcategoryId": "expense-housing-rent",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.housing.rent"
+      }
+    },
+    {
+      "id": "C200",
+      "priority": "P2",
+      "group": "long_tail_mixed",
+      "input": "办签证服务费 400",
+      "setup": {},
+      "expected": {
+        "status": "complete",
+        "type": "expense",
+        "amountMinor": 40000,
+        "content": null,
+        "categoryId": "expense-other",
+        "subcategoryId": "expense-other-general",
+        "occurredAtLocal": null,
+        "issues": [],
+        "semanticKey": "expense.other.general"
+      }
+    }
+  ]
+}

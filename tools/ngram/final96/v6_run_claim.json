@@ -1,0 +1,6 @@
+{
+  "corpus": "tools/evaluation/corpora/phase3_96class/lightlog_phase3_96class_generalization_v6.json",
+  "sha256": "f2bce8c37009bd5ec3dc9ed891108877177206b7192530dda8482d631533db1b",
+  "frozenSha256": "ded57ca875815490e05e0cf57c35ec2b6a420cc750c42e13b71e015df68bf5d8",
+  "claimedAt": "2026-10-06T05:05:27.021621+00:00"
+}

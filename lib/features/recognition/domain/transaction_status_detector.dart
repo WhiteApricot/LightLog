@@ -19,7 +19,10 @@ class TransactionStatusDetector {
     final patterns = <(TransactionStatus, RegExp)>[
       (TransactionStatus.failed, RegExp(r'支付失败|交易失败|付款失败|余额不足')),
       (TransactionStatus.cancelled, RegExp(r'订单已取消|交易取消|已关闭|已撤销')),
-      (TransactionStatus.refund, RegExp(r'退款成功|已退款|退款到账')),
+      (
+        TransactionStatus.refund,
+        RegExp(r'退款|退费|退还|退回(?:押金|税款|税费)|(?:押金|税款|税费)退回'),
+      ),
       (
         TransactionStatus.nonTransaction,
         RegExp(r'银行卡余额|账户余额|优惠券页面|卡券中心|验证码|账单首页|优惠券.{0,20}(?:有效期|满\d+可用|立减)'),

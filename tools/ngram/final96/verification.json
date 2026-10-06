@@ -1,0 +1,62 @@
+{
+  "commands": [
+    {
+      "command": [
+        "dart",
+        "format",
+        "."
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "flutter",
+        "analyze"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "flutter",
+        "test"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "python",
+        "tools/ngram/validate_final.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "python",
+        "tools/ngram/reference.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "dart",
+        "tools/ngram/evaluate.dart"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "dart",
+        "tools/benchmark/benchmark_recognition.dart"
+      ],
+      "exitCode": 0
+    }
+  ]
+}

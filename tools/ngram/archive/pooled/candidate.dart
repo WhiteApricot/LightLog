@@ -21,7 +21,8 @@ class PooledCandidate extends NgramClassifier {
         .readAsBytesSync();
     final n = ByteData.sublistView(bytes).getUint32(4, Endian.little);
     final h = jsonDecode(utf8.decode(bytes.sublist(8, 8 + n))) as Map;
-    final base = File('assets/knowledge/ngram.bin').readAsBytesSync();
+    final base = File('tools/ngram/archive/104-final/ngram.bin')
+        .readAsBytesSync();
     final bn = ByteData.sublistView(base).getUint32(4, Endian.little);
     final bh = jsonDecode(utf8.decode(base.sublist(8, 8 + bn))) as Map;
     for (final key in [

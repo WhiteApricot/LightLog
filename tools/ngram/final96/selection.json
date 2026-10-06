@@ -1,0 +1,551 @@
+{
+  "selection": "full production dev Category, then Parent, then size; no holdout access",
+  "best": {
+    "model": "16384_0_2.0.bin",
+    "fusion": "F2",
+    "prior": 0.15,
+    "threshold": 0.25,
+    "report": {
+      "stage": "final96_f2_0p15",
+      "devCount": 4832,
+      "categoryAccuracy": 0.8176738410596026,
+      "parentAccuracy": 0.9137003311258278,
+      "typeAccuracy": 0.9923427152317881,
+      "specificCategoryCoverage": 0.9472268211920529,
+      "specificCategoryAccuracy": 0.8402883985143107,
+      "fallbackRate": 0.052773178807947074,
+      "falseFallbackRate": 0.031043046357615893,
+      "childConditionalAccuracy": 0.8949037372593431,
+      "acceptedCoverage": 0.9000413907284768,
+      "acceptedAccuracy": 0.8470912853529547,
+      "sameParentRerankAccuracy": null,
+      "crossParentStatisticalAccuracy": 0.8470912853529547,
+      "mealAccuracy": 0.6688741721854304,
+      "mealDetectionRecall": 0.6688741721854304,
+      "highConfidenceWrong": 0,
+      "ordinaryCategoryNull": 0,
+      "failureDecomposition": {
+        "otherFallbackError": 150,
+        "wrongParent": 417,
+        "correctParentWrongChild": 464,
+        "wrongType": 37,
+        "mealDetection": 50,
+        "taxonomyAmbiguity": "not adjudicated; labels unchanged",
+        "safety": "historical P2 suite separately"
+      },
+      "latencyMicroseconds": {
+        "p50": 615,
+        "p95": 1281,
+        "p99": 1827
+      },
+      "environment": "Windows host warm Dart VM; not Android API26",
+      "inputContract": "original text; fixed 37 suffix only when existing field extraction has no amount; semantic labels unchanged"
+    }
+  },
+  "trials": [
+    {
+      "model": "16384_0_0.5.bin",
+      "fusion": "F1",
+      "prior": 0,
+      "threshold": 0.25,
+      "report": {
+        "stage": "final96_f1_16384_0_0p5",
+        "devCount": 4832,
+        "categoryAccuracy": 0.8071192052980133,
+        "parentAccuracy": 0.8998344370860927,
+        "typeAccuracy": 0.992135761589404,
+        "specificCategoryCoverage": 0.9408112582781457,
+        "specificCategoryAccuracy": 0.8347998240211175,
+        "fallbackRate": 0.05918874172185429,
+        "falseFallbackRate": 0.037458609271523176,
+        "childConditionalAccuracy": 0.8969641214351426,
+        "acceptedCoverage": 0.8845198675496688,
+        "acceptedAccuracy": 0.8416003743565746,
+        "sameParentRerankAccuracy": null,
+        "crossParentStatisticalAccuracy": 0.8416003743565746,
+        "mealAccuracy": 0.6688741721854304,
+        "mealDetectionRecall": 0.6688741721854304,
+        "highConfidenceWrong": 0,
+        "ordinaryCategoryNull": 0,
+        "failureDecomposition": {
+          "otherFallbackError": 181,
+          "wrongParent": 484,
+          "correctParentWrongChild": 448,
+          "wrongType": 38,
+          "mealDetection": 50,
+          "taxonomyAmbiguity": "not adjudicated; labels unchanged",
+          "safety": "historical P2 suite separately"
+        },
+        "latencyMicroseconds": {
+          "p50": 529,
+          "p95": 1087,
+          "p99": 1356
+        },
+        "environment": "Windows host warm Dart VM; not Android API26",
+        "inputContract": "original text; fixed 37 suffix only when existing field extraction has no amount; semantic labels unchanged"
+      }
+    },
+    {
+      "model": "16384_0_2.0.bin",
+      "fusion": "F1",
+      "prior": 0,
+      "threshold": 0.25,
+      "report": {
+        "stage": "final96_f1_16384_0_2p0",
+        "devCount": 4832,
+        "categoryAccuracy": 0.8125,
+        "parentAccuracy": 0.9085264900662252,
+        "typeAccuracy": 0.9923427152317881,
+        "specificCategoryCoverage": 0.9472268211920529,
+        "specificCategoryAccuracy": 0.8348263054402447,
+        "fallbackRate": 0.052773178807947074,
+        "falseFallbackRate": 0.031043046357615893,
+        "childConditionalAccuracy": 0.8943052391799544,
+        "acceptedCoverage": 0.9029387417218543,
+        "acceptedAccuracy": 0.8418519367407747,
+        "sameParentRerankAccuracy": null,
+        "crossParentStatisticalAccuracy": 0.8418519367407747,
+        "mealAccuracy": 0.6688741721854304,
+        "mealDetectionRecall": 0.6688741721854304,
+        "highConfidenceWrong": 0,
+        "ordinaryCategoryNull": 0,
+        "failureDecomposition": {
+          "otherFallbackError": 150,
+          "wrongParent": 442,
+          "correctParentWrongChild": 464,
+          "wrongType": 37,
+          "mealDetection": 50,
+          "taxonomyAmbiguity": "not adjudicated; labels unchanged",
+          "safety": "historical P2 suite separately"
+        },
+        "latencyMicroseconds": {
+          "p50": 546,
+          "p95": 1163,
+          "p99": 1474
+        },
+        "environment": "Windows host warm Dart VM; not Android API26",
+        "inputContract": "original text; fixed 37 suffix only when existing field extraction has no amount; semantic labels unchanged"
+      }
+    },
+    {
+      "model": "16384_1_0.5.bin",
+      "fusion": "F1",
+      "prior": 0,
+      "threshold": 0.25,
+      "report": {
+        "stage": "final96_f1_16384_1_0p5",
+        "devCount": 4832,
+        "categoryAccuracy": 0.8011175496688742,
+        "parentAccuracy": 0.8948675496688742,
+        "typeAccuracy": 0.9933774834437086,
+        "specificCategoryCoverage": 0.9103890728476821,
+        "specificCategoryAccuracy": 0.8561036599227098,
+        "fallbackRate": 0.08961092715231789,
+        "falseFallbackRate": 0.06788079470198675,
+        "childConditionalAccuracy": 0.8952358926919519,
+        "acceptedCoverage": 0.9010761589403974,
+        "acceptedAccuracy": 0.8559944878272853,
+        "sameParentRerankAccuracy": null,
+        "crossParentStatisticalAccuracy": 0.8559944878272853,
+        "mealAccuracy": 0.6688741721854304,
+        "mealDetectionRecall": 0.6688741721854304,
+        "highConfidenceWrong": 0,
+        "ordinaryCategoryNull": 0,
+        "failureDecomposition": {
+          "otherFallbackError": 328,
+          "wrongParent": 508,
+          "correctParentWrongChild": 453,
+          "wrongType": 32,
+          "mealDetection": 50,
+          "taxonomyAmbiguity": "not adjudicated; labels unchanged",
+          "safety": "historical P2 suite separately"
+        },
+        "latencyMicroseconds": {
+          "p50": 548,
+          "p95": 1088,
+          "p99": 1411
+        },
+        "environment": "Windows host warm Dart VM; not Android API26",
+        "inputContract": "original text; fixed 37 suffix only when existing field extraction has no amount; semantic labels unchanged"
+      }
+    },
+    {
+      "model": "16384_1_2.0.bin",
+      "fusion": "F1",
+      "prior": 0,
+      "threshold": 0.25,
+      "report": {
+        "stage": "final96_f1_16384_1_2p0",
+        "devCount": 4832,
+        "categoryAccuracy": 0.8116721854304636,
+        "parentAccuracy": 0.9035596026490066,
+        "typeAccuracy": 0.9933774834437086,
+        "specificCategoryCoverage": 0.9225993377483444,
+        "specificCategoryAccuracy": 0.8566621803499327,
+        "fallbackRate": 0.07740066225165565,
+        "falseFallbackRate": 0.05608443708609272,
+        "childConditionalAccuracy": 0.8983050847457628,
+        "acceptedCoverage": 0.9147350993377483,
+        "acceptedAccuracy": 0.856787330316742,
+        "sameParentRerankAccuracy": null,
+        "crossParentStatisticalAccuracy": 0.856787330316742,
+        "mealAccuracy": 0.6688741721854304,
+        "mealDetectionRecall": 0.6688741721854304,
+        "highConfidenceWrong": 0,
+        "ordinaryCategoryNull": 0,
+        "failureDecomposition": {
+          "otherFallbackError": 271,
+          "wrongParent": 466,
+          "correctParentWrongChild": 444,
+          "wrongType": 32,
+          "mealDetection": 50,
+          "taxonomyAmbiguity": "not adjudicated; labels unchanged",
+          "safety": "historical P2 suite separately"
+        },
+        "latencyMicroseconds": {
+          "p50": 553,
+          "p95": 1109,
+          "p99": 1370
+        },
+        "environment": "Windows host warm Dart VM; not Android API26",
+        "inputContract": "original text; fixed 37 suffix only when existing field extraction has no amount; semantic labels unchanged"
+      }
+    },
+    {
+      "model": "8192_0_0.5.bin",
+      "fusion": "F1",
+      "prior": 0,
+      "threshold": 0.25,
+      "report": {
+        "stage": "final96_f1_8192_0_0p5",
+        "devCount": 4832,
+        "categoryAccuracy": 0.7984271523178808,
+        "parentAccuracy": 0.9000413907284768,
+        "typeAccuracy": 0.9919288079470199,
+        "specificCategoryCoverage": 0.9443294701986755,
+        "specificCategoryAccuracy": 0.8229235152312075,
+        "fallbackRate": 0.055670529801324475,
+        "falseFallbackRate": 0.03435430463576159,
+        "childConditionalAccuracy": 0.8871004828696252,
+        "acceptedCoverage": 0.8934188741721855,
+        "acceptedAccuracy": 0.826963168867269,
+        "sameParentRerankAccuracy": null,
+        "crossParentStatisticalAccuracy": 0.826963168867269,
+        "mealAccuracy": 0.6688741721854304,
+        "mealDetectionRecall": 0.6688741721854304,
+        "highConfidenceWrong": 0,
+        "ordinaryCategoryNull": 0,
+        "failureDecomposition": {
+          "otherFallbackError": 166,
+          "wrongParent": 483,
+          "correctParentWrongChild": 491,
+          "wrongType": 39,
+          "mealDetection": 50,
+          "taxonomyAmbiguity": "not adjudicated; labels unchanged",
+          "safety": "historical P2 suite separately"
+        },
+        "latencyMicroseconds": {
+          "p50": 545,
+          "p95": 1090,
+          "p99": 1379
+        },
+        "environment": "Windows host warm Dart VM; not Android API26",
+        "inputContract": "original text; fixed 37 suffix only when existing field extraction has no amount; semantic labels unchanged"
+      }
+    },
+    {
+      "model": "8192_0_2.0.bin",
+      "fusion": "F1",
+      "prior": 0,
+      "threshold": 0.25,
+      "report": {
+        "stage": "final96_f1_8192_0_2p0",
+        "devCount": 4832,
+        "categoryAccuracy": 0.8000827814569537,
+        "parentAccuracy": 0.8971440397350994,
+        "typeAccuracy": 0.9919288079470199,
+        "specificCategoryCoverage": 0.9515728476821192,
+        "specificCategoryAccuracy": 0.820139190952588,
+        "fallbackRate": 0.04842715231788075,
+        "falseFallbackRate": 0.02876655629139073,
+        "childConditionalAccuracy": 0.8918108419838524,
+        "acceptedCoverage": 0.9118377483443708,
+        "acceptedAccuracy": 0.8247843849296413,
+        "sameParentRerankAccuracy": null,
+        "crossParentStatisticalAccuracy": 0.8247843849296413,
+        "mealAccuracy": 0.6688741721854304,
+        "mealDetectionRecall": 0.6688741721854304,
+        "highConfidenceWrong": 0,
+        "ordinaryCategoryNull": 0,
+        "failureDecomposition": {
+          "otherFallbackError": 139,
+          "wrongParent": 497,
+          "correctParentWrongChild": 469,
+          "wrongType": 39,
+          "mealDetection": 50,
+          "taxonomyAmbiguity": "not adjudicated; labels unchanged",
+          "safety": "historical P2 suite separately"
+        },
+        "latencyMicroseconds": {
+          "p50": 579,
+          "p95": 1172,
+          "p99": 1511
+        },
+        "environment": "Windows host warm Dart VM; not Android API26",
+        "inputContract": "original text; fixed 37 suffix only when existing field extraction has no amount; semantic labels unchanged"
+      }
+    },
+    {
+      "model": "8192_1_0.5.bin",
+      "fusion": "F1",
+      "prior": 0,
+      "threshold": 0.25,
+      "report": {
+        "stage": "final96_f1_8192_1_0p5",
+        "devCount": 4832,
+        "categoryAccuracy": 0.8023592715231788,
+        "parentAccuracy": 0.894453642384106,
+        "typeAccuracy": 0.9933774834437086,
+        "specificCategoryCoverage": 0.9120447019867549,
+        "specificCategoryAccuracy": 0.8561379623326526,
+        "fallbackRate": 0.08795529801324509,
+        "falseFallbackRate": 0.06643211920529801,
+        "childConditionalAccuracy": 0.8970384081443776,
+        "acceptedCoverage": 0.8990066225165563,
+        "acceptedAccuracy": 0.8593462246777164,
+        "sameParentRerankAccuracy": null,
+        "crossParentStatisticalAccuracy": 0.8593462246777164,
+        "mealAccuracy": 0.6688741721854304,
+        "mealDetectionRecall": 0.6688741721854304,
+        "highConfidenceWrong": 0,
+        "ordinaryCategoryNull": 0,
+        "failureDecomposition": {
+          "otherFallbackError": 321,
+          "wrongParent": 510,
+          "correctParentWrongChild": 445,
+          "wrongType": 32,
+          "mealDetection": 50,
+          "taxonomyAmbiguity": "not adjudicated; labels unchanged",
+          "safety": "historical P2 suite separately"
+        },
+        "latencyMicroseconds": {
+          "p50": 529,
+          "p95": 1085,
+          "p99": 1366
+        },
+        "environment": "Windows host warm Dart VM; not Android API26",
+        "inputContract": "original text; fixed 37 suffix only when existing field extraction has no amount; semantic labels unchanged"
+      }
+    },
+    {
+      "model": "8192_1_2.0.bin",
+      "fusion": "F1",
+      "prior": 0,
+      "threshold": 0.25,
+      "report": {
+        "stage": "final96_f1_8192_1_2p0",
+        "devCount": 4832,
+        "categoryAccuracy": 0.8118791390728477,
+        "parentAccuracy": 0.9004552980132451,
+        "typeAccuracy": 0.9933774834437086,
+        "specificCategoryCoverage": 0.9211506622516556,
+        "specificCategoryAccuracy": 0.858908110536958,
+        "fallbackRate": 0.07884933774834435,
+        "falseFallbackRate": 0.05815397350993377,
+        "childConditionalAccuracy": 0.9016318087795909,
+        "acceptedCoverage": 0.9093543046357616,
+        "acceptedAccuracy": 0.8623122439690487,
+        "sameParentRerankAccuracy": null,
+        "crossParentStatisticalAccuracy": 0.8623122439690487,
+        "mealAccuracy": 0.6688741721854304,
+        "mealDetectionRecall": 0.6688741721854304,
+        "highConfidenceWrong": 0,
+        "ordinaryCategoryNull": 0,
+        "failureDecomposition": {
+          "otherFallbackError": 281,
+          "wrongParent": 481,
+          "correctParentWrongChild": 428,
+          "wrongType": 32,
+          "mealDetection": 50,
+          "taxonomyAmbiguity": "not adjudicated; labels unchanged",
+          "safety": "historical P2 suite separately"
+        },
+        "latencyMicroseconds": {
+          "p50": 554,
+          "p95": 1100,
+          "p99": 1437
+        },
+        "environment": "Windows host warm Dart VM; not Android API26",
+        "inputContract": "original text; fixed 37 suffix only when existing field extraction has no amount; semantic labels unchanged"
+      }
+    },
+    {
+      "model": "16384_0_2.0.bin",
+      "fusion": "F2",
+      "prior": 0.05,
+      "threshold": 0.25,
+      "report": {
+        "stage": "final96_f2_0p05",
+        "devCount": 4832,
+        "categoryAccuracy": 0.8143625827814569,
+        "parentAccuracy": 0.9103890728476821,
+        "typeAccuracy": 0.9923427152317881,
+        "specificCategoryCoverage": 0.9472268211920529,
+        "specificCategoryAccuracy": 0.8367926589469085,
+        "fallbackRate": 0.052773178807947074,
+        "falseFallbackRate": 0.031043046357615893,
+        "childConditionalAccuracy": 0.8945214821550352,
+        "acceptedCoverage": 0.902317880794702,
+        "acceptedAccuracy": 0.8438073394495413,
+        "sameParentRerankAccuracy": null,
+        "crossParentStatisticalAccuracy": 0.8438073394495413,
+        "mealAccuracy": 0.6688741721854304,
+        "mealDetectionRecall": 0.6688741721854304,
+        "highConfidenceWrong": 0,
+        "ordinaryCategoryNull": 0,
+        "failureDecomposition": {
+          "otherFallbackError": 150,
+          "wrongParent": 433,
+          "correctParentWrongChild": 464,
+          "wrongType": 37,
+          "mealDetection": 50,
+          "taxonomyAmbiguity": "not adjudicated; labels unchanged",
+          "safety": "historical P2 suite separately"
+        },
+        "latencyMicroseconds": {
+          "p50": 546,
+          "p95": 1095,
+          "p99": 1356
+        },
+        "environment": "Windows host warm Dart VM; not Android API26",
+        "inputContract": "original text; fixed 37 suffix only when existing field extraction has no amount; semantic labels unchanged"
+      }
+    },
+    {
+      "model": "16384_0_2.0.bin",
+      "fusion": "F2",
+      "prior": 0.15,
+      "threshold": 0.25,
+      "report": {
+        "stage": "final96_f2_0p15",
+        "devCount": 4832,
+        "categoryAccuracy": 0.8176738410596026,
+        "parentAccuracy": 0.9137003311258278,
+        "typeAccuracy": 0.9923427152317881,
+        "specificCategoryCoverage": 0.9472268211920529,
+        "specificCategoryAccuracy": 0.8402883985143107,
+        "fallbackRate": 0.052773178807947074,
+        "falseFallbackRate": 0.031043046357615893,
+        "childConditionalAccuracy": 0.8949037372593431,
+        "acceptedCoverage": 0.9000413907284768,
+        "acceptedAccuracy": 0.8470912853529547,
+        "sameParentRerankAccuracy": null,
+        "crossParentStatisticalAccuracy": 0.8470912853529547,
+        "mealAccuracy": 0.6688741721854304,
+        "mealDetectionRecall": 0.6688741721854304,
+        "highConfidenceWrong": 0,
+        "ordinaryCategoryNull": 0,
+        "failureDecomposition": {
+          "otherFallbackError": 150,
+          "wrongParent": 417,
+          "correctParentWrongChild": 464,
+          "wrongType": 37,
+          "mealDetection": 50,
+          "taxonomyAmbiguity": "not adjudicated; labels unchanged",
+          "safety": "historical P2 suite separately"
+        },
+        "latencyMicroseconds": {
+          "p50": 615,
+          "p95": 1281,
+          "p99": 1827
+        },
+        "environment": "Windows host warm Dart VM; not Android API26",
+        "inputContract": "original text; fixed 37 suffix only when existing field extraction has no amount; semantic labels unchanged"
+      }
+    },
+    {
+      "model": "16384_0_2.0.bin",
+      "fusion": "F3",
+      "prior": 0,
+      "threshold": 0.0,
+      "report": {
+        "stage": "final96_f3_0p0",
+        "devCount": 4832,
+        "categoryAccuracy": 0.7963576158940397,
+        "parentAccuracy": 0.8938327814569537,
+        "typeAccuracy": 0.9923427152317881,
+        "specificCategoryCoverage": 0.9579884105960265,
+        "specificCategoryAccuracy": 0.8114063512637719,
+        "fallbackRate": 0.04201158940397354,
+        "falseFallbackRate": 0.02297185430463576,
+        "childConditionalAccuracy": 0.8909469784672378,
+        "acceptedCoverage": 0.9406043046357616,
+        "acceptedAccuracy": 0.8195819581958196,
+        "sameParentRerankAccuracy": null,
+        "crossParentStatisticalAccuracy": 0.8195819581958196,
+        "mealAccuracy": 0.6688741721854304,
+        "mealDetectionRecall": 0.6688741721854304,
+        "highConfidenceWrong": 0,
+        "ordinaryCategoryNull": 0,
+        "failureDecomposition": {
+          "otherFallbackError": 111,
+          "wrongParent": 513,
+          "correctParentWrongChild": 471,
+          "wrongType": 37,
+          "mealDetection": 50,
+          "taxonomyAmbiguity": "not adjudicated; labels unchanged",
+          "safety": "historical P2 suite separately"
+        },
+        "latencyMicroseconds": {
+          "p50": 647,
+          "p95": 1315,
+          "p99": 1842
+        },
+        "environment": "Windows host warm Dart VM; not Android API26",
+        "inputContract": "original text; fixed 37 suffix only when existing field extraction has no amount; semantic labels unchanged"
+      }
+    },
+    {
+      "model": "16384_0_2.0.bin",
+      "fusion": "F3",
+      "prior": 0,
+      "threshold": 0.1,
+      "report": {
+        "stage": "final96_f3_0p1",
+        "devCount": 4832,
+        "categoryAccuracy": 0.796771523178808,
+        "parentAccuracy": 0.8940397350993378,
+        "typeAccuracy": 0.9923427152317881,
+        "specificCategoryCoverage": 0.9575745033112583,
+        "specificCategoryAccuracy": 0.8121893235357683,
+        "fallbackRate": 0.04242549668874174,
+        "falseFallbackRate": 0.023385761589403975,
+        "childConditionalAccuracy": 0.8912037037037037,
+        "acceptedCoverage": 0.9391556291390728,
+        "acceptedAccuracy": 0.8206258263552225,
+        "sameParentRerankAccuracy": null,
+        "crossParentStatisticalAccuracy": 0.8206258263552225,
+        "mealAccuracy": 0.6688741721854304,
+        "mealDetectionRecall": 0.6688741721854304,
+        "highConfidenceWrong": 0,
+        "ordinaryCategoryNull": 0,
+        "failureDecomposition": {
+          "otherFallbackError": 113,
+          "wrongParent": 512,
+          "correctParentWrongChild": 470,
+          "wrongType": 37,
+          "mealDetection": 50,
+          "taxonomyAmbiguity": "not adjudicated; labels unchanged",
+          "safety": "historical P2 suite separately"
+        },
+        "latencyMicroseconds": {
+          "p50": 582,
+          "p95": 1153,
+          "p99": 1513
+        },
+        "environment": "Windows host warm Dart VM; not Android API26",
+        "inputContract": "original text; fixed 37 suffix only when existing field extraction has no amount; semantic labels unchanged"
+      }
+    }
+  ]
+}

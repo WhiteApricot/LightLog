@@ -1,0 +1,213 @@
+{
+  "frozenAt": "2026-10-06T05:03:59.947285+00:00",
+  "production": {
+    "lib/main.dart": "24a329c78876315982858273402e85537e15c07d684e14a091c63e7150c18f9d",
+    "lib/app/light_log_app.dart": "250b3792457f807071a146a1fe5aceb30be3927776654aa0d15c3161d0b57b07",
+    "lib/app/providers.dart": "5fbb45679d7233f3a203e36964fa129daf75d476cec2b7092f2c07c7a624d3d1",
+    "lib/core/money.dart": "06453dcfa8d5fd09cc721caa21620c3de0035e1a950e559762173b8cecf3c096",
+    "lib/core/occurrence_time.dart": "c4e0d35aabee210ab17804171638d4cc967ce6ac8979807e707d19fc2bc132b1",
+    "lib/data/database/database.dart": "7bb31bd9a107af059588037d6b7d6a3e691145401130dbd9092f5e890a35b1c0",
+    "lib/data/database/database.g.dart": "d3ed82527d4cd62a62c3773d61d812c5c3c4addf8a8df5cb0898d1d04a6b3610",
+    "lib/data/database/seed_data.dart": "437bb127ce53320b95de8d9d1ef2214c74268712f268056667dc29311e718c23",
+    "lib/data/database/tables.dart": "e3ee53e8211a0f4a7f4359791d8b99b15a048f919ee1fc1d7bcba4caf2edd1e5",
+    "lib/features/entry/presentation/account_picker.dart": "6ac4c0b12728e0196e1df4021be254343d6dec3c47c261d907b411d92bf34912",
+    "lib/features/entry/presentation/category_picker.dart": "def62fe234c3dd57b4bd492a545927bb50611fef8a493d091c592c7f59b706e9",
+    "lib/features/entry/presentation/entry_page.dart": "7557a93c361ec6c8ea5fb0e6415a6d9d98c5f26798fa4a795f1840fc36d52a12",
+    "lib/features/entry/presentation/transaction_editor_page.dart": "744455efa3b946ac357d1bac8ba08a8e517ecbff2bbdcd7ee2340c8345d288ca",
+    "lib/features/entry/presentation/wheel_time_picker.dart": "7e43be6653540f538163f13aa46f15903873d02c187a578f18c99834c674ab83",
+    "lib/features/ledger/data/ledger_repository.dart": "556e1d76dbb312f0580a67a90810802f3bf58a85c592b69050e24dad0b500eb3",
+    "lib/features/ledger/domain/ledger_models.dart": "7de71fa8ea129354577a95500a96e6d799c88ba8fba9791d793e1c61d877d0fc",
+    "lib/features/ledger/presentation/ledger_page.dart": "3c62eeca7f14cbf060381fb9aa21b1b5d0bc440c1cc90a9fa81ca6a2c6b88827",
+    "lib/features/recognition/application/recognition_coordinator.dart": "7bd5179721405f3891d8b68fdf39a7a50166bf0661a4f0c322e4050da5069573",
+    "lib/features/recognition/application/recognition_result_mapper.dart": "c7164426655cb160c0346c5523716749577d7826b78a8b51c9c7261d86344e0b",
+    "lib/features/recognition/data/knowledge_decoder.dart": "1cf56edf128fa44fbec4898b71f81b80816196c7cf0f54c07f99226e5c0b1344",
+    "lib/features/recognition/data/knowledge_loader.dart": "25ed35315e4a7c774e7364cdad42a6905fd64b8570ac3050de240d31306f45d7",
+    "lib/features/recognition/data/recognition_repository.dart": "64d449c107affb75bcebb322b153b2d474b51f688bc8cabbadc1cdf720a431dc",
+    "lib/features/recognition/domain/amount_extractor.dart": "a31acc40d07c0d3aaa0d2c28383e840a7bd8c723f029cd1ce0c97bb996258287",
+    "lib/features/recognition/domain/category_resolver.dart": "c0bc1064fd15872f05fb6b764f6e2be0f73b3305c79eb00dc9e9ea68349e0a81",
+    "lib/features/recognition/domain/confidence_calibrator.dart": "d3f5056482a4b201e23b8ec95ff00c88761500482533cbbbdcf2d275adef4723",
+    "lib/features/recognition/domain/content_extractor.dart": "3978472dd0ca189041efd49af3ae106b63cac3cae1ea66bf9c3d071627f5d09b",
+    "lib/features/recognition/domain/context_evidence.dart": "1973bbc063db02e01429955ced6c8b7dedde5b73bc5d87c9d695e65c28448146",
+    "lib/features/recognition/domain/entity_matcher.dart": "6221985019f6f943d6d72586c0fcac44d63c0f6df9f254d15188aeb2ff540c37",
+    "lib/features/recognition/domain/evidence_fusion.dart": "b98c40cdf0a0f5b4fd5412007c6d2a34d15978bcb7e2c13c442f59384fb3652d",
+    "lib/features/recognition/domain/family_matcher.dart": "7f6d7453f10d0b8ed6a066c1145a6f0c4386d1461717063b43e7d0e35e10eb02",
+    "lib/features/recognition/domain/field_extractor.dart": "2aebe417e0b65321bc889a45944b27cac36b45c7ea92a0d2905a7ab5aea26653",
+    "lib/features/recognition/domain/knowledge_models.dart": "66e765d540aa77cbe4ede1e36c7d849125011b84f828eeb42c42aecfba279c65",
+    "lib/features/recognition/domain/lexicon_matcher.dart": "7bdf4b1c9aa3f61fd699c1802da89d7fbdd3ad1d61347da19f1c2e1f36024717",
+    "lib/features/recognition/domain/natural_time_parser.dart": "b07efa02e8abf2341117ab9897923fe42c070625b092cb9593ce7e1d365466fe",
+    "lib/features/recognition/domain/ngram_classifier.dart": "674a26259200d46bf1095a2c89e80d6d62a6ee482d7268ba62c129333617bc94",
+    "lib/features/recognition/domain/ngram_model.dart": "cbb5229f6f967d66fb5c1c1c41f663bf280838571ec65cb6f019f10e04d6c1ab",
+    "lib/features/recognition/domain/normalization.dart": "586ee568e0fe970c8242b0933b3b7e4e4694906d5cc4b61fd88c8dcb1e38cba8",
+    "lib/features/recognition/domain/personal_history.dart": "1c7bdfdbf725fffc1b81ed030471291957de7bfc7acd39b011e4f2b02e430d7c",
+    "lib/features/recognition/domain/recognition_models.dart": "2a2d5c9cb9b9f46d3aa9aa293349061af5c2ffba0b78b617e5a4db582d3f170f",
+    "lib/features/recognition/domain/recognizer.dart": "6590d045e1b6bea188b90f8c86ad572a82a76ab03ab79c0a6e78f423b26cef83",
+    "lib/features/recognition/domain/span_conflict_resolver.dart": "936b4214c6f2c5570d2722951cbfed78cdd816bab0032133c9596439927ddbd1",
+    "lib/features/recognition/domain/transaction_status_detector.dart": "27b1a81298dab55b92c03416a7f24f0c1e9a601e0e999d9282510771a82c6d79",
+    "lib/features/recognition/domain/type_inference.dart": "67ceae21b458701d9c45297a1c965c4f0e28895a49d236bee22bdec296336088",
+    "assets/knowledge/category_lexicon.json": "6632ebec6a51f24c1a89849f1efd0128e386393e477e1eb7575172bdbddda27b",
+    "assets/knowledge/composition_rules.json": "bcb5e790e8f4dfd73591560a4b28e4cfe42359f55528a8c52ed68802bd2e062c",
+    "assets/knowledge/lexical_families.json": "7fd7e18e421c6b9bf8ae0e5671a47150da698d1d125549e3c0740774fa0deaa7",
+    "assets/knowledge/merchants.json": "8429808de71258d547e15a0378b7e31e1356207c89dda0f125155c1488585e41",
+    "assets/knowledge/ngram.bin": "40c84bac8f5fc0653beb2e595bc424c8219cc16e9a2523b4c00d48d73ce9de16",
+    "tools/evaluation/evaluate_recognition.dart": "8ae808b8ec594907e1186da3710c787a67692900d70c7a587aa2d04dd09837a6",
+    "tools/recognition_tool_harness.dart": "fd5b323e83bc2e74672a965a50d269aee4683de9ec7c6fed299513661ead79bd",
+    "tools/ngram/export_pipeline.dart": "27460c2fb3fa4171bfb2fb971f8ad6322dd5ebd8caec11af0f9230fbb05594b0",
+    "tools/ngram/train_final.py": "4bb364b5fadf9f5889f9ef51ac91b852ddcfe0fcb706fb83e3b0ad5bb379b3fe",
+    "tools/ngram/select_final.py": "a7c54378de43bb7d28b1813a3984449251f09fef4d52ae387bb8a5078c90bb6c",
+    "tools/ngram/reference.py": "56e759e976b3d01cf232991e09c6b49188a9faebff888c0def8330854cce6673",
+    "tools/ngram/final_acceptance.py": "13eec0eee3add7b6b95277a57c906f69b328d7d69cfdb379c99bf4ba37b5bb67"
+  },
+  "dataset": {
+    "tools/ngram/data/ngram_dataset_review_report_v2.json": "2e4cc32a2c540968ee079aec47af1a2540f2264644f7f7ade5ca56677db5178b",
+    "tools/ngram/data/ngram_dev_v2.jsonl": "28211be328f5003b2122472a8d10cf05edb8e89908742509321017e2f3d58c0d",
+    "tools/ngram/data/ngram_training_corpus_v2.jsonl": "becfb4fcaf6c3b7c8b96132eb96d42d87a3f44c5cf0f12a5ec6c68393be16a2f",
+    "tools/ngram/data/ngram_train_v2.jsonl": "6d4cefc57dbdf31f6962635ab2e47b06c4e51a5fe67796ba2a4ed8f899005dc7"
+  },
+  "oracles": {
+    "tools/evaluation/corpora/phase3_96class/lightlog_phase3_96class_generalization_v6.json": "f2bce8c37009bd5ec3dc9ed891108877177206b7192530dda8482d631533db1b",
+    "tools/evaluation/corpora/phase3_96class/lightlog_phase3_compositional_holdout_v3_96class.json": "5f2e7bc55a9493b641ba3e67ab636e5069a74dcd24af324b41d5dad3ef4907c3",
+    "tools/evaluation/corpora/phase3_96class/lightlog_phase3_family_generalization_holdout_v4_96class.json": "bad18924eab6d7031c37e637325e201af4357b29b1925dfc7359d2e54ce272f0",
+    "tools/evaluation/corpora/phase3_96class/lightlog_phase3_recognition_test_cases_96class.json": "9c630d771b44a7d90f185475a648b363f776f45c841004645aaf2b1e879cd345",
+    "tools/evaluation/corpora/phase3_96class/lightlog_phase3_semantic_routing_holdout_v5_96class.json": "e788cbcd63180b91b95f4da3df98c77be968837747eb11a0553d223a1d3f4a21",
+    "tools/evaluation/corpora/phase3_96class/lightlog_phase3_stress_holdout_v2_96class.json": "2aa7cb51215e6cfd65c99b5634803982bab749e0eae7c548b68050e83514910c",
+    "tools/evaluation/corpora/phase3_96class/lightlog_phase3_96class_realworld_holdout_v7.json": "a1248d2e22c83afbbe1fd2317f66fc78a9610b3a2560c0fa509bbad1cb872730"
+  },
+  "modelSha256": "40c84bac8f5fc0653beb2e595bc424c8219cc16e9a2523b4c00d48d73ce9de16",
+  "config": {
+    "grams": [
+      2,
+      3
+    ],
+    "fusion": "F3",
+    "parentPrior": 0,
+    "parentThreshold": 0.0,
+    "parentMargin": 0.0,
+    "childCalibration": {
+      "expense.communication": {
+        "threshold": 0.4,
+        "margin": 0.0
+      },
+      "expense.daily": {
+        "threshold": 0.4,
+        "margin": 0.0
+      },
+      "expense.digital": {
+        "threshold": 0.85,
+        "margin": 0.15
+      },
+      "expense.education": {
+        "threshold": 0.55,
+        "margin": 0.0
+      },
+      "expense.entertainment": {
+        "threshold": 0.4,
+        "margin": 0.0
+      },
+      "expense.finance": {
+        "threshold": 0.4,
+        "margin": 0.05
+      },
+      "expense.food": {
+        "threshold": 0.85,
+        "margin": 0.0
+      },
+      "expense.housing": {
+        "threshold": 0.4,
+        "margin": 0.0
+      },
+      "expense.medical": {
+        "threshold": 0.85,
+        "margin": 0.15
+      },
+      "expense.other": {
+        "threshold": 0.4,
+        "margin": 0.0
+      },
+      "expense.pets": {
+        "threshold": 0.4,
+        "margin": 0.0
+      },
+      "expense.shopping": {
+        "threshold": 0.55,
+        "margin": 0.0
+      },
+      "expense.social": {
+        "threshold": 0.4,
+        "margin": 0.0
+      },
+      "expense.sports": {
+        "threshold": 0.4,
+        "margin": 0.0
+      },
+      "expense.transport": {
+        "threshold": 0.7,
+        "margin": 0.0
+      },
+      "income.investment": {
+        "threshold": 0.4,
+        "margin": 0.0
+      },
+      "income.other": {
+        "threshold": 0.4,
+        "margin": 0.0
+      },
+      "income.parttime": {
+        "threshold": 0.4,
+        "margin": 0.0
+      },
+      "income.refund": {
+        "threshold": 0.4,
+        "margin": 0.0
+      },
+      "income.reimbursement": {
+        "threshold": 0.4,
+        "margin": 0.0
+      },
+      "income.salary": {
+        "threshold": 0.4,
+        "margin": 0.0
+      }
+    },
+    "directionThreshold": 0.5,
+    "preparedMealThreshold": 0.7
+  },
+  "configSha256": "4764e21bcdc2b8526ef21603fc7b2e9f694888c1e9135c7c1bd044b4fdc83428",
+  "dev": {
+    "stage": "contract_direction_fields",
+    "devCount": 4832,
+    "categoryAccuracy": 0.9091473509933775,
+    "parentAccuracy": 0.9418460264900662,
+    "typeAccuracy": 0.9759933774834437,
+    "specificCategoryCoverage": 0.9735099337748344,
+    "specificCategoryAccuracy": 0.9119897959183674,
+    "fallbackRate": 0.026490066225165587,
+    "falseFallbackRate": 0.005173841059602649,
+    "childConditionalAccuracy": 0.965282355526258,
+    "acceptedCoverage": 0.9735099337748344,
+    "acceptedAccuracy": 0.9117772108843537,
+    "sameParentRerankAccuracy": null,
+    "crossParentStatisticalAccuracy": 0.9117772108843537,
+    "mealAccuracy": 1.0,
+    "mealDetectionRecall": 1.0,
+    "highConfidenceWrong": 0,
+    "ordinaryCategoryNull": 0,
+    "failureDecomposition": {
+      "otherFallbackError": 25,
+      "wrongParent": 281,
+      "correctParentWrongChild": 158,
+      "wrongType": 116,
+      "mealDetection": 0,
+      "taxonomyAmbiguity": "not adjudicated; labels unchanged",
+      "safety": "historical P2 suite separately"
+    },
+    "latencyMicroseconds": {
+      "p50": 498,
+      "p95": 979,
+      "p99": 1213
+    },
+    "environment": "Windows host warm Dart VM; not Android API26",
+    "inputContract": "original text; fixed 37 suffix only when existing field extraction has no amount; semantic labels unchanged"
+  },
+  "protocol": "train/dev only before freeze; no algorithm changes after freeze; historical regression then one v7 first-run; no tuning using holdout outcomes",
+  "productionSourceSha256": "5851e66c20f16b7a5b61ae1d2d5be8aa780afe81083710fb1dd0625b5d8df1d0"
+}
